@@ -1,0 +1,15 @@
+{
+  "name": "tepapa-photographs",
+  "version": "1.0.0",
+  "description": "An editorial, typographic browser for the openly-licensed photographs in the Museum of New Zealand Te Papa Tongarewa collection.",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "private": true
+}

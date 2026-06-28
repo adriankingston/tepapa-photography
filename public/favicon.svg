@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Simplified version of the app's hub/relationship logo, tuned to stay
+       legible at favicon sizes. Monochrome, with a light/dark tab-bar swap. -->
+  <style>
+    :root { --ink: #1a1c1e; }
+    @media (prefers-color-scheme: dark) { :root { --ink: #e6e6e6; } }
+    .link { fill: none; stroke: var(--ink); stroke-width: 1.7; stroke-linecap: round; }
+    .node { fill: var(--ink); }
+  </style>
+  <g class="link">
+    <line x1="16" y1="16" x2="7.5" y2="8" />
+    <line x1="16" y1="16" x2="24.5" y2="9" />
+    <line x1="16" y1="16" x2="8.5" y2="24.5" />
+    <line x1="16" y1="16" x2="24.5" y2="24" />
+  </g>
+  <circle class="node" cx="16" cy="16" r="4" />
+  <circle class="node" cx="7.5" cy="8" r="3" />
+  <circle class="node" cx="24.5" cy="9" r="2.2" />
+  <circle class="node" cx="8.5" cy="24.5" r="2.2" />
+  <circle class="node" cx="24.5" cy="24" r="3.2" />
+</svg>

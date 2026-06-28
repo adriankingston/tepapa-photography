@@ -1,0 +1,8 @@
+# Never upload these to Vercel. The API key lives in .env and must stay out of
+# the build — on Vercel it comes from the project's Environment Variables instead.
+.env
+.git
+.claude
+node_modules
+*.log
+.DS_Store

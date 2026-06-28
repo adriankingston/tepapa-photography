@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Photographs — Te Papa, openly licensed</title>
+  <meta name="description" content="An editorial reading of the openly-licensed photographs in the Museum of New Zealand Te Papa Tongarewa collection. Every image here is free to use.">
+
+  <!-- Set the theme before first paint (no flash): saved choice, else OS preference.
+       Shares the 'tepapa.theme' key with the main browser so the choice carries across. -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('tepapa.theme');
+        if (t !== 'light' && t !== 'dark') {
+          t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = t;
+      } catch (e) {
+        document.documentElement.dataset.theme = 'light';
+      }
+    })();
+  </script>
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.png" sizes="any">
+  <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- ====== Masthead ====== -->
+  <header class="masthead" id="top">
+    <div class="masthead-row">
+      <p class="overline">Museum of New Zealand Te&nbsp;Papa Tongarewa</p>
+      <div class="theme-switch" role="radiogroup" aria-label="Colour theme">
+        <button type="button" class="theme-opt" data-val="light" role="radio" aria-checked="true">Light</button>
+        <span class="theme-sep">/</span>
+        <button type="button" class="theme-opt" data-val="dark" role="radio" aria-checked="false">Dark</button>
+      </div>
+    </div>
+
+    <h1 class="title">
+      <span class="title-line">Photo<span class="ital">graphs</span></span>
+    </h1>
+
+    <div class="colophon">
+      <p class="lede">
+        A reading of the museum&rsquo;s <em>openly&nbsp;licensed</em> photography &mdash;
+        every plate below is yours to download, reuse and reprint. Pulled live from the
+        collection, sorted by nothing but the light.
+      </p>
+      <p class="standfirst" id="count-line">
+        <span class="count" id="count">&mdash;</span> photographs free of <span class="nb">All&nbsp;Rights&nbsp;Reserved</span>
+      </p>
+    </div>
+  </header>
+
+  <!-- ====== Controls ====== -->
+  <section class="controls" aria-label="Search and browse">
+    <form class="search" id="search-form" role="search">
+      <label class="search-label" for="q">Search the collection</label>
+      <div class="search-field">
+        <input type="search" id="q" name="q" autocomplete="off" spellcheck="false"
+               placeholder="a name, a place, a subject&hellip;">
+        <button type="submit" class="search-go" aria-label="Search">&#8629;</button>
+      </div>
+    </form>
+
+    <div class="themes" id="themes" aria-label="Suggested searches">
+      <span class="themes-label">Or wander&hellip;</span>
+      <!-- chips injected -->
+    </div>
+  </section>
+
+  <!-- ====== Ways in: curated subsets ====== -->
+  <section class="ways" aria-label="Curated subsets">
+    <p class="ways-q" id="ways-q">Interested in&nbsp;<span class="ways-slot"><!-- links injected --></span></p>
+  </section>
+
+  <!-- ====== Significant New Zealand photographers ====== -->
+  <section class="makers" aria-label="Significant New Zealand photographers">
+    <h2 class="makers-head">Significant New&nbsp;Zealand photographers</h2>
+    <ol class="makers-list" id="makers-list"><!-- cards injected --></ol>
+  </section>
+
+  <!-- ====== Results ====== -->
+  <main id="main">
+    <p class="state" id="state" hidden></p>
+    <div class="plates" id="plates" aria-live="polite"></div>
+    <div class="sentinel" id="sentinel" aria-hidden="true"></div>
+    <p class="end-note" id="end-note" hidden>&mdash; the end of the roll &mdash;</p>
+  </main>
+
+  <footer class="footer">
+    <p>
+      Images &amp; data &copy; Museum of New Zealand Te&nbsp;Papa Tongarewa, supplied under the
+      licence shown on each work (Creative&nbsp;Commons, No&nbsp;Known&nbsp;Copyright&nbsp;Restrictions,
+      or otherwise downloadable). This is an independent reading of the
+      <a href="https://data.tepapa.govt.nz/" target="_blank" rel="noopener">collections&nbsp;API</a>.
+      &nbsp;&middot;&nbsp; <a href="https://browser.nextepisode.nz">Collections&nbsp;browser</a>
+      &nbsp;&middot;&nbsp; <a href="https://nextepisode.nz">nextepisode</a>
+    </p>
+  </footer>
+
+  <!-- ====== Lightbox ====== -->
+  <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Photograph viewer">
+    <button class="lb-close" id="lb-close" aria-label="Close">&times;</button>
+    <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">&#8592;</button>
+    <button class="lb-nav lb-next" id="lb-next" aria-label="Next">&#8594;</button>
+    <figure class="lb-figure">
+      <div class="lb-stage" id="lb-stage">
+        <img id="lb-img" alt="">
+      </div>
+      <figcaption class="lb-caption" id="lb-caption"></figcaption>
+    </figure>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
