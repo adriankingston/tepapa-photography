@@ -50,19 +50,21 @@ const SUGGESTIONS = [
 
 // Curated subsets, each phrased as a clickable term in one editorial question.
 // The query is a curated clause ANDed onto the open-set BASE; the label is what
-// shows in the search box for context. (See probes: international greats are
-// mostly in copyright, so that subset is the few open ones plus Brake.)
+// shows in the search box for context. These are coherent *subjects* (not generic
+// keywords) — probed for distinct, on-topic results with no cross-overlap.
 const WAYS = [
-  { term: 'documentary', label: 'documentary',
-    q: 'documentary' },
-  { term: 'art', label: 'art photography',
-    q: 'pictorial OR pictorialism OR "fine art"' },
-  { term: 'New Zealand', label: 'New Zealand landscapes',
-    q: 'scenery OR landscape OR mountains OR lake OR harbour OR coast OR fiord OR glacier' },
-  { term: 'Brake', label: 'Brian Brake',
-    q: '"Brian Brake"' },
-  { term: 'historical', label: 'historical',
-    q: '"Burton Brothers" OR "Muir & Moodie" OR "James Bragge" OR "Thomas Andrew" OR daguerreotype OR ambrotype OR "carte de visite"' },
+  { term: 'portraits', label: 'portraits',
+    q: 'portrait OR portraits' },
+  { term: 'industry', label: 'industry',
+    q: 'industry OR industrial OR factory OR sawmilling' },
+  { term: 'shipping', label: 'shipping',
+    q: 'ship OR ships OR shipping OR steamer OR schooner' },
+  { term: 'the war', label: 'war & soldiers',
+    q: 'war OR soldiers OR military OR regiment OR troops' },
+  { term: 'street life', label: 'streets',
+    q: 'street OR township OR streetscape' },
+  { term: 'tourism', label: 'tourism',
+    q: 'tourist OR scenic OR resort OR "hot springs" OR sightseeing' },
 ];
 
 /* ---- Cultural sensitivity: mirror the main browser's check, and keep any

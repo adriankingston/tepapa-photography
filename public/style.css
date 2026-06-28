@@ -30,6 +30,14 @@
   font-display: swap;
   src: url('/fonts/roboto-latin.woff2') format('woff2');
 }
+/* Archivo: a sturdy grotesque used for the page header / masthead title. */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/archivo-latin.woff2') format('woff2');
+}
 
 /* ---- Tokens ------------------------------------------------------------- */
 :root {
@@ -45,6 +53,7 @@
 
   --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
   --sans: 'Roboto', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --display: 'Archivo', 'Helvetica Neue', system-ui, Arial, sans-serif;  /* page header / masthead title */
 
   --measure: 36rem;
   --gap: clamp(20px, 3vw, 44px);
@@ -127,12 +136,16 @@ a { color: inherit; }
 
 .title {
   margin: clamp(18px, 4vw, 40px) 0 0;
-  font-weight: 540;
-  line-height: 0.86;
-  letter-spacing: -0.025em;
-  font-size: clamp(72px, 19vw, 320px);
+  font-family: var(--display);
+  font-weight: 800;
+  line-height: 0.84;
+  letter-spacing: -0.035em;
+  /* Archivo is wider than the old serif — size to fill the measure on one line
+     across viewports without clipping (the serif used 19vw / 320px). */
+  font-size: clamp(40px, 13vw, 208px);
 }
-.title .ital { font-style: italic; font-weight: 360; }
+/* Whole wordmark is one consistent Archivo weight — no two-tone contrast. */
+.title .ital { font-style: normal; font-weight: inherit; }
 
 .colophon {
   display: grid;

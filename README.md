@@ -46,7 +46,7 @@ The zero-dependency Node server serves `public/` and proxies the API (injecting 
 
 Built to deploy on **Vercel** (static `public/` + the `api/search.js` serverless
 function). Set `TEPAPA_API_KEY` in the project's Environment Variables. Intended to
-live at `photos.nextepisode.nz`.
+live at `photography.nextepisode.nz`.
 
 ---
 
