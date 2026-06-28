@@ -384,22 +384,9 @@ const PHOTOGRAPHERS = [
 ];
 
 /* ---- Search + suggestions ------------------------------------------------ */
-// Clear the pressed state on every chip, curated way and photographer card.
+// Clear the pressed state on every chip, curated way and photographer link.
 function clearActives() {
-  document.querySelectorAll('.theme-chip, .way, .maker').forEach((c) => c.setAttribute('aria-pressed', 'false'));
-}
-
-// A size:0 count for a subset, used to label the photographer index live.
-async function fetchCount(extra) {
-  try {
-    const res = await fetch('/api/search', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query: `(${extra}) AND ${BASE}`, size: 0, filters: [{ field: 'type', keyword: 'Object' }] }),
-    });
-    const j = await res.json();
-    return j && j._metadata && j._metadata.resultset ? j._metadata.resultset.count : null;
-  } catch (e) { return null; }
+  document.querySelectorAll('.theme-chip, .way, .pname').forEach((c) => c.setAttribute('aria-pressed', 'false'));
 }
 
 els.form.addEventListener('submit', (e) => {
@@ -454,35 +441,32 @@ SUGGESTIONS.forEach((term) => {
   });
 })();
 
-/* ---- Significant photographers: render the maker index ------------------- */
+/* ---- Significant photographers: a compact second line in the same block --- */
 (function renderMakers() {
-  const list = document.getElementById('makers-list');
-  if (!list) return;
+  const slot = document.querySelector('.makers-slot');
+  if (!slot) return;
   PHOTOGRAPHERS.forEach((p, i) => {
-    const li = document.createElement('li');
     const b = document.createElement('button');
     b.type = 'button';
-    b.className = 'maker';
+    b.className = 'pname';
+    b.textContent = p.name;
+    b.title = `${p.era} — ${p.blurb}`;   // blurb + era kept as a hover tooltip
     b.setAttribute('aria-pressed', 'false');
-    b.innerHTML =
-      `<span class="maker-index">${String(i + 1).padStart(2, '0')}</span>` +
-      `<span class="maker-name">${esc(p.name)}</span>` +
-      `<span class="maker-era">${esc(p.era)}</span>` +
-      `<span class="maker-blurb">${esc(p.blurb)}</span>` +
-      `<span class="maker-count" data-count>&nbsp;</span>`;
     b.addEventListener('click', () => {
+      const active = b.getAttribute('aria-pressed') === 'true';
       clearActives();
+      if (active) { els.q.value = ''; resetAndLoad(''); return; }
       b.setAttribute('aria-pressed', 'true');
       els.q.value = p.name;
       resetAndLoad(p.q);
     });
-    li.appendChild(b);
-    list.appendChild(li);
-    // Fill the count live so it matches the subset that loads.
-    fetchCount(p.q).then((c) => {
-      const el = b.querySelector('[data-count]');
-      if (el) el.textContent = c == null ? '' : `${fmtInt(c)} photographs`;
-    });
+    slot.appendChild(b);
+    if (i < PHOTOGRAPHERS.length - 1) {
+      const sep = document.createElement('span');
+      sep.className = 'pname-sep';
+      sep.textContent = ' · ';
+      slot.appendChild(sep);
+    }
   });
 })();
 

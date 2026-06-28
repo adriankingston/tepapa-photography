@@ -326,100 +326,32 @@ a { color: inherit; }
 .way[aria-pressed="true"] { color: var(--accent); border-bottom-color: var(--accent); }
 .ways-punct { color: var(--ink-soft); font-style: normal; }
 
-/* ============================================================================
-   Significant photographers — a contents-page index of makers, each a link
-   to that photographer's openly-licensed work, with a one-line blurb.
-   ============================================================================ */
-.makers {
-  max-width: 1500px;
-  margin: clamp(40px, 5vw, 72px) auto 0;
-  padding: clamp(28px, 3vw, 40px) var(--pad) 0;
-  border-top: 1px solid var(--rule);
-}
-.makers-head {
-  margin: 0 0 clamp(20px, 2.5vw, 32px);
-  font-size: clamp(13px, 1.2vw, 15px);
-  font-family: var(--sans);
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+/* Significant photographers — a compact second line within the same block.
+   Smaller than the subject question; names are inline links with the blurb +
+   era carried in a hover tooltip. */
+.ways-makers {
+  margin: clamp(18px, 2vw, 26px) 0 0;
+  max-width: 60ch;
+  font-size: clamp(15px, 1.3vw, 18px);
+  line-height: 1.6;
   color: var(--muted);
 }
-.makers-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
-}
-@media (min-width: 860px) {
-  .makers-list { grid-template-columns: 1fr 1fr; column-gap: clamp(40px, 5vw, 80px); }
-}
-
-.maker {
-  display: grid;
-  grid-template-columns: 2.4em 1fr auto;
-  gap: 2px 16px;
-  align-items: baseline;
-  width: 100%;
-  text-align: left;
+.pname {
+  font: inherit;
   background: none;
   border: 0;
-  border-top: 1px solid var(--rule);
-  padding: 16px 0 18px;
+  padding: 0 0 1px;
+  margin: 0;
   cursor: pointer;
-  color: inherit;
-  font-family: inherit;
-  transition: background .15s ease;
-}
-.maker:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
-
-.maker-index {
-  grid-row: 1 / span 2;
-  font-family: var(--sans);
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  color: var(--accent);
-  font-variant-numeric: tabular-nums;
-}
-.maker-name {
-  font-size: clamp(19px, 1.7vw, 25px);
-  font-weight: 420;
-  letter-spacing: -0.012em;
-  line-height: 1.12;
-  color: var(--ink);
-}
-.maker:hover .maker-name { color: var(--accent); }
-.maker-era {
-  font-family: var(--sans);
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  white-space: nowrap;
-  text-align: right;
-  align-self: baseline;
-}
-.maker-blurb {
-  grid-column: 2 / span 2;
-  margin-top: 6px;
-  font-size: clamp(14px, 1.15vw, 16px);
-  line-height: 1.45;
-  font-style: italic;
   color: var(--ink-soft);
-  max-width: 46ch;
+  font-style: italic;
+  border-bottom: 1px solid transparent;
+  transition: color .15s ease, border-color .15s ease;
 }
-.maker-count {
-  grid-column: 2 / span 2;
-  margin-top: 8px;
-  font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-}
+.pname:hover,
+.pname:focus-visible { color: var(--accent); border-bottom-color: var(--accent); outline: none; }
+.pname[aria-pressed="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+.pname-sep { color: var(--rule-strong); }
 
 /* ============================================================================
    Plates (the photograph grid) — CSS columns let varied aspect ratios flow as
