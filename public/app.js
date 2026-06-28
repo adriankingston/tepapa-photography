@@ -217,6 +217,10 @@ async function fetchPage() {
     state.done = true;
     els.endNote.hidden = false;
   }
+
+  // Keep filling while the sentinel is still near the viewport — covers tall
+  // screens and any case where the IntersectionObserver doesn't re-fire.
+  if (!state.done) setTimeout(maybeLoadMore, 0);
 }
 
 /* ---- Rendering ----------------------------------------------------------- */
@@ -471,10 +475,35 @@ SUGGESTIONS.forEach((term) => {
 })();
 
 /* ---- Infinite scroll ----------------------------------------------------- */
+// Load the next page when the sentinel is within ~900px of the viewport.
+function nearViewportBottom() {
+  const rect = els.sentinel.getBoundingClientRect();
+  return rect.top <= window.innerHeight + 900;
+}
+function maybeLoadMore() {
+  if (state.loading || state.done) return;
+  if (nearViewportBottom()) fetchPage();
+}
+
+// Primary trigger: an IntersectionObserver on the sentinel.
 const io = new IntersectionObserver((entries) => {
   if (entries.some((en) => en.isIntersecting)) fetchPage();
 }, { rootMargin: '900px 0px' });
 io.observe(els.sentinel);
+
+// Fallback triggers: scroll + resize. The observer alone can miss pages (it only
+// fires on intersection transitions, and not reliably in every engine), which
+// would freeze the gallery on the first 36 of ~54k. A setTimeout throttle (not
+// requestAnimationFrame, which is throttled in background/hidden tabs) guarantees
+// paging keeps up.
+let scrollPending = false;
+function onScrollOrResize() {
+  if (scrollPending) return;
+  scrollPending = true;
+  setTimeout(() => { scrollPending = false; maybeLoadMore(); }, 120);
+}
+window.addEventListener('scroll', onScrollOrResize, { passive: true });
+window.addEventListener('resize', onScrollOrResize);
 
 /* ---- Go ------------------------------------------------------------------ */
 fetchPage();
