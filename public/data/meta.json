@@ -1,0 +1,10 @@
+{
+  "count": 54173,
+  "quant": 127,
+  "text": {
+    "model": "Xenova/multilingual-e5-small",
+    "dim": 384,
+    "file": "text-emb.i8"
+  },
+  "generatedAt": "2026-06-28T10:58:38.594Z"
+}

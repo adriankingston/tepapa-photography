@@ -1,0 +1,9 @@
+{
+  "name": "tepapa-photography-build",
+  "private": true,
+  "type": "module",
+  "description": "Offline pipeline: harvest metadata + generate text & image embeddings for the photography site. Not part of the deployed app.",
+  "dependencies": {
+    "@huggingface/transformers": "4.2.0"
+  }
+}

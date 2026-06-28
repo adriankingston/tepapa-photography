@@ -5,3 +5,10 @@ node_modules/
 .claude/
 .vercel
 .env*
+build/node_modules/
+build/thumbs/
+build/.hf-cache/
+build/records.json
+build/clip-progress.json
+build/clip-missing.json
+build/thumbs-failed.json
