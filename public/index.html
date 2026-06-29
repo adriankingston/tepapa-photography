@@ -103,12 +103,15 @@
     <button class="lb-close" id="lb-close" aria-label="Close">&times;</button>
     <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">&#8592;</button>
     <button class="lb-nav lb-next" id="lb-next" aria-label="Next">&#8594;</button>
-    <figure class="lb-figure">
-      <div class="lb-stage" id="lb-stage">
-        <img id="lb-img" alt="">
+    <div class="lb-scroll" id="lb-scroll">
+      <!-- The image fills the fold; it zooms on click (drag to pan). -->
+      <div class="lb-viewer" id="lb-viewer">
+        <img id="lb-img" class="lb-img" alt="" draggable="false">
       </div>
-      <figcaption class="lb-caption" id="lb-caption"></figcaption>
-    </figure>
+      <a class="lb-scrolldown" href="#lb-caption" id="lb-scrolldown" aria-hidden="true">Details &darr;</a>
+      <!-- Metadata, below the fold. -->
+      <section class="lb-meta-panel" id="lb-caption"></section>
+    </div>
   </div>
 
   <script src="/app.js"></script>

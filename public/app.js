@@ -113,6 +113,15 @@ function dateOf(rec) {
   }
   return '';
 }
+function placeOf(rec) {
+  for (const p of asArray(rec.production)) {
+    if (p && p.spatial && p.spatial.title) return p.spatial.title;
+  }
+  return '';
+}
+function categoriesOf(rec) {
+  return asArray(rec.isTypeOf).map((c) => c && c.title).filter(Boolean);
+}
 function recordUrl(rec) {
   return `https://collections.tepapa.govt.nz/object/${rec.id}`;
 }
@@ -197,6 +206,8 @@ async function fetchPage() {
       title: rec.title || '(untitled)',
       maker: makerOf(rec),
       date: dateOf(rec),
+      place: placeOf(rec),
+      category: categoriesOf(rec),
       caption: rec.caption || '',
       url: recordUrl(rec),
       img,
@@ -281,13 +292,66 @@ function resetAndLoad(query) {
 /* ---- Lightbox ------------------------------------------------------------ */
 const lb = {
   el: document.getElementById('lightbox'),
+  scroll: document.getElementById('lb-scroll'),
+  viewer: document.getElementById('lb-viewer'),
   img: document.getElementById('lb-img'),
-  cap: document.getElementById('lb-caption'),
+  meta: document.getElementById('lb-caption'),
   close: document.getElementById('lb-close'),
   prev: document.getElementById('lb-prev'),
   next: document.getElementById('lb-next'),
   idx: -1,
 };
+
+/* ---- Click-to-zoom + drag-to-pan on the detail image --------------------- */
+const zoom = { on: false, scale: 2.6, tx: 0, ty: 0, dragging: false, startTx: 0, startTy: 0, sx: 0, sy: 0, downX: 0, downY: 0 };
+
+function resetZoom() {
+  zoom.on = false; zoom.tx = 0; zoom.ty = 0; zoom.dragging = false;
+  lb.img.classList.remove('is-zoomed', 'is-panning');
+  lb.viewer.classList.remove('zoom-on');
+  lb.img.style.transform = '';
+}
+function applyZoom() {
+  lb.img.style.transform = zoom.on ? `translate(${zoom.tx}px, ${zoom.ty}px) scale(${zoom.scale})` : '';
+}
+function clampPan() {
+  const vr = lb.viewer.getBoundingClientRect();
+  const overX = Math.max(0, (lb.img.clientWidth * zoom.scale - vr.width) / 2);
+  const overY = Math.max(0, (lb.img.clientHeight * zoom.scale - vr.height) / 2);
+  zoom.tx = Math.max(-overX, Math.min(overX, zoom.tx));
+  zoom.ty = Math.max(-overY, Math.min(overY, zoom.ty));
+}
+function toggleZoom(clientX, clientY) {
+  if (zoom.on) { resetZoom(); return; }
+  zoom.on = true;
+  lb.img.classList.add('is-zoomed');
+  lb.viewer.classList.add('zoom-on');
+  // Keep the clicked point under the cursor as it scales up.
+  const r = lb.img.getBoundingClientRect();
+  zoom.tx = -(clientX - (r.left + r.width / 2)) * (zoom.scale - 1);
+  zoom.ty = -(clientY - (r.top + r.height / 2)) * (zoom.scale - 1);
+  clampPan();
+  applyZoom();
+}
+lb.img.addEventListener('pointerdown', (e) => {
+  zoom.downX = e.clientX; zoom.downY = e.clientY;
+  if (zoom.on) {
+    zoom.dragging = true; zoom.startTx = zoom.tx; zoom.startTy = zoom.ty; zoom.sx = e.clientX; zoom.sy = e.clientY;
+    lb.img.classList.add('is-panning');
+    lb.img.setPointerCapture(e.pointerId);
+  }
+});
+lb.img.addEventListener('pointermove', (e) => {
+  if (!zoom.dragging) return;
+  zoom.tx = zoom.startTx + (e.clientX - zoom.sx);
+  zoom.ty = zoom.startTy + (e.clientY - zoom.sy);
+  clampPan(); applyZoom();
+});
+lb.img.addEventListener('pointerup', (e) => {
+  if (zoom.dragging) { zoom.dragging = false; lb.img.classList.remove('is-panning'); }
+  const moved = Math.abs(e.clientX - zoom.downX) + Math.abs(e.clientY - zoom.downY) > 4;
+  if (!moved) toggleZoom(e.clientX, e.clientY);   // a click (not a drag) toggles zoom
+});
 
 function openLightbox(idx) {
   lb.idx = idx;
@@ -298,6 +362,7 @@ function openLightbox(idx) {
 function closeLightbox() {
   lb.el.hidden = true;
   document.body.classList.remove('lb-open');
+  resetZoom();
   lb.idx = -1;
 }
 function step(d) {
@@ -312,24 +377,32 @@ function renderLightbox() {
   const item = state.items[lb.idx];
   if (!item) return;
   const img = item.img;
-  // Downloadable images can be shown full; we already only keep downloadable ones.
+  // Downloadable images can be shown full; we only ever keep downloadable ones.
   const big = img.contentUrl || img.previewUrl || img.thumbnailUrl;
+  resetZoom();
   lb.img.src = big;
   lb.img.alt = item.title;
+  lb.scroll.scrollTop = 0;   // start each photo at the fold
+  lb.el.classList.remove('lb-scrolled');
 
   const dl = img.rights && img.rights.allowsDownload && img.contentUrl;
-  lb.cap.innerHTML =
+  const fact = (label, val) => (val ? `<div><dt>${label}</dt><dd>${val}</dd></div>` : '');
+  lb.meta.innerHTML =
     `<h2 class="lb-title">${esc(item.title)}</h2>` +
-    `<p class="lb-sub">` +
-      (item.maker ? `<span class="lb-maker">${esc(item.maker)}</span>` : '') +
-      (item.maker && item.date ? ' · ' : '') +
-      (item.date ? `<span>${esc(item.date)}</span>` : '') +
-      (item.caption ? `<br>${esc(item.caption)}` : '') +
-    `</p>` +
-    `<p class="lb-meta">` +
-      `<span class="lb-rights">${rightsHtml(img) || 'Downloadable'}</span>` +
-      (dl ? `<span class="lb-rights"><a href="${esc(img.contentUrl)}" target="_blank" rel="noopener">Download ↗</a></span>` : '') +
-      `<span class="lb-rights"><a href="${esc(item.url)}" target="_blank" rel="noopener">Te Papa record ↗</a></span>` +
+    ((item.maker || item.date)
+      ? `<p class="lb-byline">${[esc(item.maker), esc(item.date)].filter(Boolean).join(' · ')}</p>` : '') +
+    (item.caption ? `<p class="lb-caption-text">${esc(item.caption)}</p>` : '') +
+    `<dl class="lb-facts">` +
+      fact('Maker', esc(item.maker)) +
+      fact('Date', esc(item.date)) +
+      fact('Place', esc(item.place)) +
+      fact('Classification', item.category && item.category.length ? esc(item.category.join(', ')) : '') +
+      fact('Dimensions', (img.width && img.height) ? `${img.width} × ${img.height} px` : '') +
+      fact('Licence', rightsHtml(img) || 'Downloadable') +
+    `</dl>` +
+    `<p class="lb-links">` +
+      (dl ? `<a href="${esc(img.contentUrl)}" target="_blank" rel="noopener" download>Download full image ↓</a><span class="sep">·</span>` : '') +
+      `<a href="${esc(item.url)}" target="_blank" rel="noopener">View on Te Papa ↗</a>` +
     `</p>`;
 
   lb.prev.disabled = lb.idx <= 0;
@@ -339,7 +412,15 @@ function renderLightbox() {
 lb.close.addEventListener('click', closeLightbox);
 lb.prev.addEventListener('click', () => step(-1));
 lb.next.addEventListener('click', () => step(1));
-lb.el.addEventListener('click', (e) => { if (e.target === lb.el) closeLightbox(); });
+// The prev/next arrows belong to the image; fade them out once you scroll to the
+// metadata so they don't float over the text.
+lb.scroll.addEventListener('scroll', () => {
+  // fade once the metadata panel has risen into the lower part of the viewport
+  const top = lb.meta.getBoundingClientRect().top;
+  lb.el.classList.toggle('lb-scrolled', top < window.innerHeight * 0.65);
+}, { passive: true });
+// Click the dimmed margin around the image to close.
+lb.viewer.addEventListener('click', (e) => { if (e.target === lb.viewer) closeLightbox(); });
 document.addEventListener('keydown', (e) => {
   if (lb.el.hidden) return;
   if (e.key === 'Escape') closeLightbox();
