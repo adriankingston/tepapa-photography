@@ -48,23 +48,30 @@ const SUGGESTIONS = [
   'street', 'Māori', 'garden', 'children', 'snow', 'beach', 'crowd',
 ];
 
-// Curated subsets, each phrased as a clickable term in one editorial question.
-// The query is a curated clause ANDed onto the open-set BASE; the label is what
-// shows in the search box for context. These are coherent *subjects* (not generic
-// keywords) — probed for distinct, on-topic results with no cross-overlap.
+// Curated subsets that scroll as a full-width marquee. Each is a coherent
+// *subject* (not a generic keyword), probed for solid, on-topic results; the
+// query is ANDed onto the open-set BASE and the label shows in the search box.
 const WAYS = [
-  { term: 'portraits', label: 'portraits',
-    q: 'portrait OR portraits' },
-  { term: 'industry', label: 'industry',
-    q: 'industry OR industrial OR factory OR sawmilling' },
-  { term: 'shipping', label: 'shipping',
-    q: 'ship OR ships OR shipping OR steamer OR schooner' },
-  { term: 'the war', label: 'war & soldiers',
-    q: 'war OR soldiers OR military OR regiment OR troops' },
-  { term: 'street life', label: 'streets',
-    q: 'street OR township OR streetscape' },
-  { term: 'tourism', label: 'tourism',
-    q: 'tourist OR scenic OR resort OR "hot springs" OR sightseeing' },
+  { term: 'portraits', q: 'portrait OR portraits' },
+  { term: 'industry', q: 'industry OR industrial OR factory OR sawmilling' },
+  { term: 'shipping', q: 'ship OR ships OR shipping OR steamer OR schooner' },
+  { term: 'the war', label: 'war & soldiers', q: 'war OR soldiers OR military OR regiment OR troops' },
+  { term: 'street life', label: 'streets', q: 'street OR township OR streetscape' },
+  { term: 'tourism', q: 'tourist OR scenic OR resort OR "hot springs" OR sightseeing' },
+  { term: 'mountains', q: 'mountains OR alps OR peak OR snow' },
+  { term: 'the coast', label: 'coast', q: 'coast OR beach OR seaside OR surf' },
+  { term: 'harbours', q: 'harbour OR wharf OR port OR jetty' },
+  { term: 'rivers & lakes', q: 'river OR lake OR falls OR waterfall' },
+  { term: 'railways', q: 'railway OR train OR locomotive' },
+  { term: 'aviation', q: 'aviation OR aircraft OR aeroplane OR flying' },
+  { term: 'gardens', q: 'garden OR flowers OR botanical' },
+  { term: 'children', q: 'children OR child OR family' },
+  { term: 'weddings', q: 'wedding OR bride OR "wedding party"' },
+  { term: 'sport', q: 'sport OR rugby OR cricket OR athletics' },
+  { term: 'farming', q: 'farming OR agriculture OR farm OR sheep' },
+  { term: 'mining', q: 'mining OR "gold mine" OR goldfield OR quarry' },
+  { term: 'Māori life', label: 'Māori', q: 'Māori OR pā OR marae OR whare' },
+  { term: 'expeditions', q: 'expedition OR Antarctic OR Antarctica OR exploration' },
 ];
 
 /* ---- Cultural sensitivity: mirror the main browser's check, and keep any
@@ -497,32 +504,25 @@ SUGGESTIONS.forEach((term) => {
   els.themes.appendChild(b);
 });
 
-/* ---- Ways in: render the curated question and wire each term ------------- */
+/* ---- Ways in: a full-width marquee of subjects that loops ----------------- */
 (function renderWays() {
-  const slot = document.querySelector('.ways-slot');
-  if (!slot) return;
-  WAYS.forEach((way, i) => {
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'way';
-    b.textContent = way.term;
-    b.setAttribute('aria-pressed', 'false');
-    b.addEventListener('click', () => {
-      const active = b.getAttribute('aria-pressed') === 'true';
-      clearActives();
-      if (active) { els.q.value = ''; resetAndLoad(''); return; }
-      b.setAttribute('aria-pressed', 'true');
-      els.q.value = way.label;        // friendly label for context; real query below
-      resetAndLoad(way.q);
-    });
-    slot.appendChild(b);
-    // Editorial punctuation between terms: commas, then " or " before the last, "?" to close.
-    const punct = document.createElement('span');
-    punct.className = 'ways-punct';
-    punct.textContent = i === WAYS.length - 1 ? '?'
-      : i === WAYS.length - 2 ? ' or '
-      : ', ';
-    slot.appendChild(punct);
+  const track = document.getElementById('ways-track');
+  if (!track) return;
+  // Build one run of items (each term + a trailing separator so the seam is
+  // continuous), then duplicate it so the -50% scroll loops seamlessly.
+  const run = WAYS.map((way) =>
+    `<button type="button" class="way" data-q="${esc(way.q)}" data-label="${esc(way.label || way.term)}">${esc(way.term)}</button>` +
+    `<span class="ways-sep" aria-hidden="true">·</span>`
+  ).join('');
+  track.innerHTML = run + run;
+
+  // One delegated handler covers both copies (clones carry no listeners).
+  track.addEventListener('click', (e) => {
+    const b = e.target.closest('.way');
+    if (!b) return;
+    clearActives();
+    els.q.value = b.dataset.label;   // friendly label for context; real query below
+    resetAndLoad(b.dataset.q);
   });
 })();
 
