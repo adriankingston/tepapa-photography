@@ -160,6 +160,10 @@ async function fetchPage() {
     size: PAGE,
     from: state.from,
     filters: [{ field: 'type', keyword: 'Object' }],
+    // Rank by Te Papa's own record quality score (best first) — applies to the
+    // default browse, the curated subsets and searches. Also stabilises deep
+    // paging (an explicit sort avoids the flaky scored-query ordering).
+    sort: [{ field: '_meta.qualityScore', order: 'desc' }],
   };
 
   let json;

@@ -363,8 +363,8 @@ a { color: inherit; }
 .ways-makers {
   margin: clamp(18px, 2vw, 26px) 0 0;
   padding: 0 var(--pad);          /* align with the title / page gutter */
-  font-size: clamp(15px, 1.3vw, 18px);
-  line-height: 1.6;
+  font-size: clamp(30px, 2.6vw, 36px);
+  line-height: 1.5;
   color: var(--muted);
 }
 .pname {
