@@ -146,6 +146,8 @@ a { color: inherit; }
 }
 /* Whole wordmark is one consistent Archivo weight — no two-tone contrast. */
 .title .ital { font-style: normal; font-weight: inherit; }
+/* "[Open]" set apart: serif, mid grey. */
+.title-open { font-family: var(--serif); font-weight: 400; color: var(--muted); }
 
 .colophon {
   display: grid;
