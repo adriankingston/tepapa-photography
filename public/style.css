@@ -334,6 +334,9 @@ a { color: inherit; }
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
+/* second row drifts the other way, a touch slower */
+.ways-marquee-rev { margin-top: 4px; }
+.ways-marquee-rev .ways-track { animation-direction: reverse; animation-duration: 76s; }
 
 .way {
   font: inherit;

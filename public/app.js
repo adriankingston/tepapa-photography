@@ -23,6 +23,8 @@ const PAGE = 36;
 
 const state = {
   query: '',        // user free-text (may be empty)
+  mode: 'query',    // 'query' = live API search; 'mood' = a baked embedding set
+  moodItems: [],    // prebuilt items for the current mood (mode === 'mood')
   from: 0,
   total: null,
   loading: false,
@@ -155,6 +157,8 @@ async function fetchPage() {
   state.loading = true;
   setState(state.rendered === 0 ? 'Developing the first plates…' : '');
 
+  if (state.mode === 'mood') { renderMoodPage(); return; }
+
   const body = {
     query: buildQuery(),
     size: PAGE,
@@ -284,8 +288,7 @@ function setState(msg, isError) {
 }
 
 /* ---- Reset on new search ------------------------------------------------- */
-function resetAndLoad(query) {
-  state.query = query || '';
+function resetState() {
   state.from = 0;
   state.total = null;
   state.loading = false;
@@ -297,7 +300,59 @@ function resetAndLoad(query) {
   els.endNote.hidden = true;
   els.count.textContent = '—';
   window.scrollTo({ top: 0, behavior: 'auto' });
+}
+function resetAndLoad(query) {
+  state.mode = 'query';
+  state.query = query || '';
+  resetState();
   fetchPage();
+}
+
+/* ---- Moods: render a baked embedding set (no live query) ----------------- */
+let _moodsCache = null;
+function itemFromIndex(e) {
+  const base = `https://media.tepapa.govt.nz/collection/${e.mid}`;
+  return {
+    id: e.id, title: e.t || '(untitled)', maker: e.m || '', date: e.d || '',
+    place: e.p || '', category: e.c || [], caption: '',
+    url: `https://collections.tepapa.govt.nz/object/${e.id}`,
+    img: {
+      thumbnailUrl: `${base}/thumb`, previewUrl: `${base}/preview`, contentUrl: `${base}/full`,
+      width: e.w || 0, height: e.h || 0, rights: { title: e.r || '', allowsDownload: true },
+    },
+  };
+}
+async function loadMood(key) {
+  state.mode = 'mood';
+  resetState();
+  setState('Gathering the mood…');
+  try {
+    if (!_moodsCache) _moodsCache = await fetch('/data/moods.json').then((r) => r.json());
+  } catch (e) {
+    setState('Couldn’t load that mood.', true);
+    return;
+  }
+  const mood = (_moodsCache.moods || []).find((m) => m.key === key);
+  state.moodItems = mood ? mood.items.map(itemFromIndex) : [];
+  state.total = state.moodItems.length;
+  els.count.textContent = fmtInt(state.total);
+  fetchPage();
+}
+function renderMoodPage() {
+  const slice = state.moodItems.slice(state.from, state.from + PAGE);
+  const frag = document.createDocumentFragment();
+  for (const item of slice) {
+    const idx = state.items.length;
+    state.items.push(item);
+    frag.appendChild(buildPlate(item, idx));
+    state.rendered++;
+  }
+  els.plates.appendChild(frag);
+  state.from += PAGE;
+  state.loading = false;
+  setState('');
+  if (state.from >= state.moodItems.length) { state.done = true; els.endNote.hidden = false; }
+  if (!state.done) setTimeout(maybeLoadMore, 0);
 }
 
 /* ---- Lightbox ------------------------------------------------------------ */
@@ -508,27 +563,44 @@ SUGGESTIONS.forEach((term) => {
   els.themes.appendChild(b);
 });
 
-/* ---- Ways in: a full-width marquee of subjects that loops ----------------- */
-(function renderWays() {
-  const track = document.getElementById('ways-track');
-  if (!track) return;
-  // Build one run of items (each term + a trailing separator so the seam is
-  // continuous), then duplicate it so the -50% scroll loops seamlessly.
-  const run = WAYS.map((way) =>
-    `<button type="button" class="way" data-q="${esc(way.q)}" data-label="${esc(way.label || way.term)}">${esc(way.term)}</button>` +
+/* ---- Ways in: two full-width marquees that loop -------------------------- */
+// Emotional themes are powered by the baked embeddings (see build/embed-moods.js);
+// the key matches a mood in /data/moods.json.
+const EMOTIONS = [
+  'love', 'joy', 'grief', 'solitude', 'childhood', 'adventure', 'celebration',
+  'wonder', 'home', 'faith', 'labour', 'togetherness', 'melancholy', 'freedom',
+].map((k) => ({ term: k, key: k }));
+
+// Fill a marquee track with one run + its duplicate (for a seamless -50% loop),
+// each item a `.way` carrying data-* the delegated handler reads.
+function fillMarquee(trackId, items, attr) {
+  const track = document.getElementById(trackId);
+  if (!track) return null;
+  const run = items.map((it) =>
+    `<button type="button" class="way" ${attr(it)}>${esc(it.term)}</button>` +
     `<span class="ways-sep" aria-hidden="true">·</span>`
   ).join('');
   track.innerHTML = run + run;
+  return track;
+}
 
-  // One delegated handler covers both copies (clones carry no listeners).
-  track.addEventListener('click', (e) => {
-    const b = e.target.closest('.way');
-    if (!b) return;
-    clearActives();
-    els.q.value = b.dataset.label;   // friendly label for context; real query below
-    resetAndLoad(b.dataset.q);
-  });
-})();
+// Subjects → live query
+const subjTrack = fillMarquee('ways-track', WAYS, (w) => `data-q="${esc(w.q)}" data-label="${esc(w.label || w.term)}"`);
+if (subjTrack) subjTrack.addEventListener('click', (e) => {
+  const b = e.target.closest('.way'); if (!b) return;
+  clearActives();
+  els.q.value = b.dataset.label;
+  resetAndLoad(b.dataset.q);
+});
+
+// Feelings → baked embedding set
+const moodTrack = fillMarquee('moods-track', EMOTIONS, (m) => `data-mood="${esc(m.key)}"`);
+if (moodTrack) moodTrack.addEventListener('click', (e) => {
+  const b = e.target.closest('.way'); if (!b) return;
+  clearActives();
+  els.q.value = b.textContent;   // show the feeling in the search box for context
+  loadMood(b.dataset.mood);
+});
 
 /* ---- Significant photographers: a compact second line in the same block --- */
 (function renderMakers() {
