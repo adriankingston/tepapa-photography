@@ -6,5 +6,11 @@
     "dim": 384,
     "file": "text-emb.i8"
   },
-  "generatedAt": "2026-06-28T10:58:38.594Z"
+  "generatedAt": "2026-06-28T10:58:38.594Z",
+  "clip": {
+    "model": "Xenova/clip-vit-base-patch32",
+    "dim": 512,
+    "file": "clip-emb.i8",
+    "missing": 0
+  }
 }
