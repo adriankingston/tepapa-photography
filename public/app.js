@@ -308,34 +308,42 @@ function resetAndLoad(query) {
   fetchPage();
 }
 
-/* ---- Moods: render a baked embedding set (no live query) ----------------- */
-let _moodsCache = null;
-function itemFromIndex(e) {
+/* ---- Emotions: render a baked embedding set (no live query) -------------- */
+// The 154 emotions from "The Book of Human Emotions" (build/embed-emotions.js).
+// emotions.json = { emotions:[{key,label,count,ids}], photos:{id:{…}} }.
+let _emoCache = null;
+function itemFromIndex(id, e) {
   const base = `https://media.tepapa.govt.nz/collection/${e.mid}`;
   return {
-    id: e.id, title: e.t || '(untitled)', maker: e.m || '', date: e.d || '',
+    id, title: e.t || '(untitled)', maker: e.m || '', date: e.d || '',
     place: e.p || '', category: e.c || [], caption: '',
-    url: `https://collections.tepapa.govt.nz/object/${e.id}`,
+    url: `https://collections.tepapa.govt.nz/object/${id}`,
     img: {
       thumbnailUrl: `${base}/thumb`, previewUrl: `${base}/preview`, contentUrl: `${base}/full`,
       width: e.w || 0, height: e.h || 0, rights: { title: e.r || '', allowsDownload: true },
     },
   };
 }
-async function loadMood(key) {
+async function loadMood(key, label) {
   state.mode = 'mood';
   resetState();
-  setState('Gathering the mood…');
+  state.loading = true;   // block the scroll/observer from paging an empty list mid-fetch
+  setState('Gathering the feeling…');
   try {
-    if (!_moodsCache) _moodsCache = await fetch('/data/moods.json').then((r) => r.json());
+    if (!_emoCache) _emoCache = await fetch('/data/emotions.json').then((r) => r.json());
   } catch (e) {
-    setState('Couldn’t load that mood.', true);
+    state.loading = false;
+    setState('Couldn’t load that feeling.', true);
     return;
   }
-  const mood = (_moodsCache.moods || []).find((m) => m.key === key);
-  state.moodItems = mood ? mood.items.map(itemFromIndex) : [];
+  const emo = (_emoCache.emotions || []).find((m) => m.key === key);
+  const photos = _emoCache.photos || {};
+  state.moodItems = emo
+    ? emo.ids.map((id) => (photos[id] ? itemFromIndex(id, photos[id]) : null)).filter(Boolean)
+    : [];
   state.total = state.moodItems.length;
   els.count.textContent = fmtInt(state.total);
+  state.loading = false;
   fetchPage();
 }
 function renderMoodPage() {
@@ -564,13 +572,6 @@ SUGGESTIONS.forEach((term) => {
 });
 
 /* ---- Ways in: two full-width marquees that loop -------------------------- */
-// Emotional themes are powered by the baked embeddings (see build/embed-moods.js);
-// the key matches a mood in /data/moods.json.
-const EMOTIONS = [
-  'love', 'joy', 'grief', 'solitude', 'childhood', 'adventure', 'celebration',
-  'wonder', 'home', 'faith', 'labour', 'togetherness', 'melancholy', 'freedom',
-].map((k) => ({ term: k, key: k }));
-
 // Fill a marquee track with one run + its duplicate (for a seamless -50% loop),
 // each item a `.way` carrying data-* the delegated handler reads.
 function fillMarquee(trackId, items, attr) {
@@ -593,14 +594,21 @@ if (subjTrack) subjTrack.addEventListener('click', (e) => {
   resetAndLoad(b.dataset.q);
 });
 
-// Feelings → baked embedding set
-const moodTrack = fillMarquee('moods-track', EMOTIONS, (m) => `data-mood="${esc(m.key)}"`);
-if (moodTrack) moodTrack.addEventListener('click', (e) => {
-  const b = e.target.closest('.way'); if (!b) return;
-  clearActives();
-  els.q.value = b.textContent;   // show the feeling in the search box for context
-  loadMood(b.dataset.mood);
-});
+// Feelings → baked embedding set (154 emotions from The Book of Human Emotions).
+// Labels come from the small index; the full sets load on first click.
+fetch('/data/emotions-index.json')
+  .then((r) => r.json())
+  .then((idx) => {
+    const items = (idx.emotions || []).map((m) => ({ term: m.label, key: m.key }));
+    const moodTrack = fillMarquee('moods-track', items, (m) => `data-mood="${esc(m.key)}"`);
+    if (moodTrack) moodTrack.addEventListener('click', (e) => {
+      const b = e.target.closest('.way'); if (!b) return;
+      clearActives();
+      els.q.value = b.textContent;   // show the feeling in the search box for context
+      loadMood(b.dataset.mood);
+    });
+  })
+  .catch(() => { /* leave the feelings row empty if the index can't load */ });
 
 /* ---- Significant photographers: a compact second line in the same block --- */
 (function renderMakers() {
