@@ -548,10 +548,16 @@ function clearActives() {
   document.querySelectorAll('.theme-chip, .way, .pname').forEach((c) => c.setAttribute('aria-pressed', 'false'));
 }
 
+// Typing an emotion name loads its baked embedding set; anything else is a live
+// search. _emoLookup is populated when the emotion index loads (below).
+const _emoLookup = new Map();
+const normEmo = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/['’]/g, '').replace(/[-\s]+/g, ' ').trim();
 els.form.addEventListener('submit', (e) => {
   e.preventDefault();
   clearActives();
-  resetAndLoad(els.q.value.trim());
+  const q = els.q.value.trim();
+  const key = _emoLookup.get(normEmo(q));
+  if (key) loadMood(key); else resetAndLoad(q);
 });
 
 SUGGESTIONS.forEach((term) => {
@@ -600,6 +606,10 @@ fetch('/data/emotions-index.json')
   .then((r) => r.json())
   .then((idx) => {
     const items = (idx.emotions || []).map((m) => ({ term: m.label, key: m.key }));
+    // make emotions searchable from the box: label, key, and key-as-words all resolve
+    (idx.emotions || []).forEach((m) => {
+      [m.label, m.key, m.key.replace(/-/g, ' ')].forEach((f) => _emoLookup.set(normEmo(f), m.key));
+    });
     const moodTrack = fillMarquee('moods-track', items, (m) => `data-mood="${esc(m.key)}"`);
     if (moodTrack) moodTrack.addEventListener('click', (e) => {
       const b = e.target.closest('.way'); if (!b) return;
