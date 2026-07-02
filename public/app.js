@@ -32,6 +32,7 @@ const state = {
   seen: new Set(),  // dedupe by type:id across pages (scored result sets shift)
   items: [],        // flat list of rendered { ...record-ish } for the lightbox
   rendered: 0,      // running plate index for the wall labels
+  scrollPending: false, // scroll to results after the first page of a new search/filter
 };
 
 const els = {
@@ -237,6 +238,7 @@ async function fetchPage() {
   state.from += PAGE;
   state.loading = false;
   setState('');
+  scrollToResultsIfPending();
 
   // Stop when we've paged past the resultset.
   if (state.total != null && state.from >= state.total) {
@@ -299,7 +301,17 @@ function resetState() {
   els.plates.innerHTML = '';
   els.endNote.hidden = true;
   els.count.textContent = '—';
-  window.scrollTo({ top: 0, behavior: 'auto' });
+  // Bring the results into view once the first page has rendered (scrolling now,
+  // with the grid empty, would clamp short of the target as the page is tiny).
+  state.scrollPending = true;
+}
+function scrollToResultsIfPending() {
+  if (!state.scrollPending) return;
+  state.scrollPending = false;
+  const main = document.getElementById('main');
+  if (!main) return;
+  const y = main.getBoundingClientRect().top + window.scrollY - 12;
+  window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
 }
 function resetAndLoad(query) {
   state.mode = 'query';
@@ -359,6 +371,7 @@ function renderMoodPage() {
   state.from += PAGE;
   state.loading = false;
   setState('');
+  scrollToResultsIfPending();
   if (state.from >= state.moodItems.length) { state.done = true; els.endNote.hidden = false; }
   if (!state.done) setTimeout(maybeLoadMore, 0);
 }
