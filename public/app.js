@@ -132,6 +132,9 @@ function placeOf(rec) {
 function categoriesOf(rec) {
   return asArray(rec.isTypeOf).map((c) => c && c.title).filter(Boolean);
 }
+// Album records lead with a cover image (a leather book), not a photograph — skip
+// them. (The API can't filter isTypeOf, so this is client-side.)
+const isAlbum = (cats) => (cats || []).some((c) => /photograph album/i.test(c));
 function recordUrl(rec) {
   return `https://collections.tepapa.govt.nz/object/${rec.id}`;
 }
@@ -213,6 +216,7 @@ async function fetchPage() {
     const key = `${rec.type}:${rec.id}`;
     if (state.seen.has(key)) continue;
     if (isSensitive(rec)) continue;
+    if (isAlbum(categoriesOf(rec))) { state.seen.add(key); continue; }
     const img = pickImage(rec);
     if (!img) continue;
     state.seen.add(key);
@@ -351,7 +355,9 @@ async function loadMood(key, label) {
   const emo = (_emoCache.emotions || []).find((m) => m.key === key);
   const photos = _emoCache.photos || {};
   state.moodItems = emo
-    ? emo.ids.map((id) => (photos[id] ? itemFromIndex(id, photos[id]) : null)).filter(Boolean)
+    ? emo.ids.map((id) => ({ id, e: photos[id] }))
+        .filter((x) => x.e && !isAlbum(x.e.c))
+        .map((x) => itemFromIndex(x.id, x.e))
     : [];
   state.total = state.moodItems.length;
   els.count.textContent = fmtInt(state.total);
