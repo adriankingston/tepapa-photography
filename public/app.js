@@ -620,13 +620,13 @@ function makeDraggableMarquee(track, reverse, onWord) {
   const marquee = track.parentElement;
   const dir = reverse ? 1 : -1;
   let runWidth = track.scrollWidth / 2 || 1;
-  let tx = 0, paused = false, dragging = false, startX = 0, startTx = 0, downX = 0, moved = false, last = 0;
+  let tx = 0, paused = false, pressed = false, dragging = false, startX = 0, startTx = 0, downX = 0, moved = false, last = 0;
 
   const render = () => { track.style.transform = `translateX(${tx}px)`; };
   const wrap = () => { if (tx <= -runWidth) tx += runWidth; else if (tx > 0) tx -= runWidth; };
   function frame(t) {
     const dt = last ? Math.min((t - last) / 1000, 0.1) : 0; last = t;
-    if (!paused && !dragging && !_reduceMotion) { tx += dir * MARQUEE_SPEED * dt; wrap(); render(); }
+    if (!paused && !pressed && !_reduceMotion) { tx += dir * MARQUEE_SPEED * dt; wrap(); render(); }
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
@@ -636,22 +636,25 @@ function makeDraggableMarquee(track, reverse, onWord) {
   marquee.addEventListener('mouseenter', () => { paused = true; });
   marquee.addEventListener('mouseleave', () => { paused = false; });
 
-  // drag to scrub
+  // Press pauses the drift; a genuine drag starts only past a small threshold —
+  // and only THEN do we capture the pointer. (Capturing on pointerdown would
+  // retarget the click to the track and swallow word clicks.)
   track.addEventListener('pointerdown', (e) => {
-    dragging = true; moved = false; startX = e.clientX; downX = e.clientX; startTx = tx;
-    track.classList.add('is-grabbing');
-    try { track.setPointerCapture(e.pointerId); } catch (x) { /* ignore */ }
+    pressed = true; dragging = false; moved = false; startX = e.clientX; downX = e.clientX; startTx = tx;
   });
   track.addEventListener('pointermove', (e) => {
-    if (!dragging) return;
-    if (Math.abs(e.clientX - startX) > 3) moved = true;
-    let v = (startTx + (e.clientX - startX)) % runWidth;
-    if (v > 0) v -= runWidth;
-    tx = v; render();
+    if (!pressed) return;
+    const dx = e.clientX - startX;
+    if (!dragging && Math.abs(dx) > 4) {
+      dragging = true; moved = true;
+      track.classList.add('is-grabbing');
+      try { track.setPointerCapture(e.pointerId); } catch (x) { /* ignore */ }
+    }
+    if (dragging) { let v = (startTx + dx) % runWidth; if (v > 0) v -= runWidth; tx = v; render(); }
   });
-  const endDrag = () => { if (!dragging) return; dragging = false; track.classList.remove('is-grabbing'); };
-  track.addEventListener('pointerup', endDrag);
-  track.addEventListener('pointercancel', endDrag);
+  const endPress = () => { pressed = false; if (dragging) { dragging = false; track.classList.remove('is-grabbing'); } };
+  track.addEventListener('pointerup', endPress);
+  track.addEventListener('pointercancel', endPress);
 
   // a click selects a word unless the pointer moved (i.e. it was a drag)
   track.addEventListener('click', (e) => {
