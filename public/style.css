@@ -167,8 +167,9 @@ a { color: inherit; }
   line-height: 0.84;
   letter-spacing: -0.035em;
   /* Archivo is wider than the old serif — size to fill the measure on one line
-     across viewports without clipping (the serif used 19vw / 320px). */
-  font-size: clamp(40px, 13vw, 208px);
+     across viewports without clipping (the serif used 19vw / 320px).
+     Scaled to 75% (was clamp(40px, 13vw, 208px)). */
+  font-size: clamp(30px, 9.75vw, 156px);
 }
 /* Whole wordmark is one consistent Archivo weight — no two-tone contrast. */
 .title .ital { font-style: normal; font-weight: inherit; }
