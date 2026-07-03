@@ -27,7 +27,7 @@
   <link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/tourney-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/style.css?v=19">
+  <link rel="stylesheet" href="/style.css?v=20">
 </head>
 <body>
   <!-- ====== Masthead ====== -->
@@ -121,16 +121,16 @@
     <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">&#8592;</button>
     <button class="lb-nav lb-next" id="lb-next" aria-label="Next">&#8594;</button>
     <div class="lb-scroll" id="lb-scroll">
-      <!-- The image fills the fold; it zooms on click (drag to pan). -->
-      <div class="lb-viewer" id="lb-viewer">
-        <img id="lb-img" class="lb-img" alt="" draggable="false">
-      </div>
+      <!-- The image fills the fold; OpenSeadragon mounts here for IIIF deep-zoom
+           (scroll / pinch / double-click to zoom, drag to pan). -->
+      <div class="lb-viewer" id="lb-viewer"></div>
       <a class="lb-scrolldown" href="#lb-caption" id="lb-scrolldown" aria-hidden="true">Details &darr;</a>
       <!-- Metadata, below the fold. -->
       <section class="lb-meta-panel" id="lb-caption"></section>
     </div>
   </div>
 
-  <script src="/app.js?v=19"></script>
+  <script src="/vendor/openseadragon.min.js?v=20"></script>
+  <script src="/app.js?v=20"></script>
 </body>
 </html>
