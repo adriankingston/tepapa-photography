@@ -327,10 +327,25 @@ function resetAndLoad(query) {
   fetchPage();
 }
 
-/* ---- Emotions: render a baked embedding set (no live query) -------------- */
-// The 154 emotions from "The Book of Human Emotions" (build/embed-emotions.js).
-// emotions.json = { emotions:[{key,label,count,ids}], photos:{id:{…}} }.
-let _emoCache = null;
+/* ---- Baked embedding sets: browse a category without a live query -------- */
+// Two categories share one shape — an index (labels + one-line defs) and a data
+// file { <listKey>:[{key,label,ids}], photos:{id:{…}} }: the 154 emotions from
+// "The Book of Human Emotions" (build/embed-emotions.js) and the photographic
+// composition & technique terms (build/embed-compositions.js).
+const SETS = {
+  emotion: {
+    data: '/data/emotions.json', listKey: 'emotions',
+    attribution: 'from <em>The Book of Human Emotions</em>',
+    loadingMsg: 'Gathering the feeling…', errorMsg: 'Couldn’t load that feeling.',
+    cache: null,
+  },
+  composition: {
+    data: '/data/compositions.json', listKey: 'compositions',
+    attribution: 'a way of composing the frame',
+    loadingMsg: 'Reading the frame…', errorMsg: 'Couldn’t load that composition.',
+    cache: null,
+  },
+};
 function itemFromIndex(id, e) {
   const base = `https://media.tepapa.govt.nz/collection/${e.mid}`;
   return {
@@ -343,34 +358,36 @@ function itemFromIndex(id, e) {
     },
   };
 }
-async function loadMood(key, label) {
+async function loadSet(setName, key) {
+  const S = SETS[setName];
+  if (!S) return;
   state.mode = 'mood';
   resetState();
   state.loading = true;   // block the scroll/observer from paging an empty list mid-fetch
-  setState('Gathering the feeling…');
+  setState(S.loadingMsg);
   try {
-    if (!_emoCache) _emoCache = await fetch('/data/emotions.json').then((r) => r.json());
+    if (!S.cache) S.cache = await fetch(S.data).then((r) => r.json());
   } catch (e) {
     state.loading = false;
-    setState('Couldn’t load that feeling.', true);
+    setState(S.errorMsg, true);
     return;
   }
-  const emo = (_emoCache.emotions || []).find((m) => m.key === key);
-  const photos = _emoCache.photos || {};
-  state.moodItems = emo
-    ? emo.ids.map((id) => ({ id, e: photos[id] }))
+  const rec = (S.cache[S.listKey] || []).find((m) => m.key === key);
+  const photos = S.cache.photos || {};
+  state.moodItems = rec
+    ? rec.ids.map((id) => ({ id, e: photos[id] }))
         .filter((x) => x.e && !isAlbum(x.e.c))
         .map((x) => itemFromIndex(x.id, x.e))
     : [];
   state.total = state.moodItems.length;
   els.count.textContent = fmtInt(state.total);
-  // head the results with the feeling's definition
+  // head the results with the term's definition
   if (els.emoNote) {
     const info = _emoDef.get(key) || {};
     els.emoNote.innerHTML =
       `<h2 class="emotion-note-word">${esc(info.label || key)}</h2>` +
       (info.def ? `<p class="emotion-note-def">${esc(info.def)}</p>` : '') +
-      `<p class="emotion-note-meta">${fmtInt(state.total)} photographs · from <em>The Book of Human Emotions</em></p>`;
+      `<p class="emotion-note-meta">${fmtInt(state.total)} photographs · ${S.attribution}</p>`;
     els.emoNote.hidden = false;
   }
   state.loading = false;
@@ -546,49 +563,22 @@ document.querySelectorAll('.theme-opt').forEach((b) => {
 });
 applyTheme(document.documentElement.dataset.theme || 'light');
 
-// Significant New Zealand photographers whose work is openly licensed here, in
-// rough chronological order. Each links to that maker's open photographs; the
-// count is filled in live so it always matches what loads. (Ans Westra and other
-// modern names sit outside this set — their work is still in copyright.)
-const PHOTOGRAPHERS = [
-  { name: 'Burton Brothers', era: 'Dunedin · 1866–1898', q: '"Burton Brothers"',
-    blurb: 'Colonial New Zealand’s foremost scenic studio, ranging from Fiordland to the volcanic plateau to photograph the young country’s landscapes and Māori communities.' },
-  { name: 'James Bragge', era: 'Wellington · 1860s–1880s', q: '"James Bragge"',
-    blurb: 'An English-born pioneer who hauled a horse-drawn darkroom into the bush for grand wet-plate panoramas of early Wellington and the Wairarapa.' },
-  { name: 'Muir & Moodie', era: 'Dunedin · 1898–1916', q: '"Muir & Moodie"',
-    blurb: 'The postcard-age studio that inherited the Burtons’ negatives and supplied the nation with scenic views of New Zealand and the Pacific.' },
-  { name: 'Thomas Andrew', era: 'NZ & Pacific · 1870s–1930s', q: '"Thomas Andrew"',
-    blurb: 'A roving operator who recorded colonial New Zealand and the Pacific, from the 1886 Tarawera eruption to the people of Samoa.' },
-  { name: 'Leslie Adkin', era: 'Horowhenua · 1900s–1940s', q: '"Leslie Adkin"',
-    blurb: 'A Horowhenua farmer and amateur scientist whose meticulous glass plates turned family, farm and landscape into quietly artful records.' },
-  { name: 'Berry & Co.', era: 'Wellington · c.1900–1925', q: '"Berry & Co"',
-    blurb: 'A commercial Wellington portrait studio whose surviving glass negatives preserve a vivid, democratic gallery of everyday citizens and departing soldiers.' },
-  { name: 'James Walter Chapman-Taylor', era: 'NZ · 1900s–1950s', q: '"Chapman-Taylor"',
-    blurb: 'An Arts-and-Crafts architect who brought a soft-focus pictorialist eye to portraits, his hand-built houses and the land around them.' },
-  { name: 'Spencer Digby', era: 'Wellington · 1930s–1960s', q: '"Spencer Digby"',
-    blurb: 'Wellington’s pre-eminent portrait studio, whose elegant studies captured politicians, performers and society from the 1930s on.' },
-  { name: 'Eric Lee-Johnson', era: 'Northland · 1940s–1970s', q: '"Eric Lee-Johnson"',
-    blurb: 'A painter-photographer who found a moody, modern beauty in the weathered buildings and backblocks of Northland and rural New Zealand.' },
-  { name: 'Brian Brake', era: '1927–1988', q: '"Brian Brake"',
-    blurb: 'New Zealand’s most celebrated photojournalist and a member of Magnum, internationally known for his ‘Monsoon’ series and essays across Asia.' },
-];
-
 /* ---- Search + suggestions ------------------------------------------------ */
-// Clear the pressed state on every chip, curated way and photographer link.
+// Clear the pressed state on every chip and curated way.
 function clearActives() {
-  document.querySelectorAll('.theme-chip, .way, .pname').forEach((c) => c.setAttribute('aria-pressed', 'false'));
+  document.querySelectorAll('.theme-chip, .way').forEach((c) => c.setAttribute('aria-pressed', 'false'));
 }
 
-// Typing an emotion name loads its baked embedding set; anything else is a live
-// search. _emoLookup is populated when the emotion index loads (below).
-const _emoLookup = new Map();
+// Typing an emotion or composition name loads its baked embedding set; anything
+// else is a live search. _setLookup is populated as each index loads (below).
+const _setLookup = new Map();   // normalised term → { set, key }
 const normEmo = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/['’]/g, '').replace(/[-\s]+/g, ' ').trim();
 els.form.addEventListener('submit', (e) => {
   e.preventDefault();
   clearActives();
   const q = els.q.value.trim();
-  const key = _emoLookup.get(normEmo(q));
-  if (key) loadMood(key); else resetAndLoad(q);
+  const hit = _setLookup.get(normEmo(q));
+  if (hit) loadSet(hit.set, hit.key); else resetAndLoad(q);
 });
 
 SUGGESTIONS.forEach((term) => {
@@ -690,52 +680,31 @@ makeDraggableMarquee(
   (b) => { clearActives(); els.q.value = b.dataset.label; resetAndLoad(b.dataset.q); }
 );
 
-// Feelings → baked embedding set (154 emotions from The Book of Human Emotions).
-fetch('/data/emotions-index.json')
-  .then((r) => r.json())
-  .then((idx) => {
-    const items = (idx.emotions || []).map((m) => ({ term: m.label, key: m.key }));
-    // make emotions searchable from the box, and keep each definition to hand
-    (idx.emotions || []).forEach((m) => {
-      [m.label, m.key, m.key.replace(/-/g, ' ')].forEach((f) => _emoLookup.set(normEmo(f), m.key));
-      _emoDef.set(m.key, { label: m.label, def: m.def || '' });
-    });
-    makeDraggableMarquee(
-      fillMarquee('moods-track', items, (m) => `data-mood="${esc(m.key)}"`),
-      true,
-      (b) => { clearActives(); els.q.value = b.textContent; loadMood(b.dataset.mood); }
-    );
-  })
-  .catch(() => { /* leave the feelings row empty if the index can't load */ });
+// Wire a baked set's index into a marquee row and make its terms searchable.
+function wireSet(setName, indexFile, listKey, trackId, reverse) {
+  fetch(indexFile)
+    .then((r) => r.json())
+    .then((idx) => {
+      const list = idx[listKey] || [];
+      const items = list.map((m) => ({ term: m.label, key: m.key }));
+      list.forEach((m) => {
+        // searchable by label, slug, or slug-with-spaces
+        [m.label, m.key, m.key.replace(/-/g, ' ')].forEach((f) => _setLookup.set(normEmo(f), { set: setName, key: m.key }));
+        _emoDef.set(m.key, { label: m.label, def: m.def || '' });
+      });
+      makeDraggableMarquee(
+        fillMarquee(trackId, items, (m) => `data-key="${esc(m.key)}"`),
+        reverse,
+        (b) => { clearActives(); els.q.value = b.textContent; loadSet(setName, b.dataset.key); }
+      );
+    })
+    .catch(() => { /* leave the row empty if the index can't load */ });
+}
 
-/* ---- Significant photographers: a compact second line in the same block --- */
-(function renderMakers() {
-  const slot = document.querySelector('.makers-slot');
-  if (!slot) return;
-  PHOTOGRAPHERS.forEach((p, i) => {
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'pname';
-    b.textContent = p.name;
-    b.title = `${p.era} — ${p.blurb}`;   // blurb + era kept as a hover tooltip
-    b.setAttribute('aria-pressed', 'false');
-    b.addEventListener('click', () => {
-      const active = b.getAttribute('aria-pressed') === 'true';
-      clearActives();
-      if (active) { els.q.value = ''; resetAndLoad(''); return; }
-      b.setAttribute('aria-pressed', 'true');
-      els.q.value = p.name;
-      resetAndLoad(p.q);
-    });
-    slot.appendChild(b);
-    if (i < PHOTOGRAPHERS.length - 1) {
-      const sep = document.createElement('span');
-      sep.className = 'pname-sep';
-      sep.textContent = ' · ';
-      slot.appendChild(sep);
-    }
-  });
-})();
+// Feelings → 154 emotions from The Book of Human Emotions (drifts right).
+wireSet('emotion', '/data/emotions-index.json', 'emotions', 'moods-track', true);
+// Composition & technique → the photographic vocabulary (drifts left).
+wireSet('composition', '/data/compositions-index.json', 'compositions', 'comp-track', false);
 
 /* ---- Infinite scroll ----------------------------------------------------- */
 // Load the next page when the sentinel is within ~900px of the viewport.
