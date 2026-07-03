@@ -336,7 +336,7 @@ a { color: inherit; }
   border-top: 1px solid var(--rule);
 }
 .ways-label {
-  margin: 0 0 clamp(14px, 1.6vw, 20px);
+  margin: 0 0 clamp(5px, 0.9vw, 12px);   /* tightened ~30% (was clamp(14px, 1.6vw, 20px)) */
   padding: 0 var(--pad);
   font-family: var(--sans);
   font-size: 11px;
