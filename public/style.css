@@ -38,6 +38,13 @@
   font-display: swap;
   src: url('/fonts/archivo-latin.woff2') format('woff2');
 }
+@font-face {
+  font-family: 'Tourney';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('/fonts/tourney-latin.woff2') format('woff2');
+}
 
 /* ---- Tokens ------------------------------------------------------------- */
 :root {
@@ -54,6 +61,7 @@
   --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
   --sans: 'Roboto', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
   --display: 'Archivo', 'Helvetica Neue', system-ui, Arial, sans-serif;  /* page header / masthead title */
+  --tourney: 'Tourney', 'Archivo', system-ui, sans-serif;  /* the "[Open]" mark in the title */
 
   --measure: 36rem;
   --gap: clamp(20px, 3vw, 44px);
@@ -164,8 +172,8 @@ a { color: inherit; }
 }
 /* Whole wordmark is one consistent Archivo weight — no two-tone contrast. */
 .title .ital { font-style: normal; font-weight: inherit; }
-/* "[Open]" set apart: serif, in the brand accent. */
-.title-open { font-family: var(--serif); font-weight: 400; color: var(--accent); }
+/* "[Open]" set apart: Tourney, in the brand accent. */
+.title-open { font-family: var(--tourney); font-weight: 700; color: var(--accent); }
 
 .colophon {
   display: grid;
