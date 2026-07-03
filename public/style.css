@@ -173,8 +173,15 @@ a { color: inherit; }
 }
 /* Whole wordmark is one consistent Archivo weight — no two-tone contrast. */
 .title .ital { font-style: normal; font-weight: inherit; }
-/* "[Open]" set apart: Tourney, in the brand accent. */
-.title-open { font-family: var(--tourney); font-weight: 700; color: var(--accent); }
+/* "[Open]" set apart: Tourney, in the brand accent. Doubles as the home button. */
+.title-open {
+  font-family: var(--tourney); font-weight: 700; color: var(--accent);
+  font-size: inherit; line-height: inherit; letter-spacing: inherit;
+  background: none; border: 0; padding: 0; margin: 0;
+  vertical-align: baseline; cursor: pointer;
+  transition: color .15s ease, opacity .15s ease;
+}
+.title-open:hover, .title-open:focus-visible { color: var(--accent-soft); outline: none; }
 
 .colophon {
   display: grid;

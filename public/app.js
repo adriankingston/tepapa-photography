@@ -862,6 +862,18 @@ els.form.addEventListener('submit', (e) => {
   else resetAndLoad(q);
 });
 
+// "[Open]" is the home button — clear every filter and show the whole collection.
+function goHome() {
+  clearActives();
+  document.querySelectorAll('.decade').forEach((c) => c.setAttribute('aria-pressed', 'false'));
+  state.decade = null;
+  els.q.value = '';
+  resetAndLoad('');
+  state.scrollPending = false;   // scroll to the very top instead of the results
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+document.getElementById('home-btn').addEventListener('click', goHome);
+
 SUGGESTIONS.forEach((term) => {
   const b = document.createElement('button');
   b.type = 'button';
