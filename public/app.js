@@ -26,6 +26,7 @@ const state = {
   mode: 'query',    // 'query' = live API search; 'mood' = a baked embedding set
   setName: null,    // active baked set ('emotion' | 'composition'), else null
   setKey: null,     // active term key within that set
+  tgm: null,        // active TGM term id being browsed, else null
   decade: null,     // active decade FILTER, e.g. '1920s' — composes with any mode
   moodItems: [],    // prebuilt items for the current mood (mode === 'mood')
   from: 0,
@@ -350,6 +351,7 @@ function resetAndLoad(query) {
   state.query = query || '';
   state.setName = null;
   state.setKey = null;
+  state.tgm = null;
   // No text query but a decade is filtering → browse it from the baked index
   // rather than paging the whole API and dropping non-matches.
   if (!state.query && state.decade) { loadDecade(state.decade); return; }
@@ -395,6 +397,7 @@ async function loadSet(setName, key) {
   state.mode = 'mood';
   state.setName = setName;
   state.setKey = key;
+  state.tgm = null;
   resetState();
   state.loading = true;   // block the scroll/observer from paging an empty list mid-fetch
   setState(S.loadingMsg);
@@ -460,6 +463,7 @@ async function loadDecade(key) {
   state.mode = 'mood';
   state.setName = null;
   state.setKey = null;
+  state.tgm = null;
   resetState();
   state.loading = true;
   setState(`Winding back to the ${key}…`);
@@ -486,10 +490,71 @@ async function loadDecade(key) {
   fetchPage();
 }
 
+/* ---- TGM: browse a Thesaurus for Graphic Materials term ------------------ */
+// Controlled vocabulary from the LC crosswalk. index.json carries `tg`
+// (catalogued TGM ids) and `tgc` (CLIP-suggested). Browse filters the baked
+// index, like a decade. tgm-index (labels/scope/counts) + crosswalk (raw Te Papa
+// term → TGM, for the detail view) load on demand.
+const _tgm = new Map();          // id → { label, scope, count, sug, kind, bt }
+const _tgmLookup = new Map();    // normalised label → id (searchable)
+let _tgmXwalk = null;            // raw Te Papa term → { id, label }
+let _tgmIndexP = null, _tgmXwalkP = null;
+function loadTgmIndex() {
+  if (!_tgmIndexP) _tgmIndexP = fetch('/data/tgm-index.json').then((r) => r.json()).then((idx) => {
+    for (const t of (idx.terms || [])) { _tgm.set(t.id, t); _tgmLookup.set(normEmo(t.label), t.id); }
+  }).catch(() => {});
+  return _tgmIndexP;
+}
+function loadTgmXwalk() {
+  if (!_tgmXwalkP) _tgmXwalkP = fetch('/data/tgm-crosswalk.json').then((r) => r.json()).then((x) => { _tgmXwalk = x; }).catch(() => {});
+  return _tgmXwalkP;
+}
+
+async function loadTgm(id) {
+  state.mode = 'mood';
+  state.setName = null;
+  state.setKey = null;
+  state.tgm = id;
+  resetState();
+  state.loading = true;
+  await loadTgmIndex();
+  const term = _tgm.get(id);
+  setState('Gathering the subject…');
+  try {
+    if (!_indexCache) _indexCache = await fetch('/data/index.json').then((r) => r.json());
+  } catch (e) { state.loading = false; setState('Couldn’t load the collection index.', true); return; }
+  const dec = state.decade;
+  const cat = [], sug = [];
+  for (const e of _indexCache) {
+    if (isAlbum(e.c)) continue;
+    if (dec && decadeOfYear(e.y) !== dec) continue;
+    if ((e.tg || []).includes(id)) cat.push(e);
+    else if ((e.tgc || []).includes(id)) sug.push(e);
+  }
+  cat.sort((a, b) => (b.q || 0) - (a.q || 0));
+  sug.sort((a, b) => (b.q || 0) - (a.q || 0));
+  state.moodItems = [...cat, ...sug].map((e) => itemFromIndex(e.id, e));
+  state.total = state.moodItems.length;
+  els.count.textContent = fmtInt(state.total);
+  if (els.emoNote) {
+    const label = term ? term.label : `TGM ${id}`;
+    const meta = `${fmtInt(cat.length)} catalogued` + (sug.length ? ` · ${fmtInt(sug.length)} suggested` : '') +
+      ` · <em>Thesaurus for Graphic Materials</em>` + (dec ? ` · <span class="note-decade">${esc(dec)}</span>` : '');
+    els.emoNote.innerHTML =
+      `<h2 class="emotion-note-word">${esc(label)}</h2>` +
+      (term && term.scope ? `<p class="emotion-note-def">${esc(term.scope)}</p>` : '') +
+      `<p class="emotion-note-meta">${meta}</p>`;
+    els.emoNote.hidden = false;
+  }
+  state.loading = false;
+  fetchPage();
+}
+
 // Re-run whatever is currently showing (respecting state.decade). Called when the
 // decade filter is toggled so it composes with the active browse.
 function runView() {
-  if (state.setName) loadSet(state.setName, state.setKey);   // emotion / composition
+  if (state.tgm) loadTgm(state.tgm);                         // a TGM subject/genre
+  else if (state.setName) loadSet(state.setName, state.setKey); // emotion / composition
   else if (state.query) resetAndLoad(state.query);           // free-text / subject
   else if (state.decade) loadDecade(state.decade);           // decade on its own
   else resetAndLoad('');                                     // default browse
@@ -658,6 +723,17 @@ function metaHtml(item, rec) {
   const classification = (rec && rec.isTypeOf && rec.isTypeOf.length) ? j(rec.isTypeOf)
     : (item.category && item.category.length ? item.category.join(', ') : '');
   const albumParts = rec && isAlbumRec(rec) && Array.isArray(rec.hasPart) ? rec.hasPart.length : 0;
+
+  // TGM controlled-vocabulary classification: crosswalk this record's own genre
+  // and subject terms onto TGM. Chips browse the whole collection by that term.
+  let tgm = '';
+  if (_tgmXwalk && rec) {
+    const seen = new Set();
+    const chip = (title) => { const x = _tgmXwalk[title]; if (x && !seen.has(x.id)) { seen.add(x.id); return `<button type="button" class="lb-tgm" data-tgm="${x.id}">${esc(x.label)}</button>`; } return ''; };
+    const chips = (rec.isTypeOf || []).map((c) => c && c.title).filter(Boolean).map(chip).join('') +
+      (rec.depicts || []).filter((d) => d && d.type === 'Category').map((d) => d.title).map(chip).join('');
+    if (chips) tgm = `<div class="lb-subjects lb-tgm-group"><span class="lb-subjects-label">Thesaurus for Graphic Materials</span><div class="lb-chips">${chips}</div></div>`;
+  }
   return (
     `<h2 class="lb-title">${esc((rec && rec.title) || item.title)}</h2>` +
     ((item.maker || item.date || item.place)
@@ -667,6 +743,7 @@ function metaHtml(item, rec) {
     (albumParts ? `<p class="lb-album">An album of ${albumParts} photographs.</p>` : '') +
     (depicts ? `<div class="lb-subjects"><span class="lb-subjects-label">In this photograph</span><div class="lb-chips">${depicts}</div></div>` : '') +
     (refers ? `<div class="lb-subjects"><span class="lb-subjects-label">References</span><div class="lb-chips">${refers}</div></div>` : '') +
+    tgm +
     `<dl class="lb-facts">` +
       fact('Maker', esc(item.maker)) +
       fact('Date', esc(item.date)) +
@@ -697,7 +774,9 @@ function renderLightbox() {
   lb.prev.disabled = lb.idx <= 0;
   lb.next.disabled = lb.idx >= state.items.length - 1;
   const token = ++lb._token;                  // …then enrich, guarding against navigation
-  fetchRecord(item.id).then((rec) => { if (rec && token === lb._token) lb.meta.innerHTML = metaHtml(item, rec); });
+  Promise.all([fetchRecord(item.id), loadTgmXwalk()]).then(([rec]) => {
+    if (rec && token === lb._token) lb.meta.innerHTML = metaHtml(item, rec);
+  });
 }
 
 
@@ -715,6 +794,8 @@ lb.zoomOut.addEventListener('click', () => zoomStep(1 / 1.5));
 // A subject / person / place chip searches that term (phrase match) — leaving
 // any decade filter in place, since it composes.
 lb.meta.addEventListener('click', (e) => {
+  const tg = e.target.closest('.lb-tgm');
+  if (tg) { closeLightbox(); clearActives(); els.q.value = ''; loadTgm(Number(tg.dataset.tgm)); return; }
   const b = e.target.closest('.lb-subject');
   if (!b) return;
   const t = b.dataset.q;
@@ -769,7 +850,9 @@ els.form.addEventListener('submit', (e) => {
   clearActives();
   const q = els.q.value.trim();
   const hit = _setLookup.get(normEmo(q));
+  const tgmId = _tgmLookup.get(normEmo(q));
   if (hit) loadSet(hit.set, hit.key);
+  else if (tgmId != null) loadTgm(tgmId);        // a TGM controlled term
   else resetAndLoad(q);
 });
 
@@ -892,6 +975,9 @@ function wireSet(setName, indexFile, listKey, trackId, reverse) {
     })
     .catch(() => { /* leave the row empty if the index can't load */ });
 }
+
+// TGM controlled vocabulary — load the term index so terms are searchable.
+loadTgmIndex();
 
 // Feelings → 154 emotions from The Book of Human Emotions (drifts right).
 wireSet('emotion', '/data/emotions-index.json', 'emotions', 'moods-track', true);
