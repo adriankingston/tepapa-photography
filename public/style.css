@@ -371,33 +371,6 @@ a { color: inherit; }
 .ways-sep { color: var(--rule-strong); font-style: normal; margin: 0 0.55em; }
 
 
-/* Significant photographers — a compact second line within the same block.
-   Smaller than the subject question; names are inline links with the blurb +
-   era carried in a hover tooltip. */
-.ways-makers {
-  margin: clamp(18px, 2vw, 26px) 0 0;
-  padding: 0 var(--pad);          /* align with the title / page gutter */
-  font-size: clamp(30px, 2.6vw, 36px);
-  line-height: 1.5;
-  color: var(--muted);
-}
-.pname {
-  font: inherit;
-  background: none;
-  border: 0;
-  padding: 0 0 1px;
-  margin: 0;
-  cursor: pointer;
-  color: var(--ink-soft);
-  font-style: italic;
-  border-bottom: 1px solid transparent;
-  transition: color .15s ease, border-color .15s ease;
-}
-.pname:hover,
-.pname:focus-visible { color: var(--accent); border-bottom-color: var(--accent); outline: none; }
-.pname[aria-pressed="true"] { color: var(--accent); border-bottom-color: var(--accent); }
-.pname-sep { color: var(--rule-strong); }
-
 /* ============================================================================
    Plates (the photograph grid) — CSS columns let varied aspect ratios flow as
    a typographic masonry. Each figure is a "plate" with a wall-label.
