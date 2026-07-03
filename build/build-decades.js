@@ -114,11 +114,11 @@ const decadeOf = (y) => (y == null ? null : `${Math.floor(y / 10) * 10}s`);
   }
   fs.writeFileSync(path.join(DATA, 'index.json'), JSON.stringify(index));
 
-  // decade buckets over the dated records. Show only decades within the
-  // photographic era (1840s+) with a real presence (≥25) — this drops a handful
-  // of pre-photography misparses ("1800s") and the near-empty in-copyright tail
-  // (1990s–2020s), which would otherwise clutter the selector.
-  const MIN_YEAR = 1840, MIN_COUNT = 25;
+  // decade buckets over the dated records. Show every decade within the
+  // photographic era (1840s+) that has any photographs — this drops only the
+  // handful of pre-photography misparses ("1800s"); the sparse in-copyright tail
+  // (1990s–2020s) is kept even though it holds just a few images each.
+  const MIN_YEAR = 1840, MIN_COUNT = 1;
   const buckets = new Map();
   for (const e of index) { const d = decadeOf(e.y || null); if (!d) continue; buckets.set(d, (buckets.get(d) || 0) + 1); }
   const decades = [...buckets.entries()]
