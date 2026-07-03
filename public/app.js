@@ -597,6 +597,17 @@ SUGGESTIONS.forEach((term) => {
 });
 
 /* ---- Ways in: two full-width marquees that loop -------------------------- */
+// Both rows scroll at one shared speed (px/sec). Since the animation moves one
+// duplicated run (-50%), duration = runWidth / SPEED — set from measured width so
+// the 20-item and 154-item rows move at the same pace.
+const MARQUEE_SPEED = 70;   // px per second
+const _tracks = [];
+function tuneMarquee(track) {
+  const run = track.scrollWidth / 2;
+  if (run > 0) track.style.animationDuration = (run / MARQUEE_SPEED) + 's';
+}
+function tuneAllMarquees() { _tracks.forEach(tuneMarquee); }
+
 // Fill a marquee track with one run + its duplicate (for a seamless -50% loop),
 // each item a `.way` carrying data-* the delegated handler reads.
 function fillMarquee(trackId, items, attr) {
@@ -607,13 +618,20 @@ function fillMarquee(trackId, items, attr) {
     `<span class="ways-sep" aria-hidden="true">·</span>`
   ).join('');
   track.innerHTML = run + run;
+  _tracks.push(track);
+  tuneMarquee(track);
   return track;
 }
+// Re-measure once web fonts land and on resize (widths shift with the vw font-size).
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(tuneAllMarquees);
+let _mqResize;
+window.addEventListener('resize', () => { clearTimeout(_mqResize); _mqResize = setTimeout(tuneAllMarquees, 150); });
 
 // Subjects → live query
 const subjTrack = fillMarquee('ways-track', WAYS, (w) => `data-q="${esc(w.q)}" data-label="${esc(w.label || w.term)}"`);
 if (subjTrack) subjTrack.addEventListener('click', (e) => {
   const b = e.target.closest('.way'); if (!b) return;
+  b.blur();                 // don't leave the row focus-paused after a click
   clearActives();
   els.q.value = b.dataset.label;
   resetAndLoad(b.dataset.q);
@@ -632,6 +650,7 @@ fetch('/data/emotions-index.json')
     const moodTrack = fillMarquee('moods-track', items, (m) => `data-mood="${esc(m.key)}"`);
     if (moodTrack) moodTrack.addEventListener('click', (e) => {
       const b = e.target.closest('.way'); if (!b) return;
+      b.blur();
       clearActives();
       els.q.value = b.textContent;   // show the feeling in the search box for context
       loadMood(b.dataset.mood);

@@ -344,17 +344,20 @@ a { color: inherit; }
   align-items: baseline;
   white-space: nowrap;
   will-change: transform;
-  animation: ways-scroll 64s linear infinite;
+  /* duration is set in JS from each track's width so both rows share one px/sec
+     speed regardless of how many items they hold */
+  animation: ways-scroll 60s linear infinite;
 }
-.ways-marquee:hover .ways-track,
-.ways-marquee:focus-within .ways-track { animation-play-state: paused; }
+/* pause only on hover (not :focus-within — that left the row stopped after a
+   click). Hover-to-pause is how you steady it to read/click a word. */
+.ways-marquee:hover .ways-track { animation-play-state: paused; }
 @keyframes ways-scroll {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
-/* second row drifts the other way, a touch slower */
+/* second row drifts the other way at the same speed */
 .ways-marquee-rev { margin-top: 4px; }
-.ways-marquee-rev .ways-track { animation-direction: reverse; animation-duration: 76s; }
+.ways-marquee-rev .ways-track { animation-direction: reverse; }
 
 .way {
   font: inherit;
