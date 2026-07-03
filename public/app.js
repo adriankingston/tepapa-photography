@@ -121,7 +121,12 @@ function makerOf(rec) {
 }
 function dateOf(rec) {
   for (const p of asArray(rec.production)) {
-    if (p && (p.displayDate || p.date)) return p.displayDate || p.date;
+    if (!p) continue;
+    const f = p.facetCreatedDate;
+    // prefer a human-readable range, then the structured year, then raw fields
+    if (p.verbatimCreatedDate) return p.verbatimCreatedDate;
+    if (f && (f.verbatim || f.year)) return f.verbatim || f.year;
+    if (p.createdDate) return p.createdDate;
   }
   return '';
 }
@@ -393,6 +398,41 @@ async function loadSet(setName, key) {
   state.loading = false;
   fetchPage();
 }
+
+/* ---- Decades: filter the full baked index by year taken ------------------ */
+// The decade can't be queried server-side (nested production.* fields return 0),
+// so we lazy-load the whole index once and filter it in the browser. index.json
+// carries `y` (year taken) and `q` (quality score) per record.
+let _indexCache = null;
+const decadeOfYear = (y) => (y ? `${Math.floor(y / 10) * 10}s` : null);
+async function loadDecade(key) {
+  state.mode = 'mood';
+  resetState();
+  state.loading = true;
+  setState(`Winding back to the ${key}…`);
+  try {
+    if (!_indexCache) _indexCache = await fetch('/data/index.json').then((r) => r.json());
+  } catch (e) {
+    state.loading = false;
+    setState('Couldn’t load the decades.', true);
+    return;
+  }
+  state.moodItems = _indexCache
+    .filter((e) => decadeOfYear(e.y) === key && !isAlbum(e.c))
+    .sort((a, b) => (b.q || 0) - (a.q || 0))   // best first, like the rest of the app
+    .map((e) => itemFromIndex(e.id, e));
+  state.total = state.moodItems.length;
+  els.count.textContent = fmtInt(state.total);
+  if (els.emoNote) {
+    els.emoNote.innerHTML =
+      `<h2 class="emotion-note-word">The ${esc(key)}</h2>` +
+      `<p class="emotion-note-meta">${fmtInt(state.total)} photographs · by year taken</p>`;
+    els.emoNote.hidden = false;
+  }
+  state.loading = false;
+  fetchPage();
+}
+
 function renderMoodPage() {
   const slice = state.moodItems.slice(state.from, state.from + PAGE);
   const frag = document.createDocumentFragment();
@@ -564,21 +604,31 @@ document.querySelectorAll('.theme-opt').forEach((b) => {
 applyTheme(document.documentElement.dataset.theme || 'light');
 
 /* ---- Search + suggestions ------------------------------------------------ */
-// Clear the pressed state on every chip and curated way.
+// Clear the pressed state on every chip, curated way and decade.
 function clearActives() {
-  document.querySelectorAll('.theme-chip, .way').forEach((c) => c.setAttribute('aria-pressed', 'false'));
+  document.querySelectorAll('.theme-chip, .way, .decade').forEach((c) => c.setAttribute('aria-pressed', 'false'));
 }
 
-// Typing an emotion or composition name loads its baked embedding set; anything
-// else is a live search. _setLookup is populated as each index loads (below).
+// Typing an emotion / composition name loads its baked set; a bare decade
+// ("1930s", "1930") browses that decade; anything else is a live search.
+// _setLookup and _decades are populated as each index loads (below).
 const _setLookup = new Map();   // normalised term → { set, key }
+const _decades = new Set();     // known decade keys, e.g. "1930s"
 const normEmo = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/['’]/g, '').replace(/[-\s]+/g, ' ').trim();
+function decadeKeyFromQuery(q) {
+  const m = q.trim().match(/^(1[89]\d0|20[0-3]0)s?$/);
+  const k = m && `${m[1]}s`;
+  return k && _decades.has(k) ? k : null;
+}
 els.form.addEventListener('submit', (e) => {
   e.preventDefault();
   clearActives();
   const q = els.q.value.trim();
+  const dk = decadeKeyFromQuery(q);
   const hit = _setLookup.get(normEmo(q));
-  if (hit) loadSet(hit.set, hit.key); else resetAndLoad(q);
+  if (dk) loadDecade(dk);
+  else if (hit) loadSet(hit.set, hit.key);
+  else resetAndLoad(q);
 });
 
 SUGGESTIONS.forEach((term) => {
@@ -705,6 +755,33 @@ function wireSet(setName, indexFile, listKey, trackId, reverse) {
 wireSet('emotion', '/data/emotions-index.json', 'emotions', 'moods-track', true);
 // Composition & technique → the photographic vocabulary (drifts left).
 wireSet('composition', '/data/compositions-index.json', 'compositions', 'comp-track', false);
+
+// Decades → a finite, ordered row of buttons; each browses the year taken.
+fetch('/data/decades-index.json')
+  .then((r) => r.json())
+  .then((idx) => {
+    const host = document.getElementById('decades');
+    if (!host) return;
+    (idx.decades || []).forEach((d) => {
+      _decades.add(d.key);
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'decade';
+      b.textContent = d.label;
+      b.title = `${fmtInt(d.count)} photographs from the ${d.label}`;
+      b.setAttribute('aria-pressed', 'false');
+      b.addEventListener('click', () => {
+        const active = b.getAttribute('aria-pressed') === 'true';
+        clearActives();
+        if (active) { els.q.value = ''; resetAndLoad(''); return; }
+        b.setAttribute('aria-pressed', 'true');
+        els.q.value = d.label;
+        loadDecade(d.key);
+      });
+      host.appendChild(b);
+    });
+  })
+  .catch(() => { /* leave the decade row empty if the index can't load */ });
 
 /* ---- Infinite scroll ----------------------------------------------------- */
 // Load the next page when the sentinel is within ~900px of the viewport.
