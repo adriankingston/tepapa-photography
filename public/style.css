@@ -379,12 +379,11 @@ a { color: inherit; }
 .ways-sep { color: var(--rule-strong); font-style: normal; margin: 0 0.55em; }
 
 /* Decade selector — a finite, ordered row (not a marquee): the year each
-   photograph was taken, bucketed by decade. Numerals set in Tourney to echo
-   the title mark. */
+   photograph was taken, bucketed by decade. */
 .decades {
   display: flex;
   flex-wrap: wrap;
-  gap: clamp(8px, 1.2vw, 16px);
+  gap: clamp(10px, 1.6vw, 22px);
   padding: 0 var(--pad);
 }
 .decade {
@@ -392,9 +391,9 @@ a { color: inherit; }
   border: 0;
   padding: 2px 0;
   cursor: pointer;
-  font-family: var(--tourney);
+  font-family: var(--sans);
   font-weight: 500;
-  font-size: clamp(20px, 2.4vw, 30px);
+  font-size: clamp(15px, 1.7vw, 21px);
   line-height: 1;
   letter-spacing: 0.01em;
   color: var(--ink-soft);
