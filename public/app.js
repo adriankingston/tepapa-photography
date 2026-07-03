@@ -40,11 +40,13 @@ const els = {
   state: document.getElementById('state'),
   sentinel: document.getElementById('sentinel'),
   endNote: document.getElementById('end-note'),
+  emoNote: document.getElementById('emotion-note'),
   count: document.getElementById('count'),
   form: document.getElementById('search-form'),
   q: document.getElementById('q'),
   themes: document.getElementById('themes'),
 };
+const _emoDef = new Map();   // key → { label, def }
 
 const SUGGESTIONS = [
   'Wellington', 'portrait', 'Burton Brothers', 'mountains', 'ships',
@@ -304,6 +306,7 @@ function resetState() {
   state.rendered = 0;
   els.plates.innerHTML = '';
   els.endNote.hidden = true;
+  if (els.emoNote) els.emoNote.hidden = true;
   els.count.textContent = '—';
   // Bring the results into view once the first page has rendered (scrolling now,
   // with the grid empty, would clamp short of the target as the page is tiny).
@@ -361,6 +364,15 @@ async function loadMood(key, label) {
     : [];
   state.total = state.moodItems.length;
   els.count.textContent = fmtInt(state.total);
+  // head the results with the feeling's definition
+  if (els.emoNote) {
+    const info = _emoDef.get(key) || {};
+    els.emoNote.innerHTML =
+      `<h2 class="emotion-note-word">${esc(info.label || key)}</h2>` +
+      (info.def ? `<p class="emotion-note-def">${esc(info.def)}</p>` : '') +
+      `<p class="emotion-note-meta">${fmtInt(state.total)} photographs · from <em>The Book of Human Emotions</em></p>`;
+    els.emoNote.hidden = false;
+  }
   state.loading = false;
   fetchPage();
 }
@@ -683,9 +695,10 @@ fetch('/data/emotions-index.json')
   .then((r) => r.json())
   .then((idx) => {
     const items = (idx.emotions || []).map((m) => ({ term: m.label, key: m.key }));
-    // make emotions searchable from the box: label, key, and key-as-words all resolve
+    // make emotions searchable from the box, and keep each definition to hand
     (idx.emotions || []).forEach((m) => {
       [m.label, m.key, m.key.replace(/-/g, ' ')].forEach((f) => _emoLookup.set(normEmo(f), m.key));
+      _emoDef.set(m.key, { label: m.label, def: m.def || '' });
     });
     makeDraggableMarquee(
       fillMarquee('moods-track', items, (m) => `data-mood="${esc(m.key)}"`),

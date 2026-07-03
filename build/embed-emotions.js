@@ -80,5 +80,11 @@ fs.writeFileSync(path.join(DATA, 'emotions.json'), JSON.stringify({
   emotions: emotionsOut,
   photos,
 }));
+// Small index for the marquee (labels + counts + a one-line definition of each).
+const defs = JSON.parse(fs.readFileSync(path.join(__dirname, 'emotion-defs.json'), 'utf8'));
+fs.writeFileSync(path.join(DATA, 'emotions-index.json'), JSON.stringify({
+  source: 'The Book of Human Emotions — Tiffany Watt Smith',
+  emotions: emotionsOut.map((e) => ({ key: e.key, label: e.label, count: e.count, def: defs[e.key] || '' })),
+}));
 const kb = Math.round(fs.statSync(path.join(DATA, 'emotions.json')).size / 1024);
-console.log(`Wrote public/data/emotions.json (${kb} KB) in ${((Date.now() - t0) / 1000).toFixed(0)}s`);
+console.log(`Wrote public/data/emotions.json (${kb} KB) + emotions-index.json in ${((Date.now() - t0) / 1000).toFixed(0)}s`);
