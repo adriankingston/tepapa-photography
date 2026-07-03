@@ -447,6 +447,7 @@ a { color: inherit; }
   color: var(--muted);
 }
 .note-decade { color: var(--accent); }   /* the active decade filter, in the note */
+.emotion-note-meta a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; }
 
 .plates {
   column-width: 340px;

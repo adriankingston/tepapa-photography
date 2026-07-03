@@ -368,7 +368,7 @@ function resetAndLoad(query) {
 const SETS = {
   emotion: {
     data: '/data/emotions.json', listKey: 'emotions',
-    attribution: 'from <em>The Book of Human Emotions</em>',
+    attribution: 'from <a href="https://www.hachettebookgroup.com/titles/tiffany-watt-smith/the-book-of-human-emotions/9780316265409/" target="_blank" rel="noopener"><em>The Book of Human Emotions</em></a>',
     loadingMsg: 'Gathering the feeling…', errorMsg: 'Couldn’t load that feeling.',
     cache: null,
   },
