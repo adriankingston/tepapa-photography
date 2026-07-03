@@ -215,11 +215,8 @@ async function fetchPage() {
     state.done = true;
     state.loading = false;
     setState('');
-    if (state.rendered === 0) {
-      setState('No openly-licensed photographs match that search.', true);
-    } else {
-      els.endNote.hidden = false;
-    }
+    if (state.rendered === 0) showNoResults();
+    else els.endNote.hidden = false;
     return;
   }
 
@@ -264,10 +261,12 @@ async function fetchPage() {
     if (!state.done) setTimeout(maybeLoadMore, 0);
   }
 
-  // Stop when we've paged past the resultset.
+  // Stop when we've paged past the resultset — nothing rendered means the
+  // decade filter (if on) dropped everything the search returned.
   if (state.total != null && state.from >= state.total) {
     state.done = true;
-    els.endNote.hidden = false;
+    if (state.rendered === 0) showNoResults();
+    else els.endNote.hidden = false;
   }
 
   // Keep filling while the sentinel is still near the viewport — covers tall
@@ -311,6 +310,15 @@ function setState(msg, isError) {
   els.state.hidden = false;
   els.state.classList.toggle('is-error', !!isError);
   els.state.innerHTML = (!isError && state.loading) ? `<span class="spinner"></span>${esc(msg)}` : esc(msg);
+}
+
+// Nothing to show. When a decade filter is on it's the likeliest culprit — a
+// search can have plenty of matches that simply fall outside the chosen decade —
+// so point the user at it.
+function showNoResults() {
+  setState(state.decade
+    ? `No photographs match with the ${state.decade} decade filter on — try clearing it.`
+    : 'No openly-licensed photographs match that search.', true);
 }
 
 /* ---- Reset on new search ------------------------------------------------- */
@@ -501,7 +509,11 @@ function renderMoodPage() {
   state.loading = false;
   setState('');
   scrollToResultsIfPending();
-  if (state.from >= state.moodItems.length) { state.done = true; els.endNote.hidden = false; }
+  if (state.from >= state.moodItems.length) {
+    state.done = true;
+    if (state.rendered === 0) showNoResults();
+    else els.endNote.hidden = false;
+  }
   if (!state.done) setTimeout(maybeLoadMore, 0);
 }
 
