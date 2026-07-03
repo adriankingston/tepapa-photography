@@ -737,10 +737,12 @@ function metaHtml(item, rec) {
       (rec.depicts || []).filter((d) => d && d.type === 'Category').map((d) => d.title).map(chip).join('');
     if (chips) tgm = `<div class="lb-subjects lb-tgm-group"><span class="lb-subjects-label">Thesaurus for Graphic Materials</span><div class="lb-chips">${chips}</div></div>`;
   }
+  // the maker links to their other works (phrase search of the name)
+  const maker = item.maker ? `<button type="button" class="lb-maker" data-q="${esc(item.maker)}">${esc(item.maker)}</button>` : '';
   return (
     `<h2 class="lb-title">${esc((rec && rec.title) || item.title)}</h2>` +
     ((item.maker || item.date || item.place)
-      ? `<p class="lb-byline">${[esc(item.maker), esc(item.date), esc(item.place)].filter(Boolean).join(' · ')}</p>` : '') +
+      ? `<p class="lb-byline">${[maker, esc(item.date), esc(item.place)].filter(Boolean).join(' · ')}</p>` : '') +
     (desc ? `<div class="lb-desc">${desc}</div>`
           : (item.caption ? `<p class="lb-caption-text">${esc(item.caption)}</p>` : '')) +
     (albumParts ? `<p class="lb-album">An album of ${albumParts} photographs.</p>` : '') +
@@ -748,7 +750,7 @@ function metaHtml(item, rec) {
     (refers ? `<div class="lb-subjects"><span class="lb-subjects-label">References</span><div class="lb-chips">${refers}</div></div>` : '') +
     tgm +
     `<dl class="lb-facts">` +
-      fact('Maker', esc(item.maker)) +
+      fact('Maker', maker) +
       fact('Date', esc(item.date)) +
       fact('Place', esc(item.place)) +
       fact('Classification', esc(classification)) +
@@ -799,7 +801,8 @@ lb.zoomOut.addEventListener('click', () => zoomStep(1 / 1.5));
 lb.meta.addEventListener('click', (e) => {
   const tg = e.target.closest('.lb-tgm');
   if (tg) { closeLightbox(); clearActives(); els.q.value = ''; loadTgm(Number(tg.dataset.tgm)); return; }
-  const b = e.target.closest('.lb-subject');
+  // a subject chip or the maker → phrase-search that term / name
+  const b = e.target.closest('.lb-subject, .lb-maker');
   if (!b) return;
   const t = b.dataset.q;
   closeLightbox();

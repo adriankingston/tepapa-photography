@@ -692,6 +692,14 @@ a { color: inherit; }
   color: var(--ink-soft);
   margin: 14px 0 0;
 }
+/* The maker links to their other works — inherits the surrounding type. */
+.lb-maker {
+  font: inherit; letter-spacing: inherit; text-transform: inherit;
+  color: inherit; background: none; border: 0; padding: 0; cursor: pointer;
+  border-bottom: 1px solid var(--rule-strong);
+  transition: color .15s ease, border-color .15s ease;
+}
+.lb-maker:hover, .lb-maker:focus-visible { color: var(--accent); border-bottom-color: var(--accent); outline: none; }
 .lb-caption-text {
   font-size: clamp(16px, 1.5vw, 19px);
   line-height: 1.5;
