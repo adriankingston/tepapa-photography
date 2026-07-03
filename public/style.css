@@ -339,25 +339,19 @@ a { color: inherit; }
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
+/* JS drives the scroll (transform) so the rows can be grabbed and dragged; both
+   share one px/sec speed, pause on hover, and a drag scrubs the position. */
 .ways-track {
   display: inline-flex;
   align-items: baseline;
   white-space: nowrap;
   will-change: transform;
-  /* duration is set in JS from each track's width so both rows share one px/sec
-     speed regardless of how many items they hold */
-  animation: ways-scroll 60s linear infinite;
+  cursor: grab;
+  touch-action: pan-y;   /* vertical gestures scroll the page; horizontal drags the row */
+  user-select: none;
 }
-/* pause only on hover (not :focus-within — that left the row stopped after a
-   click). Hover-to-pause is how you steady it to read/click a word. */
-.ways-marquee:hover .ways-track { animation-play-state: paused; }
-@keyframes ways-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-/* second row drifts the other way at the same speed */
+.ways-track.is-grabbing { cursor: grabbing; }
 .ways-marquee-rev { margin-top: 4px; }
-.ways-marquee-rev .ways-track { animation-direction: reverse; }
 
 .way {
   font: inherit;
@@ -376,10 +370,6 @@ a { color: inherit; }
 .way:focus-visible { color: var(--accent); border-bottom-color: var(--accent); outline: none; }
 .ways-sep { color: var(--rule-strong); font-style: normal; margin: 0 0.55em; }
 
-@media (prefers-reduced-motion: reduce) {
-  .ways-track { animation: none; }
-  .ways-marquee { overflow-x: auto; }
-}
 
 /* Significant photographers — a compact second line within the same block.
    Smaller than the subject question; names are inline links with the blurb +

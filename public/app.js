@@ -596,20 +596,12 @@ SUGGESTIONS.forEach((term) => {
   els.themes.appendChild(b);
 });
 
-/* ---- Ways in: two full-width marquees that loop -------------------------- */
-// Both rows scroll at one shared speed (px/sec). Since the animation moves one
-// duplicated run (-50%), duration = runWidth / SPEED — set from measured width so
-// the 20-item and 154-item rows move at the same pace.
-const MARQUEE_SPEED = 70;   // px per second
-const _tracks = [];
-function tuneMarquee(track) {
-  const run = track.scrollWidth / 2;
-  if (run > 0) track.style.animationDuration = (run / MARQUEE_SPEED) + 's';
-}
-function tuneAllMarquees() { _tracks.forEach(tuneMarquee); }
+/* ---- Ways in: two full-width marquees you can grab and drag -------------- */
+const MARQUEE_SPEED = 70;   // px/sec — shared by both rows
+const _reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const _marquees = [];
 
-// Fill a marquee track with one run + its duplicate (for a seamless -50% loop),
-// each item a `.way` carrying data-* the delegated handler reads.
+// Fill a track with one run + its duplicate (seamless loop), each item a `.way`.
 function fillMarquee(trackId, items, attr) {
   const track = document.getElementById(trackId);
   if (!track) return null;
@@ -618,27 +610,72 @@ function fillMarquee(trackId, items, attr) {
     `<span class="ways-sep" aria-hidden="true">·</span>`
   ).join('');
   track.innerHTML = run + run;
-  _tracks.push(track);
-  tuneMarquee(track);
   return track;
 }
-// Re-measure once web fonts land and on resize (widths shift with the vw font-size).
-if (document.fonts && document.fonts.ready) document.fonts.ready.then(tuneAllMarquees);
+
+// Auto-scroll (rAF-driven transform) + grab-to-drag scrub. onWord(button) fires
+// on a genuine click, not a drag. reverse = drift the other way.
+function makeDraggableMarquee(track, reverse, onWord) {
+  if (!track) return;
+  const marquee = track.parentElement;
+  const dir = reverse ? 1 : -1;
+  let runWidth = track.scrollWidth / 2 || 1;
+  let tx = 0, paused = false, dragging = false, startX = 0, startTx = 0, downX = 0, moved = false, last = 0;
+
+  const render = () => { track.style.transform = `translateX(${tx}px)`; };
+  const wrap = () => { if (tx <= -runWidth) tx += runWidth; else if (tx > 0) tx -= runWidth; };
+  function frame(t) {
+    const dt = last ? Math.min((t - last) / 1000, 0.1) : 0; last = t;
+    if (!paused && !dragging && !_reduceMotion) { tx += dir * MARQUEE_SPEED * dt; wrap(); render(); }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  render();
+
+  // hover steadies the drift so you can read / aim
+  marquee.addEventListener('mouseenter', () => { paused = true; });
+  marquee.addEventListener('mouseleave', () => { paused = false; });
+
+  // drag to scrub
+  track.addEventListener('pointerdown', (e) => {
+    dragging = true; moved = false; startX = e.clientX; downX = e.clientX; startTx = tx;
+    track.classList.add('is-grabbing');
+    try { track.setPointerCapture(e.pointerId); } catch (x) { /* ignore */ }
+  });
+  track.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    if (Math.abs(e.clientX - startX) > 3) moved = true;
+    let v = (startTx + (e.clientX - startX)) % runWidth;
+    if (v > 0) v -= runWidth;
+    tx = v; render();
+  });
+  const endDrag = () => { if (!dragging) return; dragging = false; track.classList.remove('is-grabbing'); };
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+
+  // a click selects a word unless the pointer moved (i.e. it was a drag)
+  track.addEventListener('click', (e) => {
+    const b = e.target.closest('.way'); if (!b) return;
+    if (moved || Math.abs(e.clientX - downX) > 4) { e.preventDefault(); return; }
+    b.blur();
+    onWord(b);
+  });
+
+  _marquees.push({ retune() { runWidth = track.scrollWidth / 2 || 1; wrap(); render(); } });
+}
+function retuneMarquees() { _marquees.forEach((m) => m.retune()); }
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(retuneMarquees);
 let _mqResize;
-window.addEventListener('resize', () => { clearTimeout(_mqResize); _mqResize = setTimeout(tuneAllMarquees, 150); });
+window.addEventListener('resize', () => { clearTimeout(_mqResize); _mqResize = setTimeout(retuneMarquees, 150); });
 
 // Subjects → live query
-const subjTrack = fillMarquee('ways-track', WAYS, (w) => `data-q="${esc(w.q)}" data-label="${esc(w.label || w.term)}"`);
-if (subjTrack) subjTrack.addEventListener('click', (e) => {
-  const b = e.target.closest('.way'); if (!b) return;
-  b.blur();                 // don't leave the row focus-paused after a click
-  clearActives();
-  els.q.value = b.dataset.label;
-  resetAndLoad(b.dataset.q);
-});
+makeDraggableMarquee(
+  fillMarquee('ways-track', WAYS, (w) => `data-q="${esc(w.q)}" data-label="${esc(w.label || w.term)}"`),
+  false,
+  (b) => { clearActives(); els.q.value = b.dataset.label; resetAndLoad(b.dataset.q); }
+);
 
 // Feelings → baked embedding set (154 emotions from The Book of Human Emotions).
-// Labels come from the small index; the full sets load on first click.
 fetch('/data/emotions-index.json')
   .then((r) => r.json())
   .then((idx) => {
@@ -647,14 +684,11 @@ fetch('/data/emotions-index.json')
     (idx.emotions || []).forEach((m) => {
       [m.label, m.key, m.key.replace(/-/g, ' ')].forEach((f) => _emoLookup.set(normEmo(f), m.key));
     });
-    const moodTrack = fillMarquee('moods-track', items, (m) => `data-mood="${esc(m.key)}"`);
-    if (moodTrack) moodTrack.addEventListener('click', (e) => {
-      const b = e.target.closest('.way'); if (!b) return;
-      b.blur();
-      clearActives();
-      els.q.value = b.textContent;   // show the feeling in the search box for context
-      loadMood(b.dataset.mood);
-    });
+    makeDraggableMarquee(
+      fillMarquee('moods-track', items, (m) => `data-mood="${esc(m.key)}"`),
+      true,
+      (b) => { clearActives(); els.q.value = b.textContent; loadMood(b.dataset.mood); }
+    );
   })
   .catch(() => { /* leave the feelings row empty if the index can't load */ });
 
