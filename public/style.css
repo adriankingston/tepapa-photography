@@ -637,32 +637,19 @@ a { color: inherit; }
   -webkit-overflow-scrolling: touch;
 }
 
-/* The fold — image centred, fills the viewport height. */
+/* The fold — the IIIF deep-zoom viewer (OpenSeadragon) fills the viewport. */
 .lb-viewer {
   position: relative;
   height: 100dvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(16px, 3vw, 40px) clamp(48px, 7vw, 96px);
-  overflow: hidden;            /* zoom pans via transform, not layout */
+  overflow: hidden;
   backdrop-filter: blur(6px);
-}
-.lb-img {
-  max-width: 100%;
-  max-height: calc(100dvh - 60px);
-  object-fit: contain;
-  background: var(--paper-2);
-  box-shadow: 0 30px 80px rgba(0,0,0,0.45);
-  cursor: zoom-in;
-  transform-origin: center center;
-  transition: transform .22s var(--ease, ease);
-  will-change: transform;
-  user-select: none;
+  cursor: grab;
   touch-action: none;
 }
-.lb-img.is-zoomed { cursor: grab; max-width: none; max-height: none; }
-.lb-img.is-zoomed.is-panning { cursor: grabbing; transition: none; }
+.lb-viewer:active { cursor: grabbing; }
+/* Let the paper wash behind the lightbox show through OSD's canvas. */
+.lb-viewer .openseadragon-container { background: transparent !important; }
+.lb-viewer canvas { outline: none; }
 
 /* "Details ↓" affordance pinned to the bottom of the fold. */
 .lb-scrolldown {
@@ -682,7 +669,6 @@ a { color: inherit; }
   transition: color .15s ease, border-color .15s ease, opacity .2s ease;
 }
 .lb-scrolldown:hover { color: var(--accent); border-color: var(--accent); }
-.lb-viewer.zoom-on ~ .lb-scrolldown { opacity: 0; pointer-events: none; }
 
 /* Metadata panel, below the fold. */
 .lb-meta-panel {
@@ -779,9 +765,6 @@ a { color: inherit; }
 .lightbox.lb-scrolled .lb-nav { opacity: 0; pointer-events: none; }
 .lb-nav { transition: color .15s ease, opacity .2s ease; }
 
-@media (max-width: 640px) {
-  .lb-viewer { padding: 16px clamp(36px, 12vw, 52px); }
-}
 
 body.lb-open { overflow: hidden; }
 

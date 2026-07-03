@@ -522,7 +522,6 @@ const lb = {
   el: document.getElementById('lightbox'),
   scroll: document.getElementById('lb-scroll'),
   viewer: document.getElementById('lb-viewer'),
-  img: document.getElementById('lb-img'),
   meta: document.getElementById('lb-caption'),
   close: document.getElementById('lb-close'),
   prev: document.getElementById('lb-prev'),
@@ -530,67 +529,57 @@ const lb = {
   idx: -1,
 };
 
-/* ---- Click-to-zoom + drag-to-pan on the detail image --------------------- */
-const zoom = { on: false, scale: 2.6, tx: 0, ty: 0, dragging: false, startTx: 0, startTy: 0, sx: 0, sy: 0, downX: 0, downY: 0 };
-
-function resetZoom() {
-  zoom.on = false; zoom.tx = 0; zoom.ty = 0; zoom.dragging = false;
-  lb.img.classList.remove('is-zoomed', 'is-panning');
-  lb.viewer.classList.remove('zoom-on');
-  lb.img.style.transform = '';
+/* ---- IIIF deep-zoom viewer (OpenSeadragon) ------------------------------- */
+// Te Papa serves a IIIF Image API 2.0 keyed by the media id we already store
+// (mid): https://iiif.tepapa.govt.nz/iiif/2/<mid>. OpenSeadragon gives smooth,
+// tiled zoom from fit all the way to native resolution — scroll / pinch /
+// double-click to zoom, drag to pan.
+const IIIF_BASE = 'https://iiif.tepapa.govt.nz/iiif/2/';
+const midOf = (img) => (String((img && (img.thumbnailUrl || img.contentUrl)) || '').match(/\/collection\/(\d+)\//) || [])[1] || '';
+let osd = null;
+function getViewer() {
+  if (osd) return osd;
+  osd = OpenSeadragon({
+    element: lb.viewer,
+    prefixUrl: '',                 // no default control sprites — we hide them
+    showNavigationControl: false,
+    showNavigator: false,
+    crossOriginPolicy: 'Anonymous',
+    immediateRender: true,
+    visibilityRatio: 1,
+    minZoomImageRatio: 0.8,
+    maxZoomPixelRatio: 2.5,        // allow a little past 1:1 native pixels
+    animationTime: 0.5,
+    springStiffness: 8,
+    gestureSettingsMouse: { clickToZoom: false, dblClickToZoom: true, scrollToZoom: true, flickEnabled: true },
+    gestureSettingsTouch: { dblClickToZoom: true, pinchToZoom: true, flickEnabled: true },
+  });
+  // If the IIIF endpoint fails, fall back to the plain full-size derivative.
+  osd.addHandler('open-failed', () => {
+    const item = state.items[lb.idx];
+    const url = item && item.img && (item.img.contentUrl || item.img.previewUrl);
+    if (url && !osd._fellBack) { osd._fellBack = true; osd.open({ type: 'image', url }); }
+  });
+  return osd;
 }
-function applyZoom() {
-  lb.img.style.transform = zoom.on ? `translate(${zoom.tx}px, ${zoom.ty}px) scale(${zoom.scale})` : '';
+function showInViewer(item) {
+  const v = getViewer();
+  v._fellBack = false;
+  const mid = midOf(item.img);
+  if (mid) v.open(`${IIIF_BASE}${mid}/info.json`);
+  else v.open({ type: 'image', url: item.img.contentUrl || item.img.previewUrl });
 }
-function clampPan() {
-  const vr = lb.viewer.getBoundingClientRect();
-  const overX = Math.max(0, (lb.img.clientWidth * zoom.scale - vr.width) / 2);
-  const overY = Math.max(0, (lb.img.clientHeight * zoom.scale - vr.height) / 2);
-  zoom.tx = Math.max(-overX, Math.min(overX, zoom.tx));
-  zoom.ty = Math.max(-overY, Math.min(overY, zoom.ty));
-}
-function toggleZoom(clientX, clientY) {
-  if (zoom.on) { resetZoom(); return; }
-  zoom.on = true;
-  lb.img.classList.add('is-zoomed');
-  lb.viewer.classList.add('zoom-on');
-  // Keep the clicked point under the cursor as it scales up.
-  const r = lb.img.getBoundingClientRect();
-  zoom.tx = -(clientX - (r.left + r.width / 2)) * (zoom.scale - 1);
-  zoom.ty = -(clientY - (r.top + r.height / 2)) * (zoom.scale - 1);
-  clampPan();
-  applyZoom();
-}
-lb.img.addEventListener('pointerdown', (e) => {
-  zoom.downX = e.clientX; zoom.downY = e.clientY;
-  if (zoom.on) {
-    zoom.dragging = true; zoom.startTx = zoom.tx; zoom.startTy = zoom.ty; zoom.sx = e.clientX; zoom.sy = e.clientY;
-    lb.img.classList.add('is-panning');
-    lb.img.setPointerCapture(e.pointerId);
-  }
-});
-lb.img.addEventListener('pointermove', (e) => {
-  if (!zoom.dragging) return;
-  zoom.tx = zoom.startTx + (e.clientX - zoom.sx);
-  zoom.ty = zoom.startTy + (e.clientY - zoom.sy);
-  clampPan(); applyZoom();
-});
-lb.img.addEventListener('pointerup', (e) => {
-  if (zoom.dragging) { zoom.dragging = false; lb.img.classList.remove('is-panning'); }
-  const moved = Math.abs(e.clientX - zoom.downX) + Math.abs(e.clientY - zoom.downY) > 4;
-  if (!moved) toggleZoom(e.clientX, e.clientY);   // a click (not a drag) toggles zoom
-});
 
 function openLightbox(idx) {
   lb.idx = idx;
-  renderLightbox();
-  lb.el.hidden = false;
+  lb.el.hidden = false;            // reveal first so the viewer element has a size
   document.body.classList.add('lb-open');
+  renderLightbox();
 }
 function closeLightbox() {
   lb.el.hidden = true;
   document.body.classList.remove('lb-open');
-  resetZoom();
+  if (osd) osd.close();            // unload tiles / stop fetching
   lb.idx = -1;
 }
 function step(d) {
@@ -605,11 +594,7 @@ function renderLightbox() {
   const item = state.items[lb.idx];
   if (!item) return;
   const img = item.img;
-  // Downloadable images can be shown full; we only ever keep downloadable ones.
-  const big = img.contentUrl || img.previewUrl || img.thumbnailUrl;
-  resetZoom();
-  lb.img.src = big;
-  lb.img.alt = item.title;
+  showInViewer(item);        // IIIF deep-zoom via OpenSeadragon
   lb.scroll.scrollTop = 0;   // start each photo at the fold
   lb.el.classList.remove('lb-scrolled');
 
