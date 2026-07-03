@@ -526,6 +526,8 @@ const lb = {
   close: document.getElementById('lb-close'),
   prev: document.getElementById('lb-prev'),
   next: document.getElementById('lb-next'),
+  zoomIn: document.getElementById('lb-zoom-in'),
+  zoomOut: document.getElementById('lb-zoom-out'),
   idx: -1,
 };
 
@@ -622,9 +624,17 @@ function renderLightbox() {
   lb.next.disabled = lb.idx >= state.items.length - 1;
 }
 
+// Step the deep-zoom viewer in/out around its centre (animates via OSD springs).
+function zoomStep(factor) {
+  if (!osd || !osd.viewport) return;
+  osd.viewport.zoomBy(factor);
+  osd.viewport.applyConstraints();
+}
 lb.close.addEventListener('click', closeLightbox);
 lb.prev.addEventListener('click', () => step(-1));
 lb.next.addEventListener('click', () => step(1));
+lb.zoomIn.addEventListener('click', () => zoomStep(1.5));
+lb.zoomOut.addEventListener('click', () => zoomStep(1 / 1.5));
 // The prev/next arrows belong to the image; fade them out once you scroll to the
 // metadata so they don't float over the text.
 lb.scroll.addEventListener('scroll', () => {
