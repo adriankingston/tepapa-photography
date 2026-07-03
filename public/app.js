@@ -497,11 +497,14 @@ async function loadDecade(key) {
 // term → TGM, for the detail view) load on demand.
 const _tgm = new Map();          // id → { label, scope, count, sug, kind, bt }
 const _tgmLookup = new Map();    // normalised label → id (searchable)
+let _tgmArr = [];                // terms sorted by frequency (for the browse panel)
 let _tgmXwalk = null;            // raw Te Papa term → { id, label }
 let _tgmIndexP = null, _tgmXwalkP = null;
 function loadTgmIndex() {
   if (!_tgmIndexP) _tgmIndexP = fetch('/data/tgm-index.json').then((r) => r.json()).then((idx) => {
-    for (const t of (idx.terms || [])) { _tgm.set(t.id, t); _tgmLookup.set(normEmo(t.label), t.id); }
+    _tgmArr = idx.terms || [];
+    for (const t of _tgmArr) { _tgm.set(t.id, t); _tgmLookup.set(normEmo(t.label), t.id); }
+    const c = document.getElementById('tgm-count'); if (c) c.textContent = fmtInt(_tgmArr.length);
   }).catch(() => {});
   return _tgmIndexP;
 }
@@ -978,6 +981,58 @@ function wireSet(setName, indexFile, listKey, trackId, reverse) {
 
 // TGM controlled vocabulary — load the term index so terms are searchable.
 loadTgmIndex();
+
+/* ---- Subject index (TGM) browse panel ------------------------------------ */
+const tgmPanel = {
+  el: document.getElementById('tgm-panel'),
+  list: document.getElementById('tgm-list'),
+  search: document.getElementById('tgm-search'),
+  foot: document.getElementById('tgm-panel-foot'),
+  tabs: document.getElementById('tgm-tabs'),
+  kind: 'all',
+};
+const TGM_ROW_CAP = 400;
+function renderTgmList() {
+  const q = normEmo(tgmPanel.search.value);
+  let rows = _tgmArr;
+  if (tgmPanel.kind === 's') rows = rows.filter((t) => t.kind !== 'g');       // subjects + both
+  else if (tgmPanel.kind === 'g') rows = rows.filter((t) => t.kind !== 's');  // genre + both
+  if (q) rows = rows.filter((t) => normEmo(t.label).includes(q));
+  const total = rows.length;
+  tgmPanel.list.innerHTML = rows.slice(0, TGM_ROW_CAP).map((t) => {
+    const form = (t.kind === 'g' || t.kind === 'b') ? '<span class="tgm-row-form">form</span>' : '';
+    const cnt = t.sug ? `${fmtInt(t.count)}<span class="tgm-sug"> +${fmtInt(t.sug)}</span>` : fmtInt(t.count + (t.sug || 0));
+    return `<button type="button" class="tgm-row" data-id="${t.id}"><span class="tgm-row-label">${esc(t.label)}${form}</span><span class="tgm-row-count">${cnt}</span></button>`;
+  }).join('');
+  tgmPanel.foot.textContent = total > TGM_ROW_CAP
+    ? `Showing ${TGM_ROW_CAP} of ${fmtInt(total)} — refine your search`
+    : `${fmtInt(total)} term${total === 1 ? '' : 's'}`;
+}
+function openTgmPanel() {
+  tgmPanel.el.hidden = false;
+  document.body.classList.add('lb-open');
+  loadTgmIndex().then(renderTgmList);
+  tgmPanel.search.focus();
+}
+function closeTgmPanel() { tgmPanel.el.hidden = true; document.body.classList.remove('lb-open'); }
+document.getElementById('tgm-open').addEventListener('click', openTgmPanel);
+document.getElementById('tgm-close').addEventListener('click', closeTgmPanel);
+tgmPanel.el.addEventListener('click', (e) => { if (e.target === tgmPanel.el) closeTgmPanel(); });
+tgmPanel.search.addEventListener('input', renderTgmList);
+tgmPanel.tabs.addEventListener('click', (e) => {
+  const b = e.target.closest('button'); if (!b) return;
+  tgmPanel.kind = b.dataset.kind;
+  [...tgmPanel.tabs.children].forEach((c) => c.classList.toggle('is-on', c === b));
+  renderTgmList();
+});
+tgmPanel.list.addEventListener('click', (e) => {
+  const b = e.target.closest('.tgm-row'); if (!b) return;
+  closeTgmPanel();
+  clearActives();
+  els.q.value = '';
+  loadTgm(Number(b.dataset.id));
+});
+document.addEventListener('keydown', (e) => { if (!tgmPanel.el.hidden && e.key === 'Escape') closeTgmPanel(); });
 
 // Feelings → 154 emotions from The Book of Human Emotions (drifts right).
 wireSet('emotion', '/data/emotions-index.json', 'emotions', 'moods-track', true);
