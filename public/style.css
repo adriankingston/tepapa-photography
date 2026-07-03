@@ -378,6 +378,32 @@ a { color: inherit; }
 .way:focus-visible { color: var(--accent); border-bottom-color: var(--accent); outline: none; }
 .ways-sep { color: var(--rule-strong); font-style: normal; margin: 0 0.55em; }
 
+/* Decade selector — a finite, ordered row (not a marquee): the year each
+   photograph was taken, bucketed by decade. */
+.decades {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(10px, 1.6vw, 22px);
+  padding: 0 var(--pad);
+}
+.decade {
+  background: none;
+  border: 0;
+  padding: 2px 0;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(15px, 1.7vw, 21px);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: var(--ink-soft);
+  border-bottom: 2px solid transparent;
+  transition: color .15s ease, border-color .15s ease;
+}
+.decade:hover,
+.decade:focus-visible { color: var(--accent); border-bottom-color: var(--accent); outline: none; }
+.decade[aria-pressed="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+
 
 /* ============================================================================
    Plates (the photograph grid) — CSS columns let varied aspect ratios flow as
