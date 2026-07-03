@@ -1,8 +1,3 @@
-# Never upload these to Vercel. The API key lives in .env and must stay out of
-# the build — on Vercel it comes from the project's Environment Variables instead.
-.env
-.git
-.claude
-node_modules
-*.log
-.DS_Store
+# Build-only embeddings — used by build/*.js, never fetched by the browser.
+public/data/clip-emb.i8
+public/data/text-emb.i8

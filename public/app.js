@@ -174,24 +174,14 @@ async function fetchPage() {
 
   if (state.mode === 'mood') { renderMoodPage(); return; }
 
-  const body = {
-    query: buildQuery(),
-    size: PAGE,
-    from: state.from,
-    filters: [{ field: 'type', keyword: 'Object' }],
-    // Rank by Te Papa's own record quality score (best first) — applies to the
-    // default browse, the curated subsets and searches. Also stabilises deep
-    // paging (an explicit sort avoids the flaky scored-query ordering).
-    sort: [{ field: '_meta.qualityScore', order: 'desc' }],
-  };
+  // GET so Vercel's edge network can cache popular searches (the proxy adds the
+  // constant type:Object filter and the quality-score sort — best first, and a
+  // stable order for deep paging).
+  const url = `/api/search?q=${encodeURIComponent(buildQuery())}&from=${state.from}&size=${PAGE}`;
 
   let json;
   try {
-    const res = await fetch('/api/search', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
-    });
+    const res = await fetch(url);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     json = await res.json();
   } catch (e) {
@@ -667,10 +657,8 @@ function step(d) {
 const _recCache = new Map();
 function fetchRecord(id) {
   if (_recCache.has(id)) return _recCache.get(id);
-  const p = fetch('/api/search', {
-    method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query: `id:${id}`, size: 1, filters: [{ field: 'type', keyword: 'Object' }] }),
-  }).then((r) => r.json()).then((j) => (j.results && j.results[0]) || null).catch(() => null);
+  const p = fetch(`/api/search?id=${id}`)   // GET → edge-cached (records are immutable)
+    .then((r) => r.json()).then((j) => (j.results && j.results[0]) || null).catch(() => null);
   _recCache.set(id, p);
   return p;
 }

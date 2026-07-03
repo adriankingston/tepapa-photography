@@ -42,6 +42,7 @@ const MIME = {
 // The same serverless handler Vercel runs, keyed by "METHOD /path".
 const routes = {
   'POST /api/search': require('./api/search'),
+  'GET /api/search': require('./api/search'),
 };
 
 const server = http.createServer((req, res) => {
