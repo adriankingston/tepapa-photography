@@ -738,6 +738,8 @@ a { color: inherit; }
   color: var(--muted);
   margin-bottom: 12px;
 }
+.lb-subjects-label a { color: var(--ink-soft); border-bottom: 1px solid var(--rule-strong); transition: color .15s ease, border-color .15s ease; }
+.lb-subjects-label a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 .lb-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .lb-subject {
   font-family: var(--sans);

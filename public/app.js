@@ -735,7 +735,7 @@ function metaHtml(item, rec) {
     const chip = (title) => { const x = _tgmXwalk[title]; if (x && !seen.has(x.id)) { seen.add(x.id); return `<button type="button" class="lb-tgm" data-tgm="${x.id}">${esc(x.label)}</button>`; } return ''; };
     const chips = (rec.isTypeOf || []).map((c) => c && c.title).filter(Boolean).map(chip).join('') +
       (rec.depicts || []).filter((d) => d && d.type === 'Category').map((d) => d.title).map(chip).join('');
-    if (chips) tgm = `<div class="lb-subjects lb-tgm-group"><span class="lb-subjects-label">Thesaurus for Graphic Materials</span><div class="lb-chips">${chips}</div></div>`;
+    if (chips) tgm = `<div class="lb-subjects lb-tgm-group"><span class="lb-subjects-label">AI-catalogued against the Library of Congress <a href="https://id.loc.gov/vocabulary/graphicMaterials.html" target="_blank" rel="noopener">Thesaurus for Graphic Materials</a></span><div class="lb-chips">${chips}</div></div>`;
   }
   // the maker links to their other works (phrase search of the name)
   const maker = item.maker ? `<button type="button" class="lb-maker" data-q="${esc(item.maker)}">${esc(item.maker)}</button>` : '';
@@ -746,7 +746,7 @@ function metaHtml(item, rec) {
     (desc ? `<div class="lb-desc">${desc}</div>`
           : (item.caption ? `<p class="lb-caption-text">${esc(item.caption)}</p>` : '')) +
     (albumParts ? `<p class="lb-album">An album of ${albumParts} photographs.</p>` : '') +
-    (depicts ? `<div class="lb-subjects"><span class="lb-subjects-label">In this photograph</span><div class="lb-chips">${depicts}</div></div>` : '') +
+    (depicts ? `<div class="lb-subjects"><span class="lb-subjects-label">In this photograph (Te Papa cataloguing)</span><div class="lb-chips">${depicts}</div></div>` : '') +
     (refers ? `<div class="lb-subjects"><span class="lb-subjects-label">References</span><div class="lb-chips">${refers}</div></div>` : '') +
     tgm +
     `<dl class="lb-facts">` +
