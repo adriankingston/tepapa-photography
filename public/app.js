@@ -529,6 +529,7 @@ const lb = {
   zoomIn: document.getElementById('lb-zoom-in'),
   zoomOut: document.getElementById('lb-zoom-out'),
   idx: -1,
+  _token: 0,   // bumped each render so a slow record fetch can't overwrite a newer view
 };
 
 /* ---- IIIF deep-zoom viewer (OpenSeadragon) ------------------------------- */
@@ -592,37 +593,113 @@ function step(d) {
   // Prefetch more if nearing the end while paging through the lightbox.
   if (n > state.items.length - 6) fetchPage();
 }
-function renderLightbox() {
-  const item = state.items[lb.idx];
-  if (!item) return;
-  const img = item.img;
-  showInViewer(item);        // IIIF deep-zoom via OpenSeadragon
-  lb.scroll.scrollTop = 0;   // start each photo at the fold
-  lb.el.classList.remove('lb-scrolled');
+// The grid item is lean; fetch the full record on demand for the detail panel
+// so the rich fields (description, subjects, credit…) show in EVERY browse mode,
+// not just live search. Promise-cached by id to dedupe concurrent opens.
+const _recCache = new Map();
+function fetchRecord(id) {
+  if (_recCache.has(id)) return _recCache.get(id);
+  const p = fetch('/api/search', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query: `id:${id}`, size: 1, filters: [{ field: 'type', keyword: 'Object' }] }),
+  }).then((r) => r.json()).then((j) => (j.results && j.results[0]) || null).catch(() => null);
+  _recCache.set(id, p);
+  return p;
+}
 
+// Descriptions are museum-authored HTML — keep a safe subset (paragraphs, bold,
+// emphasis, lists, http links) and drop everything else.
+const _DESC_TAGS = { A: 'a', P: 'p', BR: 'br', STRONG: 'strong', B: 'strong', EM: 'em', I: 'em', UL: 'ul', OL: 'ol', LI: 'li' };
+function sanitizeDesc(html) {
+  const walk = (node) => {
+    let out = '';
+    node.childNodes.forEach((n) => {
+      if (n.nodeType === 3) { out += esc(n.nodeValue); return; }
+      if (n.nodeType !== 1) return;
+      const tag = _DESC_TAGS[n.tagName];
+      const inner = walk(n);
+      if (!tag) { out += inner; return; }
+      if (tag === 'br') { out += '<br>'; return; }
+      if (tag === 'a') {
+        const href = n.getAttribute('href') || '';
+        out += /^https?:\/\//i.test(href) ? `<a href="${esc(href)}" target="_blank" rel="noopener">${inner}</a>` : inner;
+        return;
+      }
+      out += `<${tag}>${inner}</${tag}>`;
+    });
+    return out;
+  };
+  return walk(new DOMParser().parseFromString(String(html || ''), 'text/html').body).trim();
+}
+
+// depicts / refersTo → clickable chips that search the term (deduped by title).
+function subjectChips(list) {
+  const seen = new Set();
+  return (list || []).map((x) => x && x.title).filter((t) => t && !seen.has(t) && seen.add(t))
+    .map((t) => `<button type="button" class="lb-subject" data-q="${esc(t)}">${esc(t)}</button>`).join('');
+}
+// Prefer the image extent; render as "301 × 212 mm".
+function physicalSize(dims) {
+  const a = (dims || []).filter((d) => d && (d.title || (d.width && d.height)));
+  if (!a.length) return '';
+  const d = a.find((x) => x.extentType === 'Image') || a[0];
+  return (d.width && d.height) ? `${d.width} × ${d.height} ${d.sizeUnitText || 'mm'}` : (d.title || '');
+}
+const isAlbumRec = (rec) => isAlbum((rec.isTypeOf || []).map((c) => c && c.title));
+
+function metaHtml(item, rec) {
+  const img = item.img;
   const dl = img.rights && img.rights.allowsDownload && img.contentUrl;
   const fact = (label, val) => (val ? `<div><dt>${label}</dt><dd>${val}</dd></div>` : '');
-  lb.meta.innerHTML =
-    `<h2 class="lb-title">${esc(item.title)}</h2>` +
-    ((item.maker || item.date)
-      ? `<p class="lb-byline">${[esc(item.maker), esc(item.date)].filter(Boolean).join(' · ')}</p>` : '') +
-    (item.caption ? `<p class="lb-caption-text">${esc(item.caption)}</p>` : '') +
+  const j = (list) => (list || []).map((x) => x && x.title).filter(Boolean).join(', ');
+  const desc = rec && rec.description ? sanitizeDesc(rec.description) : '';
+  const depicts = rec ? subjectChips(rec.depicts) : '';
+  const refers = rec ? subjectChips(rec.refersTo) : '';
+  const classification = (rec && rec.isTypeOf && rec.isTypeOf.length) ? j(rec.isTypeOf)
+    : (item.category && item.category.length ? item.category.join(', ') : '');
+  const albumParts = rec && isAlbumRec(rec) && Array.isArray(rec.hasPart) ? rec.hasPart.length : 0;
+  return (
+    `<h2 class="lb-title">${esc((rec && rec.title) || item.title)}</h2>` +
+    ((item.maker || item.date || item.place)
+      ? `<p class="lb-byline">${[esc(item.maker), esc(item.date), esc(item.place)].filter(Boolean).join(' · ')}</p>` : '') +
+    (desc ? `<div class="lb-desc">${desc}</div>`
+          : (item.caption ? `<p class="lb-caption-text">${esc(item.caption)}</p>` : '')) +
+    (albumParts ? `<p class="lb-album">An album of ${albumParts} photographs.</p>` : '') +
+    (depicts ? `<div class="lb-subjects"><span class="lb-subjects-label">In this photograph</span><div class="lb-chips">${depicts}</div></div>` : '') +
+    (refers ? `<div class="lb-subjects"><span class="lb-subjects-label">References</span><div class="lb-chips">${refers}</div></div>` : '') +
     `<dl class="lb-facts">` +
       fact('Maker', esc(item.maker)) +
       fact('Date', esc(item.date)) +
       fact('Place', esc(item.place)) +
-      fact('Classification', item.category && item.category.length ? esc(item.category.join(', ')) : '') +
-      fact('Dimensions', (img.width && img.height) ? `${img.width} × ${img.height} px` : '') +
+      fact('Classification', esc(classification)) +
+      fact('Medium', esc(rec && rec.isMadeOfSummary)) +
+      fact('Technique', esc(rec && j(rec.productionUsedTechnique))) +
+      fact('Measurements', esc(rec && physicalSize(rec.observedDimension))) +
+      fact('Image', (img.width && img.height) ? `${img.width} × ${img.height} px` : '') +
+      fact('Credit line', esc(rec && rec.creditLine)) +
+      fact('Registration', esc(rec && rec.identifier)) +
       fact('Licence', rightsHtml(img) || 'Downloadable') +
     `</dl>` +
     `<p class="lb-links">` +
       (dl ? `<a href="${esc(img.contentUrl)}" target="_blank" rel="noopener" download>Download full image ↓</a><span class="sep">·</span>` : '') +
       `<a href="${esc(item.url)}" target="_blank" rel="noopener">View on Te Papa ↗</a>` +
-    `</p>`;
+    `</p>`
+  );
+}
 
+function renderLightbox() {
+  const item = state.items[lb.idx];
+  if (!item) return;
+  showInViewer(item);        // IIIF deep-zoom via OpenSeadragon
+  lb.scroll.scrollTop = 0;   // start each photo at the fold
+  lb.el.classList.remove('lb-scrolled');
+  lb.meta.innerHTML = metaHtml(item, null);   // lean immediately…
   lb.prev.disabled = lb.idx <= 0;
   lb.next.disabled = lb.idx >= state.items.length - 1;
+  const token = ++lb._token;                  // …then enrich, guarding against navigation
+  fetchRecord(item.id).then((rec) => { if (rec && token === lb._token) lb.meta.innerHTML = metaHtml(item, rec); });
 }
+
 
 // Step the deep-zoom viewer in/out around its centre (animates via OSD springs).
 function zoomStep(factor) {
@@ -635,6 +712,17 @@ lb.prev.addEventListener('click', () => step(-1));
 lb.next.addEventListener('click', () => step(1));
 lb.zoomIn.addEventListener('click', () => zoomStep(1.5));
 lb.zoomOut.addEventListener('click', () => zoomStep(1 / 1.5));
+// A subject / person / place chip searches that term (phrase match) — leaving
+// any decade filter in place, since it composes.
+lb.meta.addEventListener('click', (e) => {
+  const b = e.target.closest('.lb-subject');
+  if (!b) return;
+  const t = b.dataset.q;
+  closeLightbox();
+  clearActives();
+  els.q.value = t;
+  resetAndLoad(`"${t}"`);
+});
 // The prev/next arrows belong to the image; fade them out once you scroll to the
 // metadata so they don't float over the text.
 lb.scroll.addEventListener('scroll', () => {
