@@ -343,7 +343,7 @@ a { color: inherit; }
   width: 100vw;
   margin-left: calc(50% - 50vw);
   overflow: hidden;
-  font-size: clamp(24px, 3vw, 44px);
+  font-size: clamp(17px, 2.1vw, 31px);   /* 70% of clamp(24px, 3vw, 44px) */
   /* fade the two edges so terms slide in/out softly */
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
