@@ -694,14 +694,25 @@ a { color: inherit; }
   color: var(--ink-soft);
   margin: 14px 0 0;
 }
-/* The maker links to their other works — inherits the surrounding type. */
+/* The maker links to their other works — a pill, like the subject chips. */
 .lb-maker {
-  font: inherit; letter-spacing: inherit; text-transform: inherit;
-  color: inherit; background: none; border: 0; padding: 0; cursor: pointer;
-  border-bottom: 1px solid var(--rule-strong);
+  display: inline-block;
+  vertical-align: middle;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  line-height: 1.2;
+  color: var(--ink-soft);
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 4px 11px;
+  cursor: pointer;
   transition: color .15s ease, border-color .15s ease;
 }
-.lb-maker:hover, .lb-maker:focus-visible { color: var(--accent); border-bottom-color: var(--accent); outline: none; }
+.lb-maker:hover, .lb-maker:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
 .lb-caption-text {
   font-size: clamp(16px, 1.5vw, 19px);
   line-height: 1.5;
