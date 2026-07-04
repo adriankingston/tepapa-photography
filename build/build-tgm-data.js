@@ -81,6 +81,11 @@ fs.writeFileSync(path.join(DATA, 'tgm-index.json'), JSON.stringify({
   terms,
 }));
 fs.writeFileSync(path.join(DATA, 'tgm-crosswalk.json'), JSON.stringify(crosswalk));
+// per-record CLIP-suggested tags (from the image, not the catalogue) for the
+// detail view — small, so it needn't ship the whole index.
+const suggested = {};
+for (const e of index) if (e.tgc && e.tgc.length) suggested[e.id] = e.tgc;
+fs.writeFileSync(path.join(DATA, 'tgm-suggested.json'), JSON.stringify(suggested));
 
 const N = index.length;
 console.log(`Records: ${N}`);

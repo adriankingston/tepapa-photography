@@ -787,6 +787,8 @@ a { color: inherit; }
   transition: background .15s ease, border-color .15s ease;
 }
 .lb-tgm:hover, .lb-tgm:focus-visible { background: color-mix(in srgb, var(--accent) 16%, transparent); border-color: var(--accent); outline: none; }
+/* image-suggested (AI) TGM chips — dashed to read as tentative, not catalogued. */
+.lb-tgm.is-sug { border-style: dashed; background: none; }
 .lb-facts {
   margin: clamp(28px, 4vw, 40px) 0 0;
   padding-top: 24px;

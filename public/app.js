@@ -489,7 +489,8 @@ const _tgm = new Map();          // id → { label, scope, count, sug, kind, bt 
 const _tgmLookup = new Map();    // normalised label → id (searchable)
 let _tgmArr = [];                // terms sorted by frequency (for the browse panel)
 let _tgmXwalk = null;            // raw Te Papa term → { id, label }
-let _tgmIndexP = null, _tgmXwalkP = null;
+let _tgmSuggested = null;        // record id → [tgm ids] the model suggested from the image
+let _tgmIndexP = null, _tgmXwalkP = null, _tgmSugP = null;
 function loadTgmIndex() {
   if (!_tgmIndexP) _tgmIndexP = fetch('/data/tgm-index.json').then((r) => r.json()).then((idx) => {
     _tgmArr = idx.terms || [];
@@ -501,6 +502,10 @@ function loadTgmIndex() {
 function loadTgmXwalk() {
   if (!_tgmXwalkP) _tgmXwalkP = fetch('/data/tgm-crosswalk.json').then((r) => r.json()).then((x) => { _tgmXwalk = x; }).catch(() => {});
   return _tgmXwalkP;
+}
+function loadTgmSuggested() {
+  if (!_tgmSugP) _tgmSugP = fetch('/data/tgm-suggested.json').then((r) => r.json()).then((x) => { _tgmSuggested = x; }).catch(() => {});
+  return _tgmSugP;
 }
 
 async function loadTgm(id) {
@@ -715,15 +720,23 @@ function metaHtml(item, rec) {
     : (item.category && item.category.length ? item.category.join(', ') : '');
   const albumParts = rec && isAlbumRec(rec) && Array.isArray(rec.hasPart) ? rec.hasPart.length : 0;
 
-  // TGM controlled-vocabulary classification: crosswalk this record's own genre
-  // and subject terms onto TGM. Chips browse the whole collection by that term.
+  // TGM classification, in two honestly-separated groups:
+  //   • catalogued — a crosswalk (string match) of THIS record's own Te Papa
+  //     genre/subject terms onto TGM. Not image analysis.
+  //   • suggested  — what the CLIP model proposed from the IMAGE (only for the
+  //     ~5,839 records that had no catalogued subject).
   let tgm = '';
-  if (_tgmXwalk && rec) {
-    const seen = new Set();
-    const chip = (title) => { const x = _tgmXwalk[title]; if (x && !seen.has(x.id)) { seen.add(x.id); return `<button type="button" class="lb-tgm" data-tgm="${x.id}">${esc(x.label)}</button>`; } return ''; };
-    const chips = (rec.isTypeOf || []).map((c) => c && c.title).filter(Boolean).map(chip).join('') +
-      (rec.depicts || []).filter((d) => d && d.type === 'Category').map((d) => d.title).map(chip).join('');
-    if (chips) tgm = `<div class="lb-subjects lb-tgm-group"><span class="lb-subjects-label">AI-catalogued against the Library of Congress <a href="https://id.loc.gov/vocabulary/graphicMaterials.html" target="_blank" rel="noopener">Thesaurus for Graphic Materials</a></span><div class="lb-chips">${chips}</div></div>`;
+  if (rec) {
+    if (_tgmXwalk) {
+      const seen = new Set();
+      const chip = (title) => { const x = _tgmXwalk[title]; if (x && !seen.has(x.id)) { seen.add(x.id); return `<button type="button" class="lb-tgm" data-tgm="${x.id}">${esc(x.label)}</button>`; } return ''; };
+      const cat = (rec.isTypeOf || []).map((c) => c && c.title).filter(Boolean).map(chip).join('') +
+        (rec.depicts || []).filter((d) => d && d.type === 'Category').map((d) => d.title).map(chip).join('');
+      if (cat) tgm += `<div class="lb-subjects lb-tgm-group"><span class="lb-subjects-label">Mapped to the Library of Congress <a href="https://id.loc.gov/vocabulary/graphicMaterials.html" target="_blank" rel="noopener">Thesaurus for Graphic Materials</a></span><div class="lb-chips">${cat}</div></div>`;
+    }
+    const sug = ((_tgmSuggested && _tgmSuggested[item.id]) || [])
+      .map((id) => { const t = _tgm.get(id); return t ? `<button type="button" class="lb-tgm is-sug" data-tgm="${id}">${esc(t.label)}</button>` : ''; }).join('');
+    if (sug) tgm += `<div class="lb-subjects lb-tgm-group"><span class="lb-subjects-label">Suggested from the image (AI)</span><div class="lb-chips">${sug}</div></div>`;
   }
   // the maker links to their other works (phrase search of the name)
   const maker = item.maker ? `<button type="button" class="lb-maker" data-q="${esc(item.maker)}">${esc(item.maker)}</button>` : '';
@@ -767,7 +780,7 @@ function renderLightbox() {
   lb.prev.disabled = lb.idx <= 0;
   lb.next.disabled = lb.idx >= state.items.length - 1;
   const token = ++lb._token;                  // …then enrich, guarding against navigation
-  Promise.all([fetchRecord(item.id), loadTgmXwalk()]).then(([rec]) => {
+  Promise.all([fetchRecord(item.id), loadTgmXwalk(), loadTgmSuggested()]).then(([rec]) => {
     if (rec && token === lb._token) lb.meta.innerHTML = metaHtml(item, rec);
   });
 }
