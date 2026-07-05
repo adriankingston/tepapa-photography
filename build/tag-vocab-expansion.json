@@ -1,0 +1,1784 @@
+[
+ {
+  "key": "police",
+  "label": "Police",
+  "prompt": "a policeman in a dark uniform and custodian helmet",
+  "group": "people"
+ },
+ {
+  "key": "fire-brigade",
+  "label": "Fire brigades",
+  "prompt": "firemen in brass helmets with a fire engine",
+  "group": "people"
+ },
+ {
+  "key": "sailors",
+  "label": "Sailors",
+  "prompt": "a sailor in naval uniform with a round sailor cap",
+  "group": "people"
+ },
+ {
+  "key": "staff-groups",
+  "label": "Staff groups",
+  "prompt": "workers in aprons posed outside their shop or business",
+  "group": "people"
+ },
+ {
+  "key": "domestic-servants",
+  "label": "Domestic servants",
+  "prompt": "a maid in a white apron and cap",
+  "group": "people"
+ },
+ {
+  "key": "graduates",
+  "label": "Graduates",
+  "prompt": "a graduate wearing an academic gown and mortarboard",
+  "group": "people"
+ },
+ {
+  "key": "lodge-regalia",
+  "label": "Lodge regalia",
+  "prompt": "men wearing Masonic sashes and ceremonial aprons",
+  "group": "people"
+ },
+ {
+  "key": "highland-dress",
+  "label": "Highland dress",
+  "prompt": "men in Scottish highland dress with kilts and sporrans",
+  "group": "people"
+ },
+ {
+  "key": "fancy-dress",
+  "label": "Fancy dress",
+  "prompt": "people in fancy dress costumes",
+  "group": "people"
+ },
+ {
+  "key": "mothers-and-children",
+  "label": "Mothers & children",
+  "prompt": "a mother holding a young child on her lap",
+  "group": "people"
+ },
+ {
+  "key": "debutantes",
+  "label": "Debutantes",
+  "prompt": "a young woman in a white gown holding a bouquet",
+  "group": "people"
+ },
+ {
+  "key": "sailor-suits",
+  "label": "Boys in sailor suits",
+  "prompt": "a young boy wearing a sailor suit",
+  "group": "people"
+ },
+ {
+  "key": "portraits-with-dogs",
+  "label": "Portraits with dogs",
+  "prompt": "a person posed in a studio with a pet dog",
+  "group": "people"
+ },
+ {
+  "key": "painted-backdrops",
+  "label": "Painted backdrops",
+  "prompt": "a studio portrait in front of a painted scenic backdrop",
+  "group": "people"
+ },
+ {
+  "key": "studio-columns",
+  "label": "Studio columns",
+  "prompt": "a sitter posed beside a plaster column or balustrade in a studio",
+  "group": "people"
+ },
+ {
+  "key": "horseback-riders",
+  "label": "Riders on horseback",
+  "prompt": "a person in riding dress posed on horseback",
+  "group": "people"
+ },
+ {
+  "key": "profile-portraits",
+  "label": "Profile portraits",
+  "prompt": "a head and shoulders portrait of a person in side profile",
+  "group": "people"
+ },
+ {
+  "key": "choirs",
+  "label": "Choirs",
+  "prompt": "a choir posed in rows wearing robes or white dresses",
+  "group": "people"
+ },
+ {
+  "key": "committees",
+  "label": "Committees",
+  "prompt": "men in suits posed around a table with papers",
+  "group": "people"
+ },
+ {
+  "key": "hospital-wards",
+  "label": "Hospital wards",
+  "prompt": "nurses and patients in beds in a hospital ward",
+  "group": "people"
+ },
+ {
+  "key": "wedding-groups",
+  "label": "Wedding groups",
+  "prompt": "a large wedding party posed outdoors with bridesmaids",
+  "group": "people"
+ },
+ {
+  "key": "nuns",
+  "label": "Nuns",
+  "prompt": "a nun in a religious habit and veil",
+  "group": "people"
+ },
+ {
+  "key": "top-hats",
+  "label": "Top hats",
+  "prompt": "a man wearing a top hat and frock coat",
+  "group": "people"
+ },
+ {
+  "key": "straw-boaters",
+  "label": "Straw boaters",
+  "prompt": "men wearing flat-topped straw boater hats",
+  "group": "people"
+ },
+ {
+  "key": "flat-caps",
+  "label": "Flat caps",
+  "prompt": "working men wearing flat cloth caps",
+  "group": "people"
+ },
+ {
+  "key": "flapper-fashion",
+  "label": "Flapper fashion",
+  "prompt": "women in drop-waist flapper dresses and cloche hats",
+  "group": "people"
+ },
+ {
+  "key": "fur-stoles",
+  "label": "Fur stoles & muffs",
+  "prompt": "a woman wearing a fur stole or fur muff",
+  "group": "people"
+ },
+ {
+  "key": "mourning-dress",
+  "label": "Mourning dress",
+  "prompt": "a woman dressed in black mourning clothes and veil",
+  "group": "people"
+ },
+ {
+  "key": "shirtsleeves-braces",
+  "label": "Shirtsleeves & braces",
+  "prompt": "men in waistcoats and shirtsleeves with braces",
+  "group": "people"
+ },
+ {
+  "key": "scouts-guides",
+  "label": "Scouts & Guides",
+  "prompt": "scouts or girl guides in uniform with wide-brimmed hats and neckerchiefs",
+  "group": "people"
+ },
+ {
+  "key": "musicians",
+  "label": "Musicians",
+  "prompt": "a person posed with a violin or other musical instrument",
+  "group": "people"
+ },
+ {
+  "key": "verandah-groups",
+  "label": "Verandah groups",
+  "prompt": "a family posed on the verandah of a wooden house",
+  "group": "people"
+ },
+ {
+  "key": "afternoon-tea",
+  "label": "Afternoon tea",
+  "prompt": "women taking afternoon tea at a table set with china",
+  "group": "people"
+ },
+ {
+  "key": "prams",
+  "label": "Prams",
+  "prompt": "a baby in a wicker or coach-built pram",
+  "group": "people"
+ },
+ {
+  "key": "children-with-toys",
+  "label": "Children with toys",
+  "prompt": "a child posed with a doll or toy horse",
+  "group": "people"
+ },
+ {
+  "key": "long-loose-hair",
+  "label": "Long loose hair",
+  "prompt": "a woman with very long hair worn loose over her shoulders",
+  "group": "people"
+ },
+ {
+  "key": "jockeys",
+  "label": "Jockeys",
+  "prompt": "a jockey in racing silks and cap",
+  "group": "people"
+ },
+ {
+  "key": "boxers",
+  "label": "Boxers",
+  "prompt": "a boxer posed with raised fists",
+  "group": "people"
+ },
+ {
+  "key": "washing-day",
+  "label": "Washing day",
+  "prompt": "women washing laundry in tubs with a washboard",
+  "group": "people"
+ },
+ {
+  "key": "sewing",
+  "label": "Sewing",
+  "prompt": "a woman working at a sewing machine",
+  "group": "people"
+ },
+ {
+  "key": "folding-fans",
+  "label": "Folding fans",
+  "prompt": "a woman posed holding a folding fan",
+  "group": "people"
+ },
+ {
+  "key": "bath-chairs",
+  "label": "Bath chairs & wheelchairs",
+  "prompt": "a person seated in a wicker bath chair or wheelchair",
+  "group": "people"
+ },
+ {
+  "key": "waka-taua",
+  "label": "Waka taua",
+  "prompt": "a large Māori war canoe with carved prow and many paddlers",
+  "group": "maori"
+ },
+ {
+  "key": "hongi",
+  "label": "Hongi",
+  "prompt": "two people pressing noses in a hongi greeting",
+  "group": "maori"
+ },
+ {
+  "key": "haka",
+  "label": "Haka",
+  "prompt": "men performing a haka with arms outstretched",
+  "group": "maori"
+ },
+ {
+  "key": "piupiu",
+  "label": "Piupiu",
+  "prompt": "a person wearing a piupiu flax skirt",
+  "group": "maori"
+ },
+ {
+  "key": "hei-tiki",
+  "label": "Hei tiki",
+  "prompt": "a person wearing a hei tiki greenstone pendant",
+  "group": "maori"
+ },
+ {
+  "key": "huia-feathers",
+  "label": "Huia feathers",
+  "prompt": "a Māori woman with huia feathers in her hair",
+  "group": "maori"
+ },
+ {
+  "key": "taiaha",
+  "label": "Taiaha",
+  "prompt": "a Māori man holding a taiaha fighting staff",
+  "group": "maori"
+ },
+ {
+  "key": "tukutuku",
+  "label": "Tukutuku",
+  "prompt": "woven tukutuku lattice panels on a meeting house wall",
+  "group": "maori"
+ },
+ {
+  "key": "waharoa",
+  "label": "Waharoa",
+  "prompt": "a tall carved gateway at the entrance to a marae or pā",
+  "group": "maori"
+ },
+ {
+  "key": "kainga",
+  "label": "Kāinga",
+  "prompt": "a Māori village of whare beside a lake or river",
+  "group": "maori"
+ },
+ {
+  "key": "hui",
+  "label": "Hui",
+  "prompt": "a large gathering of people seated on a marae",
+  "group": "maori"
+ },
+ {
+  "key": "harakeke",
+  "label": "Harakeke",
+  "prompt": "people cutting or carrying harakeke flax leaves",
+  "group": "maori"
+ },
+ {
+  "key": "hinaki",
+  "label": "Hīnaki",
+  "prompt": "a woven hīnaki eel trap",
+  "group": "maori"
+ },
+ {
+  "key": "sheep-dipping",
+  "label": "Sheep dipping",
+  "prompt": "sheep being plunged through a narrow dipping trough by men with poles",
+  "group": "rural"
+ },
+ {
+  "key": "droving",
+  "label": "Droving",
+  "prompt": "a mob of sheep or cattle being driven along a country road",
+  "group": "rural"
+ },
+ {
+  "key": "mustering",
+  "label": "Mustering",
+  "prompt": "a shepherd on horseback with dogs mustering sheep on open hills",
+  "group": "rural"
+ },
+ {
+  "key": "sheepdog-trials",
+  "label": "Sheepdog trials",
+  "prompt": "a sheepdog working a small group of sheep at a trial",
+  "group": "rural"
+ },
+ {
+  "key": "saleyards",
+  "label": "Saleyards",
+  "prompt": "farmers gathered around livestock pens at a saleyard",
+  "group": "rural"
+ },
+ {
+  "key": "threshing",
+  "label": "Threshing",
+  "prompt": "a belt-driven threshing mill with workers and straw stacks",
+  "group": "rural"
+ },
+ {
+  "key": "haystacks",
+  "label": "Haystacks",
+  "prompt": "tall haystacks standing in a paddock",
+  "group": "rural"
+ },
+ {
+  "key": "hay-wagons",
+  "label": "Hay wagons",
+  "prompt": "a horse-drawn wagon piled high with loose hay",
+  "group": "rural"
+ },
+ {
+  "key": "traction-engines",
+  "label": "Traction engines",
+  "prompt": "a steam traction engine with huge rear wheels",
+  "group": "rural"
+ },
+ {
+  "key": "farm-tractors",
+  "label": "Farm tractors",
+  "prompt": "an early farm tractor working in a paddock",
+  "group": "rural"
+ },
+ {
+  "key": "draught-horse-teams",
+  "label": "Draught horse teams",
+  "prompt": "a team of heavy draught horses in harness",
+  "group": "rural"
+ },
+ {
+  "key": "packhorses",
+  "label": "Packhorses",
+  "prompt": "a packhorse loaded with swags and supplies",
+  "group": "rural"
+ },
+ {
+  "key": "burn-offs",
+  "label": "Burn-offs",
+  "prompt": "smoke rising from burning felled bush on a hillside",
+  "group": "rural"
+ },
+ {
+  "key": "bush-clearing",
+  "label": "Bush clearing",
+  "prompt": "a cleared hillside covered in burnt stumps and fallen logs",
+  "group": "rural"
+ },
+ {
+  "key": "rabbiting",
+  "label": "Rabbiting",
+  "prompt": "rabbiters with strings of rabbit carcasses and traps",
+  "group": "rural"
+ },
+ {
+  "key": "pet-lambs",
+  "label": "Pet lambs",
+  "prompt": "a child bottle-feeding a pet lamb",
+  "group": "rural"
+ },
+ {
+  "key": "market-gardens",
+  "label": "Market gardens",
+  "prompt": "long straight rows of vegetable crops in a market garden",
+  "group": "rural"
+ },
+ {
+  "key": "glasshouses",
+  "label": "Glasshouses",
+  "prompt": "a glasshouse with rows of plants under glass panes",
+  "group": "rural"
+ },
+ {
+  "key": "hop-gardens",
+  "label": "Hop gardens",
+  "prompt": "workers picking hops among tall vine-covered poles",
+  "group": "rural"
+ },
+ {
+  "key": "vineyards",
+  "label": "Vineyards",
+  "prompt": "rows of grape vines in a vineyard",
+  "group": "rural"
+ },
+ {
+  "key": "maize-crops",
+  "label": "Maize crops",
+  "prompt": "tall maize plants growing in a field",
+  "group": "rural"
+ },
+ {
+  "key": "potato-digging",
+  "label": "Potato digging",
+  "prompt": "workers digging potatoes into sacks in a field",
+  "group": "rural"
+ },
+ {
+  "key": "fruit-picking",
+  "label": "Fruit picking",
+  "prompt": "workers on ladders picking fruit in an orchard",
+  "group": "rural"
+ },
+ {
+  "key": "grain-sacks",
+  "label": "Grain sacks",
+  "prompt": "stacked filled sacks of grain",
+  "group": "rural"
+ },
+ {
+  "key": "apiaries",
+  "label": "Apiaries",
+  "prompt": "rows of white wooden beehives",
+  "group": "rural"
+ },
+ {
+  "key": "water-races",
+  "label": "Water races",
+  "prompt": "a narrow water race channel running across a hillside",
+  "group": "rural"
+ },
+ {
+  "key": "farm-sheds",
+  "label": "Farm sheds",
+  "prompt": "a large timber or corrugated iron farm shed or barn",
+  "group": "rural"
+ },
+ {
+  "key": "station-homesteads",
+  "label": "Station homesteads",
+  "prompt": "a large station homestead with established trees and garden",
+  "group": "rural"
+ },
+ {
+  "key": "backcountry-huts",
+  "label": "Backcountry huts",
+  "prompt": "a small corrugated iron hut in remote hill country",
+  "group": "rural"
+ },
+ {
+  "key": "slab-sod-huts",
+  "label": "Slab & sod huts",
+  "prompt": "a rough settler hut built of timber slabs or sod",
+  "group": "rural"
+ },
+ {
+  "key": "wharf-labourers",
+  "label": "Wharf labourers",
+  "prompt": "wharf labourers loading cargo slings beside a ship",
+  "group": "industry"
+ },
+ {
+  "key": "shipbuilding",
+  "label": "Shipbuilding",
+  "prompt": "the timber ribs of a ship under construction on a slipway",
+  "group": "industry"
+ },
+ {
+  "key": "dry-docks",
+  "label": "Dry docks & slipways",
+  "prompt": "a ship high and dry in a dry dock or hauled out on a slipway",
+  "group": "industry"
+ },
+ {
+  "key": "brickworks",
+  "label": "Brickworks",
+  "prompt": "a brickworks with kilns and stacks of bricks",
+  "group": "industry"
+ },
+ {
+  "key": "tanneries",
+  "label": "Tanneries",
+  "prompt": "workers among hides and tanning pits at a tannery",
+  "group": "industry"
+ },
+ {
+  "key": "foundries",
+  "label": "Foundries",
+  "prompt": "a foundry interior with furnaces moulds and castings",
+  "group": "industry"
+ },
+ {
+  "key": "flour-mills",
+  "label": "Flour mills & watermills",
+  "prompt": "a flour mill building with a water wheel",
+  "group": "industry"
+ },
+ {
+  "key": "quarries",
+  "label": "Quarries",
+  "prompt": "men working with picks at a quarry rock face",
+  "group": "industry"
+ },
+ {
+  "key": "mine-headframes",
+  "label": "Mine headframes",
+  "prompt": "a timber poppet head winding tower above a mine shaft",
+  "group": "industry"
+ },
+ {
+  "key": "stamper-batteries",
+  "label": "Stamper batteries",
+  "prompt": "heavy stamper battery machinery for crushing quartz ore",
+  "group": "industry"
+ },
+ {
+  "key": "hydraulic-sluicing",
+  "label": "Hydraulic sluicing",
+  "prompt": "a high-pressure water jet blasting a gravel cliff face",
+  "group": "industry"
+ },
+ {
+  "key": "bush-tramways",
+  "label": "Bush tramways",
+  "prompt": "logs loaded on bogies on a wooden-railed bush tramway",
+  "group": "industry"
+ },
+ {
+  "key": "kauri-driving-dams",
+  "label": "Kauri driving dams",
+  "prompt": "a huge timber driving dam built across a bush stream",
+  "group": "industry"
+ },
+ {
+  "key": "railway-construction",
+  "label": "Railway construction",
+  "prompt": "gangs of workers laying sleepers and rails on a new railway line",
+  "group": "industry"
+ },
+ {
+  "key": "railway-workshops",
+  "label": "Railway workshops",
+  "prompt": "locomotives under repair inside a railway workshop",
+  "group": "industry"
+ },
+ {
+  "key": "tunnelling",
+  "label": "Tunnelling",
+  "prompt": "workers and spoil wagons at the mouth of a tunnel under construction",
+  "group": "industry"
+ },
+ {
+  "key": "steam-shovels",
+  "label": "Steam shovels",
+  "prompt": "a steam shovel excavating earth at a works site",
+  "group": "industry"
+ },
+ {
+  "key": "hydro-dams",
+  "label": "Hydro dams",
+  "prompt": "a large concrete dam across a river gorge",
+  "group": "industry"
+ },
+ {
+  "key": "power-stations",
+  "label": "Power stations",
+  "prompt": "rows of generators inside a power station",
+  "group": "industry"
+ },
+ {
+  "key": "power-pylons",
+  "label": "Power pylons",
+  "prompt": "steel transmission towers carrying electric power lines",
+  "group": "industry"
+ },
+ {
+  "key": "linemen",
+  "label": "Linemen",
+  "prompt": "a lineman working at the top of a telegraph pole",
+  "group": "industry"
+ },
+ {
+  "key": "telephone-exchanges",
+  "label": "Telephone exchanges",
+  "prompt": "rows of operators seated at a telephone switchboard",
+  "group": "industry"
+ },
+ {
+  "key": "gasworks",
+  "label": "Gasworks",
+  "prompt": "a gasworks with a large cylindrical gasholder",
+  "group": "industry"
+ },
+ {
+  "key": "dairy-factories",
+  "label": "Dairy factories",
+  "prompt": "horse carts and milk cans lined up outside a dairy factory",
+  "group": "industry"
+ },
+ {
+  "key": "woollen-mills",
+  "label": "Woollen mills",
+  "prompt": "rows of spinning and weaving looms in a woollen mill",
+  "group": "industry"
+ },
+ {
+  "key": "clothing-factories",
+  "label": "Clothing factories",
+  "prompt": "women sewing at rows of machines in a clothing factory",
+  "group": "industry"
+ },
+ {
+  "key": "bakeries",
+  "label": "Bakeries",
+  "prompt": "bakers with trays of bread loaves at a bakery oven",
+  "group": "industry"
+ },
+ {
+  "key": "butchers-shops",
+  "label": "Butchers' shops",
+  "prompt": "a butcher's shop with meat carcasses hanging on display",
+  "group": "industry"
+ },
+ {
+  "key": "bootmakers",
+  "label": "Bootmakers",
+  "prompt": "a bootmaker at a bench with boots and lasts",
+  "group": "industry"
+ },
+ {
+  "key": "saddlers",
+  "label": "Saddlers",
+  "prompt": "a saddler's workshop hung with saddles and harness",
+  "group": "industry"
+ },
+ {
+  "key": "coopers",
+  "label": "Coopers",
+  "prompt": "a cooper shaping barrel staves among wooden casks",
+  "group": "industry"
+ },
+ {
+  "key": "wheelwrights",
+  "label": "Wheelwrights & coachbuilders",
+  "prompt": "a coachbuilder's yard with wagon wheels and carriage bodies",
+  "group": "industry"
+ },
+ {
+  "key": "farriers",
+  "label": "Farriers",
+  "prompt": "a farrier shoeing a horse",
+  "group": "industry"
+ },
+ {
+  "key": "barbers-shops",
+  "label": "Barbers' shops",
+  "prompt": "customers in chairs at a barber's shop",
+  "group": "industry"
+ },
+ {
+  "key": "motor-garages",
+  "label": "Motor garages",
+  "prompt": "mechanics and petrol pumps at a motor garage",
+  "group": "industry"
+ },
+ {
+  "key": "classrooms",
+  "label": "Classrooms",
+  "prompt": "children seated at rows of wooden desks in a classroom",
+  "group": "industry"
+ },
+ {
+  "key": "railway-carriage",
+  "label": "Railway carriages",
+  "prompt": "wooden railway passenger carriages coupled in a train",
+  "group": "transport"
+ },
+ {
+  "key": "goods-wagon",
+  "label": "Goods wagons",
+  "prompt": "railway goods wagons loaded with freight",
+  "group": "transport"
+ },
+ {
+  "key": "railway-yard",
+  "label": "Railway yards",
+  "prompt": "a railway yard with rows of parallel tracks and wagons",
+  "group": "transport"
+ },
+ {
+  "key": "engine-shed",
+  "label": "Engine sheds",
+  "prompt": "steam locomotives lined up outside an engine shed",
+  "group": "transport"
+ },
+ {
+  "key": "railway-tunnel",
+  "label": "Railway tunnels",
+  "prompt": "a railway track or train entering a tunnel portal",
+  "group": "transport"
+ },
+ {
+  "key": "track-laying",
+  "label": "Track laying",
+  "prompt": "a gang of workers laying railway track with sleepers and rails",
+  "group": "transport"
+ },
+ {
+  "key": "level-crossing",
+  "label": "Level crossings",
+  "prompt": "a level crossing where a road crosses railway tracks",
+  "group": "transport"
+ },
+ {
+  "key": "signal-box",
+  "label": "Signal boxes",
+  "prompt": "a railway signal box with semaphore signals beside the track",
+  "group": "transport"
+ },
+ {
+  "key": "cable-car",
+  "label": "Cable cars",
+  "prompt": "a cable car climbing a steep incline track",
+  "group": "transport"
+ },
+ {
+  "key": "train-wreck",
+  "label": "Railway accidents",
+  "prompt": "a derailed locomotive or wrecked railway carriages",
+  "group": "transport"
+ },
+ {
+  "key": "railway-bridge",
+  "label": "Railway bridges",
+  "prompt": "a train crossing a low girder or truss railway bridge over a river",
+  "group": "transport"
+ },
+ {
+  "key": "railway-staff",
+  "label": "Railway staff",
+  "prompt": "railway workers in uniform posed beside a locomotive",
+  "group": "transport"
+ },
+ {
+  "key": "steam-roller",
+  "label": "Steam rollers",
+  "prompt": "a steam roller working on a road",
+  "group": "transport"
+ },
+ {
+  "key": "motor-lorry",
+  "label": "Motor lorries",
+  "prompt": "an early motor lorry with a flat tray or high cab",
+  "group": "transport"
+ },
+ {
+  "key": "delivery-cart",
+  "label": "Delivery vehicles",
+  "prompt": "a tradesman's delivery cart or van with painted signage",
+  "group": "transport"
+ },
+ {
+  "key": "petrol-station",
+  "label": "Petrol stations",
+  "prompt": "an early petrol station with hand-operated pumps",
+  "group": "transport"
+ },
+ {
+  "key": "penny-farthing",
+  "label": "Penny-farthings",
+  "prompt": "a penny-farthing bicycle with one huge front wheel",
+  "group": "transport"
+ },
+ {
+  "key": "pack-horse",
+  "label": "Pack horses",
+  "prompt": "pack horses laden with supplies on a rough track",
+  "group": "transport"
+ },
+ {
+  "key": "sedan-car",
+  "label": "Sedan motorcars",
+  "prompt": "a closed sedan motorcar with curved mudguards and running boards",
+  "group": "transport"
+ },
+ {
+  "key": "fire-engine",
+  "label": "Fire engines",
+  "prompt": "a fire engine with ladders and brass fittings",
+  "group": "transport"
+ },
+ {
+  "key": "river-ford",
+  "label": "Fording rivers",
+  "prompt": "horses and a wagon fording a shallow braided river",
+  "group": "transport"
+ },
+ {
+  "key": "seaplane",
+  "label": "Seaplanes & flying boats",
+  "prompt": "a seaplane or flying boat on the water",
+  "group": "transport"
+ },
+ {
+  "key": "aerodrome",
+  "label": "Aerodromes",
+  "prompt": "aeroplanes and hangars at an aerodrome",
+  "group": "transport"
+ },
+ {
+  "key": "aviator",
+  "label": "Aviators",
+  "prompt": "an aviator wearing a leather flying helmet and goggles",
+  "group": "transport"
+ },
+ {
+  "key": "aeroplane-crash",
+  "label": "Aeroplane crashes",
+  "prompt": "a crashed aeroplane with a broken wing or crumpled fuselage",
+  "group": "transport"
+ },
+ {
+  "key": "paddle-steamer",
+  "label": "Paddle steamers",
+  "prompt": "a paddle steamer with side paddle wheels",
+  "group": "maritime"
+ },
+ {
+  "key": "tugboat",
+  "label": "Tugboats",
+  "prompt": "a small steam tug with a tall funnel towing a larger ship",
+  "group": "maritime"
+ },
+ {
+  "key": "ocean-liner",
+  "label": "Ocean liners",
+  "prompt": "a large ocean liner with rows of portholes and lifeboats",
+  "group": "maritime"
+ },
+ {
+  "key": "scow",
+  "label": "Scows",
+  "prompt": "a flat-bottomed sailing scow loading cargo or beached on the shore",
+  "group": "maritime"
+ },
+ {
+  "key": "river-steamer",
+  "label": "River steamers",
+  "prompt": "a shallow-draught steamboat on a narrow bush-lined river",
+  "group": "maritime"
+ },
+ {
+  "key": "launch",
+  "label": "Launches",
+  "prompt": "a small steam or motor launch carrying passengers",
+  "group": "maritime"
+ },
+ {
+  "key": "boat-building",
+  "label": "Boatbuilding",
+  "prompt": "boat builders working on a wooden hull in a shed",
+  "group": "maritime"
+ },
+ {
+  "key": "ship-launching",
+  "label": "Ship launchings",
+  "prompt": "a crowd watching a new ship sliding down the slipway at its launch",
+  "group": "maritime"
+ },
+ {
+  "key": "ship-farewell",
+  "label": "Ship farewells",
+  "prompt": "crowds on a wharf farewelling a departing ship with paper streamers",
+  "group": "maritime"
+ },
+ {
+  "key": "ship-interior",
+  "label": "Ship interiors",
+  "prompt": "the panelled saloon or cabin interior of a passenger ship",
+  "group": "maritime"
+ },
+ {
+  "key": "cargo-handling",
+  "label": "Cargo handling",
+  "prompt": "wharf labourers loading cargo slings with ropes and a ship's derrick",
+  "group": "maritime"
+ },
+ {
+  "key": "wharf-crane",
+  "label": "Wharf cranes",
+  "prompt": "a tall crane on a wharf lifting cargo",
+  "group": "maritime"
+ },
+ {
+  "key": "breakwater",
+  "label": "Breakwaters",
+  "prompt": "a long stone breakwater extending into the sea",
+  "group": "maritime"
+ },
+ {
+  "key": "jetty",
+  "label": "Jetties",
+  "prompt": "a small wooden jetty reaching into a lake or quiet bay",
+  "group": "maritime"
+ },
+ {
+  "key": "boatshed",
+  "label": "Boatsheds",
+  "prompt": "wooden boatsheds at the water's edge",
+  "group": "maritime"
+ },
+ {
+  "key": "boats-ashore",
+  "label": "Boats ashore",
+  "prompt": "dinghies pulled up on the beach",
+  "group": "maritime"
+ },
+ {
+  "key": "low-tide",
+  "label": "Low tide",
+  "prompt": "boats tilted on mud flats at low tide",
+  "group": "maritime"
+ },
+ {
+  "key": "river-punt",
+  "label": "River punts",
+  "prompt": "a flat punt ferry carrying passengers or a vehicle across a river",
+  "group": "maritime"
+ },
+ {
+  "key": "fish-catch",
+  "label": "Fish catches",
+  "prompt": "fishermen displaying their catch of fish on a wharf",
+  "group": "maritime"
+ },
+ {
+  "key": "net-mending",
+  "label": "Net mending",
+  "prompt": "fishermen mending fishing nets",
+  "group": "maritime"
+ },
+ {
+  "key": "sea-baths",
+  "label": "Sea baths",
+  "prompt": "a wooden seawater swimming baths enclosure on the waterfront",
+  "group": "maritime"
+ },
+ {
+  "key": "log-raft",
+  "label": "Log rafts",
+  "prompt": "logs lashed into a raft floating on the water",
+  "group": "maritime"
+ },
+ {
+  "key": "heavy-seas",
+  "label": "Ships in heavy seas",
+  "prompt": "a ship pitching through rough seas with spray over the bow",
+  "group": "maritime"
+ },
+ {
+  "key": "shellfish-gathering",
+  "label": "Shellfish gathering",
+  "prompt": "people gathering shellfish on a rocky shore at low tide",
+  "group": "maritime"
+ },
+ {
+  "key": "diver",
+  "label": "Divers",
+  "prompt": "a diver in a brass-helmeted diving suit",
+  "group": "maritime"
+ },
+ {
+  "key": "helmsman",
+  "label": "Helmsmen",
+  "prompt": "a helmsman at the wheel of a ship",
+  "group": "maritime"
+ },
+ {
+  "key": "clock-towers",
+  "label": "Clock towers",
+  "prompt": "a building with a tall clock tower",
+  "group": "built"
+ },
+ {
+  "key": "schools",
+  "label": "Schools",
+  "prompt": "a wooden school building with children in the yard",
+  "group": "built"
+ },
+ {
+  "key": "hospitals",
+  "label": "Hospitals",
+  "prompt": "a large hospital building with long verandahs and rows of windows",
+  "group": "built"
+ },
+ {
+  "key": "fire-stations",
+  "label": "Fire stations",
+  "prompt": "firemen and fire engines outside a fire station",
+  "group": "built"
+ },
+ {
+  "key": "church-interiors",
+  "label": "Church interiors",
+  "prompt": "the interior of a church with rows of pews and an altar",
+  "group": "built"
+ },
+ {
+  "key": "corrugated-iron-buildings",
+  "label": "Corrugated iron buildings",
+  "prompt": "a shed or hut clad in corrugated iron",
+  "group": "built"
+ },
+ {
+  "key": "huts",
+  "label": "Huts",
+  "prompt": "a small rough hut in remote country",
+  "group": "built"
+ },
+ {
+  "key": "homesteads",
+  "label": "Homesteads",
+  "prompt": "a large two-storey homestead with verandahs and established gardens",
+  "group": "built"
+ },
+ {
+  "key": "residential-streets",
+  "label": "Residential streets",
+  "prompt": "a quiet street lined with wooden houses and front fences",
+  "group": "built"
+ },
+ {
+  "key": "ceremonial-arches",
+  "label": "Ceremonial arches",
+  "prompt": "a decorated temporary arch spanning a street",
+  "group": "built"
+ },
+ {
+  "key": "telegraph-poles",
+  "label": "Telegraph poles",
+  "prompt": "a road lined with telegraph poles and wires",
+  "group": "built"
+ },
+ {
+  "key": "fountains",
+  "label": "Fountains",
+  "prompt": "an ornamental fountain in a park or town square",
+  "group": "built"
+ },
+ {
+  "key": "public-parks",
+  "label": "Public parks",
+  "prompt": "a public park with lawns paths and mature trees",
+  "group": "built"
+ },
+ {
+  "key": "cemeteries",
+  "label": "Cemeteries",
+  "prompt": "a cemetery with rows of headstones",
+  "group": "built"
+ },
+ {
+  "key": "grandstands",
+  "label": "Grandstands",
+  "prompt": "a grandstand filled with spectators",
+  "group": "built"
+ },
+ {
+  "key": "dams",
+  "label": "Dams",
+  "prompt": "a dam wall holding back a reservoir",
+  "group": "built"
+ },
+ {
+  "key": "water-towers",
+  "label": "Water towers",
+  "prompt": "a tall water tower raised on a stand or tower base",
+  "group": "built"
+ },
+ {
+  "key": "factory-chimneys",
+  "label": "Factory chimneys",
+  "prompt": "a tall brick factory chimney with smoke",
+  "group": "built"
+ },
+ {
+  "key": "watermills",
+  "label": "Watermills",
+  "prompt": "a mill building with a waterwheel",
+  "group": "built"
+ },
+ {
+  "key": "swingbridges",
+  "label": "Swingbridges",
+  "prompt": "a narrow suspension footbridge slung across a river",
+  "group": "built"
+ },
+ {
+  "key": "tunnels",
+  "label": "Tunnels",
+  "prompt": "the arched portal of a tunnel in a hillside",
+  "group": "built"
+ },
+ {
+  "key": "kitchens",
+  "label": "Kitchens",
+  "prompt": "a kitchen interior with a coal range and pots",
+  "group": "built"
+ },
+ {
+  "key": "bedrooms",
+  "label": "Bedrooms",
+  "prompt": "a bedroom interior with an iron bedstead",
+  "group": "built"
+ },
+ {
+  "key": "dining-rooms",
+  "label": "Dining rooms",
+  "prompt": "a dining room with a long table set for a meal",
+  "group": "built"
+ },
+ {
+  "key": "hall-interiors",
+  "label": "Hall interiors",
+  "prompt": "a large hall interior decorated with flags and bunting",
+  "group": "built"
+ },
+ {
+  "key": "bar-interiors",
+  "label": "Bar interiors",
+  "prompt": "a hotel bar interior with a long counter and bottles on shelves",
+  "group": "built"
+ },
+ {
+  "key": "library-interiors",
+  "label": "Library interiors",
+  "prompt": "a library interior with tall shelves of books",
+  "group": "built"
+ },
+ {
+  "key": "museum-interiors",
+  "label": "Museum interiors",
+  "prompt": "a museum gallery interior with glass display cases",
+  "group": "built"
+ },
+ {
+  "key": "billiard-rooms",
+  "label": "Billiard rooms",
+  "prompt": "men at a billiard table in a panelled room",
+  "group": "built"
+ },
+ {
+  "key": "advertising-hoardings",
+  "label": "Advertising hoardings",
+  "prompt": "a wall plastered with advertising posters",
+  "group": "built"
+ },
+ {
+  "key": "country-roads",
+  "label": "Country roads",
+  "prompt": "a winding unsealed country road",
+  "group": "built"
+ },
+ {
+  "key": "derelict-buildings",
+  "label": "Derelict buildings",
+  "prompt": "an abandoned derelict building with broken windows",
+  "group": "built"
+ },
+ {
+  "key": "braided-rivers",
+  "label": "Braided rivers",
+  "prompt": "a wide braided river with interweaving gravel channels",
+  "group": "landscape"
+ },
+ {
+  "key": "fiords",
+  "label": "Fiords",
+  "prompt": "a fiord with sheer mountainsides rising straight from dark water",
+  "group": "landscape"
+ },
+ {
+  "key": "mud-pools",
+  "label": "Mud pools",
+  "prompt": "a boiling mud pool with rings and craters of wet mud",
+  "group": "landscape"
+ },
+ {
+  "key": "hot-pools",
+  "label": "Hot pools",
+  "prompt": "people bathing in a steaming natural hot pool",
+  "group": "landscape"
+ },
+ {
+  "key": "volcanic-craters",
+  "label": "Volcanic craters",
+  "prompt": "a steaming volcanic crater viewed from its rim",
+  "group": "landscape"
+ },
+ {
+  "key": "ice-caves",
+  "label": "Ice caves",
+  "prompt": "the mouth of an ice cave under a glacier",
+  "group": "landscape"
+ },
+ {
+  "key": "sand-dunes",
+  "label": "Sand dunes",
+  "prompt": "sand dunes with ripples and sparse grass",
+  "group": "landscape"
+ },
+ {
+  "key": "tussock-country",
+  "label": "Tussock country",
+  "prompt": "open rolling country covered in tussock grass",
+  "group": "landscape"
+ },
+ {
+  "key": "open-plains",
+  "label": "Open plains",
+  "prompt": "a flat open plain stretching to the horizon",
+  "group": "landscape"
+ },
+ {
+  "key": "swamps",
+  "label": "Swamps",
+  "prompt": "a swamp with raupō reeds and standing water",
+  "group": "landscape"
+ },
+ {
+  "key": "mudflats",
+  "label": "Mudflats",
+  "prompt": "tidal mudflats exposed at low tide",
+  "group": "landscape"
+ },
+ {
+  "key": "rocky-shores",
+  "label": "Rocky shores",
+  "prompt": "waves breaking on a rocky shore",
+  "group": "landscape"
+ },
+ {
+  "key": "beach-boulders",
+  "label": "Beach boulders",
+  "prompt": "large round boulders on a beach",
+  "group": "landscape"
+ },
+ {
+  "key": "rock-arches",
+  "label": "Rock arches",
+  "prompt": "a natural rock arch",
+  "group": "landscape"
+ },
+ {
+  "key": "stalactites",
+  "label": "Stalactites",
+  "prompt": "stalactites and stalagmites inside a limestone cave",
+  "group": "landscape"
+ },
+ {
+  "key": "rapids",
+  "label": "Rapids",
+  "prompt": "white water rapids rushing between boulders",
+  "group": "landscape"
+ },
+ {
+  "key": "bush-streams",
+  "label": "Bush streams",
+  "prompt": "a stream tumbling over rocks through dense bush",
+  "group": "landscape"
+ },
+ {
+  "key": "bush-tracks",
+  "label": "Bush tracks",
+  "prompt": "a narrow walking track winding through dense bush",
+  "group": "landscape"
+ },
+ {
+  "key": "bush-clad-hills",
+  "label": "Bush-clad hills",
+  "prompt": "steep hillsides covered in unbroken native bush",
+  "group": "landscape"
+ },
+ {
+  "key": "cleared-bushland",
+  "label": "Cleared bushland",
+  "prompt": "a hillside of stumps and blackened logs after bush clearing",
+  "group": "landscape"
+ },
+ {
+  "key": "cabbage-trees",
+  "label": "Cabbage trees (tī kōuka)",
+  "prompt": "a cabbage tree with bare trunk and spiky tufted heads",
+  "group": "landscape"
+ },
+ {
+  "key": "nikau-palms",
+  "label": "Nīkau palms",
+  "prompt": "nīkau palms with ringed trunks and feathery fronds",
+  "group": "landscape"
+ },
+ {
+  "key": "flax-bushes",
+  "label": "Flax bushes (harakeke)",
+  "prompt": "clumps of tall flax bushes with strap-like leaves",
+  "group": "landscape"
+ },
+ {
+  "key": "toetoe",
+  "label": "Toetoe",
+  "prompt": "toetoe grass with tall feathery white plumes",
+  "group": "landscape"
+ },
+ {
+  "key": "tree-lined-avenues",
+  "label": "Tree-lined avenues",
+  "prompt": "an avenue of tall trees lining a straight road",
+  "group": "landscape"
+ },
+ {
+  "key": "wind-bent-trees",
+  "label": "Wind-bent trees",
+  "prompt": "a tree bent sideways by the wind on exposed ground",
+  "group": "landscape"
+ },
+ {
+  "key": "alpine-flowers",
+  "label": "Alpine flowers",
+  "prompt": "white alpine flowers growing among rocks",
+  "group": "landscape"
+ },
+ {
+  "key": "mist",
+  "label": "Mist",
+  "prompt": "mist hanging in a valley over the bush",
+  "group": "landscape"
+ },
+ {
+  "key": "frost",
+  "label": "Frost",
+  "prompt": "hoar frost coating grass and bare trees",
+  "group": "landscape"
+ },
+ {
+  "key": "landslips",
+  "label": "Landslips",
+  "prompt": "a fresh landslip scar down a steep hillside",
+  "group": "landscape"
+ },
+ {
+  "key": "cloud-seas",
+  "label": "Cloud seas",
+  "prompt": "a sea of clouds seen from high on a mountain",
+  "group": "landscape"
+ },
+ {
+  "key": "sunlit-bush",
+  "label": "Sunlit bush",
+  "prompt": "shafts of sunlight streaming through the forest canopy",
+  "group": "landscape"
+ },
+ {
+  "key": "sheepdogs",
+  "label": "Sheepdogs",
+  "prompt": "a sheepdog driving a mob of sheep",
+  "group": "animals"
+ },
+ {
+  "key": "goats",
+  "label": "Goats",
+  "prompt": "goats in a paddock or on rough ground",
+  "group": "animals"
+ },
+ {
+  "key": "rabbits",
+  "label": "Rabbits",
+  "prompt": "rabbits or a rabbiter with strings of rabbit carcasses",
+  "group": "animals"
+ },
+ {
+  "key": "penguins",
+  "label": "Penguins",
+  "prompt": "penguins on a rocky shore",
+  "group": "animals"
+ },
+ {
+  "key": "seabird-colonies",
+  "label": "Seabird colonies",
+  "prompt": "a dense colony of nesting seabirds on rocks or cliffs",
+  "group": "animals"
+ },
+ {
+  "key": "kiwi",
+  "label": "Kiwi",
+  "prompt": "a kiwi bird with a long slender beak and shaggy feathers",
+  "group": "animals"
+ },
+ {
+  "key": "moa-skeletons",
+  "label": "Moa skeletons",
+  "prompt": "a mounted moa skeleton with a long neck and legs",
+  "group": "animals"
+ },
+ {
+  "key": "elephants",
+  "label": "Elephants",
+  "prompt": "an elephant at a circus or zoo",
+  "group": "animals"
+ },
+ {
+  "key": "beehives",
+  "label": "Beehives",
+  "prompt": "rows of wooden beehives in an apiary",
+  "group": "animals"
+ },
+ {
+  "key": "tuatara",
+  "label": "Tuatara",
+  "prompt": "a tuatara lizard on rocks",
+  "group": "animals"
+ },
+ {
+  "key": "taxidermy-displays",
+  "label": "Taxidermy displays",
+  "prompt": "mounted taxidermied animals in a glass museum case",
+  "group": "animals"
+ },
+ {
+  "key": "lawn-bowls",
+  "label": "Lawn bowls",
+  "prompt": "players in white on a bowling green playing lawn bowls",
+  "group": "events"
+ },
+ {
+  "key": "croquet",
+  "label": "Croquet",
+  "prompt": "people playing croquet with mallets and hoops on a lawn",
+  "group": "events"
+ },
+ {
+  "key": "hockey",
+  "label": "Hockey",
+  "prompt": "a hockey match with players holding curved sticks",
+  "group": "events"
+ },
+ {
+  "key": "netball",
+  "label": "Netball",
+  "prompt": "women playing netball with a ball beside a tall goal post",
+  "group": "events"
+ },
+ {
+  "key": "boxing-wrestling",
+  "label": "Boxing & wrestling",
+  "prompt": "boxers or wrestlers grappling in a ring",
+  "group": "events"
+ },
+ {
+  "key": "cycle-racing",
+  "label": "Cycle racing",
+  "prompt": "cyclists racing on a banked track or road",
+  "group": "events"
+ },
+ {
+  "key": "surf-lifesaving",
+  "label": "Surf lifesaving",
+  "prompt": "surf lifesavers in caps with a surf reel and line on a beach",
+  "group": "events"
+ },
+ {
+  "key": "woodchopping-contests",
+  "label": "Woodchopping contests",
+  "prompt": "axemen chopping logs in a woodchopping competition",
+  "group": "events"
+ },
+ {
+  "key": "show-jumping",
+  "label": "Show jumping",
+  "prompt": "a horse and rider jumping a fence in front of spectators",
+  "group": "events"
+ },
+ {
+  "key": "polo",
+  "label": "Polo",
+  "prompt": "polo players on horseback swinging mallets",
+  "group": "events"
+ },
+ {
+  "key": "hunt-meets",
+  "label": "Hunt meets",
+  "prompt": "riders in hunting dress with a pack of hounds",
+  "group": "events"
+ },
+ {
+  "key": "trotting-races",
+  "label": "Trotting races",
+  "prompt": "harness racing with horses pulling two-wheeled sulkies",
+  "group": "events"
+ },
+ {
+  "key": "dances-balls",
+  "label": "Dances & balls",
+  "prompt": "couples dancing in a decorated hall",
+  "group": "events"
+ },
+ {
+  "key": "garden-parties",
+  "label": "Garden parties",
+  "prompt": "guests in formal dress taking tea on a lawn",
+  "group": "events"
+ },
+ {
+  "key": "official-ceremonies",
+  "label": "Official ceremonies",
+  "prompt": "dignitaries on a decorated platform at an official ceremony",
+  "group": "events"
+ },
+ {
+  "key": "celebration-arches",
+  "label": "Celebration arches",
+  "prompt": "an ornamental arch built over a street for a celebration",
+  "group": "events"
+ },
+ {
+  "key": "street-decorations",
+  "label": "Street decorations",
+  "prompt": "a street decorated with flags and bunting",
+  "group": "events"
+ },
+ {
+  "key": "funerals",
+  "label": "Funerals",
+  "prompt": "a funeral procession with a hearse and mourners in black",
+  "group": "events"
+ },
+ {
+  "key": "gymnastics-displays",
+  "label": "Gymnastics displays",
+  "prompt": "gymnasts performing a drill or human pyramid",
+  "group": "events"
+ },
+ {
+  "key": "tug-of-war",
+  "label": "Tug of war",
+  "prompt": "two teams pulling on a rope in a tug of war",
+  "group": "events"
+ },
+ {
+  "key": "novelty-races",
+  "label": "Novelty races",
+  "prompt": "children hopping in sacks in a sack race",
+  "group": "events"
+ },
+ {
+  "key": "seaside-outings",
+  "label": "Seaside outings",
+  "prompt": "a crowded beach with people in day clothes and beach umbrellas",
+  "group": "events"
+ },
+ {
+  "key": "rifle-shooting",
+  "label": "Rifle shooting",
+  "prompt": "marksmen lying prone firing rifles at a shooting range",
+  "group": "events"
+ },
+ {
+  "key": "curling",
+  "label": "Curling",
+  "prompt": "curlers with brooms and stones on a frozen pond",
+  "group": "events"
+ },
+ {
+  "key": "fetes-bazaars",
+  "label": "Fetes & bazaars",
+  "prompt": "stalls of goods under bunting at a fete or bazaar",
+  "group": "events"
+ },
+ {
+  "key": "public-meetings",
+  "label": "Public meetings",
+  "prompt": "a speaker addressing a crowd from a platform",
+  "group": "events"
+ },
+ {
+  "key": "highland-games",
+  "label": "Highland games",
+  "prompt": "kilted athletes competing at highland games",
+  "group": "events"
+ },
+ {
+  "key": "pipe-bands",
+  "label": "Pipe bands",
+  "prompt": "a pipe band in kilts with bagpipes",
+  "group": "events"
+ },
+ {
+  "key": "grandstand-crowds",
+  "label": "Grandstand crowds",
+  "prompt": "spectators filling a grandstand",
+  "group": "events"
+ },
+ {
+  "key": "playgrounds",
+  "label": "Playgrounds",
+  "prompt": "children on swings and slides at a playground",
+  "group": "events"
+ },
+ {
+  "key": "swimming-baths",
+  "label": "Swimming baths",
+  "prompt": "bathers at an outdoor swimming baths with a diving board",
+  "group": "events"
+ },
+ {
+  "key": "redoubts-blockhouses",
+  "label": "Redoubts & blockhouses",
+  "prompt": "a timber blockhouse or earthwork redoubt with a palisade",
+  "group": "military"
+ },
+ {
+  "key": "mounted-troops",
+  "label": "Mounted troops",
+  "prompt": "uniformed soldiers on horseback",
+  "group": "military"
+ },
+ {
+  "key": "trenches",
+  "label": "Trenches",
+  "prompt": "soldiers in a trench with sandbags",
+  "group": "military"
+ },
+ {
+  "key": "machine-guns",
+  "label": "Machine guns",
+  "prompt": "soldiers manning a mounted machine gun",
+  "group": "military"
+ },
+ {
+  "key": "tanks",
+  "label": "Tanks",
+  "prompt": "an early military tank with caterpillar tracks",
+  "group": "military"
+ },
+ {
+  "key": "military-aircraft",
+  "label": "Military aircraft",
+  "prompt": "a military aeroplane with roundel markings",
+  "group": "military"
+ },
+ {
+  "key": "school-cadets",
+  "label": "School cadets",
+  "prompt": "uniformed school cadets posed with rifles",
+  "group": "military"
+ },
+ {
+  "key": "wounded-soldiers",
+  "label": "Wounded soldiers",
+  "prompt": "wounded soldiers with bandages and crutches",
+  "group": "military"
+ },
+ {
+  "key": "coastal-defence-guns",
+  "label": "Coastal defence guns",
+  "prompt": "a large gun in a concrete coastal defence emplacement",
+  "group": "military"
+ },
+ {
+  "key": "barracks",
+  "label": "Barracks",
+  "prompt": "rows of long wooden army barracks huts",
+  "group": "military"
+ },
+ {
+  "key": "field-ambulances",
+  "label": "Field ambulances",
+  "prompt": "an ambulance wagon with red cross markings",
+  "group": "military"
+ },
+ {
+  "key": "memorial-services",
+  "label": "Memorial services",
+  "prompt": "a crowd gathered at a cenotaph with wreaths for a memorial service",
+  "group": "military"
+ },
+ {
+  "key": "veterans",
+  "label": "Veterans",
+  "prompt": "elderly veterans wearing rows of medals",
+  "group": "military"
+ },
+ {
+  "key": "landslides",
+  "label": "Landslides",
+  "prompt": "a landslide of earth and rock across a road or railway line",
+  "group": "disasters"
+ },
+ {
+  "key": "heavy-snowfalls",
+  "label": "Heavy snowfalls",
+  "prompt": "deep snowdrifts burying fences and farm buildings",
+  "group": "disasters"
+ },
+ {
+  "key": "ash-covered-landscapes",
+  "label": "Ash-covered landscapes",
+  "prompt": "buildings and trees buried under volcanic ash and mud",
+  "group": "disasters"
+ },
+ {
+  "key": "washed-out-bridges",
+  "label": "Washed-out bridges",
+  "prompt": "a bridge collapsed into a flooded river",
+  "group": "disasters"
+ },
+ {
+  "key": "storm-damage",
+  "label": "Storm damage",
+  "prompt": "trees and buildings blown down by a storm",
+  "group": "disasters"
+ },
+ {
+  "key": "burnt-bush",
+  "label": "Burnt bush",
+  "prompt": "blackened dead tree trunks and stumps left by fire",
+  "group": "disasters"
+ }
+]
