@@ -22,6 +22,7 @@ env.cacheDir = path.join(__dirname, '.hf-cache');
 const MODEL = process.env.MODEL || 'onnx-community/siglip2-base-patch16-256-ONNX';
 const DTYPE = process.env.DTYPE || 'q8';
 const TOPK = Number(process.env.TOPK || 60);
+const BAND_K = Number(process.env.BAND_K || 24);   // sample size per 5% probability band
 const TEMPLATE = (p) => `a black and white photograph of ${p}.`;
 
 const records = JSON.parse(fs.readFileSync(path.join(__dirname, 'records.json'), 'utf8'));
@@ -84,17 +85,35 @@ for (let c = 0; c < candidates.length; c += BATCH) {
     // cos against every image (image rows are ×127 of unit vectors)
     const top = [];       // min-heap-ish: keep TOPK best [row, p]
     const hist = new Array(20).fill(0);   // p in 5% buckets
+    // evenly-spaced sample per band (p ≥ 0.15) so the review sheet can show
+    // the DECISION BOUNDARY, not just the easy top hits: when the buffer
+    // overfills, drop every other kept row and double the stride.
+    const bands = Array.from({ length: 20 }, () => ({ stride: 1, seen: 0, keep: [] }));
     for (let r = 0; r < N; r++) {
       let dot = 0;
       const off = r * DIM;
       for (let d = 0; d < DIM; d++) dot += emb[off + d] * tv[d];
       const p = sig(scale * (dot / 127) + bias);
-      hist[Math.min(19, Math.floor(p * 20))]++;
+      const bi = Math.min(19, Math.floor(p * 20));
+      hist[bi]++;
+      if (bi >= 3) {   // don't sample the sub-15% junk region
+        const b = bands[bi];
+        if (b.seen % b.stride === 0) {
+          b.keep.push(r);
+          if (b.keep.length > BAND_K * 2) { b.keep = b.keep.filter((_, i) => i % 2 === 0); b.stride *= 2; }
+        }
+        b.seen++;
+      }
       if (top.length < TOPK) { top.push([r, p]); if (top.length === TOPK) top.sort((a, b) => a[1] - b[1]); }
       else if (p > top[0][1]) { top[0] = [r, p]; top.sort((a, b) => a[1] - b[1]); }
     }
     top.sort((a, b) => b[1] - a[1]);
-    results.push({ key: slice[s].key, top: top.map(([r, p]) => [r, Math.round(p * 1000) / 1000]), hist });
+    results.push({
+      key: slice[s].key,
+      top: top.map(([r, p]) => [r, Math.round(p * 1000) / 1000]),
+      hist,
+      bands: bands.map((b) => b.keep.slice(0, BAND_K)),
+    });
   }
   process.stdout.write(`\r  ${Math.min(c + BATCH, candidates.length)}/${candidates.length} terms  (${(((Date.now() - t0)) / 1000).toFixed(0)}s)   `);
 }
