@@ -26,7 +26,6 @@ const state = {
   mode: 'query',    // 'query' = live API search; 'mood' = a baked embedding set
   setName: null,    // active baked set ('emotion' | 'composition'), else null
   setKey: null,     // active term key within that set
-  tgm: null,        // active TGM term id being browsed, else null
   decade: null,     // active decade FILTER, e.g. '1920s' — composes with any mode
   moodItems: [],    // prebuilt items for the current mood (mode === 'mood')
   from: 0,
@@ -48,14 +47,8 @@ const els = {
   count: document.getElementById('count'),
   form: document.getElementById('search-form'),
   q: document.getElementById('q'),
-  themes: document.getElementById('themes'),
 };
 const _emoDef = new Map();   // key → { label, def }
-
-const SUGGESTIONS = [
-  'Wellington', 'portrait', 'Burton Brothers', 'mountains', 'ships',
-  'street', 'Māori', 'garden', 'children', 'snow', 'beach', 'crowd',
-];
 
 // Curated subsets that scroll as a full-width marquee. Each is a coherent
 // *subject* (not a generic keyword), probed for solid, on-topic results; the
@@ -341,7 +334,6 @@ function resetAndLoad(query) {
   state.query = query || '';
   state.setName = null;
   state.setKey = null;
-  state.tgm = null;
   // No text query but a decade is filtering → browse it from the baked index
   // rather than paging the whole API and dropping non-matches.
   if (!state.query && state.decade) { loadDecade(state.decade); return; }
@@ -387,7 +379,6 @@ async function loadSet(setName, key) {
   state.mode = 'mood';
   state.setName = setName;
   state.setKey = key;
-  state.tgm = null;
   resetState();
   state.loading = true;   // block the scroll/observer from paging an empty list mid-fetch
   setState(S.loadingMsg);
@@ -453,7 +444,6 @@ async function loadDecade(key) {
   state.mode = 'mood';
   state.setName = null;
   state.setKey = null;
-  state.tgm = null;
   resetState();
   state.loading = true;
   setState(`Winding back to the ${key}…`);
@@ -480,79 +470,10 @@ async function loadDecade(key) {
   fetchPage();
 }
 
-/* ---- TGM: browse a Thesaurus for Graphic Materials term ------------------ */
-// Controlled vocabulary from the LC crosswalk. index.json carries `tg`
-// (catalogued TGM ids) and `tgc` (CLIP-suggested). Browse filters the baked
-// index, like a decade. tgm-index (labels/scope/counts) + crosswalk (raw Te Papa
-// term → TGM, for the detail view) load on demand.
-const _tgm = new Map();          // id → { label, scope, count, sug, kind, bt }
-const _tgmLookup = new Map();    // normalised label → id (searchable)
-let _tgmArr = [];                // terms sorted by frequency (for the browse panel)
-let _tgmXwalk = null;            // raw Te Papa term → { id, label }
-let _tgmSuggested = null;        // record id → [tgm ids] the model suggested from the image
-let _tgmIndexP = null, _tgmXwalkP = null, _tgmSugP = null;
-function loadTgmIndex() {
-  if (!_tgmIndexP) _tgmIndexP = fetch('/data/tgm-index.json').then((r) => r.json()).then((idx) => {
-    _tgmArr = idx.terms || [];
-    for (const t of _tgmArr) { _tgm.set(t.id, t); _tgmLookup.set(normEmo(t.label), t.id); }
-    const c = document.getElementById('tgm-count'); if (c) c.textContent = fmtInt(_tgmArr.length);
-  }).catch(() => {});
-  return _tgmIndexP;
-}
-function loadTgmXwalk() {
-  if (!_tgmXwalkP) _tgmXwalkP = fetch('/data/tgm-crosswalk.json').then((r) => r.json()).then((x) => { _tgmXwalk = x; }).catch(() => {});
-  return _tgmXwalkP;
-}
-function loadTgmSuggested() {
-  if (!_tgmSugP) _tgmSugP = fetch('/data/tgm-suggested.json').then((r) => r.json()).then((x) => { _tgmSuggested = x; }).catch(() => {});
-  return _tgmSugP;
-}
-
-async function loadTgm(id) {
-  state.mode = 'mood';
-  state.setName = null;
-  state.setKey = null;
-  state.tgm = id;
-  resetState();
-  state.loading = true;
-  await loadTgmIndex();
-  const term = _tgm.get(id);
-  setState('Gathering the subject…');
-  try {
-    if (!_indexCache) _indexCache = await fetch('/data/index.json').then((r) => r.json());
-  } catch (e) { state.loading = false; setState('Couldn’t load the collection index.', true); return; }
-  const dec = state.decade;
-  const cat = [], sug = [];
-  for (const e of _indexCache) {
-    if (isAlbum(e.c)) continue;
-    if (dec && decadeOfYear(e.y) !== dec) continue;
-    if ((e.tg || []).includes(id)) cat.push(e);
-    else if ((e.tgc || []).includes(id)) sug.push(e);
-  }
-  cat.sort((a, b) => (b.q || 0) - (a.q || 0));
-  sug.sort((a, b) => (b.q || 0) - (a.q || 0));
-  state.moodItems = [...cat, ...sug].map((e) => itemFromIndex(e.id, e));
-  state.total = state.moodItems.length;
-  els.count.textContent = fmtInt(state.total);
-  if (els.emoNote) {
-    const label = term ? term.label : `TGM ${id}`;
-    const meta = `${fmtInt(cat.length)} catalogued` + (sug.length ? ` · ${fmtInt(sug.length)} suggested` : '') +
-      ` · <em>Thesaurus for Graphic Materials</em>` + (dec ? ` · <span class="note-decade">${esc(dec)}</span>` : '');
-    els.emoNote.innerHTML =
-      `<h2 class="emotion-note-word">${esc(label)}</h2>` +
-      (term && term.scope ? `<p class="emotion-note-def">${esc(term.scope)}</p>` : '') +
-      `<p class="emotion-note-meta">${meta}</p>`;
-    els.emoNote.hidden = false;
-  }
-  state.loading = false;
-  fetchPage();
-}
-
 // Re-run whatever is currently showing (respecting state.decade). Called when the
 // decade filter is toggled so it composes with the active browse.
 function runView() {
-  if (state.tgm) loadTgm(state.tgm);                         // a TGM subject/genre
-  else if (state.setName) loadSet(state.setName, state.setKey); // emotion / composition
+  if (state.setName) loadSet(state.setName, state.setKey);    // emotion / composition
   else if (state.query) resetAndLoad(state.query);           // free-text / subject
   else if (state.decade) loadDecade(state.decade);           // decade on its own
   else resetAndLoad('');                                     // default browse
@@ -719,25 +640,6 @@ function metaHtml(item, rec) {
   const classification = (rec && rec.isTypeOf && rec.isTypeOf.length) ? j(rec.isTypeOf)
     : (item.category && item.category.length ? item.category.join(', ') : '');
   const albumParts = rec && isAlbumRec(rec) && Array.isArray(rec.hasPart) ? rec.hasPart.length : 0;
-
-  // TGM classification, in two honestly-separated groups:
-  //   • catalogued — a crosswalk (string match) of THIS record's own Te Papa
-  //     genre/subject terms onto TGM. Not image analysis.
-  //   • suggested  — what the CLIP model proposed from the IMAGE (only for the
-  //     ~5,839 records that had no catalogued subject).
-  let tgm = '';
-  if (rec) {
-    if (_tgmXwalk) {
-      const seen = new Set();
-      const chip = (title) => { const x = _tgmXwalk[title]; if (x && !seen.has(x.id)) { seen.add(x.id); return `<button type="button" class="lb-tgm" data-tgm="${x.id}">${esc(x.label)}</button>`; } return ''; };
-      const cat = (rec.isTypeOf || []).map((c) => c && c.title).filter(Boolean).map(chip).join('') +
-        (rec.depicts || []).filter((d) => d && d.type === 'Category').map((d) => d.title).map(chip).join('');
-      if (cat) tgm += `<div class="lb-subjects lb-tgm-group"><span class="lb-subjects-label">Mapped to the Library of Congress <a href="https://id.loc.gov/vocabulary/graphicMaterials.html" target="_blank" rel="noopener">Thesaurus for Graphic Materials</a></span><div class="lb-chips">${cat}</div></div>`;
-    }
-    const sug = ((_tgmSuggested && _tgmSuggested[item.id]) || [])
-      .map((id) => { const t = _tgm.get(id); return t ? `<button type="button" class="lb-tgm is-sug" data-tgm="${id}">${esc(t.label)}</button>` : ''; }).join('');
-    if (sug) tgm += `<div class="lb-subjects lb-tgm-group"><span class="lb-subjects-label">Suggested from the image (AI)</span><div class="lb-chips">${sug}</div></div>`;
-  }
   // the maker links to their other works (phrase search of the name)
   const maker = item.maker ? `<button type="button" class="lb-maker" data-q="${esc(item.maker)}">${esc(item.maker)}</button>` : '';
   return (
@@ -749,7 +651,6 @@ function metaHtml(item, rec) {
     (albumParts ? `<p class="lb-album">An album of ${albumParts} photographs.</p>` : '') +
     (depicts ? `<div class="lb-subjects"><span class="lb-subjects-label">In this photograph (Te Papa cataloguing)</span><div class="lb-chips">${depicts}</div></div>` : '') +
     (refers ? `<div class="lb-subjects"><span class="lb-subjects-label">References</span><div class="lb-chips">${refers}</div></div>` : '') +
-    tgm +
     `<dl class="lb-facts">` +
       fact('Maker', maker) +
       fact('Date', esc(item.date)) +
@@ -780,7 +681,7 @@ function renderLightbox() {
   lb.prev.disabled = lb.idx <= 0;
   lb.next.disabled = lb.idx >= state.items.length - 1;
   const token = ++lb._token;                  // …then enrich, guarding against navigation
-  Promise.all([fetchRecord(item.id), loadTgmXwalk(), loadTgmSuggested()]).then(([rec]) => {
+  fetchRecord(item.id).then((rec) => {
     if (rec && token === lb._token) lb.meta.innerHTML = metaHtml(item, rec);
   });
 }
@@ -800,8 +701,6 @@ lb.zoomOut.addEventListener('click', () => zoomStep(1 / 1.5));
 // A subject / person / place chip searches that term (phrase match) — leaving
 // any decade filter in place, since it composes.
 lb.meta.addEventListener('click', (e) => {
-  const tg = e.target.closest('.lb-tgm');
-  if (tg) { closeLightbox(); clearActives(); els.q.value = ''; loadTgm(Number(tg.dataset.tgm)); return; }
   // a subject chip or the maker → phrase-search that term / name
   const b = e.target.closest('.lb-subject, .lb-maker');
   if (!b) return;
@@ -841,11 +740,11 @@ document.querySelectorAll('.theme-opt').forEach((b) => {
 applyTheme(document.documentElement.dataset.theme || 'light');
 
 /* ---- Search + suggestions ------------------------------------------------ */
-// Clear the pressed state on the primary selectors (chips / curated ways). The
+// Clear the pressed state on the primary selectors (the curated ways). The
 // decade filter is orthogonal, so it is NOT cleared here — it persists and
 // composes as you change what you're browsing.
 function clearActives() {
-  document.querySelectorAll('.theme-chip, .way').forEach((c) => c.setAttribute('aria-pressed', 'false'));
+  document.querySelectorAll('.way').forEach((c) => c.setAttribute('aria-pressed', 'false'));
 }
 
 // Typing an emotion / composition name loads its baked set; anything else is a
@@ -857,9 +756,7 @@ els.form.addEventListener('submit', (e) => {
   clearActives();
   const q = els.q.value.trim();
   const hit = _setLookup.get(normEmo(q));
-  const tgmId = _tgmLookup.get(normEmo(q));
   if (hit) loadSet(hit.set, hit.key);
-  else if (tgmId != null) loadTgm(tgmId);        // a TGM controlled term
   else resetAndLoad(q);
 });
 
@@ -874,23 +771,6 @@ function goHome() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 document.getElementById('home-btn').addEventListener('click', goHome);
-
-SUGGESTIONS.forEach((term) => {
-  const b = document.createElement('button');
-  b.type = 'button';
-  b.className = 'theme-chip';
-  b.textContent = term;
-  b.setAttribute('aria-pressed', 'false');
-  b.addEventListener('click', () => {
-    const active = b.getAttribute('aria-pressed') === 'true';
-    clearActives();
-    if (active) { els.q.value = ''; resetAndLoad(''); return; }
-    b.setAttribute('aria-pressed', 'true');
-    els.q.value = term;
-    resetAndLoad(term);
-  });
-  els.themes.appendChild(b);
-});
 
 /* ---- Ways in: two full-width marquees you can grab and drag -------------- */
 const MARQUEE_SPEED = 70;   // px/sec — shared by both rows
@@ -994,61 +874,6 @@ function wireSet(setName, indexFile, listKey, trackId, reverse) {
     })
     .catch(() => { /* leave the row empty if the index can't load */ });
 }
-
-// TGM controlled vocabulary — load the term index so terms are searchable.
-loadTgmIndex();
-
-/* ---- Subject index (TGM) browse panel ------------------------------------ */
-const tgmPanel = {
-  el: document.getElementById('tgm-panel'),
-  list: document.getElementById('tgm-list'),
-  search: document.getElementById('tgm-search'),
-  foot: document.getElementById('tgm-panel-foot'),
-  tabs: document.getElementById('tgm-tabs'),
-  kind: 'all',
-};
-const TGM_ROW_CAP = 400;
-function renderTgmList() {
-  const q = normEmo(tgmPanel.search.value);
-  let rows = _tgmArr;
-  if (tgmPanel.kind === 's') rows = rows.filter((t) => t.kind !== 'g');       // subjects + both
-  else if (tgmPanel.kind === 'g') rows = rows.filter((t) => t.kind !== 's');  // genre + both
-  if (q) rows = rows.filter((t) => normEmo(t.label).includes(q));
-  const total = rows.length;
-  tgmPanel.list.innerHTML = rows.slice(0, TGM_ROW_CAP).map((t) => {
-    const form = (t.kind === 'g' || t.kind === 'b') ? '<span class="tgm-row-form">form</span>' : '';
-    const cnt = t.sug ? `${fmtInt(t.count)}<span class="tgm-sug"> +${fmtInt(t.sug)}</span>` : fmtInt(t.count + (t.sug || 0));
-    return `<button type="button" class="tgm-row" data-id="${t.id}"><span class="tgm-row-label">${esc(t.label)}${form}</span><span class="tgm-row-count">${cnt}</span></button>`;
-  }).join('');
-  tgmPanel.foot.textContent = total > TGM_ROW_CAP
-    ? `Showing ${TGM_ROW_CAP} of ${fmtInt(total)} — refine your search`
-    : `${fmtInt(total)} term${total === 1 ? '' : 's'}`;
-}
-function openTgmPanel() {
-  tgmPanel.el.hidden = false;
-  document.body.classList.add('lb-open');
-  loadTgmIndex().then(renderTgmList);
-  tgmPanel.search.focus();
-}
-function closeTgmPanel() { tgmPanel.el.hidden = true; document.body.classList.remove('lb-open'); }
-document.getElementById('tgm-open').addEventListener('click', openTgmPanel);
-document.getElementById('tgm-close').addEventListener('click', closeTgmPanel);
-tgmPanel.el.addEventListener('click', (e) => { if (e.target === tgmPanel.el) closeTgmPanel(); });
-tgmPanel.search.addEventListener('input', renderTgmList);
-tgmPanel.tabs.addEventListener('click', (e) => {
-  const b = e.target.closest('button'); if (!b) return;
-  tgmPanel.kind = b.dataset.kind;
-  [...tgmPanel.tabs.children].forEach((c) => c.classList.toggle('is-on', c === b));
-  renderTgmList();
-});
-tgmPanel.list.addEventListener('click', (e) => {
-  const b = e.target.closest('.tgm-row'); if (!b) return;
-  closeTgmPanel();
-  clearActives();
-  els.q.value = '';
-  loadTgm(Number(b.dataset.id));
-});
-document.addEventListener('keydown', (e) => { if (!tgmPanel.el.hidden && e.key === 'Escape') closeTgmPanel(); });
 
 // Feelings → 154 emotions from The Book of Human Emotions (drifts right).
 wireSet('emotion', '/data/emotions-index.json', 'emotions', 'moods-track', true);

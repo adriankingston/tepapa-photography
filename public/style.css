@@ -105,11 +105,9 @@ a { color: inherit; }
 
 /* Shared small caps / overline treatment for metadata */
 .overline,
-.themes-label,
 .search-label,
 .plate-maker,
 .plate-index,
-.theme-chip,
 .lb-meta,
 .standfirst {
   font-family: var(--sans);
@@ -277,36 +275,6 @@ a { color: inherit; }
   transition: transform .15s ease;
 }
 .search-go:hover { transform: translateX(3px); }
-
-.themes {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 10px 18px;
-  margin-top: 20px;
-}
-.themes-label {
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.theme-chip {
-  background: none;
-  border: 0;
-  border-bottom: 1px solid transparent;
-  padding: 2px 0;
-  cursor: pointer;
-  color: var(--ink-soft);
-  font-size: 14px;
-  letter-spacing: 0.01em;
-  transition: color .15s ease, border-color .15s ease;
-}
-.theme-chip:hover,
-.theme-chip[aria-pressed="true"] {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-}
 
 /* Theme toggle in masthead */
 .theme-switch {
@@ -773,22 +741,6 @@ a { color: inherit; }
   transition: color .15s ease, border-color .15s ease;
 }
 .lb-subject:hover, .lb-subject:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
-/* TGM chips browse the controlled vocabulary — accent-tinted to set them apart. */
-.lb-tgm {
-  font-family: var(--sans);
-  font-size: 13px;
-  line-height: 1.2;
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 8%, transparent);
-  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
-  border-radius: 999px;
-  padding: 6px 13px;
-  cursor: pointer;
-  transition: background .15s ease, border-color .15s ease;
-}
-.lb-tgm:hover, .lb-tgm:focus-visible { background: color-mix(in srgb, var(--accent) 16%, transparent); border-color: var(--accent); outline: none; }
-/* image-suggested (AI) TGM chips — dashed to read as tentative, not catalogued. */
-.lb-tgm.is-sug { border-style: dashed; background: none; }
 .lb-facts {
   margin: clamp(28px, 4vw, 40px) 0 0;
   padding-top: 24px;
@@ -889,98 +841,6 @@ a { color: inherit; }
 
 
 body.lb-open { overflow: hidden; }
-
-/* ============================================================================
-   Subject index (TGM) — the entry button + the searchable browse panel.
-   ============================================================================ */
-.tgm-entry { padding: 0 var(--pad); }
-.tgm-open {
-  font-family: var(--serif);
-  font-size: clamp(17px, 1.7vw, 21px);
-  font-style: italic;
-  color: var(--ink-soft);
-  background: none;
-  border: 0;
-  border-bottom: 1px solid var(--rule-strong);
-  padding: 2px 0 4px;
-  cursor: pointer;
-  transition: color .15s ease, border-color .15s ease;
-}
-.tgm-open em { font-style: normal; }
-.tgm-open:hover, .tgm-open:focus-visible { color: var(--accent); border-bottom-color: var(--accent); outline: none; }
-
-.tgm-panel[hidden] { display: none; }
-.tgm-panel {
-  position: fixed; inset: 0; z-index: 120;
-  background: color-mix(in srgb, var(--paper) 82%, #000 18%);
-  backdrop-filter: blur(6px);
-  display: flex; align-items: flex-start; justify-content: center;
-  padding: clamp(20px, 6vh, 80px) 20px;
-  animation: lbfade .2s ease;
-}
-[data-theme="dark"] .tgm-panel { background: color-mix(in srgb, #0d0c0b 85%, transparent); }
-.tgm-panel-inner {
-  width: 100%; max-width: 680px;
-  max-height: 100%;
-  display: flex; flex-direction: column;
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  border-radius: 14px;
-  box-shadow: 0 40px 100px rgba(0,0,0,0.35);
-  overflow: hidden;
-}
-.tgm-panel-head {
-  display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
-  padding: clamp(20px, 3vw, 30px) clamp(20px, 3vw, 30px) 16px;
-}
-.tgm-panel-title { margin: 0; font-size: clamp(20px, 2.4vw, 27px); font-style: italic; font-weight: 380; letter-spacing: -0.01em; }
-.tgm-panel-sub { margin: 6px 0 0; font-size: 13px; line-height: 1.4; color: var(--muted); max-width: 46ch; }
-.tgm-close {
-  flex: none; background: none; border: 0; cursor: pointer;
-  font-family: var(--serif); font-size: 30px; line-height: 1; color: var(--ink-soft);
-  transition: color .15s ease;
-}
-.tgm-close:hover { color: var(--accent); }
-.tgm-search {
-  margin: 0 clamp(20px, 3vw, 30px);
-  font-family: var(--sans); font-size: 16px;
-  padding: 11px 14px;
-  border: 1px solid var(--rule-strong); border-radius: 8px;
-  background: var(--paper-2); color: var(--ink);
-}
-.tgm-search:focus { outline: none; border-color: var(--accent); }
-.tgm-tabs { display: flex; gap: 6px; padding: 14px clamp(20px, 3vw, 30px) 6px; }
-.tgm-tabs button {
-  font-family: var(--sans); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--muted); background: none; border: 1px solid var(--rule); border-radius: 999px;
-  padding: 5px 12px; cursor: pointer; transition: color .15s ease, border-color .15s ease;
-}
-.tgm-tabs button:hover { color: var(--accent); }
-.tgm-tabs button.is-on { color: var(--accent); border-color: var(--accent); }
-.tgm-list {
-  flex: 1 1 auto; overflow-y: auto;
-  padding: 8px clamp(14px, 2vw, 22px) 4px;
-  -webkit-overflow-scrolling: touch;
-}
-.tgm-row {
-  display: flex; align-items: baseline; justify-content: space-between; gap: 14px; width: 100%;
-  background: none; border: 0; cursor: pointer; text-align: left;
-  padding: 9px 8px; border-radius: 7px;
-  color: var(--ink); transition: background .12s ease, color .12s ease;
-}
-.tgm-row:hover, .tgm-row:focus-visible { background: color-mix(in srgb, var(--accent) 9%, transparent); color: var(--accent); outline: none; }
-.tgm-row-label { font-size: 16px; line-height: 1.3; }
-.tgm-row-form {
-  font-family: var(--sans); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--muted); border: 1px solid var(--rule); border-radius: 4px; padding: 1px 5px; margin-left: 8px;
-  vertical-align: middle;
-}
-.tgm-row-count { flex: none; font-family: var(--sans); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
-.tgm-row .tgm-sug { color: color-mix(in srgb, var(--accent) 70%, var(--muted)); }
-.tgm-panel-foot {
-  margin: 0; padding: 12px clamp(20px, 3vw, 30px); border-top: 1px solid var(--rule);
-  font-family: var(--sans); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
-}
 
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: .001ms !important; transition-duration: .001ms !important; }

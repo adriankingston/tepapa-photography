@@ -27,7 +27,7 @@
   <link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/tourney-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/style.css?v=36">
+  <link rel="stylesheet" href="/style.css?v=37">
 </head>
 <body>
   <!-- ====== Masthead ====== -->
@@ -71,10 +71,6 @@
       </div>
     </form>
 
-    <div class="themes" id="themes" aria-label="Suggested searches">
-      <span class="themes-label">Or wander&hellip;</span>
-      <!-- chips injected -->
-    </div>
   </section>
 
   <!-- ====== Ways in: curated subject / feeling / composition marquees ====== -->
@@ -93,10 +89,6 @@
     </div>
     <p class="ways-label">Or a decade&hellip;</p>
     <div class="decades" id="decades" aria-label="Browse by decade taken"><!-- decade buttons injected --></div>
-    <p class="ways-label">Or by catalogued subject &amp; form&hellip;</p>
-    <div class="tgm-entry">
-      <button type="button" class="tgm-open" id="tgm-open">Browse the <em>Thesaurus for Graphic Materials</em> &mdash; <span id="tgm-count">&mdash;</span> terms&nbsp;&rarr;</button>
-    </div>
   </section>
 
   <!-- ====== Results ====== -->
@@ -119,27 +111,6 @@
     </p>
   </footer>
 
-  <!-- ====== Subject index (TGM) browse panel ====== -->
-  <div class="tgm-panel" id="tgm-panel" hidden role="dialog" aria-modal="true" aria-label="Browse subjects and forms">
-    <div class="tgm-panel-inner">
-      <div class="tgm-panel-head">
-        <div>
-          <h2 class="tgm-panel-title">Thesaurus for Graphic&nbsp;Materials</h2>
-          <p class="tgm-panel-sub">The Library of Congress controlled vocabulary, crosswalked from Te&nbsp;Papa&rsquo;s cataloguing.</p>
-        </div>
-        <button class="tgm-close" id="tgm-close" aria-label="Close">&times;</button>
-      </div>
-      <input type="search" id="tgm-search" class="tgm-search" placeholder="Search subjects &amp; forms&hellip;" autocomplete="off" spellcheck="false">
-      <div class="tgm-tabs" id="tgm-tabs">
-        <button type="button" data-kind="all" class="is-on">All</button>
-        <button type="button" data-kind="s">Subjects</button>
-        <button type="button" data-kind="g">Genre &amp; form</button>
-      </div>
-      <div class="tgm-list" id="tgm-list"></div>
-      <p class="tgm-panel-foot" id="tgm-panel-foot"></p>
-    </div>
-  </div>
-
   <!-- ====== Lightbox ====== -->
   <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Photograph viewer">
     <button class="lb-close" id="lb-close" aria-label="Close">&times;</button>
@@ -159,7 +130,7 @@
     </div>
   </div>
 
-  <script src="/vendor/openseadragon.min.js?v=36"></script>
-  <script src="/app.js?v=36"></script>
+  <script src="/vendor/openseadragon.min.js?v=37"></script>
+  <script src="/app.js?v=37"></script>
 </body>
 </html>
