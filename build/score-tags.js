@@ -19,7 +19,7 @@ import { AutoProcessor, AutoTokenizer, SiglipModel, SiglipTextModel, RawImage, e
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 env.cacheDir = path.join(__dirname, '.hf-cache');
 
-const MODEL = process.env.MODEL || 'onnx-community/siglip2-so400m-patch14-384-ONNX';
+const MODEL = process.env.MODEL || 'onnx-community/siglip2-base-patch16-256-ONNX';
 const DTYPE = process.env.DTYPE || 'q8';
 const TOPK = Number(process.env.TOPK || 60);
 const TEMPLATE = (p) => `a black and white photograph of ${p}.`;
@@ -43,7 +43,7 @@ const textModel = await SiglipTextModel.from_pretrained(MODEL, { dtype: DTYPE })
 const processor = await AutoProcessor.from_pretrained(MODEL);
 const fullModel = await SiglipModel.from_pretrained(MODEL, { dtype: DTYPE });
 const calibTexts = ['a black and white photograph of a ship.', 'a black and white photograph of a mountain.'];
-const calibTok = tokenizer(calibTexts, { padding: 'max_length', truncation: true });
+const calibTok = tokenizer(calibTexts, { padding: 'max_length', max_length: 64, truncation: true });
 const calibImg = await processor([await RawImage.read(path.join(__dirname, 'thumbs', `${records[0].id}.jpg`))]);
 const fullOut = await fullModel({ ...calibTok, ...calibImg });
 const tOut = await textModel(calibTok);
@@ -73,7 +73,7 @@ const BATCH = 64;
 const t0 = Date.now();
 for (let c = 0; c < candidates.length; c += BATCH) {
   const slice = candidates.slice(c, c + BATCH);
-  const tok = tokenizer(slice.map((t) => TEMPLATE(t.prompt)), { padding: 'max_length', truncation: true });
+  const tok = tokenizer(slice.map((t) => TEMPLATE(t.prompt)), { padding: 'max_length', max_length: 64, truncation: true });
   const { pooler_output } = await textModel(tok);
   const td = pooler_output.data;
   for (let s = 0; s < slice.length; s++) {

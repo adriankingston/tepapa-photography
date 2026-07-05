@@ -15,7 +15,11 @@
 //
 // Resumable: re-run after an interruption and it continues. Run:
 //   node build/embed-siglip2.js
-//   MODEL=onnx-community/siglip2-base-patch16-256-ONNX node build/embed-siglip2.js
+//
+// Model choice (probed 2026-07-05): so400m-patch14-384 q8 is BROKEN in the
+// onnx-community export — it misranks unambiguous images (attention collapses
+// under naive int8; SigLIP-1 base q8 ranks the same images fine). base-256 q8
+// ranks correctly with well-separated probabilities at ~20 img/s CPU.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -25,7 +29,7 @@ import { AutoProcessor, SiglipVisionModel, RawImage, env } from '@huggingface/tr
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 env.cacheDir = path.join(__dirname, '.hf-cache');
 
-const MODEL = process.env.MODEL || 'onnx-community/siglip2-so400m-patch14-384-ONNX';
+const MODEL = process.env.MODEL || 'onnx-community/siglip2-base-patch16-256-ONNX';
 const DTYPE = process.env.DTYPE || 'q8';
 const BATCH = Number(process.env.BATCH || 16);
 const FLUSH_EVERY = 1000;
