@@ -105,11 +105,9 @@ a { color: inherit; }
 
 /* Shared small caps / overline treatment for metadata */
 .overline,
-.themes-label,
 .search-label,
 .plate-maker,
 .plate-index,
-.theme-chip,
 .lb-meta,
 .standfirst {
   font-family: var(--sans);
@@ -277,36 +275,6 @@ a { color: inherit; }
   transition: transform .15s ease;
 }
 .search-go:hover { transform: translateX(3px); }
-
-.themes {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 10px 18px;
-  margin-top: 20px;
-}
-.themes-label {
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.theme-chip {
-  background: none;
-  border: 0;
-  border-bottom: 1px solid transparent;
-  padding: 2px 0;
-  cursor: pointer;
-  color: var(--ink-soft);
-  font-size: 14px;
-  letter-spacing: 0.01em;
-  transition: color .15s ease, border-color .15s ease;
-}
-.theme-chip:hover,
-.theme-chip[aria-pressed="true"] {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-}
 
 /* Theme toggle in masthead */
 .theme-switch {

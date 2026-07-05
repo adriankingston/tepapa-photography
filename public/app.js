@@ -47,14 +47,8 @@ const els = {
   count: document.getElementById('count'),
   form: document.getElementById('search-form'),
   q: document.getElementById('q'),
-  themes: document.getElementById('themes'),
 };
 const _emoDef = new Map();   // key → { label, def }
-
-const SUGGESTIONS = [
-  'Wellington', 'portrait', 'Burton Brothers', 'mountains', 'ships',
-  'street', 'Māori', 'garden', 'children', 'snow', 'beach', 'crowd',
-];
 
 // Curated subsets that scroll as a full-width marquee. Each is a coherent
 // *subject* (not a generic keyword), probed for solid, on-topic results; the
@@ -746,11 +740,11 @@ document.querySelectorAll('.theme-opt').forEach((b) => {
 applyTheme(document.documentElement.dataset.theme || 'light');
 
 /* ---- Search + suggestions ------------------------------------------------ */
-// Clear the pressed state on the primary selectors (chips / curated ways). The
+// Clear the pressed state on the primary selectors (the curated ways). The
 // decade filter is orthogonal, so it is NOT cleared here — it persists and
 // composes as you change what you're browsing.
 function clearActives() {
-  document.querySelectorAll('.theme-chip, .way').forEach((c) => c.setAttribute('aria-pressed', 'false'));
+  document.querySelectorAll('.way').forEach((c) => c.setAttribute('aria-pressed', 'false'));
 }
 
 // Typing an emotion / composition name loads its baked set; anything else is a
@@ -777,23 +771,6 @@ function goHome() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 document.getElementById('home-btn').addEventListener('click', goHome);
-
-SUGGESTIONS.forEach((term) => {
-  const b = document.createElement('button');
-  b.type = 'button';
-  b.className = 'theme-chip';
-  b.textContent = term;
-  b.setAttribute('aria-pressed', 'false');
-  b.addEventListener('click', () => {
-    const active = b.getAttribute('aria-pressed') === 'true';
-    clearActives();
-    if (active) { els.q.value = ''; resetAndLoad(''); return; }
-    b.setAttribute('aria-pressed', 'true');
-    els.q.value = term;
-    resetAndLoad(term);
-  });
-  els.themes.appendChild(b);
-});
 
 /* ---- Ways in: two full-width marquees you can grab and drag -------------- */
 const MARQUEE_SPEED = 70;   // px/sec — shared by both rows
