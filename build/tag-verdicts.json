@@ -1,0 +1,335 @@
+{
+ "portrait-man": {
+  "thr": 0.44
+ },
+ "portrait-woman": {
+  "thr": 0.2
+ },
+ "portrait-child": {
+  "thr": 0.35
+ },
+ "couple": {
+  "thr": 0.5
+ },
+ "family-group": {
+  "thr": 0.2
+ },
+ "baby": {
+  "thr": 0.3
+ },
+ "wedding": {
+  "thr": 0.2
+ },
+ "elderly": {
+  "thr": 0.25
+ },
+ "children-playing": {
+  "thr": 0.36
+ },
+ "sailing-ship": {
+  "thr": 0.5
+ },
+ "steamship": {
+  "thr": 0.4
+ },
+ "wharf": {
+  "thr": 0.45
+ },
+ "mountain": {
+  "thr": 0.39
+ },
+ "parade": {
+  "thr": 0.4
+ },
+ "harbour": {
+  "thr": 0.33
+ },
+ "lighthouse": {
+  "thr": 0.32
+ },
+ "fishing-boat": {
+  "drop": true
+ },
+ "rowing-boat": {
+  "thr": 0.27
+ },
+ "yacht": {
+  "drop": true
+ },
+ "whaling": {
+  "drop": true
+ },
+ "log-raft": {
+  "drop": true
+ },
+ "city-street": {
+  "thr": 0.2
+ },
+ "shopfront": {
+  "thr": 0.2
+ },
+ "bridge": {
+  "thr": 0.45
+ },
+ "monument": {
+  "thr": 0.36
+ },
+ "town-view": {
+  "thr": 0.37
+ },
+ "flood": {
+  "thr": 0.5
+ },
+ "fire-damage": {
+  "thr": 0.5
+ },
+ "earthquake": {
+  "drop": true
+ },
+ "eruption": {
+  "thr": 0.26
+ },
+ "storm-sea": {
+  "drop": true
+ },
+ "soldiers": {
+  "thr": 0.2
+ },
+ "warship": {
+  "thr": 0.55
+ },
+ "coastal-defence-guns": {
+  "thr": 0.65
+ },
+ "rugby": {
+  "thr": 0.5
+ },
+ "cricket": {
+  "thr": 0.37
+ },
+ "athletics": {
+  "thr": 0.77
+ },
+ "picnic": {
+  "thr": 0.58
+ },
+ "tramping": {
+  "thr": 0.2
+ },
+ "hunting-fishing": {
+  "thr": 0.21
+ },
+ "swimming": {
+  "thr": 0.22
+ },
+ "theatre": {
+  "thr": 0.2
+ },
+ "skiing": {
+  "thr": 0.57
+ },
+ "croquet": {
+  "drop": true
+ },
+ "celebration-arches": {
+  "thr": 0.5
+ },
+ "grandstand-crowds": {
+  "thr": 0.94
+ },
+ "horse": {
+  "thr": 0.2
+ },
+ "dog": {
+  "thr": 0.23
+ },
+ "cat": {
+  "thr": 0.54
+ },
+ "birds": {
+  "thr": 0.2
+ },
+ "seabird-colonies": {
+  "thr": 0.96
+ },
+ "glacier": {
+  "thr": 0.81
+ },
+ "lake": {
+  "thr": 0.38
+ },
+ "river": {
+  "thr": 0.62
+ },
+ "waterfall": {
+  "thr": 0.43
+ },
+ "gorge": {
+  "thr": 0.77
+ },
+ "beach": {
+  "thr": 0.5
+ },
+ "geyser": {
+  "thr": 0.76
+ },
+ "volcano": {
+  "thr": 0.93
+ },
+ "native-bush": {
+  "thr": 0.5
+ },
+ "tree-ferns": {
+  "thr": 0.65
+ },
+ "sunset-sky": {
+  "thr": 0.5
+ },
+ "braided-rivers": {
+  "thr": 0.84
+ },
+ "fiords": {
+  "thr": 0.8
+ },
+ "tussock-country": {
+  "thr": 0.81
+ },
+ "rocky-shores": {
+  "thr": 0.67
+ },
+ "beach-boulders": {
+  "thr": 0.5
+ },
+ "stalactites": {
+  "thr": 0.5
+ },
+ "rapids": {
+  "thr": 0.68
+ },
+ "bush-streams": {
+  "thr": 0.64
+ },
+ "alpine-flowers": {
+  "thr": 0.5
+ },
+ "cloud-seas": {
+  "thr": 0.3
+ },
+ "sunlit-bush": {
+  "thr": 0.5
+ },
+ "hotel": {
+  "thr": 0.78
+ },
+ "church": {
+  "thr": 0.2
+ },
+ "wooden-villa": {
+  "thr": 0.65
+ },
+ "house-interior": {
+  "thr": 0.2
+ },
+ "windmill": {
+  "thr": 0.5
+ },
+ "tent-camp": {
+  "thr": 0.9
+ },
+ "clock-towers": {
+  "thr": 0.5
+ },
+ "church-interiors": {
+  "thr": 0.2
+ },
+ "corrugated-iron-buildings": {
+  "thr": 0.83
+ },
+ "residential-streets": {
+  "thr": 0.2
+ },
+ "telegraph-poles": {
+  "thr": 0.57
+ },
+ "fountains": {
+  "thr": 0.65
+ },
+ "cemeteries": {
+  "thr": 0.8
+ },
+ "bedrooms": {
+  "thr": 0.5
+ },
+ "dining-rooms": {
+  "thr": 0.41
+ },
+ "country-roads": {
+  "thr": 0.44
+ },
+ "horse-cart": {
+  "thr": 0.2
+ },
+ "bicycle": {
+  "thr": 0.63
+ },
+ "motorcar": {
+  "thr": 0.2
+ },
+ "motorcycle": {
+  "thr": 0.2
+ },
+ "bus": {
+  "thr": 0.5
+ },
+ "aeroplane": {
+  "thr": 0.33
+ },
+ "pack-horse": {
+  "thr": 0.5
+ },
+ "sawmill": {
+  "thr": 0.52
+ },
+ "workshop": {
+  "thr": 0.5
+ },
+ "construction": {
+  "thr": 0.37
+ },
+ "office": {
+  "thr": 0.5
+ },
+ "dry-docks": {
+  "thr": 0.91
+ },
+ "steam-shovels": {
+  "thr": 0.69
+ },
+ "sheep": {
+  "thr": 0.66
+ },
+ "crowd": {
+  "thr": 0.5
+ },
+ "women-victorian-dress": {
+  "thr": 0.2
+ },
+ "man-with-beard": {
+  "thr": 0.2
+ },
+ "smoking-pipe": {
+  "thr": 0.33
+ },
+ "mothers-and-children": {
+  "thr": 0.2
+ },
+ "horseback-riders": {
+  "thr": 0.5
+ },
+ "wedding-groups": {
+  "thr": 0.2
+ },
+ "top-hats": {
+  "thr": 0.89
+ }
+}

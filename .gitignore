@@ -14,3 +14,12 @@ build/clip-missing.json
 build/thumbs-failed.json
 build/tgm.nt.gz
 build/subjects.json
+build/previews/
+build/previews-failed.json
+build/siglip2-emb.i8
+build/siglip2-progress.json
+build/siglip2-missing.json
+build/tag-candidates.json
+build/tag-scores.json
+build/tag-review.html
+build/probe-siglip2.tmp.js

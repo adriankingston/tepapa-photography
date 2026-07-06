@@ -741,6 +741,20 @@ a { color: inherit; }
   transition: color .15s ease, border-color .15s ease;
 }
 .lb-subject:hover, .lb-subject:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
+/* AI image-tag chips — dashed + accent-tinted to read as suggested, not catalogued. */
+.lb-tag {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.2;
+  color: var(--accent);
+  background: none;
+  border: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+  border-radius: 999px;
+  padding: 6px 13px;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+.lb-tag:hover, .lb-tag:focus-visible { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: var(--accent); outline: none; }
 .lb-facts {
   margin: clamp(28px, 4vw, 40px) 0 0;
   padding-top: 24px;
