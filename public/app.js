@@ -26,6 +26,7 @@ const state = {
   mode: 'query',    // 'query' = live API search; 'mood' = a baked embedding set
   setName: null,    // active baked set ('emotion' | 'composition'), else null
   setKey: null,     // active term key within that set
+  tag: null,        // active image-tag key being browsed, else null
   decade: null,     // active decade FILTER, e.g. '1920s' — composes with any mode
   moodItems: [],    // prebuilt items for the current mood (mode === 'mood')
   from: 0,
@@ -334,6 +335,7 @@ function resetAndLoad(query) {
   state.query = query || '';
   state.setName = null;
   state.setKey = null;
+  state.tag = null;
   // No text query but a decade is filtering → browse it from the baked index
   // rather than paging the whole API and dropping non-matches.
   if (!state.query && state.decade) { loadDecade(state.decade); return; }
@@ -379,6 +381,7 @@ async function loadSet(setName, key) {
   state.mode = 'mood';
   state.setName = setName;
   state.setKey = key;
+  state.tag = null;
   resetState();
   state.loading = true;   // block the scroll/observer from paging an empty list mid-fetch
   setState(S.loadingMsg);
@@ -422,6 +425,7 @@ async function loadSet(setName, key) {
 //   • no other filter — browse that decade straight from the baked index
 // index.json carries `y` (year taken) and `q` (quality score) per record.
 let _indexCache = null;
+let _indexById = null;   // id → index entry, built lazily (tag browse)
 const decadeOfYear = (y) => (y ? `${Math.floor(y / 10) * 10}s` : null);
 const inDecade = (y, key) => y != null && decadeOfYear(y) === key;
 const itemInDecade = (it, key) => inDecade(parseInt(it.date, 10) || null, key);
@@ -444,6 +448,7 @@ async function loadDecade(key) {
   state.mode = 'mood';
   state.setName = null;
   state.setKey = null;
+  state.tag = null;
   resetState();
   state.loading = true;
   setState(`Winding back to the ${key}…`);
@@ -470,10 +475,71 @@ async function loadDecade(key) {
   fetchPage();
 }
 
+/* ---- Image tags: AI-suggested, human-calibrated ---------------------------- */
+// SigLIP 2 scored a curated vocabulary against every image; each shipped term
+// was reviewed by eye and given its own confidence threshold (build/tag-verdicts
+// → build-tags.js → /data/tags.json). ids per term are best-score-first.
+let _tags = null;            // { terms: [{ key, label, group, thr, ids }] }
+let _tagByRec = null;        // record id → [term] (for the detail-view chips)
+const _tagLookup = new Map();  // normalised label → key (searchable)
+let _tagsP = null;
+function loadTags() {
+  if (!_tagsP) _tagsP = fetch('/data/tags.json').then((r) => r.json()).then((t) => {
+    _tags = t;
+    _tagByRec = new Map();
+    for (const term of t.terms) {
+      _tagLookup.set(normEmo(term.label), term.key);
+      for (const id of term.ids) {
+        const a = _tagByRec.get(id);
+        if (a) a.push(term); else _tagByRec.set(id, [term]);
+      }
+    }
+  }).catch(() => {});
+  return _tagsP;
+}
+
+// Browse a tag from the baked index — ids stay in score order (strongest first).
+async function loadTag(key) {
+  state.mode = 'mood';
+  state.setName = null;
+  state.setKey = null;
+  state.tag = key;
+  resetState();
+  state.loading = true;
+  setState('Reading the image tags…');
+  await loadTags();
+  const term = _tags && _tags.terms.find((t) => t.key === key);
+  try {
+    if (!_indexCache) _indexCache = await fetch('/data/index.json').then((r) => r.json());
+  } catch (e) { state.loading = false; setState('Couldn’t load the collection index.', true); return; }
+  if (!term) { state.loading = false; setState('Couldn’t find that tag.', true); return; }
+  if (!_indexById) { _indexById = new Map(); for (const e of _indexCache) _indexById.set(e.id, e); }
+  const dec = state.decade;
+  state.moodItems = [];
+  for (const id of term.ids) {
+    const e = _indexById.get(id);
+    if (!e || isAlbum(e.c)) continue;
+    if (dec && decadeOfYear(e.y) !== dec) continue;
+    state.moodItems.push(itemFromIndex(e.id, e));
+  }
+  state.total = state.moodItems.length;
+  els.count.textContent = fmtInt(state.total);
+  if (els.emoNote) {
+    els.emoNote.innerHTML =
+      `<h2 class="emotion-note-word">${esc(term.label)}</h2>` +
+      `<p class="emotion-note-meta">${fmtInt(state.total)} photographs · suggested from the image by AI, human-calibrated` +
+      (dec ? ` · <span class="note-decade">${esc(dec)}</span>` : '') + `</p>`;
+    els.emoNote.hidden = false;
+  }
+  state.loading = false;
+  fetchPage();
+}
+
 // Re-run whatever is currently showing (respecting state.decade). Called when the
 // decade filter is toggled so it composes with the active browse.
 function runView() {
-  if (state.setName) loadSet(state.setName, state.setKey);    // emotion / composition
+  if (state.tag) loadTag(state.tag);                         // an image tag
+  else if (state.setName) loadSet(state.setName, state.setKey); // emotion / composition
   else if (state.query) resetAndLoad(state.query);           // free-text / subject
   else if (state.decade) loadDecade(state.decade);           // decade on its own
   else resetAndLoad('');                                     // default browse
@@ -629,6 +695,16 @@ function physicalSize(dims) {
 }
 const isAlbumRec = (rec) => isAlbum((rec.isTypeOf || []).map((c) => c && c.title));
 
+// AI image tags for the detail view — dashed chips, honestly labelled. Each
+// shipped tag was human-calibrated (per-term threshold), but the match itself
+// is the model's reading of the image, not Te Papa cataloguing.
+function tagChips(id) {
+  const terms = _tagByRec && _tagByRec.get(id);
+  if (!terms || !terms.length) return '';
+  const chips = terms.map((t) => `<button type="button" class="lb-tag" data-tag="${esc(t.key)}">${esc(t.label)}</button>`).join('');
+  return `<div class="lb-subjects"><span class="lb-subjects-label">Suggested from the image (AI)</span><div class="lb-chips">${chips}</div></div>`;
+}
+
 function metaHtml(item, rec) {
   const img = item.img;
   const dl = img.rights && img.rights.allowsDownload && img.contentUrl;
@@ -651,6 +727,7 @@ function metaHtml(item, rec) {
     (albumParts ? `<p class="lb-album">An album of ${albumParts} photographs.</p>` : '') +
     (depicts ? `<div class="lb-subjects"><span class="lb-subjects-label">In this photograph (Te Papa cataloguing)</span><div class="lb-chips">${depicts}</div></div>` : '') +
     (refers ? `<div class="lb-subjects"><span class="lb-subjects-label">References</span><div class="lb-chips">${refers}</div></div>` : '') +
+    tagChips(item.id) +
     `<dl class="lb-facts">` +
       fact('Maker', maker) +
       fact('Date', esc(item.date)) +
@@ -681,7 +758,7 @@ function renderLightbox() {
   lb.prev.disabled = lb.idx <= 0;
   lb.next.disabled = lb.idx >= state.items.length - 1;
   const token = ++lb._token;                  // …then enrich, guarding against navigation
-  fetchRecord(item.id).then((rec) => {
+  Promise.all([fetchRecord(item.id), loadTags()]).then(([rec]) => {
     if (rec && token === lb._token) lb.meta.innerHTML = metaHtml(item, rec);
   });
 }
@@ -701,6 +778,9 @@ lb.zoomOut.addEventListener('click', () => zoomStep(1 / 1.5));
 // A subject / person / place chip searches that term (phrase match) — leaving
 // any decade filter in place, since it composes.
 lb.meta.addEventListener('click', (e) => {
+  // an AI tag chip → browse that tag (composes with any decade filter)
+  const tg = e.target.closest('.lb-tag');
+  if (tg) { closeLightbox(); clearActives(); els.q.value = ''; loadTag(tg.dataset.tag); return; }
   // a subject chip or the maker → phrase-search that term / name
   const b = e.target.closest('.lb-subject, .lb-maker');
   if (!b) return;
@@ -756,7 +836,9 @@ els.form.addEventListener('submit', (e) => {
   clearActives();
   const q = els.q.value.trim();
   const hit = _setLookup.get(normEmo(q));
+  const tagKey = _tagLookup.get(normEmo(q));
   if (hit) loadSet(hit.set, hit.key);
+  else if (tagKey) loadTag(tagKey);              // a calibrated image tag
   else resetAndLoad(q);
 });
 
@@ -874,6 +956,10 @@ function wireSet(setName, indexFile, listKey, trackId, reverse) {
     })
     .catch(() => { /* leave the row empty if the index can't load */ });
 }
+
+// Image tags — load early so tag labels are searchable and the detail view
+// has its chips ready.
+loadTags();
 
 // Feelings → 154 emotions from The Book of Human Emotions (drifts right).
 wireSet('emotion', '/data/emotions-index.json', 'emotions', 'moods-track', true);
