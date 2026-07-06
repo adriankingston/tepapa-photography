@@ -68,8 +68,8 @@ const html = `<!doctype html>
   button.is-on { border-color: #4a90d9; color: #4a90d9; }
   .meta { opacity: .65; font-size: 12px; }
   #export { margin-left: auto; }
-  .hist { display: flex; align-items: flex-end; gap: 1px; height: 34px; margin: 8px 0 2px; }
-  .hist i { width: 16px; background: #4a90d9aa; display: block; }
+  .hist { display: flex; align-items: flex-end; gap: 1px; height: 68px; margin: 8px 0 2px; }
+  .hist i { width: 24px; background: #4a90d9aa; display: block; }
   .hist i.click { cursor: pointer; }
   .hist i.click:hover { background: #4a90d9; }
   .hist i.sel { background: #d97a4a; }
@@ -131,7 +131,7 @@ function renderTerm(key, keepBand) {
     '<div id="bar"><div class="row"><b>' + t.label + '</b>' +
     '<span class="meta">' + t.prompt + ' · ' + (GROUPS[t.group] || t.group) + ' · source: ' + t.src + (t.n ? ' (' + t.n + ' catalogued)' : '') + '</span></div>' +
     '<div class="hist">' + t.hist.map((n, i) =>
-      '<i class="' + (clickable(i) ? 'click' : '') + (band === i ? ' sel' : '') + '" data-b="' + i + '" style="height:' + (i === 0 ? 2 : Math.max(2, n / maxH * 34)) + 'px" title="' + (i * 5) + '–' + (i * 5 + 5) + '%: ' + n + (clickable(i) ? ' — click to view a sample' : '') + '"></i>').join('') + '</div>' +
+      '<i class="' + (clickable(i) ? 'click' : '') + (band === i ? ' sel' : '') + '" data-b="' + i + '" style="height:' + (i === 0 ? 2 : Math.max(3, n / maxH * 68)) + 'px" title="' + (i * 5) + '–' + (i * 5 + 5) + '%: ' + n + (clickable(i) ? ' — click to view a sample' : '') + '"></i>').join('') + '</div>' +
     '<p class="hist-cap">Score distribution, 5% bands. Click a bar (15%+) to see what that confidence level actually looks like.</p>' +
     '<div class="row"><input type="range" id="thr" min="0.2" max="0.99" step="0.01" value="' + (v.thr || 0.5) + '">' +
     '<span id="thrv">≥ ' + (v.thr || 0.5) + '</span>' +
