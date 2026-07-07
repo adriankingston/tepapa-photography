@@ -30,3 +30,4 @@ build/so400m-emb.i8
 build/so400m-progress.json
 build/so400m-missing.json
 build/so400m-tag-scores.json
+build/tag-verdicts-transferred.json
