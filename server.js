@@ -39,9 +39,10 @@ const MIME = {
   '.woff2': 'font/woff2',
 };
 
-// The same serverless handler Vercel runs, keyed by "METHOD /path".
+// The same serverless handler Vercel runs, keyed by path — like Vercel, the
+// handler sees every method and answers 405 itself for the ones it rejects.
 const routes = {
-  'GET /api/search': require('./api/search'),
+  '/api/search': require('./api/search'),
 };
 
 // Security headers — mirror of the "/(.*)"  block in vercel.json so CSP
@@ -56,7 +57,7 @@ const server = http.createServer((req, res) => {
   for (const { key, value } of SECURITY_HEADERS) res.setHeader(key, value);
 
   // --- API routes → the shared serverless handler ---
-  const handler = routes[`${req.method} ${url.pathname}`];
+  const handler = routes[url.pathname];
   if (handler) {
     req.query = Object.fromEntries(url.searchParams);
     Promise.resolve(handler(req, res)).catch((e) => {
