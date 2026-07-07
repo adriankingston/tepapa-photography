@@ -50,6 +50,30 @@ The zero-dependency Node server serves `public/` and proxies the API (injecting 
 `x-api-key` server-side, since the API has no CORS). In production each file under
 `api/` runs as its own serverless function.
 
+## Data pipeline (offline)
+
+Everything under `build/` runs locally (Node + transformers.js, CPU only) and
+bakes the committed files in `public/data/`. Shared plumbing — API access, the
+id-range enumeration that dodges the API's ~50k paging cap, and the record-set
+stamp — lives in `build/lib.js`. Run order:
+
+1. `node build/harvest.js` — every openly-licensed photography record →
+   `build/records.json` + `public/data/index.json`, plus the record-set stamp
+   (`build/set-stamp.json`). Every later step verifies its inputs against the
+   stamp, so a re-harvest can never silently misalign the derived artifacts.
+2. `node build/download-thumbs.js` — thumbnails to disk, resumable
+   (`download-previews.js` fetches the 1000px derivatives for VLM work).
+3. `node build/embed-clip.js` + `embed-text.js` — CLIP and e5 embeddings, then
+   `embed-emotions.js` / `embed-compositions.js` for the two baked marquees.
+4. `node build/embed-siglip2.js` — SigLIP 2 image embeddings for the tag layer;
+   `score-tags.js` scores the candidate vocabulary; `tag-review-sheet.js` makes
+   the in-browser calibration sheet (export verdicts to `build/tag-verdicts.json`);
+   `build-tags.js` ships the calibrated terms (`tag-competitors.js` holds
+   contrastive prompts for confusable ones).
+5. `node build/build-shards.js` — split the index into `public/data/decade/` and
+   `public/data/tag/` files (deriving `decades-index.json`), so the client only
+   downloads the slice it's browsing.
+
 ## Deployment
 
 Built to deploy on **Vercel** (static `public/` + the `api/search.js` serverless

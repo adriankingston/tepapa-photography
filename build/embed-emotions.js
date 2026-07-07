@@ -17,6 +17,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { AutoTokenizer, CLIPTextModelWithProjection, pipeline, env } from '@huggingface/transformers';
 import { EMOTIONS } from './emotions.js';
+import { checkStamp } from './lib.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA = path.join(__dirname, '..', 'public', 'data');
@@ -25,6 +26,7 @@ env.cacheDir = path.join(__dirname, '.hf-cache');
 const CLIP_DIM = 512, TEXT_DIM = 384, CONF = 0.75, W_CLIP = 0.7, W_TEXT = 0.3;
 
 const index = JSON.parse(fs.readFileSync(path.join(DATA, 'index.json'), 'utf8'));
+checkStamp(index.map((e) => e.id), 'public/data/index.json');
 const N = index.length;
 const clip = new Int8Array(fs.readFileSync(path.join(DATA, 'clip-emb.i8')).buffer);
 const text = new Int8Array(fs.readFileSync(path.join(DATA, 'text-emb.i8')).buffer);

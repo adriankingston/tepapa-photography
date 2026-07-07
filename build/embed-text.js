@@ -14,6 +14,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { pipeline, env } from '@huggingface/transformers';
+import { checkStamp } from './lib.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
@@ -25,6 +26,7 @@ const DIM = 384;
 const BATCH = 64;
 
 const records = JSON.parse(fs.readFileSync(path.join(__dirname, 'records.json'), 'utf8'));
+const STAMP = checkStamp(records.map((r) => r.id), 'build/records.json');
 console.log(`Embedding ${records.length} records with ${MODEL} (q8)…`);
 
 const t0 = Date.now();
@@ -58,6 +60,7 @@ const metaPath = path.join(DATA, 'meta.json');
 const meta = fs.existsSync(metaPath) ? JSON.parse(fs.readFileSync(metaPath, 'utf8')) : {};
 meta.count = records.length;
 meta.quant = 127;
+meta.stamp = STAMP || undefined;
 meta.text = { model: MODEL, dim: DIM, file: 'text-emb.i8' };
 meta.generatedAt = new Date().toISOString();
 fs.writeFileSync(metaPath, JSON.stringify(meta, null, 2));
