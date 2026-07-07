@@ -521,7 +521,9 @@ function loadTags() {
     _tags = t;
     _tagByRec = new Map();
     for (const term of t.terms) {
-      _tagLookup.set(normEmo(term.label), term.key);
+      // searchable by label, slug, or slug-with-spaces (like the baked sets)
+      [term.label, term.key, term.key.replace(/-/g, ' ')]
+        .forEach((f) => _tagLookup.set(normEmo(f), term.key));
       for (const id of term.ids) {
         const a = _tagByRec.get(id);
         if (a) a.push(term); else _tagByRec.set(id, [term]);
