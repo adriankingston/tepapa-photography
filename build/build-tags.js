@@ -29,11 +29,14 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA = path.join(__dirname, '..', 'public', 'data');
 env.cacheDir = path.join(__dirname, '.hf-cache');
 
-const verdicts = JSON.parse(fs.readFileSync(path.join(__dirname, 'tag-verdicts.json'), 'utf8'));
+const TAG = process.env.TAG || 'siglip2';   // which <TAG>-emb.i8 / <TAG>-progress.json to score
+const SCORES = process.env.SCORES || 'tag-scores.json';
+const VERDICTS = process.env.VERDICTS || 'tag-verdicts.json';
+const verdicts = JSON.parse(fs.readFileSync(path.join(__dirname, VERDICTS), 'utf8'));
 const candidates = JSON.parse(fs.readFileSync(path.join(__dirname, 'tag-candidates.json'), 'utf8'));
-const scoresMeta = JSON.parse(fs.readFileSync(path.join(__dirname, 'tag-scores.json'), 'utf8'));
+const scoresMeta = JSON.parse(fs.readFileSync(path.join(__dirname, SCORES), 'utf8'));
 const records = JSON.parse(fs.readFileSync(path.join(__dirname, 'records.json'), 'utf8'));
-const prog = JSON.parse(fs.readFileSync(path.join(__dirname, 'siglip2-progress.json'), 'utf8'));
+const prog = JSON.parse(fs.readFileSync(path.join(__dirname, `${TAG}-progress.json`), 'utf8'));
 if (prog.done !== records.length) throw new Error(`embeddings incomplete: ${prog.done}/${records.length}`);
 const STAMP = checkStamp(records.map((r) => r.id), 'build/records.json');
 assertSameHarvest(prog.stamp, STAMP, 'siglip2-emb.i8', 're-run embed-siglip2.js');
@@ -44,7 +47,7 @@ const { scale, bias } = scoresMeta;
 const DIM = prog.dim;
 const N = records.length;
 const TEMPLATE = (p) => `a black and white photograph of ${p}.`;
-const embBuf = fs.readFileSync(path.join(__dirname, 'siglip2-emb.i8'));
+const embBuf = fs.readFileSync(path.join(__dirname, `${TAG}-emb.i8`));
 const emb = new Int8Array(embBuf.buffer, embBuf.byteOffset, embBuf.length);
 
 const byKey = new Map(candidates.map((c) => [c.key, c]));

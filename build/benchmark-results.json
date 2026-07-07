@@ -1,0 +1,182 @@
+{
+ "base-256:q8:thumb": {
+  "model": "onnx-community/siglip2-base-patch16-256-ONNX",
+  "vdtype": "q8",
+  "tdtype": "q8",
+  "src": "thumbs",
+  "dim": 768,
+  "imgPerSec": 18.5,
+  "meanAuc": 0.877,
+  "perTerm": {
+   "geyser": 0.931,
+   "waterfall": 0.946,
+   "church": 0.876,
+   "wharenui": 0.831,
+   "dog": 0.748,
+   "sheep": 0.865,
+   "sailing-ship": 0.875,
+   "glacier": 0.928,
+   "windmill": 0.918,
+   "lighthouse": 0.942,
+   "wedding": 0.922,
+   "motorcar": 0.789,
+   "bridge": 0.835
+  },
+  "whVsChurch": {
+   "wharenuiCorrect": 74,
+   "churchCorrect": 78
+  }
+ },
+ "base-256:q8": {
+  "model": "onnx-community/siglip2-base-patch16-256-ONNX",
+  "vdtype": "q8",
+  "tdtype": "q8",
+  "src": "previews",
+  "dim": 768,
+  "imgPerSec": 18,
+  "meanAuc": 0.873,
+  "perTerm": {
+   "geyser": 0.918,
+   "waterfall": 0.948,
+   "church": 0.864,
+   "wharenui": 0.827,
+   "dog": 0.741,
+   "sheep": 0.861,
+   "sailing-ship": 0.885,
+   "glacier": 0.921,
+   "windmill": 0.928,
+   "lighthouse": 0.94,
+   "wedding": 0.914,
+   "motorcar": 0.768,
+   "bridge": 0.84
+  },
+  "whVsChurch": {
+   "wharenuiCorrect": 85,
+   "churchCorrect": 65
+  }
+ },
+ "base-384:q8": {
+  "model": "onnx-community/siglip2-base-patch16-384-ONNX",
+  "vdtype": "q8",
+  "tdtype": "q8",
+  "src": "previews",
+  "dim": 768,
+  "imgPerSec": 7.5,
+  "meanAuc": 0.889,
+  "perTerm": {
+   "geyser": 0.939,
+   "waterfall": 0.952,
+   "church": 0.841,
+   "wharenui": 0.845,
+   "dog": 0.786,
+   "sheep": 0.887,
+   "sailing-ship": 0.885,
+   "glacier": 0.927,
+   "windmill": 0.933,
+   "lighthouse": 0.936,
+   "wedding": 0.924,
+   "motorcar": 0.831,
+   "bridge": 0.875
+  },
+  "whVsChurch": {
+   "wharenuiCorrect": 89,
+   "churchCorrect": 63
+  }
+ },
+ "large-384:q8": {
+  "model": "onnx-community/siglip2-large-patch16-384-ONNX",
+  "vdtype": "q8",
+  "tdtype": "q8",
+  "src": "previews",
+  "dim": 1024,
+  "imgPerSec": 2.4,
+  "meanAuc": 0.954,
+  "perTerm": {
+   "geyser": 0.99,
+   "waterfall": 0.975,
+   "church": 0.914,
+   "wharenui": 0.916,
+   "dog": 0.888,
+   "sheep": 0.955,
+   "sailing-ship": 0.944,
+   "glacier": 0.971,
+   "windmill": 0.968,
+   "lighthouse": 0.995,
+   "wedding": 0.978,
+   "motorcar": 0.949,
+   "bridge": 0.954
+  },
+  "whVsChurch": {
+   "wharenuiCorrect": 78,
+   "churchCorrect": 75
+  }
+ },
+ "so400m-p16-384:q8": {
+  "model": "onnx-community/siglip2-so400m-patch16-384-ONNX",
+  "vdtype": "q8",
+  "tdtype": "q8",
+  "src": "previews",
+  "dim": 1152,
+  "imgPerSec": 1.8,
+  "meanAuc": 0.771,
+  "perTerm": {
+   "geyser": 0.89,
+   "waterfall": 0.944,
+   "church": 0.72,
+   "wharenui": 0.631,
+   "dog": 0.596,
+   "sheep": 0.746,
+   "sailing-ship": 0.642,
+   "glacier": 0.864,
+   "windmill": 0.852,
+   "lighthouse": 0.799,
+   "wedding": 0.752,
+   "motorcar": 0.759,
+   "bridge": 0.823
+  },
+  "whVsChurch": {
+   "wharenuiCorrect": 7,
+   "churchCorrect": 95
+  }
+ },
+ "so400m-p16-384:int8": {
+  "model": "onnx-community/siglip2-so400m-patch16-384-ONNX",
+  "vdtype": "int8",
+  "tdtype": "q8",
+  "src": "previews",
+  "dim": 1152,
+  "imgPerSec": 2.3,
+  "meanAuc": 0.973,
+  "perTerm": {
+   "geyser": 0.994,
+   "waterfall": 0.989,
+   "church": 0.943,
+   "wharenui": 0.955,
+   "dog": 0.925,
+   "sheep": 0.991,
+   "sailing-ship": 0.972,
+   "glacier": 0.986,
+   "windmill": 0.989,
+   "lighthouse": 0.993,
+   "wedding": 0.981,
+   "motorcar": 0.971,
+   "bridge": 0.962
+  },
+  "whVsChurch": {
+   "wharenuiCorrect": 78,
+   "churchCorrect": 75
+  }
+ },
+ "so400m-p16-384:q4f16": {
+  "error": "Error: Exception during initialization: /Users/cloudtest/vss/_work/1/s/onnxruntime/core/graph/graph_utils.cc:30 int onnxruntime::graph_utils::GetIndexFromName(const Node &, const std::string &, bool) itr != node_args.end() was false. Attempting to get index by a name which does not exist:InsertedPre"
+ },
+ "so400m-p16-384:fp16": {
+  "error": "Error: Exception during initialization: /Users/cloudtest/vss/_work/1/s/onnxruntime/core/graph/graph_utils.cc:30 int onnxruntime::graph_utils::GetIndexFromName(const Node &, const std::string &, bool) itr != node_args.end() was false. Attempting to get index by a name which does not exist:InsertedPre"
+ },
+ "so400m-p16-384:fp16:tfp32": {
+  "error": "Error: Exception during initialization: /Users/cloudtest/vss/_work/1/s/onnxruntime/core/graph/graph_utils.cc:30 int onnxruntime::graph_utils::GetIndexFromName(const Node &, const std::string &, bool) itr != node_args.end() was false. Attempting to get index by a name which does not exist:InsertedPre"
+ },
+ "so400m-p14-384:fp16": {
+  "error": "Error: Exception during initialization: /Users/cloudtest/vss/_work/1/s/onnxruntime/core/graph/graph_utils.cc:30 int onnxruntime::graph_utils::GetIndexFromName(const Node &, const std::string &, bool) itr != node_args.end() was false. Attempting to get index by a name which does not exist:InsertedPre"
+ }
+}

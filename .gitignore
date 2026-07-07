@@ -23,3 +23,10 @@ build/tag-candidates.json
 build/tag-scores.json
 build/tag-review.html
 build/probe-siglip2.tmp.js
+
+# model benchmark artifacts (results + sample are tracked; caches are not)
+build/benchmark-embcache/
+build/so400m-emb.i8
+build/so400m-progress.json
+build/so400m-missing.json
+build/so400m-tag-scores.json
