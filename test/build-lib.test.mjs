@@ -3,9 +3,13 @@
 // Run:  npm test
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import {
   arr, yearOf, qualityOf, decadeOf, isAlbumEntry,
-  stampOf, checkStamp, assertSameHarvest, shardDecades, shardTagPhotos,
+  stampOf, checkStamp, writeStamp, readStamp, assertSameHarvest,
+  shardDecades, shardTagPhotos,
 } from '../build/lib.js';
 
 test('arr normalises scalars, nulls, and arrays', () => {
@@ -54,6 +58,17 @@ test('stampOf is deterministic and order-sensitive', () => {
 test('checkStamp throws on a record set that does not match the harvest', () => {
   // build/set-stamp.json is committed — any made-up id list must be rejected
   assert.throws(() => checkStamp([1, 2, 3], 'test fixture'), /out of step with the harvest/);
+});
+
+test('write → check stamp round-trip passes for the same id list', () => {
+  const p = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'stamp-')), 'set-stamp.json');
+  const ids = [15720, 15721, 15722];
+  const written = writeStamp(ids, p);
+  assert.equal(written.count, 3);
+  assert.equal(readStamp(p).stamp, stampOf(ids));
+  assert.equal(checkStamp(ids, 'round-trip', p), stampOf(ids));       // matching set passes
+  assert.throws(() => checkStamp([15720, 15722, 15721], 'reordered', p));  // order matters
+  fs.rmSync(path.dirname(p), { recursive: true, force: true });
 });
 
 test('assertSameHarvest rejects cross-harvest artifacts, grandfathers unstamped', () => {

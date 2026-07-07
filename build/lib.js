@@ -121,18 +121,18 @@ export const isAlbumEntry = (e) => arr(e.c).some((c) => /photograph album/i.test
 // carry the same stamp before doing anything expensive or silently wrong.
 const STAMP_PATH = path.join(__dirname, 'set-stamp.json');
 export const stampOf = (ids) => crypto.createHash('sha1').update(ids.join(',')).digest('hex').slice(0, 16);
-export function writeStamp(ids) {
+export function writeStamp(ids, stampPath = STAMP_PATH) {
   const stamp = { stamp: stampOf(ids), count: ids.length, generatedAt: new Date().toISOString() };
-  fs.writeFileSync(STAMP_PATH, JSON.stringify(stamp, null, 2) + '\n');
+  fs.writeFileSync(stampPath, JSON.stringify(stamp, null, 2) + '\n');
   return stamp;
 }
-export function readStamp() {
-  try { return JSON.parse(fs.readFileSync(STAMP_PATH, 'utf8')); } catch { return null; }
+export function readStamp(stampPath = STAMP_PATH) {
+  try { return JSON.parse(fs.readFileSync(stampPath, 'utf8')); } catch { return null; }
 }
 // Throws when `ids` doesn't match the stamped harvest; warns (and passes) when
 // no stamp exists yet — artifacts from a pre-stamp harvest are grandfathered.
-export function checkStamp(ids, what) {
-  const want = readStamp();
+export function checkStamp(ids, what, stampPath = STAMP_PATH) {
+  const want = readStamp(stampPath);
   if (!want) { console.warn(`  ! no build/set-stamp.json — cannot verify ${what} against the harvest`); return null; }
   const got = stampOf(ids);
   if (got !== want.stamp) {
