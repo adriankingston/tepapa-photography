@@ -41,12 +41,19 @@ const MIME = {
 
 // The same serverless handler Vercel runs, keyed by "METHOD /path".
 const routes = {
-  'POST /api/search': require('./api/search'),
   'GET /api/search': require('./api/search'),
 };
 
+// Security headers — mirror of the "/(.*)"  block in vercel.json so CSP
+// violations surface locally, not first in production. Keep the two in sync
+// (test/server.test.js asserts they match); the script-src hash covers the
+// inline theme-boot script in index.html — recompute it if that script changes.
+const SECURITY_HEADERS = require('./vercel.json').headers
+  .find((h) => h.source === '/(.*)').headers;
+
 const server = http.createServer((req, res) => {
   const url = new URL(req.url, `http://localhost:${PORT}`);
+  for (const { key, value } of SECURITY_HEADERS) res.setHeader(key, value);
 
   // --- API routes → the shared serverless handler ---
   const handler = routes[`${req.method} ${url.pathname}`];
