@@ -62,7 +62,11 @@ const server = http.createServer((req, res) => {
   }
 
   // --- Static files from ./public ---
-  const pathname = url.pathname === '/' ? '/index.html' : url.pathname;
+  // Percent-decode like production static hosting does (else /some%20file 404s
+  // locally but works deployed); invalid escapes → 400.
+  let pathname;
+  try { pathname = decodeURIComponent(url.pathname); } catch { res.writeHead(400); return res.end('Bad request'); }
+  if (pathname === '/') pathname = '/index.html';
   const filePath = path.join(PUBLIC_DIR, path.normalize(pathname));
   if (!filePath.startsWith(PUBLIC_DIR)) {
     res.writeHead(403);
@@ -82,7 +86,9 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, () => {
+// Loopback only: this dev server proxies with the API key attached, so don't
+// expose it to the LAN by default (HOST=0.0.0.0 opts back in for device testing).
+server.listen(PORT, process.env.HOST || '127.0.0.1', () => {
   console.log(`\n  Te Papa Photographs → http://localhost:${PORT}\n`);
   if (!process.env.TEPAPA_API_KEY) {
     console.log('  ⚠  No TEPAPA_API_KEY found — add it to .env or searches will fail.\n');

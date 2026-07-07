@@ -169,9 +169,14 @@ function renderTerm(key, keepBand) {
 }
 side.addEventListener('click', (e) => {
   if (e.target.id === 'export' || e.target.closest('#export')) {
+    // download directly — popups can be blocked on file:// pages
     const out = JSON.stringify(verdicts, null, 1);
-    navigator.clipboard && navigator.clipboard.writeText(out);
-    const w = window.open(''); w.document.write('<pre>' + out.replace(/</g, '&lt;') + '</pre>');
+    if (navigator.clipboard) navigator.clipboard.writeText(out).catch(() => {});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([out], { type: 'application/json' }));
+    a.download = 'tag-verdicts.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
     return;
   }
   const el = e.target.closest('.t');

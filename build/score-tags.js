@@ -112,7 +112,14 @@ for (let c = 0; c < candidates.length; c += BATCH) {
       key: slice[s].key,
       top: top.map(([r, p]) => [r, Math.round(p * 1000) / 1000]),
       hist,
-      bands: bands.map((b) => b.keep.slice(0, BAND_K)),
+      // sample EVENLY from the kept rows (a plain prefix slice would bias the
+      // review sheet toward low record ids, since rows scan in id order)
+      bands: bands.map((b) => {
+        const k = b.keep;
+        if (k.length <= BAND_K) return k;
+        const stepN = k.length / BAND_K;
+        return Array.from({ length: BAND_K }, (_, i) => k[Math.floor(i * stepN)]);
+      }),
     });
   }
   process.stdout.write(`\r  ${Math.min(c + BATCH, candidates.length)}/${candidates.length} terms  (${(((Date.now() - t0)) / 1000).toFixed(0)}s)   `);

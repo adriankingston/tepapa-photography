@@ -52,7 +52,7 @@
   --paper-2: #ece6d9;          /* recessed paper (fields, chips) */
   --ink: #1a1712;              /* near-black warm ink */
   --ink-soft: #4b443a;         /* secondary text */
-  --muted: #8a8073;            /* captions, numbers */
+  --muted: #6f665a;            /* captions, numbers — 4.6:1 on --paper (WCAG AA) */
   --rule: #d8d0c0;             /* hairlines */
   --rule-strong: #b9af9c;
   --accent: #b23a2e;           /* editorial vermilion — numbers, rules, links */
@@ -89,6 +89,9 @@ html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
+  /* the full-bleed 100vw marquees would otherwise add a horizontal scrollbar
+     on classic-scrollbar platforms (100vw includes the vertical gutter) */
+  overflow-x: clip;
   background: var(--paper);
   color: var(--ink);
   font-family: var(--serif);
@@ -262,7 +265,9 @@ a { color: inherit; }
   padding: 0;
 }
 .search-field input::placeholder { color: var(--rule-strong); font-style: italic; }
+/* the field's bottom rule doubles as the focus indicator — never invisible */
 .search-field input:focus { outline: none; }
+.search-field:has(input:focus-visible) { border-bottom-color: var(--accent); }
 .search-go {
   flex: none;
   border: 0;
@@ -454,10 +459,21 @@ a { color: inherit; }
   .plate.is-hero { grid-template-columns: 1fr; align-items: start; }
 }
 
+/* The image wrap is a real <button> (keyboard-openable) — reset its chrome. */
 .plate-img-wrap {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
   position: relative;
   overflow: hidden;
   background: var(--paper-2);
+}
+.plate-img-wrap:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 .plate-img {
   display: block;
@@ -858,4 +874,5 @@ body.lb-open { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+  * { scroll-behavior: auto !important; }
 }

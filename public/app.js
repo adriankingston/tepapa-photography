@@ -168,21 +168,34 @@ async function fetchPage() {
 
   if (state.mode === 'mood') { renderMoodPage(); return; }
 
+  // The API rejects result windows past ~50k (HTTP 400) — treat the cap as the
+  // end of the roll rather than an error the scroll loop retries forever.
+  if (state.from + PAGE > 50000) {
+    state.done = true;
+    state.loading = false;
+    setState('');
+    els.endNote.hidden = false;
+    return;
+  }
+
   // GET so Vercel's edge network can cache popular searches (the proxy adds the
   // constant type:Object filter and the quality-score sort — best first, and a
   // stable order for deep paging).
   const url = `/api/search?q=${encodeURIComponent(buildQuery())}&from=${state.from}&size=${PAGE}`;
 
+  const gen = _gen;   // a new search/browse during the await abandons this page
   let json;
   try {
     const res = await fetch(url);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     json = await res.json();
   } catch (e) {
+    if (gen !== _gen) return;
     state.loading = false;
     setState(`Couldn’t reach the collection (${e.message}). Scroll to retry.`, true);
     return;
   }
+  if (gen !== _gen) return;
 
   const results = Array.isArray(json.results) ? json.results : [];
   const count = json && json._metadata && json._metadata.resultset
@@ -269,16 +282,18 @@ function buildPlate(item, idx) {
   // Aspect ratio from rep metadata keeps the masonry from reflowing as images load.
   const ar = (img.width > 0 && img.height > 0)
     ? Math.min(3, Math.max(0.4, img.width / img.height)) : 1;
-  // Hero gets the larger preview; grid plates use the lighter thumb-or-preview.
+  // Hero gets the larger preview (and eager load — it's the LCP element);
+  // grid plates use the lighter thumb.
   const src = idx === 0 ? (img.previewUrl || img.thumbnailUrl)
-                        : (img.previewUrl || img.thumbnailUrl);
+                        : (img.thumbnailUrl || img.previewUrl);
 
   const number = String(idx + 1).padStart(3, '0');
   fig.innerHTML =
-    `<div class="plate-img-wrap" style="aspect-ratio:${ar.toFixed(3)}">` +
-      `<img class="plate-img" loading="lazy" decoding="async" ` +
+    `<button type="button" class="plate-img-wrap" style="aspect-ratio:${ar.toFixed(3)}" aria-label="View ${esc(item.title)}">` +
+      `<img class="plate-img" loading="${idx === 0 ? 'eager' : 'lazy'}" decoding="async" ` +
+        (idx === 0 ? 'fetchpriority="high" ' : '') +
         `src="${esc(src)}" alt="${esc(item.title)}">` +
-    `</div>` +
+    `</button>` +
     `<figcaption class="plate-label">` +
       `<span class="plate-index">${number}</span>` +
       `<h2 class="plate-title">${esc(item.title)}</h2>` +
@@ -307,13 +322,19 @@ function showNoResults() {
 }
 
 /* ---- Reset on new search ------------------------------------------------- */
+// Generation counter: bumped on every reset so any async loader or page fetch
+// that was in flight for the PREVIOUS view can detect it's stale and bail out
+// instead of stomping the new view's state/DOM (same idea as lb._token).
+let _gen = 0;
 function resetState() {
+  _gen++;
   state.from = 0;
   state.total = null;
   state.loading = false;
   state.done = false;
   state.seen = new Set();
   state.items = [];
+  state.moodItems = [];
   state.rendered = 0;
   els.plates.innerHTML = '';
   els.endNote.hidden = true;
@@ -323,13 +344,15 @@ function resetState() {
   // with the grid empty, would clamp short of the target as the page is tiny).
   state.scrollPending = true;
 }
+// Respect prefers-reduced-motion for programmatic scrolls too.
+const _scrollBehavior = () => (matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth');
 function scrollToResultsIfPending() {
   if (!state.scrollPending) return;
   state.scrollPending = false;
   const main = document.getElementById('main');
   if (!main) return;
   const y = main.getBoundingClientRect().top + window.scrollY - 12;
-  window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+  window.scrollTo({ top: Math.max(0, y), behavior: _scrollBehavior() });
 }
 function resetAndLoad(query) {
   state.query = query || '';
@@ -383,15 +406,19 @@ async function loadSet(setName, key) {
   state.setKey = key;
   state.tag = null;
   resetState();
+  const gen = _gen;   // navigating away during the fetch abandons this load
   state.loading = true;   // block the scroll/observer from paging an empty list mid-fetch
   setState(S.loadingMsg);
   try {
     if (!S.cache) S.cache = await fetch(S.data).then((r) => r.json());
   } catch (e) {
+    if (gen !== _gen) return;
     state.loading = false;
+    state.done = true;   // stop the scroll machinery — nothing valid to page
     setState(S.errorMsg, true);
     return;
   }
+  if (gen !== _gen) return;
   const rec = (S.cache[S.listKey] || []).find((m) => m.key === key);
   const photos = S.cache.photos || {};
   const full = rec
@@ -450,15 +477,19 @@ async function loadDecade(key) {
   state.setKey = null;
   state.tag = null;
   resetState();
+  const gen = _gen;   // navigating away during the (13MB) fetch abandons this load
   state.loading = true;
   setState(`Winding back to the ${key}…`);
   try {
     if (!_indexCache) _indexCache = await fetch('/data/index.json').then((r) => r.json());
   } catch (e) {
+    if (gen !== _gen) return;
     state.loading = false;
+    state.done = true;
     setState('Couldn’t load the decades.', true);
     return;
   }
+  if (gen !== _gen) return;
   state.moodItems = _indexCache
     .filter((e) => decadeOfYear(e.y) === key && !isAlbum(e.c))
     .sort((a, b) => (b.q || 0) - (a.q || 0))   // best first, like the rest of the app
@@ -505,14 +536,19 @@ async function loadTag(key) {
   state.setKey = null;
   state.tag = key;
   resetState();
+  const gen = _gen;   // navigating away during the (13MB) fetch abandons this load
   state.loading = true;
   setState('Reading the image tags…');
   await loadTags();
   const term = _tags && _tags.terms.find((t) => t.key === key);
   try {
     if (!_indexCache) _indexCache = await fetch('/data/index.json').then((r) => r.json());
-  } catch (e) { state.loading = false; setState('Couldn’t load the collection index.', true); return; }
-  if (!term) { state.loading = false; setState('Couldn’t find that tag.', true); return; }
+  } catch (e) {
+    if (gen !== _gen) return;
+    state.loading = false; state.done = true; setState('Couldn’t load the collection index.', true); return;
+  }
+  if (gen !== _gen) return;
+  if (!term) { state.loading = false; state.done = true; setState('Couldn’t find that tag.', true); return; }
   if (!_indexById) { _indexById = new Map(); for (const e of _indexCache) _indexById.set(e.id, e); }
   const dec = state.decade;
   state.moodItems = [];
@@ -602,15 +638,18 @@ function getViewer() {
     visibilityRatio: 1,
     minZoomImageRatio: 0.8,
     maxZoomPixelRatio: 2.5,        // allow a little past 1:1 native pixels
-    animationTime: 0.5,
+    animationTime: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 0.5,
     springStiffness: 8,
     gestureSettingsMouse: { clickToZoom: false, dblClickToZoom: true, scrollToZoom: true, flickEnabled: true },
     gestureSettingsTouch: { dblClickToZoom: true, pinchToZoom: true, flickEnabled: true },
   });
-  // If the IIIF endpoint fails, fall back to the plain full-size derivative.
+  // If the IIIF endpoint fails, fall back to the plain full-size derivative —
+  // but only for the photo that open was FOR: a slow failure arriving after
+  // the user has stepped to the next photo must not replace its working zoom.
   osd.addHandler('open-failed', () => {
-    const item = state.items[lb.idx];
-    const url = item && item.img && (item.img.contentUrl || item.img.previewUrl);
+    const item = osd._openItem;
+    if (!item || item !== state.items[lb.idx]) return;   // superseded by navigation
+    const url = item.img && (item.img.contentUrl || item.img.previewUrl);
     if (url && !osd._fellBack) { osd._fellBack = true; osd.open({ type: 'image', url }); }
   });
   return osd;
@@ -618,6 +657,7 @@ function getViewer() {
 function showInViewer(item) {
   const v = getViewer();
   v._fellBack = false;
+  v._openItem = item;
   const mid = midOf(item.img);
   if (mid) v.open(`${IIIF_BASE}${mid}/info.json`);
   else v.open({ type: 'image', url: item.img.contentUrl || item.img.previewUrl });
@@ -625,19 +665,25 @@ function showInViewer(item) {
 
 function openLightbox(idx) {
   lb.idx = idx;
+  lb._lastFocus = document.activeElement;   // restore focus here on close
   lb.el.hidden = false;            // reveal first so the viewer element has a size
   document.body.classList.add('lb-open');
   renderLightbox();
+  lb.close.focus();
 }
 function closeLightbox() {
   lb.el.hidden = true;
   document.body.classList.remove('lb-open');
   if (osd) osd.close();            // unload tiles / stop fetching
   lb.idx = -1;
+  if (lb._lastFocus && document.contains(lb._lastFocus)) lb._lastFocus.focus();
+  lb._lastFocus = null;
 }
-function step(d) {
-  const n = lb.idx + d;
-  if (n < 0 || n >= state.items.length) return;
+async function step(d) {
+  let n = lb.idx + d;
+  // Stepping past the last loaded plate pulls the next page in first.
+  if (d > 0 && n >= state.items.length && !state.done) await fetchPage();
+  if (n < 0 || n >= state.items.length || lb.idx < 0) return;
   lb.idx = n;
   renderLightbox();
   // Prefetch more if nearing the end while paging through the lightbox.
@@ -647,10 +693,14 @@ function step(d) {
 // so the rich fields (description, subjects, credit…) show in EVERY browse mode,
 // not just live search. Promise-cached by id to dedupe concurrent opens.
 const _recCache = new Map();
+const REC_CACHE_MAX = 200;   // plenty for a session; insertion-order eviction
 function fetchRecord(id) {
   if (_recCache.has(id)) return _recCache.get(id);
   const p = fetch(`/api/search?id=${id}`)   // GET → edge-cached (records are immutable)
-    .then((r) => r.json()).then((j) => (j.results && j.results[0]) || null).catch(() => null);
+    .then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+    .then((j) => (j.results && j.results[0]) || null)
+    .catch(() => { _recCache.delete(id); return null; });   // transient failure → retry next open
+  if (_recCache.size >= REC_CACHE_MAX) _recCache.delete(_recCache.keys().next().value);
   _recCache.set(id, p);
   return p;
 }
@@ -705,9 +755,14 @@ function tagChips(id) {
   return `<div class="lb-subjects"><span class="lb-subjects-label">Suggested from the image (AI)</span><div class="lb-chips">${chips}</div></div>`;
 }
 
+// Only ever link out to http(s) URLs — API-supplied strings are not trusted
+// to be safe href schemes.
+const httpUrl = (u) => (/^https?:\/\//i.test(String(u || '')) ? u : '');
+
 function metaHtml(item, rec) {
   const img = item.img;
-  const dl = img.rights && img.rights.allowsDownload && img.contentUrl;
+  const dl = img.rights && img.rights.allowsDownload && httpUrl(img.contentUrl);
+  const view = httpUrl(item.url);
   const fact = (label, val) => (val ? `<div><dt>${label}</dt><dd>${val}</dd></div>` : '');
   const j = (list) => (list || []).map((x) => x && x.title).filter(Boolean).join(', ');
   const desc = rec && rec.description ? sanitizeDesc(rec.description) : '';
@@ -736,14 +791,14 @@ function metaHtml(item, rec) {
       fact('Medium', esc(rec && rec.isMadeOfSummary)) +
       fact('Technique', esc(rec && j(rec.productionUsedTechnique))) +
       fact('Measurements', esc(rec && physicalSize(rec.observedDimension))) +
-      fact('Image', (img.width && img.height) ? `${img.width} × ${img.height} px` : '') +
+      fact('Image', (img.width > 0 && img.height > 0) ? `${Number(img.width)} × ${Number(img.height)} px` : '') +
       fact('Credit line', esc(rec && rec.creditLine)) +
       fact('Registration', esc(rec && rec.identifier)) +
       fact('Licence', rightsHtml(img) || 'Downloadable') +
     `</dl>` +
     `<p class="lb-links">` +
-      (dl ? `<a href="${esc(img.contentUrl)}" target="_blank" rel="noopener" download>Download full image ↓</a><span class="sep">·</span>` : '') +
-      `<a href="${esc(item.url)}" target="_blank" rel="noopener">View on Te Papa ↗</a>` +
+      (dl ? `<a href="${esc(dl)}" target="_blank" rel="noopener" download>Download full image ↓</a><span class="sep">·</span>` : '') +
+      (view ? `<a href="${esc(view)}" target="_blank" rel="noopener">View on Te Papa ↗</a>` : '') +
     `</p>`
   );
 }
@@ -752,11 +807,15 @@ function renderLightbox() {
   const item = state.items[lb.idx];
   if (!item) return;
   showInViewer(item);        // IIIF deep-zoom via OpenSeadragon
+  lb.viewer.setAttribute('role', 'img');           // the OSD canvas is anonymous
+  lb.viewer.setAttribute('aria-label', item.title);
   lb.scroll.scrollTop = 0;   // start each photo at the fold
   lb.el.classList.remove('lb-scrolled');
   lb.meta.innerHTML = metaHtml(item, null);   // lean immediately…
   lb.prev.disabled = lb.idx <= 0;
-  lb.next.disabled = lb.idx >= state.items.length - 1;
+  // next stays live at the end of the loaded list while more pages exist —
+  // step() pulls the next page in on demand.
+  lb.next.disabled = lb.idx >= state.items.length - 1 && state.done;
   const token = ++lb._token;                  // …then enrich, guarding against navigation
   Promise.all([fetchRecord(item.id), loadTags()]).then(([rec]) => {
     if (rec && token === lb._token) lb.meta.innerHTML = metaHtml(item, rec);
@@ -804,20 +863,32 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeLightbox();
   else if (e.key === 'ArrowLeft') step(-1);
   else if (e.key === 'ArrowRight') step(1);
+  else if (e.key === 'Tab') {
+    // keep focus inside the dialog while it's open
+    const f = [...lb.el.querySelectorAll('button:not(:disabled), a[href], [tabindex]:not([tabindex="-1"])')]
+      .filter((el) => el.offsetParent !== null);
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    const inside = lb.el.contains(document.activeElement);
+    if (e.shiftKey && (!inside || document.activeElement === first)) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && (!inside || document.activeElement === last)) { e.preventDefault(); first.focus(); }
+  }
 });
 
 /* ---- Theme toggle (shares localStorage with the main browser) ------------ */
-function applyTheme(t) {
+// Persist only on an explicit choice — writing the OS-derived default on boot
+// would freeze OS-theme followers to whatever their system was that first day.
+function applyTheme(t, persist) {
   document.documentElement.dataset.theme = t;
-  try { localStorage.setItem('tepapa.theme', t); } catch (e) { /* ignore */ }
+  if (persist) { try { localStorage.setItem('tepapa.theme', t); } catch (e) { /* ignore */ } }
   document.querySelectorAll('.theme-opt').forEach((b) => {
-    b.setAttribute('aria-checked', String(b.dataset.val === t));
+    b.setAttribute('aria-pressed', String(b.dataset.val === t));
   });
 }
 document.querySelectorAll('.theme-opt').forEach((b) => {
-  b.addEventListener('click', () => applyTheme(b.dataset.val));
+  b.addEventListener('click', () => applyTheme(b.dataset.val, true));
 });
-applyTheme(document.documentElement.dataset.theme || 'light');
+applyTheme(document.documentElement.dataset.theme || 'light', false);
 
 /* ---- Search + suggestions ------------------------------------------------ */
 // Clear the pressed state on the primary selectors (the curated ways). The
@@ -850,7 +921,7 @@ function goHome() {
   els.q.value = '';
   resetAndLoad('');
   state.scrollPending = false;   // scroll to the very top instead of the results
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: _scrollBehavior() });
 }
 document.getElementById('home-btn').addEventListener('click', goHome);
 
@@ -860,6 +931,8 @@ const _reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const _marquees = [];
 
 // Fill a track with one run + its duplicate (seamless loop), each item a `.way`.
+// The duplicate run is presentation only — hide it from the tab order and
+// screen readers so every term isn't announced (and tabbed through) twice.
 function fillMarquee(trackId, items, attr) {
   const track = document.getElementById(trackId);
   if (!track) return null;
@@ -867,7 +940,7 @@ function fillMarquee(trackId, items, attr) {
     `<button type="button" class="way" ${attr(it)}>${esc(it.term)}</button>` +
     `<span class="ways-sep" aria-hidden="true">·</span>`
   ).join('');
-  track.innerHTML = run + run;
+  track.innerHTML = run + `<span aria-hidden="true">${run.replace(/<button type="button" class="way" /g, '<button type="button" class="way" tabindex="-1" ')}</span>`;
   return track;
 }
 
@@ -914,11 +987,12 @@ function makeDraggableMarquee(track, reverse, onWord) {
   track.addEventListener('pointerup', endPress);
   track.addEventListener('pointercancel', endPress);
 
-  // a click selects a word unless the pointer moved (i.e. it was a drag)
+  // a click selects a word unless the pointer moved (i.e. it was a drag);
+  // keyboard activation (Enter/Space → click with detail 0) always selects
   track.addEventListener('click', (e) => {
     const b = e.target.closest('.way'); if (!b) return;
-    if (moved || Math.abs(e.clientX - downX) > 4) { e.preventDefault(); return; }
-    b.blur();
+    if (e.detail !== 0 && (moved || Math.abs(e.clientX - downX) > 4)) { e.preventDefault(); return; }
+    if (e.detail !== 0) b.blur();   // keep focus in place for keyboard users
     onWord(b);
   });
 

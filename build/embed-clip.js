@@ -46,7 +46,11 @@ if (fs.existsSync(EMB_PATH) && fs.existsSync(PROG_PATH)) {
   }
 }
 
-const missing = [];
+// Preserve missing-thumb ids recorded by earlier (partial) runs — a resume
+// only walks rows >= start, so starting empty would silently underreport.
+const MISS_PATH = path.join(__dirname, 'clip-missing.json');
+const missing = (start > 0 && fs.existsSync(MISS_PATH))
+  ? JSON.parse(fs.readFileSync(MISS_PATH, 'utf8')) : [];
 function flush(done) {
   fs.mkdirSync(DATA, { recursive: true });
   fs.writeFileSync(EMB_PATH, Buffer.from(out.buffer));
@@ -87,7 +91,7 @@ for (let i = start; i < N; i += BATCH) {
 }
 
 flush(N);
-fs.writeFileSync(path.join(__dirname, 'clip-missing.json'), JSON.stringify(missing));
+fs.writeFileSync(MISS_PATH, JSON.stringify([...new Set(missing)]));
 const metaPath = path.join(DATA, 'meta.json');
 const meta = fs.existsSync(metaPath) ? JSON.parse(fs.readFileSync(metaPath, 'utf8')) : { count: N, quant: 127 };
 meta.clip = { model: MODEL, dim: DIM, file: 'clip-emb.i8', missing: missing.length };

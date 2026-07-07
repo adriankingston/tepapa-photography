@@ -53,15 +53,22 @@ console.log(`Embedding dim: ${DIM}`);
 let out = new Int8Array(N * DIM);
 let start = 0;
 if (fs.existsSync(EMB_PATH) && fs.existsSync(PROG_PATH)) {
+  const prog = JSON.parse(fs.readFileSync(PROG_PATH, 'utf8'));
   const buf = fs.readFileSync(EMB_PATH);
-  if (buf.length === N * DIM) {
+  if (prog.model && prog.model !== MODEL) {
+    console.log(`Progress file is for ${prog.model} — starting fresh for ${MODEL}.`);
+  } else if (buf.length === N * DIM) {
     out = new Int8Array(buf.buffer, buf.byteOffset, buf.length).slice();
-    start = JSON.parse(fs.readFileSync(PROG_PATH, 'utf8')).done || 0;
+    start = prog.done || 0;
     console.log(`Resuming from ${start}/${N}`);
   }
 }
 
-const missing = [];
+// Preserve missing-thumb ids recorded by earlier (partial) runs — a resume
+// only walks rows >= start, so starting empty would silently underreport.
+const MISS_PATH = path.join(__dirname, 'siglip2-missing.json');
+const missing = (start > 0 && fs.existsSync(MISS_PATH))
+  ? JSON.parse(fs.readFileSync(MISS_PATH, 'utf8')) : [];
 function flush(done) {
   fs.writeFileSync(EMB_PATH, Buffer.from(out.buffer));
   fs.writeFileSync(PROG_PATH, JSON.stringify({ done, model: MODEL, dim: DIM }));
@@ -98,5 +105,5 @@ for (let i = start; i < N; i += BATCH) {
   process.stdout.write(`\r  ${done}/${N}  (${rate.toFixed(1)} img/s · eta ${(eta / 60).toFixed(0)}m)   `);
 }
 flush(N);
-fs.writeFileSync(path.join(__dirname, 'siglip2-missing.json'), JSON.stringify(missing));
+fs.writeFileSync(MISS_PATH, JSON.stringify([...new Set(missing)]));
 console.log(`\nDone: ${N - missing.length} embedded, ${missing.length} missing, in ${((Date.now() - t0) / 60000).toFixed(0)}m`);
