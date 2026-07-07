@@ -16,6 +16,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { AutoProcessor, CLIPVisionModelWithProjection, RawImage, env } from '@huggingface/transformers';
+import { checkStamp } from './lib.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
@@ -31,17 +32,21 @@ const EMB_PATH = path.join(DATA, 'clip-emb.i8');
 const PROG_PATH = path.join(__dirname, 'clip-progress.json');
 
 const records = JSON.parse(fs.readFileSync(path.join(__dirname, 'records.json'), 'utf8'));
+const STAMP = checkStamp(records.map((r) => r.id), 'build/records.json');
 const N = records.length;
 const file = (id) => path.join(THUMBS, `${id}.jpg`);
 
-// resume if a partial run exists and the buffer is the right size
+// resume if a partial run exists for THIS harvest and the buffer is the right size
 let out = new Int8Array(N * DIM);
 let start = 0;
 if (fs.existsSync(EMB_PATH) && fs.existsSync(PROG_PATH)) {
   const buf = fs.readFileSync(EMB_PATH);
-  if (buf.length === N * DIM) {
+  const prog = JSON.parse(fs.readFileSync(PROG_PATH, 'utf8'));
+  if (prog.stamp && STAMP && prog.stamp !== STAMP) {
+    console.log(`Progress file is for a different harvest (${prog.stamp} ≠ ${STAMP}) — starting fresh.`);
+  } else if (buf.length === N * DIM) {
     out = new Int8Array(buf.buffer, buf.byteOffset, buf.length).slice();
-    start = JSON.parse(fs.readFileSync(PROG_PATH, 'utf8')).done || 0;
+    start = prog.done || 0;
     console.log(`Resuming from ${start}/${N}`);
   }
 }
@@ -54,7 +59,7 @@ const missing = (start > 0 && fs.existsSync(MISS_PATH))
 function flush(done) {
   fs.mkdirSync(DATA, { recursive: true });
   fs.writeFileSync(EMB_PATH, Buffer.from(out.buffer));
-  fs.writeFileSync(PROG_PATH, JSON.stringify({ done }));
+  fs.writeFileSync(PROG_PATH, JSON.stringify({ done, stamp: STAMP || undefined }));
 }
 
 console.log(`Embedding ${N} images with ${MODEL} (q8)…`);

@@ -19,11 +19,16 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { GROUPS } from './tag-vocab.js';
+import { checkStamp, assertSameHarvest } from './lib.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const records = JSON.parse(fs.readFileSync(path.join(__dirname, 'records.json'), 'utf8'));
 const candidates = JSON.parse(fs.readFileSync(path.join(__dirname, 'tag-candidates.json'), 'utf8'));
 const scores = JSON.parse(fs.readFileSync(path.join(__dirname, 'tag-scores.json'), 'utf8'));
+// scores index into records by ROW — a mismatched pair would caption every
+// sample image with the wrong photograph
+const STAMP = checkStamp(records.map((r) => r.id), 'build/records.json');
+assertSameHarvest(scores.stamp, STAMP, 'tag-scores.json', 're-run score-tags.js');
 
 const byKey = new Map(candidates.map((c) => [c.key, c]));
 const groups = { ...GROUPS, tepapa: 'Te Papa catalogued terms' };

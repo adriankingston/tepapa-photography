@@ -12,5 +12,6 @@
     "dim": 512,
     "file": "clip-emb.i8",
     "missing": 0
-  }
+  },
+  "stamp": "e6bfaf9bedde7baa"
 }

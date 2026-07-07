@@ -15,6 +15,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { AutoProcessor, AutoTokenizer, SiglipModel, SiglipTextModel, RawImage, env } from '@huggingface/transformers';
+import { checkStamp, assertSameHarvest } from './lib.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 env.cacheDir = path.join(__dirname, '.hf-cache');
@@ -29,6 +30,8 @@ const records = JSON.parse(fs.readFileSync(path.join(__dirname, 'records.json'),
 const candidates = JSON.parse(fs.readFileSync(path.join(__dirname, 'tag-candidates.json'), 'utf8'));
 const prog = JSON.parse(fs.readFileSync(path.join(__dirname, 'siglip2-progress.json'), 'utf8'));
 if (prog.done !== records.length) throw new Error(`embeddings incomplete: ${prog.done}/${records.length}`);
+const STAMP = checkStamp(records.map((r) => r.id), 'build/records.json');
+assertSameHarvest(prog.stamp, STAMP, 'siglip2-emb.i8', 're-run embed-siglip2.js');
 const DIM = prog.dim;
 const N = records.length;
 const embBuf = fs.readFileSync(path.join(__dirname, 'siglip2-emb.i8'));
@@ -127,6 +130,6 @@ for (let c = 0; c < candidates.length; c += BATCH) {
 
 fs.writeFileSync(path.join(__dirname, 'tag-scores.json'), JSON.stringify({
   model: MODEL, scale: Math.round(scale * 1000) / 1000, bias: Math.round(bias * 1000) / 1000,
-  template: TEMPLATE('{prompt}'), topk: TOPK, terms: results,
+  template: TEMPLATE('{prompt}'), topk: TOPK, stamp: STAMP || undefined, terms: results,
 }));
 console.log(`\nWrote build/tag-scores.json (${results.length} terms, top ${TOPK} each)`);

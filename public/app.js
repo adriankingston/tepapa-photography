@@ -449,10 +449,10 @@ async function loadSet(setName, key) {
 // fields return 0), so it's a client-side filter. It composes with any mode:
 //   • emotion / composition sets — filter the baked items (in loadSet)
 //   • free-text / subject searches — skip non-matching records as they page
-//   • no other filter — browse that decade straight from the baked index
-// index.json carries `y` (year taken) and `q` (quality score) per record.
-let _indexCache = null;
-let _indexById = null;   // id → index entry, built lazily (tag browse)
+//   • no other filter — browse that decade's baked shard directly
+// build-shards.js splits the big index per decade and per tag, so a browse
+// downloads only its own slice (entries carry `y` year taken + `q` quality).
+const _decadeCache = new Map();   // decade key → its shard (entries, best-first)
 const decadeOfYear = (y) => (y ? `${Math.floor(y / 10) * 10}s` : null);
 const inDecade = (y, key) => y != null && decadeOfYear(y) === key;
 const itemInDecade = (it, key) => inDecade(parseInt(it.date, 10) || null, key);
@@ -469,7 +469,7 @@ function yearOfRec(rec) {
   return null;
 }
 
-// Browse a decade straight from the baked index (used when no other filter is
+// Browse a decade straight from its baked shard (used when no other filter is
 // active — far cheaper than paging the whole API and dropping non-matches).
 async function loadDecade(key) {
   state.mode = 'mood';
@@ -477,11 +477,15 @@ async function loadDecade(key) {
   state.setKey = null;
   state.tag = null;
   resetState();
-  const gen = _gen;   // navigating away during the (13MB) fetch abandons this load
+  const gen = _gen;   // navigating away during the fetch abandons this load
   state.loading = true;
   setState(`Winding back to the ${key}…`);
   try {
-    if (!_indexCache) _indexCache = await fetch('/data/index.json').then((r) => r.json());
+    if (!_decadeCache.has(key)) {
+      const r = await fetch(`/data/decade/${encodeURIComponent(key)}.json`);
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      _decadeCache.set(key, await r.json());
+    }
   } catch (e) {
     if (gen !== _gen) return;
     state.loading = false;
@@ -490,10 +494,8 @@ async function loadDecade(key) {
     return;
   }
   if (gen !== _gen) return;
-  state.moodItems = _indexCache
-    .filter((e) => decadeOfYear(e.y) === key && !isAlbum(e.c))
-    .sort((a, b) => (b.q || 0) - (a.q || 0))   // best first, like the rest of the app
-    .map((e) => itemFromIndex(e.id, e));
+  // the shard is already best-quality-first and album-free (build-shards.js)
+  state.moodItems = _decadeCache.get(key).map((e) => itemFromIndex(e.id, e));
   state.total = state.moodItems.length;
   els.count.textContent = fmtInt(state.total);
   if (els.emoNote) {
@@ -519,7 +521,9 @@ function loadTags() {
     _tags = t;
     _tagByRec = new Map();
     for (const term of t.terms) {
-      _tagLookup.set(normEmo(term.label), term.key);
+      // searchable by label, slug, or slug-with-spaces (like the baked sets)
+      [term.label, term.key, term.key.replace(/-/g, ' ')]
+        .forEach((f) => _tagLookup.set(normEmo(f), term.key));
       for (const id of term.ids) {
         const a = _tagByRec.get(id);
         if (a) a.push(term); else _tagByRec.set(id, [term]);
@@ -529,32 +533,39 @@ function loadTags() {
   return _tagsP;
 }
 
-// Browse a tag from the baked index — ids stay in score order (strongest first).
+// Browse a tag from its baked shard — ids stay in score order (strongest
+// first); the shard carries just the photo metadata those ids need.
+const _tagPhotoCache = new Map();   // tag key → { photos: { id: entry } }
 async function loadTag(key) {
   state.mode = 'mood';
   state.setName = null;
   state.setKey = null;
   state.tag = key;
   resetState();
-  const gen = _gen;   // navigating away during the (13MB) fetch abandons this load
+  const gen = _gen;   // navigating away during a fetch abandons this load
   state.loading = true;
   setState('Reading the image tags…');
   await loadTags();
+  if (gen !== _gen) return;
   const term = _tags && _tags.terms.find((t) => t.key === key);
+  if (!term) { state.loading = false; state.done = true; setState('Couldn’t find that tag.', true); return; }
   try {
-    if (!_indexCache) _indexCache = await fetch('/data/index.json').then((r) => r.json());
+    if (!_tagPhotoCache.has(key)) {
+      const r = await fetch(`/data/tag/${encodeURIComponent(key)}.json`);
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      _tagPhotoCache.set(key, await r.json());
+    }
   } catch (e) {
     if (gen !== _gen) return;
-    state.loading = false; state.done = true; setState('Couldn’t load the collection index.', true); return;
+    state.loading = false; state.done = true; setState('Couldn’t load that tag.', true); return;
   }
   if (gen !== _gen) return;
-  if (!term) { state.loading = false; state.done = true; setState('Couldn’t find that tag.', true); return; }
-  if (!_indexById) { _indexById = new Map(); for (const e of _indexCache) _indexById.set(e.id, e); }
+  const photos = _tagPhotoCache.get(key).photos || {};
   const dec = state.decade;
   state.moodItems = [];
   for (const id of term.ids) {
-    const e = _indexById.get(id);
-    if (!e || isAlbum(e.c)) continue;
+    const e = photos[id];   // albums are dropped at build time
+    if (!e) continue;
     if (dec && decadeOfYear(e.y) !== dec) continue;
     state.moodItems.push(itemFromIndex(e.id, e));
   }

@@ -1,13 +1,14 @@
-// GET/POST /api/search — proxy a search to the Te Papa API.
+// GET /api/search — proxy a search to the Te Papa API.
 //
-// GET is used for the two cacheable reads so Vercel's edge network can cache
-// them (shared across all visitors, keyed by URL) and Te Papa's API is spared:
+// GET only, shaped so Vercel's edge network can cache both reads (shared
+// across all visitors, keyed by URL) and Te Papa's API is spared:
 //   • a record lookup   — /api/search?id=123            (immutable → cache a day)
 //   • a standard search — /api/search?q=…&from=0&size=36 (cache minutes + SWR)
-// POST is kept for arbitrary bodies (not edge-cacheable) and back-compat.
+// The old POST pass-through (arbitrary bodies, never cacheable) had no callers
+// left and was pure attack surface — retired.
 //
 // Errors and non-200 upstream responses are never cached.
-const { tepapaSearch, readJson, sendJson, apiKey } = require('../lib/tepapa');
+const { tepapaSearch, sendJson, apiKey } = require('../lib/tepapa');
 
 const OBJECT = [{ field: 'type', keyword: 'Object' }];
 const QSCORE = [{ field: '_meta.qualityScore', order: 'desc' }];
@@ -28,25 +29,18 @@ function fromQuery(q) {
 }
 
 module.exports = async (req, res) => {
-  if (req.method !== 'GET' && req.method !== 'POST') {
-    res.setHeader('Allow', 'GET, POST');
+  if (req.method !== 'GET') {
+    res.setHeader('Allow', 'GET');
     return sendJson(res, 405, { error: 'Method not allowed' });
   }
   if (!apiKey()) return sendJson(res, 500, { error: 'No API key configured. Set TEPAPA_API_KEY.' });
 
-  let payload, cache;
-  if (req.method === 'GET') {
-    const built = fromQuery(req.query || {});
-    if (!built) return sendJson(res, 400, { error: 'GET needs ?id= or ?q=' });
-    ({ payload, cache } = built);
-  } else {
-    payload = await readJson(req);
-    if (payload === null) return sendJson(res, 400, { error: 'Invalid JSON body' });
-    cache = 'no-store';   // POST bodies vary — not edge-cacheable
-  }
+  const built = fromQuery(req.query || {});
+  if (!built) return sendJson(res, 400, { error: 'GET needs ?id= or ?q=' });
+  const { payload, cache } = built;
 
   try {
-    const result = await tepapaSearch(payload || {});
+    const result = await tepapaSearch(payload);
     res.writeHead(result.status, {
       'Content-Type': 'application/json; charset=utf-8',
       'Cache-Control': result.status === 200 ? cache : 'no-store',
@@ -57,3 +51,4 @@ module.exports = async (req, res) => {
     res.end(JSON.stringify({ error: 'Upstream request failed', detail: String(e) }));
   }
 };
+module.exports.fromQuery = fromQuery;   // exported for the unit tests
