@@ -178,5 +178,61 @@
  },
  "so400m-p14-384:fp16": {
   "error": "Error: Exception during initialization: /Users/cloudtest/vss/_work/1/s/onnxruntime/core/graph/graph_utils.cc:30 int onnxruntime::graph_utils::GetIndexFromName(const Node &, const std::string &, bool) itr != node_args.end() was false. Attempting to get index by a name which does not exist:InsertedPre"
+ },
+ "so400m-p16-384:fp32": {
+  "model": "onnx-community/siglip2-so400m-patch16-384-ONNX",
+  "vdtype": "fp32",
+  "tdtype": "q8",
+  "src": "previews",
+  "dim": 1152,
+  "imgPerSec": 1.7,
+  "meanAuc": 0.974,
+  "perTerm": {
+   "geyser": 0.996,
+   "waterfall": 0.99,
+   "church": 0.937,
+   "wharenui": 0.955,
+   "dog": 0.923,
+   "sheep": 0.99,
+   "sailing-ship": 0.975,
+   "glacier": 0.989,
+   "windmill": 0.988,
+   "lighthouse": 0.995,
+   "wedding": 0.98,
+   "motorcar": 0.975,
+   "bridge": 0.964
+  },
+  "whVsChurch": {
+   "wharenuiCorrect": 78,
+   "churchCorrect": 75
+  }
+ },
+ "so400m-p16-512:int8": {
+  "model": "onnx-community/siglip2-so400m-patch16-512-ONNX",
+  "vdtype": "int8",
+  "tdtype": "q8",
+  "src": "previews",
+  "dim": 1152,
+  "imgPerSec": 1.1,
+  "meanAuc": 0.974,
+  "perTerm": {
+   "geyser": 0.999,
+   "waterfall": 0.99,
+   "church": 0.941,
+   "wharenui": 0.957,
+   "dog": 0.914,
+   "sheep": 0.991,
+   "sailing-ship": 0.974,
+   "glacier": 0.984,
+   "windmill": 0.996,
+   "lighthouse": 0.996,
+   "wedding": 0.977,
+   "motorcar": 0.974,
+   "bridge": 0.969
+  },
+  "whVsChurch": {
+   "wharenuiCorrect": 81,
+   "churchCorrect": 78
+  }
  }
 }
