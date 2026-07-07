@@ -34,10 +34,14 @@ async function getOne(rec, tries = 6) {
   for (let attempt = 1; ; attempt++) {
     try {
       const r = await fetch(url(rec.mid), { redirect: 'follow' });
+      if (r.status === 404) return 'fail:404';   // permanent — retrying won't help
       if (!r.ok) throw new Error('HTTP ' + r.status);
       const buf = Buffer.from(await r.arrayBuffer());
       if (buf.length < 100) throw new Error('tiny ' + buf.length);
-      fs.writeFileSync(f, buf);
+      // write-then-rename so a mid-write kill can't leave a truncated file
+      // that the resume skip-check (size > 0) would then trust forever
+      fs.writeFileSync(f + '.part', buf);
+      fs.renameSync(f + '.part', f);
       return 'ok';
     } catch (e) {
       if (attempt >= tries) return 'fail:' + e.message;

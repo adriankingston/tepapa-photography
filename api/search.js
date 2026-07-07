@@ -28,6 +28,10 @@ function fromQuery(q) {
 }
 
 module.exports = async (req, res) => {
+  if (req.method !== 'GET' && req.method !== 'POST') {
+    res.setHeader('Allow', 'GET, POST');
+    return sendJson(res, 405, { error: 'Method not allowed' });
+  }
   if (!apiKey()) return sendJson(res, 500, { error: 'No API key configured. Set TEPAPA_API_KEY.' });
 
   let payload, cache;

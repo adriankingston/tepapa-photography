@@ -28,6 +28,11 @@ const index = JSON.parse(fs.readFileSync(path.join(DATA, 'index.json'), 'utf8'))
 const N = index.length;
 const clip = new Int8Array(fs.readFileSync(path.join(DATA, 'clip-emb.i8')).buffer);
 const text = new Int8Array(fs.readFileSync(path.join(DATA, 'text-emb.i8')).buffer);
+// Row-alignment invariant: the .i8 matrices are row-aligned to index.json. A
+// re-harvest that changes the record set silently misaligns every score — fail
+// loudly instead (re-run embed-clip.js / embed-text.js after any harvest).
+if (clip.length !== N * CLIP_DIM) throw new Error(`clip-emb.i8 misaligned: ${clip.length} bytes for ${N} records x ${CLIP_DIM}`);
+if (text.length !== N * TEXT_DIM) throw new Error(`text-emb.i8 misaligned: ${text.length} bytes for ${N} records x ${TEXT_DIM}`);
 console.log(`Categorising ${N} records against ${EMOTIONS.length} emotions (keep confidence ≥ ${CONF})…`);
 
 const norm = (v) => { let s = 0; for (const x of v) s += x * x; s = Math.sqrt(s) || 1; return v.map((x) => x / s); };

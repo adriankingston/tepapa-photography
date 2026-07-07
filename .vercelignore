@@ -1,3 +1,14 @@
+# NOTE: when .vercelignore exists it fully replaces the .gitignore fallback
+# for CLI deploys — so everything deploy-irrelevant must be listed HERE.
+
+# The entire offline build pipeline (scripts, thumbs, previews, embeddings —
+# ~10GB on disk) never deploys.
+build/
+
+# Secrets — env comes from the Vercel dashboard, never the filesystem.
+.env
+.env.*
+
 # Build-only embeddings — used by build/*.js, never fetched by the browser.
 public/data/clip-emb.i8
 public/data/text-emb.i8

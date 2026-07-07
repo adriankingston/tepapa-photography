@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Photographs — Te Papa, openly licensed</title>
   <meta name="description" content="Browse openly-licensed photographs from Te Papa's collection. Every image here is free to use, or just browse to enjoy some of Aotearoa New Zealand's most significant photographic works">
+  <link rel="canonical" href="https://photography.nextepisode.nz/">
+  <meta name="theme-color" content="#faf6ef" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161412" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Photographs — Te Papa, openly licensed">
+  <meta property="og:description" content="Browse 54,000 openly-licensed photographs from Te Papa's collection — every image free to download and reuse.">
+  <meta property="og:url" content="https://photography.nextepisode.nz/">
+  <meta property="og:image" content="https://media.tepapa.govt.nz/collection/464512/preview">
+  <meta name="twitter:card" content="summary_large_image">
 
   <!-- Set the theme before first paint (no flash): saved choice, else OS preference.
        Shares the 'tepapa.theme' key with the main browser so the choice carries across. -->
@@ -26,8 +35,10 @@
   <link rel="icon" href="/favicon.png" sizes="any">
   <link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/roboto-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/tourney-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/style.css?v=38">
+  <link rel="stylesheet" href="/style.css?v=39">
 </head>
 <body>
   <!-- ====== Masthead ====== -->
@@ -36,10 +47,10 @@
       <p class="overline">Museum of New Zealand Te&nbsp;Papa Tongarewa</p>
       <div class="masthead-right">
         <a class="hub-link" href="https://nextepisode.nz">nextepisode&nbsp;&#8599;</a>
-        <div class="theme-switch" role="radiogroup" aria-label="Colour theme">
-          <button type="button" class="theme-opt" data-val="light" role="radio" aria-checked="true">Light</button>
+        <div class="theme-switch" aria-label="Colour theme">
+          <button type="button" class="theme-opt" data-val="light" aria-pressed="true">Light</button>
           <span class="theme-sep">/</span>
-          <button type="button" class="theme-opt" data-val="dark" role="radio" aria-checked="false">Dark</button>
+          <button type="button" class="theme-opt" data-val="dark" aria-pressed="false">Dark</button>
         </div>
       </div>
     </div>
@@ -93,9 +104,9 @@
 
   <!-- ====== Results ====== -->
   <main id="main">
-    <p class="state" id="state" hidden></p>
+    <p class="state" id="state" role="status" aria-live="polite" hidden></p>
     <section class="emotion-note" id="emotion-note" hidden></section>
-    <div class="plates" id="plates" aria-live="polite"></div>
+    <div class="plates" id="plates"></div>
     <div class="sentinel" id="sentinel" aria-hidden="true"></div>
     <p class="end-note" id="end-note" hidden>&mdash; the end of the roll &mdash;</p>
   </main>
@@ -124,13 +135,13 @@
       <!-- The image fills the fold; OpenSeadragon mounts here for IIIF deep-zoom
            (scroll / pinch / double-click to zoom, drag to pan). -->
       <div class="lb-viewer" id="lb-viewer"></div>
-      <a class="lb-scrolldown" href="#lb-caption" id="lb-scrolldown" aria-hidden="true">Details &darr;</a>
+      <a class="lb-scrolldown" href="#lb-caption" id="lb-scrolldown" aria-hidden="true" tabindex="-1">Details &darr;</a>
       <!-- Metadata, below the fold. -->
       <section class="lb-meta-panel" id="lb-caption"></section>
     </div>
   </div>
 
-  <script src="/vendor/openseadragon.min.js?v=38"></script>
-  <script src="/app.js?v=38"></script>
+  <script src="/vendor/openseadragon.min.js?v=39"></script>
+  <script src="/app.js?v=39"></script>
 </body>
 </html>

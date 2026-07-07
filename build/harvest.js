@@ -20,7 +20,7 @@ const ROOT = path.join(__dirname, '..');
 
 // --- env ---
 const envTxt = fs.readFileSync(path.join(ROOT, '.env'), 'utf8');
-const KEY = (envTxt.match(/^\s*TEPAPA_API_KEY\s*=\s*(.*)$/m) || [])[1].trim().replace(/^["']|["']$/g, '');
+const KEY = ((envTxt.match(/^\s*TEPAPA_API_KEY\s*=\s*(.*)$/m) || [])[1] || '').trim().replace(/^["']|["']$/g, '');
 if (!KEY) { console.error('No TEPAPA_API_KEY in ../.env'); process.exit(1); }
 
 const BASE = 'collection:"Photography" AND hasRepresentation.rights.allowsDownload:true';

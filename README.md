@@ -17,15 +17,23 @@ one downloadable image, and the page only ever displays that openly-licensed ima
 
 ## Features
 
-- Editorial masthead and gallery layout in self-hosted **Fraunces**; warm "paper"
-  light theme with a dark mode.
+- Editorial masthead and gallery layout in self-hosted **Fraunces**, **Archivo**
+  and **Tourney**; warm "paper" light theme with a dark mode (shared with the
+  sibling collections browser).
 - Free-text search across the open photography set.
-- A "ways in" line of curated subsets (documentary, art, New Zealand, Brake,
-  historical).
-- An index of significant New Zealand photographers with one-line blurbs and live
-  counts.
-- A masonry grid with wall-label captions, infinite scroll, and a full-screen
-  lightbox linking each work's licence, download, and Te Papa record.
+- Three "ways in" marquees — curated subjects, the 154 emotions of *The Book of
+  Human Emotions*, and photographic composition & technique terms — the latter
+  two matched by CLIP + text embeddings baked offline in `build/`.
+- A decade filter (year each photograph was taken) that composes with every
+  other browse mode.
+- AI image tags: a curated vocabulary scored against every photograph with
+  SigLIP 2, each shipped term individually human-calibrated
+  (`build/tag-verdicts.json`); searchable, browsable, and shown as clearly
+  labelled "Suggested from the image (AI)" chips in the detail view.
+- A masonry grid with wall-label captions and infinite scroll.
+- A full-screen record view with IIIF deep zoom (OpenSeadragon against Te Papa's
+  image server), rich catalogue metadata (description, subjects, credit line),
+  and each work's licence, download, and Te Papa record links.
 
 In-copyright photographers (e.g. Ans Westra) and the famous international names are
 deliberately absent — their work is not openly licensed, so it falls outside this
