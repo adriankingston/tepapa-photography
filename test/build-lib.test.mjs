@@ -5,7 +5,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   arr, yearOf, qualityOf, decadeOf, isAlbumEntry,
-  stampOf, checkStamp, shardDecades, shardTagPhotos,
+  stampOf, checkStamp, assertSameHarvest, shardDecades, shardTagPhotos,
 } from '../build/lib.js';
 
 test('arr normalises scalars, nulls, and arrays', () => {
@@ -54,6 +54,13 @@ test('stampOf is deterministic and order-sensitive', () => {
 test('checkStamp throws on a record set that does not match the harvest', () => {
   // build/set-stamp.json is committed — any made-up id list must be rejected
   assert.throws(() => checkStamp([1, 2, 3], 'test fixture'), /out of step with the harvest/);
+});
+
+test('assertSameHarvest rejects cross-harvest artifacts, grandfathers unstamped', () => {
+  assert.throws(() => assertSameHarvest('aaaa', 'bbbb', 'x.json', 'rebuild'), /different harvest/);
+  assert.doesNotThrow(() => assertSameHarvest('aaaa', 'aaaa', 'x.json', 'rebuild'));
+  assert.doesNotThrow(() => assertSameHarvest(undefined, 'bbbb', 'x.json', 'rebuild'));  // pre-stamp artifact
+  assert.doesNotThrow(() => assertSameHarvest('aaaa', null, 'x.json', 'rebuild'));       // no set-stamp.json yet
 });
 
 const INDEX = [

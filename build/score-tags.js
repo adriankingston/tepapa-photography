@@ -15,7 +15,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { AutoProcessor, AutoTokenizer, SiglipModel, SiglipTextModel, RawImage, env } from '@huggingface/transformers';
-import { checkStamp } from './lib.js';
+import { checkStamp, assertSameHarvest } from './lib.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 env.cacheDir = path.join(__dirname, '.hf-cache');
@@ -31,9 +31,7 @@ const candidates = JSON.parse(fs.readFileSync(path.join(__dirname, 'tag-candidat
 const prog = JSON.parse(fs.readFileSync(path.join(__dirname, 'siglip2-progress.json'), 'utf8'));
 if (prog.done !== records.length) throw new Error(`embeddings incomplete: ${prog.done}/${records.length}`);
 const STAMP = checkStamp(records.map((r) => r.id), 'build/records.json');
-if (prog.stamp && STAMP && prog.stamp !== STAMP) {
-  throw new Error(`siglip2-emb.i8 was embedded for a different harvest (${prog.stamp} ≠ ${STAMP}) — re-run embed-siglip2.js`);
-}
+assertSameHarvest(prog.stamp, STAMP, 'siglip2-emb.i8', 're-run embed-siglip2.js');
 const DIM = prog.dim;
 const N = records.length;
 const embBuf = fs.readFileSync(path.join(__dirname, 'siglip2-emb.i8'));

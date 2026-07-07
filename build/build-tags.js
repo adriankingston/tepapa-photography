@@ -22,7 +22,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { AutoTokenizer, SiglipTextModel, env } from '@huggingface/transformers';
-import { checkStamp } from './lib.js';
+import { checkStamp, assertSameHarvest } from './lib.js';
 import { COMPETITORS } from './tag-competitors.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -36,12 +36,8 @@ const records = JSON.parse(fs.readFileSync(path.join(__dirname, 'records.json'),
 const prog = JSON.parse(fs.readFileSync(path.join(__dirname, 'siglip2-progress.json'), 'utf8'));
 if (prog.done !== records.length) throw new Error(`embeddings incomplete: ${prog.done}/${records.length}`);
 const STAMP = checkStamp(records.map((r) => r.id), 'build/records.json');
-if (prog.stamp && STAMP && prog.stamp !== STAMP) {
-  throw new Error(`siglip2-emb.i8 was embedded for a different harvest (${prog.stamp} ≠ ${STAMP}) — re-run embed-siglip2.js`);
-}
-if (scoresMeta.stamp && STAMP && scoresMeta.stamp !== STAMP) {
-  throw new Error(`tag-scores.json is for a different harvest (${scoresMeta.stamp} ≠ ${STAMP}) — re-run score-tags.js`);
-}
+assertSameHarvest(prog.stamp, STAMP, 'siglip2-emb.i8', 're-run embed-siglip2.js');
+assertSameHarvest(scoresMeta.stamp, STAMP, 'tag-scores.json', 're-run score-tags.js');
 
 const MODEL = scoresMeta.model;
 const { scale, bias } = scoresMeta;
@@ -126,7 +122,7 @@ for (let c = 0; c < kept.length; c += BATCH) {
 
 terms.sort((a, b) => b.ids.length - a.ids.length);
 fs.writeFileSync(path.join(DATA, 'tags.json'), JSON.stringify({
-  model: MODEL, template: TEMPLATE('{prompt}'), terms,
+  model: MODEL, template: TEMPLATE('{prompt}'), stamp: STAMP || undefined, terms,
 }));
 
 const total = terms.reduce((s, t) => s + t.ids.length, 0);

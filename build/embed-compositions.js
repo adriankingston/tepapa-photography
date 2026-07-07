@@ -16,7 +16,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { AutoTokenizer, CLIPTextModelWithProjection, pipeline, env } from '@huggingface/transformers';
 import { COMPOSITIONS } from './compositions.js';
-import { checkStamp } from './lib.js';
+import { checkStamp, assertSameHarvest } from './lib.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA = path.join(__dirname, '..', 'public', 'data');
@@ -25,13 +25,18 @@ env.cacheDir = path.join(__dirname, '.hf-cache');
 const CLIP_DIM = 512, TEXT_DIM = 384, CONF = 0.75, W_CLIP = 0.7, W_TEXT = 0.3;
 
 const index = JSON.parse(fs.readFileSync(path.join(DATA, 'index.json'), 'utf8'));
-checkStamp(index.map((e) => e.id), 'public/data/index.json');
+const STAMP = checkStamp(index.map((e) => e.id), 'public/data/index.json');
 const N = index.length;
 const clip = new Int8Array(fs.readFileSync(path.join(DATA, 'clip-emb.i8')).buffer);
 const text = new Int8Array(fs.readFileSync(path.join(DATA, 'text-emb.i8')).buffer);
 // Row-alignment invariant: the .i8 matrices are row-aligned to index.json. A
 // re-harvest that changes the record set silently misaligns every score — fail
 // loudly instead (re-run embed-clip.js / embed-text.js after any harvest).
+// Byte length catches a changed COUNT; the recorded stamps catch a same-count
+// re-harvest whose membership shifted.
+const readJson = (p) => { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return {}; } };
+assertSameHarvest(readJson(path.join(__dirname, 'clip-progress.json')).stamp, STAMP, 'clip-emb.i8', 're-run embed-clip.js');
+assertSameHarvest(readJson(path.join(DATA, 'meta.json')).stamp, STAMP, 'text-emb.i8', 're-run embed-text.js');
 if (clip.length !== N * CLIP_DIM) throw new Error(`clip-emb.i8 misaligned: ${clip.length} bytes for ${N} records x ${CLIP_DIM}`);
 if (text.length !== N * TEXT_DIM) throw new Error(`text-emb.i8 misaligned: ${text.length} bytes for ${N} records x ${TEXT_DIM}`);
 console.log(`Categorising ${N} records against ${COMPOSITIONS.length} composition terms (keep confidence ≥ ${CONF})…`);

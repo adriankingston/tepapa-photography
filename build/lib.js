@@ -141,6 +141,14 @@ export function checkStamp(ids, what) {
   }
   return got;
 }
+// Reject a derived artifact whose recorded stamp is from a different harvest
+// than the one we're running against. Artifacts predating stamps (no stamp
+// field) are grandfathered — the callers' byte-length checks still apply.
+export function assertSameHarvest(artifactStamp, currentStamp, what, fix) {
+  if (artifactStamp && currentStamp && artifactStamp !== currentStamp) {
+    throw new Error(`${what} is from a different harvest (${artifactStamp} ≠ ${currentStamp}) — ${fix}`);
+  }
+}
 
 /* ---- shards ---------------------------------------------------------------- */
 // Group the lean index by decade taken, best quality first — one file per

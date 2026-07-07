@@ -19,10 +19,10 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { DATA, shardDecades, shardTagPhotos, checkStamp } from './lib.js';
+import { DATA, shardDecades, shardTagPhotos, checkStamp, assertSameHarvest } from './lib.js';
 
 const index = JSON.parse(fs.readFileSync(path.join(DATA, 'index.json'), 'utf8'));
-checkStamp(index.map((e) => e.id), 'public/data/index.json');
+const STAMP = checkStamp(index.map((e) => e.id), 'public/data/index.json');
 
 const MIN_YEAR = 1840;   // photographic era — drops the handful of misparsed "1800s"
 const mb = (n) => `${(n / 1048576).toFixed(1)} MB`;
@@ -56,6 +56,9 @@ const tagsPath = path.join(DATA, 'tags.json');
 if (fs.existsSync(tagsPath)) {
   fs.mkdirSync(tagDir, { recursive: true });
   const tags = JSON.parse(fs.readFileSync(tagsPath, 'utf8'));
+  // a tags.json built from a previous harvest would shard silently-stale
+  // membership (missing ids just get skipped) — refuse instead
+  assertSameHarvest(tags.stamp, STAMP, 'public/data/tags.json', 're-run build-tags.js');
   const shards = shardTagPhotos(index, tags.terms);
   let tagBytes = 0;
   for (const [key, shard] of shards) {
