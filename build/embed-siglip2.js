@@ -8,13 +8,15 @@
 // Vectors are L2-normalised then int8-quantised (×127), row-aligned to
 // build/records.json (same convention as clip-emb.i8).
 //
-//   in:  build/records.json, build/thumbs/<id>.jpg
-//   out: build/siglip2-emb.i8            (build-only, gitignored)
-//        build/siglip2-progress.json     resume marker
-//        build/siglip2-missing.json      ids with no readable thumb
+//   in:  build/records.json, build/<SRC>/<id>.jpg   (SRC: thumbs | previews)
+//   out: build/<TAG>-emb.i8            (build-only, gitignored)
+//        build/<TAG>-progress.json     resume marker
+//        build/<TAG>-missing.json      ids with no readable image
 //
 // Resumable: re-run after an interruption and it continues. Run:
-//   node build/embed-siglip2.js
+//   node build/embed-siglip2.js                      (production base-256 over thumbs)
+//   MODEL=onnx-community/siglip2-so400m-patch16-384-ONNX DTYPE=int8 \
+//     SRC=previews TAG=so400m BATCH=8 node build/embed-siglip2.js   (the big pass)
 //
 // Model choice (probed 2026-07-05): so400m-patch14-384 q8 is BROKEN in the
 // onnx-community export — it misranks unambiguous images (attention collapses
@@ -33,14 +35,16 @@ env.cacheDir = path.join(__dirname, '.hf-cache');
 const MODEL = process.env.MODEL || 'onnx-community/siglip2-base-patch16-256-ONNX';
 const DTYPE = process.env.DTYPE || 'q8';
 const BATCH = Number(process.env.BATCH || 16);
+const SRC = process.env.SRC || 'thumbs';   // thumbs | previews
+const TAG = process.env.TAG || 'siglip2';  // prefixes the output files
 const FLUSH_EVERY = 1000;
-const EMB_PATH = path.join(__dirname, 'siglip2-emb.i8');
-const PROG_PATH = path.join(__dirname, 'siglip2-progress.json');
+const EMB_PATH = path.join(__dirname, `${TAG}-emb.i8`);
+const PROG_PATH = path.join(__dirname, `${TAG}-progress.json`);
 
 const records = JSON.parse(fs.readFileSync(path.join(__dirname, 'records.json'), 'utf8'));
 const STAMP = checkStamp(records.map((r) => r.id), 'build/records.json');
 const N = records.length;
-const file = (id) => path.join(__dirname, 'thumbs', `${id}.jpg`);
+const file = (id) => path.join(__dirname, SRC, `${id}.jpg`);
 
 console.log(`Embedding ${N} images with ${MODEL} (${DTYPE})…`);
 const processor = await AutoProcessor.from_pretrained(MODEL);
@@ -70,7 +74,7 @@ if (fs.existsSync(EMB_PATH) && fs.existsSync(PROG_PATH)) {
 
 // Preserve missing-thumb ids recorded by earlier (partial) runs — a resume
 // only walks rows >= start, so starting empty would silently underreport.
-const MISS_PATH = path.join(__dirname, 'siglip2-missing.json');
+const MISS_PATH = path.join(__dirname, `${TAG}-missing.json`);
 const missing = (start > 0 && fs.existsSync(MISS_PATH))
   ? JSON.parse(fs.readFileSync(MISS_PATH, 'utf8')) : [];
 function flush(done) {

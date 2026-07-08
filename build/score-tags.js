@@ -22,19 +22,22 @@ env.cacheDir = path.join(__dirname, '.hf-cache');
 
 const MODEL = process.env.MODEL || 'onnx-community/siglip2-base-patch16-256-ONNX';
 const DTYPE = process.env.DTYPE || 'q8';
+const TAG = process.env.TAG || 'siglip2';   // which <TAG>-emb.i8 / <TAG>-progress.json to score
+const SRC = process.env.SRC || 'thumbs';    // image dir for the scale/bias calibration image
+const SCORES_OUT = process.env.SCORES_OUT || 'tag-scores.json';
 const TOPK = Number(process.env.TOPK || 60);
 const BAND_K = Number(process.env.BAND_K || 24);   // sample size per 5% probability band
 const TEMPLATE = (p) => `a black and white photograph of ${p}.`;
 
 const records = JSON.parse(fs.readFileSync(path.join(__dirname, 'records.json'), 'utf8'));
 const candidates = JSON.parse(fs.readFileSync(path.join(__dirname, 'tag-candidates.json'), 'utf8'));
-const prog = JSON.parse(fs.readFileSync(path.join(__dirname, 'siglip2-progress.json'), 'utf8'));
+const prog = JSON.parse(fs.readFileSync(path.join(__dirname, `${TAG}-progress.json`), 'utf8'));
 if (prog.done !== records.length) throw new Error(`embeddings incomplete: ${prog.done}/${records.length}`);
 const STAMP = checkStamp(records.map((r) => r.id), 'build/records.json');
 assertSameHarvest(prog.stamp, STAMP, 'siglip2-emb.i8', 're-run embed-siglip2.js');
 const DIM = prog.dim;
 const N = records.length;
-const embBuf = fs.readFileSync(path.join(__dirname, 'siglip2-emb.i8'));
+const embBuf = fs.readFileSync(path.join(__dirname, `${TAG}-emb.i8`));
 const emb = new Int8Array(embBuf.buffer, embBuf.byteOffset, embBuf.length);
 
 console.log(`Scoring ${candidates.length} terms × ${N} images (dim ${DIM})…`);
@@ -48,7 +51,7 @@ const processor = await AutoProcessor.from_pretrained(MODEL);
 const fullModel = await SiglipModel.from_pretrained(MODEL, { dtype: DTYPE });
 const calibTexts = ['a black and white photograph of a ship.', 'a black and white photograph of a mountain.'];
 const calibTok = tokenizer(calibTexts, { padding: 'max_length', max_length: 64, truncation: true });
-const calibImg = await processor([await RawImage.read(path.join(__dirname, 'thumbs', `${records[0].id}.jpg`))]);
+const calibImg = await processor([await RawImage.read(path.join(__dirname, SRC, `${records[0].id}.jpg`))]);
 const fullOut = await fullModel({ ...calibTok, ...calibImg });
 const tOut = await textModel(calibTok);
 const l2 = (v, off, dim) => { let n = 0; for (let d = 0; d < dim; d++) n += v[off + d] ** 2; return Math.sqrt(n) || 1; };
@@ -128,8 +131,8 @@ for (let c = 0; c < candidates.length; c += BATCH) {
   process.stdout.write(`\r  ${Math.min(c + BATCH, candidates.length)}/${candidates.length} terms  (${(((Date.now() - t0)) / 1000).toFixed(0)}s)   `);
 }
 
-fs.writeFileSync(path.join(__dirname, 'tag-scores.json'), JSON.stringify({
+fs.writeFileSync(path.join(__dirname, SCORES_OUT), JSON.stringify({
   model: MODEL, scale: Math.round(scale * 1000) / 1000, bias: Math.round(bias * 1000) / 1000,
   template: TEMPLATE('{prompt}'), topk: TOPK, stamp: STAMP || undefined, terms: results,
 }));
-console.log(`\nWrote build/tag-scores.json (${results.length} terms, top ${TOPK} each)`);
+console.log(`\nWrote build/${SCORES_OUT} (${results.length} terms, top ${TOPK} each)`);
