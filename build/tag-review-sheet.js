@@ -24,11 +24,19 @@ import { checkStamp, assertSameHarvest } from './lib.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const records = JSON.parse(fs.readFileSync(path.join(__dirname, 'records.json'), 'utf8'));
 const candidates = JSON.parse(fs.readFileSync(path.join(__dirname, 'tag-candidates.json'), 'utf8'));
-const scores = JSON.parse(fs.readFileSync(path.join(__dirname, 'tag-scores.json'), 'utf8'));
+const SCORES = process.env.SCORES || 'tag-scores.json';
+const scores = JSON.parse(fs.readFileSync(path.join(__dirname, SCORES), 'utf8'));
+// Optional prefill (e.g. transferred thresholds after a model change) —
+// saved verdicts in localStorage still win over the prefill.
+const PREFILL = process.env.PREFILL
+  ? JSON.parse(fs.readFileSync(path.join(__dirname, process.env.PREFILL), 'utf8')) : {};
+// One verdict store per model, so recalibrating a new encoder never
+// overwrites the previous model's saved verdicts.
+const LS_KEY = `tepapa.tagreview.${(scores.model || 'v1').split('/').pop()}`;
 // scores index into records by ROW — a mismatched pair would caption every
 // sample image with the wrong photograph
 const STAMP = checkStamp(records.map((r) => r.id), 'build/records.json');
-assertSameHarvest(scores.stamp, STAMP, 'tag-scores.json', 're-run score-tags.js');
+assertSameHarvest(scores.stamp, STAMP, SCORES, 're-run score-tags.js');
 
 const byKey = new Map(candidates.map((c) => [c.key, c]));
 const groups = { ...GROUPS, tepapa: 'Te Papa catalogued terms' };
@@ -87,8 +95,11 @@ const html = `<!doctype html>
 <script>
 const DATA = ${JSON.stringify(data)};
 const GROUPS = ${JSON.stringify(groups)};
-const LS = 'tepapa.tagreview.v1';
-const verdicts = JSON.parse(localStorage.getItem(LS) || '{}');
+const LS = ${JSON.stringify(LS_KEY)};
+const PREFILL = ${JSON.stringify(PREFILL)};
+// prefilled verdicts (e.g. transferred thresholds) seed the sheet; anything
+// you save here overrides them
+const verdicts = Object.assign({}, PREFILL, JSON.parse(localStorage.getItem(LS) || '{}'));
 const save = () => localStorage.setItem(LS, JSON.stringify(verdicts));
 const side = document.getElementById('side');
 const main = document.getElementById('main');
@@ -138,7 +149,7 @@ function renderTerm(key, keepBand) {
     '<div class="hist">' + t.hist.map((n, i) =>
       '<i class="' + (clickable(i) ? 'click' : '') + (band === i ? ' sel' : '') + '" data-b="' + i + '" style="height:' + (i === 0 ? 2 : Math.max(3, n / maxH * 68)) + 'px" title="' + (i * 5) + '–' + (i * 5 + 5) + '%: ' + n + (clickable(i) ? ' — click to view a sample' : '') + '"></i>').join('') + '</div>' +
     '<p class="hist-cap">Score distribution, 5% bands. Click a bar (15%+) to see what that confidence level actually looks like.</p>' +
-    '<div class="row"><input type="range" id="thr" min="0.2" max="0.99" step="0.01" value="' + (v.thr || 0.5) + '">' +
+    '<div class="row"><input type="range" id="thr" min="0.05" max="0.999" step="0.001" value="' + (v.thr || 0.5) + '">' +
     '<span id="thrv">≥ ' + (v.thr || 0.5) + '</span>' +
     '<span class="meta" id="kept"></span>' +
     '<button id="keep">Keep at threshold</button><button id="drop">Drop term</button></div></div>' +
