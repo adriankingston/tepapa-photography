@@ -1,0 +1,3399 @@
+{
+ "qwen3-vl:2b-instruct": {
+  "results": {
+   "16154": {
+    "group": "place-bait",
+    "secs": 3.257,
+    "parsed": {
+     "caption": "a black and white photograph of a wide, flat area with a person standing on the right side, surrounded by trees and hills under an overcast sky.",
+     "objects": [
+      "person",
+      "tree",
+      "hill"
+     ],
+     "scene": "landscape",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "17385": {
+    "group": "maori-subject",
+    "secs": 3.385,
+    "parsed": {
+     "caption": "a black-and-white photograph of a man in traditional samoan attire, including a feathered headdress with circular ornaments and a necklace made of sharp teeth-like elements.",
+     "objects": [
+      "man",
+      "headdress",
+      "necklace",
+      "sash"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "20217": {
+    "group": "church",
+    "secs": 3.409,
+    "parsed": {
+     "caption": "a black and white photograph of a church and manse with ornate architectural details, including steep roofs and spires, set in front of a stone wall and a street.",
+     "objects": [
+      "church",
+      "manse",
+      "street",
+      "stone wall"
+     ],
+     "scene": "architecture",
+     "people": "crowd",
+     "building_type": "church"
+    }
+   },
+   "21986": {
+    "group": "place-bait",
+    "secs": 3.302,
+    "parsed": {
+     "caption": "a black and white photograph of a calm lake surrounded by dense vegetation and large mountains in the background.",
+     "objects": [
+      "lake",
+      "mountain",
+      "tree",
+      "grass",
+      "rock"
+     ],
+     "scene": "landscape",
+     "people": "crowd",
+     "building_type": "none"
+    }
+   },
+   "22765": {
+    "group": "church",
+    "secs": 3.26,
+    "parsed": {
+     "caption": "a black and white photograph of a rural street with a church on the right and several buildings along the road, showing a few pedestrians walking in the distance.",
+     "objects": [
+      "church",
+      "building",
+      "road",
+      "people"
+     ],
+     "scene": "street",
+     "people": "two",
+     "building_type": "church"
+    }
+   },
+   "23592": {
+    "group": "ship",
+    "secs": 3.246,
+    "parsed": {
+     "caption": "a black and white photograph of a riverbank with boats docked at a pier, trees in the foreground, and rolling hills in the background.",
+     "objects": [
+      "boat",
+      "pier",
+      "tree",
+      "river"
+     ],
+     "scene": "landscape",
+     "people": "crowd",
+     "building_type": "house"
+    }
+   },
+   "23776": {
+    "group": "place-bait",
+    "secs": 3.196,
+    "parsed": {
+     "caption": "a black and white photograph of milford sound with mountains in the background and a rocky shoreline in the foreground",
+     "objects": [
+      "mountain",
+      "rocky shore",
+      "reeds",
+      "water"
+     ],
+     "scene": "landscape",
+     "people": "crowd",
+     "building_type": "none"
+    }
+   },
+   "23838": {
+    "group": "church",
+    "secs": 3.594,
+    "parsed": {
+     "caption": "a black and white photograph of a rural town from an elevated viewpoint, showing a dirt road with a horse-drawn cart, several buildings including one labeled 'J.LEE BULLSHEAD BUTCHERY', and open fields extending to the horizon where a church steeple is visible.",
+     "objects": [
+      "building",
+      "horse-drawn cart",
+      "person"
+     ],
+     "scene": "street",
+     "people": "one",
+     "building_type": "commercial"
+    }
+   },
+   "24216": {
+    "group": "pool",
+    "secs": 3.171,
+    "parsed": {
+     "caption": "a black-and-white photograph of a layered rock formation with vertical columns, likely a cliff face or geological stratum.",
+     "objects": [
+      "rock",
+      "cliff"
+     ],
+     "scene": "landscape",
+     "people": "crowd",
+     "building_type": "none"
+    }
+   },
+   "25373": {
+    "group": "pool",
+    "secs": 3.256,
+    "parsed": {
+     "caption": "a black and white photograph of a long, low-lying structure with a metal roof situated in a valley surrounded by large mountains.",
+     "objects": [
+      "building",
+      "path",
+      "water",
+      "tree",
+      "rock"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "house"
+    }
+   },
+   "54054": {
+    "group": "wharenui",
+    "secs": 3.23,
+    "parsed": {
+     "caption": "a black and white photograph of a traditional wooden house with intricate carvings on its front posts and roofline, set in an outdoor environment.",
+     "objects": [
+      "house",
+      "door",
+      "window",
+      "carved post"
+     ],
+     "scene": "interior",
+     "people": "crowd",
+     "building_type": "house"
+    }
+   },
+   "123123": {
+    "group": "ship",
+    "secs": 3.157,
+    "parsed": {
+     "caption": "a long wooden bridge with a series of truss supports extending over a body of water, with boats on the water and hills in the background",
+     "objects": [
+      "bridge",
+      "boat",
+      "water"
+     ],
+     "scene": "landscape",
+     "people": "crowd",
+     "building_type": "none"
+    }
+   },
+   "123399": {
+    "group": "pool",
+    "secs": 3.277,
+    "parsed": {
+     "caption": "a black and white photograph of a calm body of water surrounded by trees and foliage, viewed from a natural vantage point.",
+     "objects": [
+      "water",
+      "trees",
+      "vegetation"
+     ],
+     "scene": "landscape",
+     "people": "crowd",
+     "building_type": "none"
+    }
+   },
+   "126251": {
+    "group": "pool",
+    "secs": 3.017,
+    "parsed": {
+     "caption": "two children lying on their stomachs in shallow water at the beach",
+     "objects": [
+      "child",
+      "child"
+     ],
+     "scene": "architecture",
+     "people": "crowd",
+     "building_type": "none"
+    }
+   },
+   "127687": {
+    "group": "wharenui",
+    "secs": 3.16,
+    "parsed": {
+     "caption": "a black and white photograph of a traditional māori meeting house with intricate carvings on its pillars and a figure standing atop the roofline holding a spear.",
+     "objects": [
+      "pillar",
+      "carving",
+      "figure"
+     ],
+     "scene": "marine",
+     "people": "crowd",
+     "building_type": "house"
+    }
+   },
+   "133423": {
+    "group": "wharenui",
+    "secs": 11.699,
+    "parsed": {
+     "caption": "a black and white photograph of a traditional wooden house with intricate carved timberwork on its roofline and a decorative pole featuring a face, set against a backdrop of trees.",
+     "objects": [
+      "house",
+      "door",
+      "window",
+      "bench",
+      "pole"
+     ],
+     "scene": "interior",
+     "people": "crowd",
+     "building_type": "house"
+    }
+   },
+   "168693": {
+    "group": "wharenui",
+    "secs": 3.033,
+    "parsed": {
+     "caption": "a black and white photograph of a rural settlement with wooden buildings and a church in the background.",
+     "objects": [
+      "church",
+      "house",
+      "fence"
+     ],
+     "scene": "street",
+     "people": "crowd",
+     "building_type": "church"
+    }
+   },
+   "211251": {
+    "group": "church",
+    "secs": 2.951,
+    "parsed": {
+     "caption": "a group of people gathered in front of a white church on a sandy area with palm trees",
+     "objects": [
+      "people",
+      "church"
+     ],
+     "scene": "street",
+     "people": "two",
+     "building_type": "church"
+    }
+   },
+   "211373": {
+    "group": "maori-subject",
+    "secs": 3.077,
+    "parsed": {
+     "caption": "a sepia-toned portrait of a young woman with curly hair, shown from the shoulders up against a plain background.",
+     "objects": [
+      "woman",
+      "hair"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "224430": {
+    "group": "place-bait",
+    "secs": 3.267,
+    "parsed": {
+     "caption": "a serene landscape featuring a large body of water in the foreground with a distant mountain range under an overcast sky.",
+     "objects": [
+      "water",
+      "mountain",
+      "cliff",
+      "vegetation"
+     ],
+     "scene": "landscape",
+     "people": "crowd",
+     "building_type": "none"
+    }
+   },
+   "243815": {
+    "group": "pool",
+    "secs": 3.028,
+    "parsed": {
+     "caption": "a black and white photograph of a bird resting on dry grass and leaves in a natural setting",
+     "objects": [
+      "bird"
+     ],
+     "scene": "landscape",
+     "people": "crowd",
+     "building_type": "none"
+    }
+   },
+   "260749": {
+    "group": "wharenui",
+    "secs": 3.077,
+    "parsed": {
+     "caption": "a black and white photograph of a traditional wooden structure with carved totem poles on its front pillars, featuring three individuals standing or sitting in front of it.",
+     "objects": [
+      "totem pole",
+      "wooden structure",
+      "person",
+      "person",
+      "person"
+     ],
+     "scene": "interior",
+     "people": "two",
+     "building_type": "house"
+    }
+   },
+   "270269": {
+    "group": "place-bait",
+    "secs": 3.267,
+    "parsed": {
+     "caption": "a vintage stereoscopic photograph showing a rural landscape with rolling hills, wooden fences, and buildings in the foreground, set against distant mountains.",
+     "objects": [
+      "fence",
+      "building",
+      "mountain"
+     ],
+     "scene": "landscape",
+     "people": "crowd",
+     "building_type": "house"
+    }
+   },
+   "320477": {
+    "group": "ship",
+    "secs": 3.45,
+    "parsed": {
+     "caption": "a vintage postcard showing a crowded outdoor gathering at Caroline Bay in Timaru, New Zealand, featuring a large bandstand with a crowd of people on a grassy area near the water.",
+     "objects": [
+      "bandstand",
+      "people",
+      "trees",
+      "grass",
+      "fence"
+     ],
+     "scene": "group of people",
+     "people": "crowd",
+     "building_type": "commercial"
+    }
+   },
+   "331551": {
+    "group": "ship",
+    "secs": 3.191,
+    "parsed": {
+     "caption": "a historical photograph showing a group of men preparing a long wooden rowboat on a dock in a harbor with large ships and hills in the background.",
+     "objects": [
+      "rowboat",
+      "dock",
+      "people"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "house"
+    }
+   },
+   "352189": {
+    "group": "portrait",
+    "secs": 3.305,
+    "parsed": {
+     "caption": "a man in a military uniform sits on a wooden chair with a wicker backrest, looking at the camera.",
+     "objects": [
+      "man",
+      "uniform",
+      "hat",
+      "belt",
+      "chair"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "352683": {
+    "group": "portrait",
+    "secs": 3.123,
+    "parsed": {
+     "caption": "a black and white portrait of a woman in a light-colored dress with a high collar, standing against a dark background.",
+     "objects": [
+      "woman",
+      "dress"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "353563": {
+    "group": "portrait",
+    "secs": 3.116,
+    "parsed": {
+     "caption": "a black and white studio portrait of two formally dressed individuals standing in front of a painted backdrop with trees.",
+     "objects": [
+      "man",
+      "woman"
+     ],
+     "scene": "portrait",
+     "people": "crowd",
+     "building_type": "none"
+    }
+   },
+   "356907": {
+    "group": "pool",
+    "secs": 3.231,
+    "parsed": {
+     "caption": "a formal black-and-white portrait of a man in a double-breasted suit seated against a plain background",
+     "objects": [
+      "man",
+      "suit",
+      "tie",
+      "handkerchief"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "360465": {
+    "group": "portrait",
+    "secs": 3.093,
+    "parsed": {
+     "caption": "a black-and-white studio portrait of a man in formal attire",
+     "objects": [
+      "man",
+      "suit",
+      "tie",
+      "shirt"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "361870": {
+    "group": "portrait",
+    "secs": 3.499,
+    "parsed": {
+     "caption": "a black-and-white studio portrait of a man in a dark suit standing next to a woman in a light dress seated on a bench against a painted backdrop",
+     "objects": [
+      "man",
+      "woman",
+      "bench",
+      "suit",
+      "vest",
+      "tie",
+      "dress"
+     ],
+     "scene": "portrait",
+     "people": "crowd",
+     "building_type": "none"
+    }
+   },
+   "363884": {
+    "group": "portrait",
+    "secs": 3.071,
+    "parsed": {
+     "caption": "a woman in a light-colored dress sits on an ornate bench against a dark curtain.",
+     "objects": [
+      "woman",
+      "bench"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "441511": {
+    "group": "pool",
+    "secs": 3.16,
+    "parsed": {
+     "caption": "a serene lake surrounded by lush trees and foliage",
+     "objects": [
+      "tree",
+      "lake",
+      "palm tree",
+      "bush"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "house"
+    }
+   },
+   "546242": {
+    "group": "pool",
+    "secs": 3.271,
+    "parsed": {
+     "caption": "a serene lake with distant snow-capped mountains in the background, framed by bare trees on the foreground",
+     "objects": [
+      "lake",
+      "mountain",
+      "tree",
+      "island"
+     ],
+     "scene": "landscape",
+     "people": "crowd",
+     "building_type": "none"
+    }
+   },
+   "547086": {
+    "group": "pool",
+    "secs": 3.391,
+    "parsed": {
+     "caption": "a wooden boat docked at a pebbled shore with logs laid out on the beach, a person standing nearby, and another vessel in the distance",
+     "objects": [
+      "boat",
+      "person",
+      "log",
+      "shore"
+     ],
+     "scene": "other",
+     "people": "one",
+     "building_type": "house"
+    }
+   },
+   "744076": {
+    "group": "maori-subject",
+    "secs": 3.095,
+    "parsed": {
+     "caption": "a man leans out of a window with a hat resting on the sill, looking at the viewer.",
+     "objects": [
+      "man",
+      "hat",
+      "window"
+     ],
+     "scene": "street",
+     "people": "one",
+     "building_type": "commercial"
+    }
+   },
+   "1238483": {
+    "group": "church",
+    "secs": 3.129,
+    "parsed": {
+     "caption": "a weathered stone wall with a group of people standing in front of a single-story building with a thatched roof.",
+     "objects": [
+      "stone wall",
+      "people"
+     ],
+     "scene": "street",
+     "people": "one",
+     "building_type": "house"
+    }
+   },
+   "1287260": {
+    "group": "pool",
+    "secs": 3.309,
+    "parsed": {
+     "caption": "a collection of vintage New Zealand postage stamps arranged around an illustration of the International Exhibition Christchurch 1906-7, featuring a large building with a lake in front.",
+     "objects": [
+      "stamp",
+      "seal"
+     ],
+     "scene": "marine",
+     "people": "crowd",
+     "building_type": "commercial"
+    }
+   },
+   "1389501": {
+    "group": "ship",
+    "secs": 3.103,
+    "parsed": {
+     "caption": "a historical photograph of a large rocky island with a prominent peak, surrounded by water",
+     "objects": [
+      "island",
+      "water"
+     ],
+     "scene": "landscape",
+     "people": "crowd",
+     "building_type": "none"
+    }
+   },
+   "1390509": {
+    "group": "wharenui",
+    "secs": 3.208,
+    "parsed": {
+     "caption": "a vintage photograph of a rural landscape with a body of water, a small island in the distance, and several buildings on the shore and along a path.",
+     "objects": [
+      "house",
+      "small shed",
+      "path",
+      "trees",
+      "vegetation"
+     ],
+     "scene": "landscape",
+     "people": "two",
+     "building_type": "house"
+    }
+   },
+   "1407787": {
+    "group": "place-bait",
+    "secs": 3.265,
+    "parsed": {
+     "caption": "a stereoscopic photograph of a group of hikers on a rocky path in a snowy mountain landscape",
+     "objects": [
+      "hikers",
+      "rocky terrain",
+      "snow-covered ground",
+      "mountain range"
+     ],
+     "scene": "street",
+     "people": "two",
+     "building_type": "none"
+    }
+   },
+   "1452833": {
+    "group": "maori-subject",
+    "secs": 3.169,
+    "parsed": {
+     "caption": "a person sitting in a shallow stream surrounded by rocks and dense foliage.",
+     "objects": [
+      "person",
+      "stream",
+      "rocks",
+      "trees"
+     ],
+     "scene": "landscape",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "1453652": {
+    "group": "ship",
+    "secs": 3.132,
+    "parsed": {
+     "caption": "a beach scene with several boats on sand and in the water, including a large ship partially submerged in the sea.",
+     "objects": [
+      "boat",
+      "ship",
+      "person"
+     ],
+     "scene": "other",
+     "people": "two",
+     "building_type": "none"
+    }
+   },
+   "1700844": {
+    "group": "church",
+    "secs": 3.189,
+    "parsed": {
+     "caption": "a black and white photograph of a traditional wooden structure with a thatched roof, set in a grassy field with trees and hills in the background.",
+     "objects": [
+      "building",
+      "tree"
+     ],
+     "scene": "interior",
+     "people": "crowd",
+     "building_type": "house"
+    }
+   },
+   "1770195": {
+    "group": "wharenui",
+    "secs": 2.927,
+    "parsed": {
+     "caption": "a black and white photograph of a traditional wooden structure with intricate carvings on its pillars and roofline, set against a cloudy sky.",
+     "objects": [
+      "building",
+      "person"
+     ],
+     "scene": "interior",
+     "people": "one",
+     "building_type": "house"
+    }
+   },
+   "1770196": {
+    "group": "wharenui",
+    "secs": 2.774,
+    "parsed": {
+     "caption": "a black and white photograph of a wooden structure with a carved pole in front, set against a backdrop of hills.",
+     "objects": [
+      "pole",
+      "building"
+     ],
+     "scene": "interior",
+     "people": "one",
+     "building_type": "house"
+    }
+   },
+   "2074943": {
+    "group": "maori-subject",
+    "secs": 3.243,
+    "parsed": {
+     "caption": "a sepia photograph of two individuals standing on a flat, open landscape with their arms raised toward a biplane flying in the sky.",
+     "objects": [
+      "person",
+      "person",
+      "airplane"
+     ],
+     "scene": "landscape",
+     "people": "crowd",
+     "building_type": "none"
+    }
+   },
+   "2192384": {
+    "group": "maori-subject",
+    "secs": 3.07,
+    "parsed": {
+     "caption": "a black and white photograph of five children emerging from water at the edge of a pool, smiling and pointing towards the camera.",
+     "objects": [
+      "children",
+      "pool"
+     ],
+     "scene": "interior",
+     "people": "two",
+     "building_type": "none"
+    }
+   },
+   "2233629": {
+    "group": "church",
+    "secs": 3.262,
+    "parsed": {
+     "caption": "a black and white photograph of a street scene in an urban area with pedestrians walking on a paved road, trees lining the sidewalk, and buildings in the background.",
+     "objects": [
+      "people",
+      "tree",
+      "building"
+     ],
+     "scene": "street",
+     "people": "two",
+     "building_type": "commercial"
+    }
+   },
+   "2233632": {
+    "group": "church",
+    "secs": 3.131,
+    "parsed": {
+     "caption": "a black and white photograph of a gothic-style church facade with intricate stone carvings and large arched windows, featuring three women walking in front of it on a paved street.",
+     "objects": [
+      "church",
+      "people"
+     ],
+     "scene": "street",
+     "people": "two",
+     "building_type": "church"
+    }
+   }
+  },
+  "done": true
+ },
+ "qwen3-vl:4b-instruct": {
+  "results": {
+   "16154": {
+    "group": "place-bait",
+    "secs": 5.551,
+    "parsed": {
+     "caption": "A lone figure stands on a wide expanse of flat ground beside a body of water, with tree-covered hills rising in the background under an overcast sky.",
+     "objects": [
+      "figure",
+      "water",
+      "hills",
+      "trees"
+     ],
+     "scene": "landscape",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "17385": {
+    "group": "maori-subject",
+    "secs": 5.969,
+    "parsed": {
+     "caption": "A seated individual wearing elaborate headgear with circular ornaments and feathered elements, adorned with a spiked necklace and patterned lower garment while holding a long object.",
+     "objects": [
+      "headgear",
+      "necklace",
+      "lower garment",
+      "object held"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "20217": {
+    "group": "church",
+    "secs": 5.746,
+    "parsed": {
+     "caption": "A black-and-white photograph showing a church with a tall spire adjacent to an ornate house with pointed towers, both behind a low fence along a paved street.",
+     "objects": [
+      "church",
+      "house",
+      "fence",
+      "street",
+      "trees"
+     ],
+     "scene": "street",
+     "people": "none",
+     "building_type": "church"
+    }
+   },
+   "21986": {
+    "group": "place-bait",
+    "secs": 5.671,
+    "parsed": {
+     "caption": "A black-and-white photograph showing a calm body of water bordered by dense vegetation and steep, tree-covered slopes under an overcast sky.",
+     "objects": [
+      "water",
+      "vegetation",
+      "trees",
+      "rock"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "22765": {
+    "group": "church",
+    "secs": 6.019,
+    "parsed": {
+     "caption": "A wide street with unpaved surface stretches between rows of low structures under an overcast sky.",
+     "objects": [
+      "dirt road",
+      "grass verge",
+      "telephone pole",
+      "building with pointed roof and steeple",
+      "fence",
+      "house with gabled roof",
+      "cemetery marker"
+     ],
+     "scene": "street",
+     "people": "two",
+     "building_type": "church"
+    }
+   },
+   "23592": {
+    "group": "ship",
+    "secs": 5.416,
+    "parsed": {
+     "caption": "A black-and-white view of a calm waterway with boats moored near a shoreline, framed by tree branches in the foreground.",
+     "objects": [
+      "tree",
+      "boat",
+      "water",
+      "shoreline"
+     ],
+     "scene": "portrait",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "23776": {
+    "group": "place-bait",
+    "secs": 6.056,
+    "parsed": {
+     "caption": "A black-and-white photograph showing a wide body of water flanked by steep, rugged landforms under an overcast sky, with vegetation and debris in the foreground.",
+     "objects": [
+      "water",
+      "landform",
+      "sky",
+      "vegetation",
+      "debris"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "23838": {
+    "group": "church",
+    "secs": 5.807,
+    "parsed": {
+     "caption": "A wide view from an elevated position shows a road with a cart pulled by animals, surrounded by open fields and scattered structures under a bright sky.",
+     "objects": [
+      "cart",
+      "animals",
+      "fields",
+      "trees",
+      "signs",
+      "telephone poles"
+     ],
+     "scene": "landscape",
+     "people": "two",
+     "building_type": "none"
+    }
+   },
+   "24216": {
+    "group": "pool",
+    "secs": 5.571,
+    "parsed": {
+     "caption": "A steep cliff face with vertical columnar rock formations and layered sedimentary strata, photographed in monochrome.",
+     "objects": [
+      "rock formation",
+      "sedimentary layer"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "25373": {
+    "group": "pool",
+    "secs": 5.853,
+    "parsed": {
+     "caption": "A black-and-white photograph showing a low-slung structure beside a body of water with mountains in the background.",
+     "objects": [
+      "building",
+      "water",
+      "mountain",
+      "tree",
+      "path",
+      "rock"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "industrial"
+    }
+   },
+   "54054": {
+    "group": "wharenui",
+    "secs": 5.703,
+    "parsed": {
+     "caption": "A single-story structure with decorative carvings on its gable end and two tall pillars flanking the entrance.",
+     "objects": [
+      "gabled roof",
+      "carved pillar",
+      "doorway",
+      "window",
+      "decorative trim"
+     ],
+     "scene": "architecture",
+     "people": "none",
+     "building_type": "house"
+    }
+   },
+   "123123": {
+    "group": "ship",
+    "secs": 5.441,
+    "parsed": {
+     "caption": "A long wooden truss bridge spans a wide body of water, with railway tracks running along its length.",
+     "objects": [
+      "bridge",
+      "water",
+      "boats",
+      "landmasses"
+     ],
+     "scene": "architecture",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "123399": {
+    "group": "pool",
+    "secs": 5.618,
+    "parsed": {
+     "caption": "A black-and-white view of a calm body of water framed by dense vegetation in the foreground and distant treeline.",
+     "objects": [
+      "water",
+      "trees",
+      "vegetation"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "126251": {
+    "group": "pool",
+    "secs": 6.287,
+    "parsed": {
+     "caption": "Two individuals are lying on their stomachs in shallow water at the shoreline, with waves rolling in behind them.",
+     "objects": [
+      "wet sand",
+      "waves",
+      "water",
+      "heads of people",
+      "arms of people",
+      "legs of people",
+      "swimming caps"
+     ],
+     "scene": "other",
+     "people": "two",
+     "building_type": "none"
+    }
+   },
+   "127687": {
+    "group": "wharenui",
+    "secs": 5.639,
+    "parsed": {
+     "caption": "A single-story structure with a steeply pitched roof and carved posts supporting an overhang.",
+     "objects": [
+      "statue atop a post",
+      "carved posts",
+      "roof",
+      "windows",
+      "doorway",
+      "grass"
+     ],
+     "scene": "architecture",
+     "people": "one",
+     "building_type": "house"
+    }
+   },
+   "133423": {
+    "group": "wharenui",
+    "secs": 7.53,
+    "parsed": {
+     "caption": "A single-story structure with a gabled roof and decorative carved elements at its entrance, set against a grassy foreground and tree-covered hill.",
+     "objects": [
+      "building",
+      "door",
+      "window",
+      "bench",
+      "carved pillar"
+     ],
+     "scene": "architecture",
+     "people": "none",
+     "building_type": "house"
+    }
+   },
+   "168693": {
+    "group": "wharenui",
+    "secs": 5.706,
+    "parsed": {
+     "caption": "A black-and-white photograph showing a cluster of wooden structures with a pointed-roofed building at center, surrounded by grassy ground and a fence, under an overcast sky.",
+     "objects": [
+      "wooden structure",
+      "fence",
+      "grass"
+     ],
+     "scene": "architecture",
+     "people": "one",
+     "building_type": "church"
+    }
+   },
+   "211251": {
+    "group": "church",
+    "secs": 5.632,
+    "parsed": {
+     "caption": "A group of individuals stands and sits in front of a white-walled structure with a gabled roof, surrounded by tall palm trees.",
+     "objects": [
+      "people",
+      "building"
+     ],
+     "scene": "group of people",
+     "people": "two",
+     "building_type": "church"
+    }
+   },
+   "211373": {
+    "group": "maori-subject",
+    "secs": 5.552,
+    "parsed": {
+     "caption": "A portrait of a person with short curly hair, bare-chested, looking directly at the camera against a plain background.",
+     "objects": [
+      "curly hair",
+      "bare chest"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "224430": {
+    "group": "place-bait",
+    "secs": 5.841,
+    "parsed": {
+     "caption": "A sepia-toned landscape featuring a snow-capped peak in the distance behind a body of water, with a cliffside on the left and vegetation in the foreground.",
+     "objects": [
+      "mountain",
+      "water",
+      "cliff",
+      "vegetation"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "243815": {
+    "group": "pool",
+    "secs": 5.406,
+    "parsed": {
+     "caption": "A small bird with dark wings and a light underbelly stands on ground covered in dry grass and twigs.",
+     "objects": [
+      "bird",
+      "grass"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "260749": {
+    "group": "wharenui",
+    "secs": 5.422,
+    "parsed": {
+     "caption": "Three individuals stand on a porch in front of a structure with carved wooden posts and a gabled roof.",
+     "objects": [
+      "carved wooden post",
+      "gabled roof",
+      "porch",
+      "individuals"
+     ],
+     "scene": "architecture",
+     "people": "two",
+     "building_type": "house"
+    }
+   },
+   "270269": {
+    "group": "place-bait",
+    "secs": 5.498,
+    "parsed": {
+     "caption": "A stereoscopic view showing a rural landscape with fences, fields, and distant hills under an open sky.",
+     "objects": [
+      "fence",
+      "field",
+      "hill",
+      "tree"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "320477": {
+    "group": "ship",
+    "secs": 5.918,
+    "parsed": {
+     "caption": "A crowd gathers near a gazebo on a grassy area beside a beach with distant water and landforms.",
+     "objects": [
+      "gazebo",
+      "beach",
+      "water",
+      "grass",
+      "trees",
+      "bushes",
+      "people",
+      "fences"
+     ],
+     "scene": "portrait",
+     "people": "crowd",
+     "building_type": "commercial"
+    }
+   },
+   "331551": {
+    "group": "ship",
+    "secs": 5.355,
+    "parsed": {
+     "caption": "A stereo photograph showing two views of men on a long boat near a dock with ships in the background.",
+     "objects": [
+      "boat",
+      "dock",
+      "ship",
+      "oar"
+     ],
+     "scene": "portrait",
+     "people": "two",
+     "building_type": "none"
+    }
+   },
+   "352189": {
+    "group": "portrait",
+    "secs": 5.64,
+    "parsed": {
+     "caption": "A man in military uniform sits on a wooden chair with twisted legs, resting his hand on an ornate table beside him.",
+     "objects": [
+      "man",
+      "uniform",
+      "cap",
+      "belt",
+      "chair",
+      "table"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "352683": {
+    "group": "portrait",
+    "secs": 5.053,
+    "parsed": {
+     "caption": "A portrait photograph of a woman in formal attire against a dark backdrop.",
+     "objects": [
+      "woman",
+      "dress",
+      "hair"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "353563": {
+    "group": "portrait",
+    "secs": 5.486,
+    "parsed": {
+     "caption": "A black-and-white portrait of two individuals posing formally against a painted backdrop featuring trees.",
+     "objects": [
+      "hat",
+      "suit",
+      "vest",
+      "tie",
+      "coat",
+      "glove"
+     ],
+     "scene": "portrait",
+     "people": "two",
+     "building_type": "none"
+    }
+   },
+   "356907": {
+    "group": "pool",
+    "secs": 5.621,
+    "parsed": {
+     "caption": "A seated man in formal attire poses directly for the camera against a plain backdrop.",
+     "objects": [
+      "suit",
+      "tie",
+      "collar",
+      "handkerchief",
+      "button"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "360465": {
+    "group": "portrait",
+    "secs": 5.348,
+    "parsed": {
+     "caption": "A black-and-white portrait of a man in formal attire, looking directly at the camera with a neutral expression.",
+     "objects": [
+      "man",
+      "suit",
+      "tie",
+      "collar"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "361870": {
+    "group": "portrait",
+    "secs": 5.492,
+    "parsed": {
+     "caption": "A man in formal attire stands beside a seated woman in a light-colored dress, both positioned before an outdoor backdrop.",
+     "objects": [
+      "man",
+      "woman",
+      "dress",
+      "suit",
+      "bench"
+     ],
+     "scene": "portrait",
+     "people": "two",
+     "building_type": "none"
+    }
+   },
+   "363884": {
+    "group": "portrait",
+    "secs": 5.652,
+    "parsed": {
+     "caption": "A woman sits on a bench with patterned upholstery, wearing a sleeveless top and a lace-trimmed skirt, against a dark backdrop.",
+     "objects": [
+      "woman",
+      "bench",
+      "top",
+      "skirt",
+      "backdrop"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "441511": {
+    "group": "pool",
+    "secs": 5.791,
+    "parsed": {
+     "caption": "A large tree with sprawling branches dominates the foreground beside a calm body of water, surrounded by dense foliage and palm trees.",
+     "objects": [
+      "tree",
+      "water",
+      "foliage",
+      "palm tree"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "546242": {
+    "group": "pool",
+    "secs": 5.597,
+    "parsed": {
+     "caption": "A calm body of water stretches between tree-framed shores under an overcast sky, with distant landforms rising in layered silhouette.",
+     "objects": [
+      "water",
+      "trees",
+      "landforms"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "547086": {
+    "group": "pool",
+    "secs": 6.021,
+    "parsed": {
+     "caption": "A vessel with a tall mast rests at a pebbled shore beside stacked timber, while another boat floats nearby in calm water under an overcast sky.",
+     "objects": [
+      "vessel",
+      "timber",
+      "boat",
+      "pebble beach"
+     ],
+     "scene": "portrait",
+     "people": "two",
+     "building_type": "none"
+    }
+   },
+   "744076": {
+    "group": "maori-subject",
+    "secs": 6.073,
+    "parsed": {
+     "caption": "A man leans out of a window with his hands resting on the sill, holding a hat in one hand and a cigarette in the other.",
+     "objects": [
+      "man",
+      "hat",
+      "cigarette",
+      "window",
+      "sign"
+     ],
+     "scene": "architecture",
+     "people": "one",
+     "building_type": "commercial"
+    }
+   },
+   "1238483": {
+    "group": "church",
+    "secs": 5.772,
+    "parsed": {
+     "caption": "A group of individuals stands on a low retaining wall beside a single-story structure with a steeply pitched thatched roof.",
+     "objects": [
+      "people",
+      "thatched roof",
+      "wall",
+      "trees"
+     ],
+     "scene": "group of people",
+     "people": "two",
+     "building_type": "house"
+    }
+   },
+   "1287260": {
+    "group": "pool",
+    "secs": 5.567,
+    "parsed": {
+     "caption": "A printed image of an architectural structure with water in front, surrounded by multiple postage stamps and a red wax seal.",
+     "objects": [
+      "postage stamps",
+      "wax seal"
+     ],
+     "scene": "architecture",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "1389501": {
+    "group": "ship",
+    "secs": 5.185,
+    "parsed": {
+     "caption": "A monochrome image shows a large landform rising from water with structures along its base.",
+     "objects": [
+      "landform",
+      "water"
+     ],
+     "scene": "architecture",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "1390509": {
+    "group": "wharenui",
+    "secs": 5.885,
+    "parsed": {
+     "caption": "A sepia-toned landscape view showing a body of water with an island and shoreline structures, including cultivated plots and pathways.",
+     "objects": [
+      "water",
+      "island",
+      "shoreline",
+      "planted area",
+      "pathway",
+      "tree",
+      "building",
+      "umbrella"
+     ],
+     "scene": "landscape",
+     "people": "two",
+     "building_type": "house"
+    }
+   },
+   "1407787": {
+    "group": "place-bait",
+    "secs": 5.642,
+    "parsed": {
+     "caption": "A stereoscopic photograph showing several individuals walking across a snowy, rocky terrain with a large ice field in the background.",
+     "objects": [
+      "people",
+      "snow",
+      "rocks",
+      "ice field",
+      "mountains"
+     ],
+     "scene": "group of people",
+     "people": "two",
+     "building_type": "none"
+    }
+   },
+   "1452833": {
+    "group": "maori-subject",
+    "secs": 5.714,
+    "parsed": {
+     "caption": "A solitary figure sits in shallow water amidst a rocky stream surrounded by dense foliage.",
+     "objects": [
+      "person",
+      "stream",
+      "rocks",
+      "trees",
+      "leaves"
+     ],
+     "scene": "architecture",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "1453652": {
+    "group": "ship",
+    "secs": 4.975,
+    "parsed": {
+     "caption": "A beach scene with ships in the water and small boats on shore.",
+     "objects": [
+      "ship",
+      "boat",
+      "people"
+     ],
+     "scene": "marine",
+     "people": "two",
+     "building_type": "none"
+    }
+   },
+   "1700844": {
+    "group": "church",
+    "secs": 5.914,
+    "parsed": {
+     "caption": "A single structure with a steeply pitched thatched roof stands on an open grassy area, surrounded by sparse trees and distant hills.",
+     "objects": [
+      "thatched roof",
+      "wooden walls",
+      "windows",
+      "doorway",
+      "trees",
+      "grass"
+     ],
+     "scene": "architecture",
+     "people": "none",
+     "building_type": "house"
+    }
+   },
+   "1770195": {
+    "group": "wharenui",
+    "secs": 5.725,
+    "parsed": {
+     "caption": "A black-and-white photograph shows a structure with carved wooden elements under an overhanging roof, set against a cloudy sky.",
+     "objects": [
+      "carved wooden post",
+      "carved figure atop roofline",
+      "door",
+      "window",
+      "roof"
+     ],
+     "scene": "architecture",
+     "people": "none",
+     "building_type": "house"
+    }
+   },
+   "1770196": {
+    "group": "wharenui",
+    "secs": 5.275,
+    "parsed": {
+     "caption": "A carved wooden post stands beside a raised structure with a sloped roof, under an open sky.",
+     "objects": [
+      "carved wooden post",
+      "raised structure",
+      "sloped roof"
+     ],
+     "scene": "architecture",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "2074943": {
+    "group": "maori-subject",
+    "secs": 5.317,
+    "parsed": {
+     "caption": "Two figures stand on a flat expanse, raising arms toward an aircraft in flight above.",
+     "objects": [
+      "airplane",
+      "people"
+     ],
+     "scene": "landscape",
+     "people": "two",
+     "building_type": "none"
+    }
+   },
+   "2192384": {
+    "group": "maori-subject",
+    "secs": 5.231,
+    "parsed": {
+     "caption": "Five children peer over the edge of a water-filled structure, smiling and gesturing toward the viewer.",
+     "objects": [
+      "children",
+      "water"
+     ],
+     "scene": "group of people",
+     "people": "two",
+     "building_type": "none"
+    }
+   },
+   "2233629": {
+    "group": "church",
+    "secs": 5.435,
+    "parsed": {
+     "caption": "A street view with pedestrians walking on pavement near trees and a multi-story structure.",
+     "objects": [
+      "tree",
+      "building",
+      "bus",
+      "flagpole",
+      "person"
+     ],
+     "scene": "street",
+     "people": "two",
+     "building_type": "commercial"
+    }
+   },
+   "2233632": {
+    "group": "church",
+    "secs": 5.659,
+    "parsed": {
+     "caption": "A black-and-white photograph shows two women walking on a paved surface in front of a large stone structure with arched entrance and tall windows.",
+     "objects": [
+      "women",
+      "building",
+      "arched entrance",
+      "windows",
+      "fence",
+      "statues"
+     ],
+     "scene": "street",
+     "people": "two",
+     "building_type": "church"
+    }
+   }
+  },
+  "done": true
+ },
+ "qwen3-vl:8b-instruct": {
+  "results": {
+   "16154": {
+    "group": "place-bait",
+    "secs": 10.38,
+    "parsed": {
+     "caption": "A lone figure stands on a wide, flat expanse beside a body of water, with tree-covered hills rising in the background under an overcast sky.",
+     "objects": [
+      "person",
+      "water",
+      "hills",
+      "trees"
+     ],
+     "scene": "landscape",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "17385": {
+    "group": "maori-subject",
+    "secs": 9.821,
+    "parsed": {
+     "caption": "A person in ceremonial attire poses with a weapon, adorned with an elaborate headdress and neck ornament.",
+     "objects": [
+      "headdress",
+      "neck ornament",
+      "weapon"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "20217": {
+    "group": "church",
+    "secs": 9.908,
+    "parsed": {
+     "caption": "A black-and-white photograph showing two large stone buildings with pointed spires and ornate detailing, set behind a fence along a street.",
+     "objects": [
+      "building",
+      "spire",
+      "fence",
+      "tree",
+      "street"
+     ],
+     "scene": "street",
+     "people": "none",
+     "building_type": "church"
+    }
+   },
+   "21986": {
+    "group": "place-bait",
+    "secs": 9.978,
+    "parsed": {
+     "caption": "A serene lake nestled between steep, forested slopes under an overcast sky.",
+     "objects": [
+      "lake",
+      "mountains",
+      "trees",
+      "grass",
+      "rock"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "22765": {
+    "group": "church",
+    "secs": 10.104,
+    "parsed": {
+     "caption": "A wide dirt road stretches through a small settlement with wooden houses on both sides and a church with a steeple on the right.",
+     "objects": [
+      "church",
+      "houses",
+      "fence",
+      "people",
+      "road",
+      "trees",
+      "monument"
+     ],
+     "scene": "street",
+     "people": "two",
+     "building_type": "church"
+    }
+   },
+   "23592": {
+    "group": "ship",
+    "secs": 9.497,
+    "parsed": {
+     "caption": "A calm waterfront with boats anchored near a pier, framed by tree branches in the foreground and rolling hills in the distance.",
+     "objects": [
+      "tree",
+      "boat",
+      "pier",
+      "hill",
+      "water"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "house"
+    }
+   },
+   "23776": {
+    "group": "place-bait",
+    "secs": 9.963,
+    "parsed": {
+     "caption": "A black-and-white photograph of a rugged coastal landscape with towering cliffs and a calm body of water in the foreground.",
+     "objects": [
+      "cliff",
+      "water",
+      "rock",
+      "plant",
+      "log"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "23838": {
+    "group": "church",
+    "secs": 9.978,
+    "parsed": {
+     "caption": "A wide view of a small town with scattered buildings, open fields, and a dirt road with horse-drawn carts.",
+     "objects": [
+      "building",
+      "horse",
+      "cart",
+      "tree",
+      "road",
+      "sign",
+      "pole"
+     ],
+     "scene": "street",
+     "people": "one",
+     "building_type": "commercial"
+    }
+   },
+   "24216": {
+    "group": "pool",
+    "secs": 9.925,
+    "parsed": {
+     "caption": "A steep cliff face with distinct horizontal layers of rock, showing erosion patterns and sparse vegetation at its base.",
+     "objects": [
+      "cliff",
+      "rock layer",
+      "vegetation"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "25373": {
+    "group": "pool",
+    "secs": 10.331,
+    "parsed": {
+     "caption": "A black-and-white photograph of a rural settlement beside a body of water, with large mountains rising in the background.",
+     "objects": [
+      "mountain",
+      "water",
+      "building",
+      "tree",
+      "path",
+      "rock"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "house"
+    }
+   },
+   "54054": {
+    "group": "wharenui",
+    "secs": 9.696,
+    "parsed": {
+     "caption": "A traditional wooden structure with carved posts flanking its entrance, set against an open landscape.",
+     "objects": [
+      "carved post",
+      "door",
+      "window",
+      "roof",
+      "fence",
+      "tree"
+     ],
+     "scene": "architecture",
+     "people": "none",
+     "building_type": "house"
+    }
+   },
+   "123123": {
+    "group": "ship",
+    "secs": 9.534,
+    "parsed": {
+     "caption": "A long wooden truss bridge spans across a wide body of water, connecting to a shoreline with hills in the distance.",
+     "objects": [
+      "bridge",
+      "water",
+      "boats",
+      "hills",
+      "rails"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "123399": {
+    "group": "pool",
+    "secs": 9.647,
+    "parsed": {
+     "caption": "A calm body of water bordered by dense vegetation under an overcast sky.",
+     "objects": [
+      "water",
+      "trees",
+      "shrubs",
+      "sky"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "126251": {
+    "group": "pool",
+    "secs": 10.423,
+    "parsed": {
+     "caption": "Two children lie on their stomachs in shallow water at the beach, smiling toward the camera as waves roll in.",
+     "objects": [
+      "child",
+      "water",
+      "wave",
+      "sand"
+     ],
+     "scene": "other",
+     "people": "two",
+     "building_type": "none"
+    }
+   },
+   "127687": {
+    "group": "wharenui",
+    "secs": 10.106,
+    "parsed": {
+     "caption": "A traditional-style structure with carved posts and a figure atop its peak stands in an open grassy area.",
+     "objects": [
+      "carved post",
+      "figure",
+      "roof",
+      "door",
+      "window",
+      "fence",
+      "tree"
+     ],
+     "scene": "architecture",
+     "people": "none",
+     "building_type": "house"
+    }
+   },
+   "133423": {
+    "group": "wharenui",
+    "secs": 12.681,
+    "parsed": {
+     "caption": "A wooden structure with carved decorative elements on its roof and posts stands in an open area with grass and trees in the background.",
+     "objects": [
+      "building",
+      "carved post",
+      "door",
+      "window",
+      "bench",
+      "roof"
+     ],
+     "scene": "architecture",
+     "people": "none",
+     "building_type": "house"
+    }
+   },
+   "168693": {
+    "group": "wharenui",
+    "secs": 9.246,
+    "parsed": {
+     "caption": "A rural settlement with wooden structures nestled against a wooded hillside under an overcast sky.",
+     "objects": [
+      "church",
+      "house",
+      "fence",
+      "tree"
+     ],
+     "scene": "landscape",
+     "people": "one",
+     "building_type": "church"
+    }
+   },
+   "211251": {
+    "group": "church",
+    "secs": 10.069,
+    "parsed": {
+     "caption": "A group of individuals stands and sits on sandy ground before two white buildings with sloped roofs and arched windows, surrounded by tall palm trees.",
+     "objects": [
+      "people",
+      "building",
+      "palm tree",
+      "sand",
+      "window",
+      "roof"
+     ],
+     "scene": "group of people",
+     "people": "two",
+     "building_type": "church"
+    }
+   },
+   "211373": {
+    "group": "maori-subject",
+    "secs": 9.783,
+    "parsed": {
+     "caption": "A portrait of a person with curly hair, bare-chested, looking directly at the camera against a plain backdrop.",
+     "objects": [
+      "person",
+      "hair",
+      "backdrop"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "224430": {
+    "group": "place-bait",
+    "secs": 9.892,
+    "parsed": {
+     "caption": "A coastal view with a snow-capped mountain in the distance across calm waters, framed by cliffs and vegetation.",
+     "objects": [
+      "mountain",
+      "water",
+      "cliff",
+      "vegetation"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "243815": {
+    "group": "pool",
+    "secs": 9.927,
+    "parsed": {
+     "caption": "A small bird with dark wings and light underparts rests among dry grasses and twigs on the ground.",
+     "objects": [
+      "bird",
+      "grass",
+      "twig"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "260749": {
+    "group": "wharenui",
+    "secs": 10.375,
+    "parsed": {
+     "caption": "A black-and-white photograph of a wooden structure with carved posts at its entrance, where several individuals are standing or sitting on the porch.",
+     "objects": [
+      "carved post",
+      "wooden structure",
+      "person",
+      "hat",
+      "coat",
+      "door",
+      "window",
+      "fence",
+      "tree"
+     ],
+     "scene": "architecture",
+     "people": "two",
+     "building_type": "house"
+    }
+   },
+   "270269": {
+    "group": "place-bait",
+    "secs": 9.991,
+    "parsed": {
+     "caption": "A stereoscopic view of a rural landscape with rolling hills, fences, and distant structures under an open sky.",
+     "objects": [
+      "fence",
+      "tree",
+      "building",
+      "mountain"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "house"
+    }
+   },
+   "320477": {
+    "group": "ship",
+    "secs": 10.373,
+    "parsed": {
+     "caption": "A crowd gathers near a gazebo on a sandy beach with manicured shrubs and palm-like plants in the foreground.",
+     "objects": [
+      "gazebo",
+      "people",
+      "shrub",
+      "palm plant",
+      "fence",
+      "sand",
+      "water"
+     ],
+     "scene": "architecture",
+     "people": "crowd",
+     "building_type": "commercial"
+    }
+   },
+   "331551": {
+    "group": "ship",
+    "secs": 9.546,
+    "parsed": {
+     "caption": "A stereoscopic view of men working on a wooden platform over water with ships in the background.",
+     "objects": [
+      "men",
+      "wooden platform",
+      "water",
+      "ships",
+      "paddles"
+     ],
+     "scene": "portrait",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "352189": {
+    "group": "portrait",
+    "secs": 10.66,
+    "parsed": {
+     "caption": "A man in military uniform sits on a wooden chair with his right hand resting on a wicker table.",
+     "objects": [
+      "chair",
+      "table",
+      "uniform",
+      "hat",
+      "belt",
+      "mustache"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "352683": {
+    "group": "portrait",
+    "secs": 9.319,
+    "parsed": {
+     "caption": "A woman in a patterned blouse poses for a studio portrait against a dark backdrop.",
+     "objects": [
+      "woman",
+      "blouse",
+      "backdrop"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "353563": {
+    "group": "portrait",
+    "secs": 9.623,
+    "parsed": {
+     "caption": "A formal portrait of two individuals posed against a painted backdrop with trees.",
+     "objects": [
+      "man",
+      "woman",
+      "hat",
+      "coat",
+      "tie",
+      "background"
+     ],
+     "scene": "portrait",
+     "people": "two",
+     "building_type": "none"
+    }
+   },
+   "356907": {
+    "group": "pool",
+    "secs": 10.678,
+    "parsed": {
+     "caption": "A formally dressed man sits in front of a plain backdrop, wearing a suit with a pocket square and tie.",
+     "objects": [
+      "man",
+      "suit",
+      "tie",
+      "pocket square",
+      "backdrop"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "360465": {
+    "group": "portrait",
+    "secs": 9.437,
+    "parsed": {
+     "caption": "A formal portrait of a man in a suit with a patterned tie, looking directly at the camera.",
+     "objects": [
+      "man",
+      "suit",
+      "tie",
+      "collar"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "361870": {
+    "group": "portrait",
+    "secs": 10.348,
+    "parsed": {
+     "caption": "A man in formal attire stands beside a seated woman in a light dress against a painted backdrop of trees.",
+     "objects": [
+      "man",
+      "woman",
+      "suit",
+      "dress",
+      "bench",
+      "backdrop"
+     ],
+     "scene": "portrait",
+     "people": "two",
+     "building_type": "none"
+    }
+   },
+   "363884": {
+    "group": "portrait",
+    "secs": 9.624,
+    "parsed": {
+     "caption": "A woman in a light-colored dress sits on an ornate bench against a dark backdrop.",
+     "objects": [
+      "bench",
+      "dress",
+      "shoes",
+      "necklace",
+      "curtain"
+     ],
+     "scene": "portrait",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "441511": {
+    "group": "pool",
+    "secs": 10.798,
+    "parsed": {
+     "caption": "A serene lakeside view framed by large trees with dense foliage, including several tall palm-like trees along the water's edge.",
+     "objects": [
+      "tree",
+      "lake",
+      "palm tree",
+      "foliage",
+      "shoreline"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "546242": {
+    "group": "pool",
+    "secs": 9.846,
+    "parsed": {
+     "caption": "A calm body of water stretches between tree-lined shores with distant mountain ranges in the background.",
+     "objects": [
+      "tree",
+      "water",
+      "mountain"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "547086": {
+    "group": "pool",
+    "secs": 11.106,
+    "parsed": {
+     "caption": "A sailboat rests near a pebbled shore with wooden planks scattered nearby, while another vessel floats in the distance across calm water.",
+     "objects": [
+      "sailboat",
+      "wooden plank",
+      "person",
+      "water",
+      "mountain",
+      "tree"
+     ],
+     "scene": "landscape",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "744076": {
+    "group": "maori-subject",
+    "secs": 9.88,
+    "parsed": {
+     "caption": "A man leans out of a window with a hat resting on the sill, beneath a sign reading 'DB LAGER'.",
+     "objects": [
+      "man",
+      "hat",
+      "window",
+      "sign"
+     ],
+     "scene": "street",
+     "people": "one",
+     "building_type": "commercial"
+    }
+   },
+   "1238483": {
+    "group": "church",
+    "secs": 9.888,
+    "parsed": {
+     "caption": "A group of individuals stands before a long, single-story structure with a thatched roof, surrounded by tropical vegetation.",
+     "objects": [
+      "people",
+      "building",
+      "roof",
+      "window",
+      "wall",
+      "tree"
+     ],
+     "scene": "architecture",
+     "people": "two",
+     "building_type": "house"
+    }
+   },
+   "1287260": {
+    "group": "pool",
+    "secs": 10.825,
+    "parsed": {
+     "caption": "A vintage postcard featuring an ornate building with towers and domes, surrounded by water and trees, overlaid with various postage stamps and a red wax seal.",
+     "objects": [
+      "building",
+      "water",
+      "trees",
+      "stamps",
+      "wax seal"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "industrial"
+    }
+   },
+   "1389501": {
+    "group": "ship",
+    "secs": 9.179,
+    "parsed": {
+     "caption": "A distant view of a rocky landmass rising from calm water under an overcast sky.",
+     "objects": [
+      "rocky landmass",
+      "water",
+      "sky"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "1390509": {
+    "group": "wharenui",
+    "secs": 9.778,
+    "parsed": {
+     "caption": "A sepia-toned photograph showing a coastal landscape with cultivated plots, pathways, and scattered structures near water.",
+     "objects": [
+      "trees",
+      "pathway",
+      "vegetable patch",
+      "building",
+      "island",
+      "water"
+     ],
+     "scene": "landscape",
+     "people": "two",
+     "building_type": "house"
+    }
+   },
+   "1407787": {
+    "group": "place-bait",
+    "secs": 10.119,
+    "parsed": {
+     "caption": "A stereoscopic photograph showing several individuals traversing a rocky, snow-covered terrain with distant mountains in the background.",
+     "objects": [
+      "people",
+      "rocks",
+      "snow",
+      "mountains",
+      "sticks"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "1452833": {
+    "group": "maori-subject",
+    "secs": 10.113,
+    "parsed": {
+     "caption": "A person sits in shallow water within a rocky stream surrounded by dense foliage.",
+     "objects": [
+      "person",
+      "water",
+      "rock",
+      "tree"
+     ],
+     "scene": "landscape",
+     "people": "one",
+     "building_type": "none"
+    }
+   },
+   "1453652": {
+    "group": "ship",
+    "secs": 9.544,
+    "parsed": {
+     "caption": "A beach scene with several boats on shore and larger vessels in the water emitting smoke.",
+     "objects": [
+      "boat",
+      "ship",
+      "person",
+      "barrel",
+      "rope",
+      "hat"
+     ],
+     "scene": "other",
+     "people": "two",
+     "building_type": "none"
+    }
+   },
+   "1700844": {
+    "group": "church",
+    "secs": 9.784,
+    "parsed": {
+     "caption": "A single-story structure with a steeply pitched thatched roof stands in an open grassy area, flanked by trees and hills.",
+     "objects": [
+      "building",
+      "roof",
+      "trees",
+      "grass",
+      "hills"
+     ],
+     "scene": "landscape",
+     "people": "none",
+     "building_type": "church"
+    }
+   },
+   "1770195": {
+    "group": "wharenui",
+    "secs": 9.724,
+    "parsed": {
+     "caption": "A black-and-white photograph of a traditional wooden structure with carved posts and a steeply pitched roof under a cloudy sky.",
+     "objects": [
+      "carved post",
+      "roof",
+      "door",
+      "window",
+      "bench"
+     ],
+     "scene": "architecture",
+     "people": "none",
+     "building_type": "house"
+    }
+   },
+   "1770196": {
+    "group": "wharenui",
+    "secs": 9.351,
+    "parsed": {
+     "caption": "A man stands beside a wooden structure with carved posts and decorative roof elements.",
+     "objects": [
+      "man",
+      "wooden post",
+      "roofing",
+      "building",
+      "fence"
+     ],
+     "scene": "architecture",
+     "people": "one",
+     "building_type": "house"
+    }
+   },
+   "2074943": {
+    "group": "maori-subject",
+    "secs": 10.006,
+    "parsed": {
+     "caption": "Two figures in traditional attire stand on an open plain, raising their arms toward a biplane flying overhead.",
+     "objects": [
+      "biplane",
+      "person",
+      "blanket",
+      "ground",
+      "tree",
+      "mountain"
+     ],
+     "scene": "landscape",
+     "people": "two",
+     "building_type": "none"
+    }
+   },
+   "2192384": {
+    "group": "maori-subject",
+    "secs": 9.547,
+    "parsed": {
+     "caption": "Five children with wet hair peer over the edge of a stone structure, smiling and gesturing toward the camera.",
+     "objects": [
+      "children",
+      "stone"
+     ],
+     "scene": "portrait",
+     "people": "none",
+     "building_type": "none"
+    }
+   },
+   "2233629": {
+    "group": "church",
+    "secs": 9.574,
+    "parsed": {
+     "caption": "A street view with pedestrians walking near a rounded building and trees in the foreground.",
+     "objects": [
+      "people",
+      "trees",
+      "building",
+      "street",
+      "flagpole",
+      "vehicle"
+     ],
+     "scene": "street",
+     "people": "two",
+     "building_type": "commercial"
+    }
+   },
+   "2233632": {
+    "group": "church",
+    "secs": 9.587,
+    "parsed": {
+     "caption": "A black-and-white photograph showing pedestrians walking past an ornate stone structure with arched entryways and decorative tracery.",
+     "objects": [
+      "people",
+      "building",
+      "fence",
+      "statue",
+      "window"
+     ],
+     "scene": "street",
+     "people": "two",
+     "building_type": "church"
+    }
+   }
+  },
+  "done": true
+ },
+ "qwen3.6:35b-a3b": {
+  "results": {
+   "16154": {
+    "group": "place-bait",
+    "secs": 5.276,
+    "parsed": {
+     "caption": "A black-and-white photograph shows a wide, flat expanse of land or water with distant hills under a cloudy sky, and one person standing on the right side.",
+     "objects": [
+      "person",
+      "hill",
+      "sky",
+      "cloud",
+      "vegetation",
+      "ground"
+     ],
+     "scene_type": "landscape",
+     "people_count": 1,
+     "building_type": null
+    }
+   },
+   "17385": {
+    "group": "maori-subject",
+    "secs": 7.635,
+    "parsed": {
+     "caption": "A seated individual in traditional ceremonial attire, including an elaborate headdress with circular ornaments and a spiked neckpiece, holds a carved staff while wearing a layered skirt of woven material.",
+     "objects": [
+      "headdress",
+      "necklace",
+      "skirt",
+      "staff",
+      "bracelet"
+     ],
+     "scene_type": "studio portrait",
+     "people_count": 1,
+     "building_type": null
+    }
+   },
+   "20217": {
+    "group": "church",
+    "secs": 8.084,
+    "parsed": {
+     "caption": "A black-and-white photograph shows two large buildings with steep roofs and spires behind a low wall and fence along an unpaved road.",
+     "objects": [
+      "church",
+      "manse",
+      "spire",
+      "roof",
+      "wall",
+      "fence",
+      "road",
+      "lamp post",
+      "tree"
+     ],
+     "scene_type": "street view",
+     "people_count": 0,
+     "building_type": "church and manse"
+    }
+   },
+   "21986": {
+    "group": "place-bait",
+    "secs": 7.295,
+    "parsed": {
+     "caption": "A black-and-white landscape photograph captures a calm body of water flanked by dense vegetation in the foreground and steep, forested mountains rising into a hazy sky.",
+     "objects": [
+      "water",
+      "mountain",
+      "tree",
+      "grass",
+      "rock",
+      "cloud"
+     ],
+     "scene_type": "natural landscape",
+     "people_count": 0,
+     "building_type": null
+    }
+   },
+   "22765": {
+    "group": "church",
+    "secs": 7.722,
+    "parsed": {
+     "caption": "A wide dirt road stretches into the distance between rows of wooden buildings under a vast sky, with several figures walking along the path.",
+     "objects": [
+      "road",
+      "church",
+      "steeple",
+      "house",
+      "fence",
+      "person",
+      "sky",
+      "grass",
+      "pole"
+     ],
+     "scene_type": "street view",
+     "people_count": "multiple",
+     "building_type": "church"
+    }
+   },
+   "23592": {
+    "group": "ship",
+    "secs": 7.768,
+    "parsed": {
+     "caption": "A black-and-white photograph shows a coastal settlement with boats moored near wooden piers, framed by large trees in the foreground and rolling hills in the background.",
+     "objects": [
+      "tree",
+      "boat",
+      "pier",
+      "building",
+      "hill",
+      "water",
+      "grass"
+     ],
+     "scene_type": "coastal landscape",
+     "people_count": 0,
+     "building_type": "residential or commercial structure"
+    }
+   },
+   "23776": {
+    "group": "place-bait",
+    "secs": 7.44,
+    "parsed": {
+     "caption": "A black-and-white landscape photograph showing a rocky foreground with sparse vegetation leading to calm water, backed by steep, snow-dusted mountain peaks under an overcast sky.",
+     "objects": [
+      "rock",
+      "grass",
+      "water",
+      "mountain",
+      "snow",
+      "cloud",
+      "plant"
+     ],
+     "scene_type": "natural landscape",
+     "people_count": 0,
+     "building_type": null
+    }
+   },
+   "23838": {
+    "group": "church",
+    "secs": 9.452,
+    "parsed": {
+     "caption": "A wide-angle view of a rural settlement with scattered buildings, open fields, and a dirt road stretching into the distance.",
+     "objects": [
+      "building",
+      "road",
+      "field",
+      "tree",
+      "cart",
+      "horse",
+      "sign",
+      "chimney",
+      "roof",
+      "fence"
+     ],
+     "scene_type": "rural landscape",
+     "people_count": 2,
+     "building_type": "wooden structure with corrugated metal roof"
+    }
+   },
+   "24216": {
+    "group": "pool",
+    "secs": 6.501,
+    "parsed": {
+     "caption": "A black-and-white photograph shows a steep, layered rock face with vertical striations and rough textures, rising above a flat foreground of sparse vegetation.",
+     "objects": [
+      "rock face",
+      "vegetation",
+      "sky"
+     ],
+     "scene_type": "natural landscape",
+     "people_count": 0,
+     "building_type": null
+    }
+   },
+   "25373": {
+    "group": "pool",
+    "secs": 7.577,
+    "parsed": {
+     "caption": "A black-and-white photograph shows two long, low buildings beside a calm body of water, with rugged mountains rising in the background under a partly cloudy sky.",
+     "objects": [
+      "building",
+      "water",
+      "mountain",
+      "tree",
+      "path",
+      "rock",
+      "sky",
+      "cloud"
+     ],
+     "scene_type": "landscape with structures",
+     "people_count": 0,
+     "building_type": "long rectangular structure"
+    }
+   },
+   "54054": {
+    "group": "wharenui",
+    "secs": 5.902,
+    "parsed": {
+     "caption": "A black-and-white photograph shows a traditional wooden structure with intricate carvings and decorative patterns on its facade, flanked by two carved pillars.",
+     "objects": [
+      "building",
+      "carved pillar",
+      "door",
+      "window",
+      "roof",
+      "mountain",
+      "fence",
+      "ground"
+     ],
+     "scene_type": "architectural",
+     "people_count": 0,
+     "building_type": "traditional wooden structure"
+    }
+   },
+   "123123": {
+    "group": "ship",
+    "secs": 7.319,
+    "parsed": {
+     "caption": "A long trestle bridge extends across calm water toward distant hills, with small boats moored nearby and a winding road visible along the shoreline.",
+     "objects": [
+      "bridge",
+      "water",
+      "boat",
+      "hill",
+      "road",
+      "shore"
+     ],
+     "scene_type": "landscape",
+     "people_count": 0,
+     "building_type": null
+    }
+   },
+   "123399": {
+    "group": "pool",
+    "secs": 7.668,
+    "parsed": {
+     "caption": "A black-and-white photograph captures a tranquil body of water framed by dense foliage in the foreground and distant tree-lined shores under an overcast sky.",
+     "objects": [
+      "water",
+      "trees",
+      "bushes",
+      "sky",
+      "clouds",
+      "branches",
+      "leaves"
+     ],
+     "scene_type": "landscape",
+     "people_count": 0,
+     "building_type": null
+    }
+   },
+   "126251": {
+    "group": "pool",
+    "secs": 8.504,
+    "parsed": {
+     "caption": "Two children lie on their stomachs in shallow water at the edge of a beach, smiling toward the camera with waves rolling in behind them.",
+     "objects": [
+      "child",
+      "water",
+      "wave",
+      "sand",
+      "swimsuit",
+      "cap"
+     ],
+     "scene_type": "beach",
+     "people_count": 2,
+     "building_type": null
+    }
+   },
+   "127687": {
+    "group": "wharenui",
+    "secs": 7.744,
+    "parsed": {
+     "caption": "A black-and-white photograph shows a single-story building with ornate carved wooden posts and a figure atop the roof peak, set against an open sky.",
+     "objects": [
+      "building",
+      "carved post",
+      "figure on roof",
+      "window",
+      "door",
+      "grass",
+      "fence",
+      "tree",
+      "power lines"
+     ],
+     "scene_type": "exterior architectural view",
+     "people_count": 0,
+     "building_type": "single-story structure with decorative carvings"
+    }
+   },
+   "133423": {
+    "group": "wharenui",
+    "secs": 15.052,
+    "parsed": {
+     "caption": "A black-and-white photograph shows a wooden building with intricate carved figures on its gable ends and along the roofline, set against a backdrop of hills.",
+     "objects": [
+      "building",
+      "carved figure",
+      "door",
+      "window",
+      "bench",
+      "hill",
+      "tree"
+     ],
+     "scene_type": "exterior",
+     "people_count": 0,
+     "building_type": "wooden structure"
+    }
+   },
+   "168693": {
+    "group": "wharenui",
+    "secs": 8.377,
+    "parsed": {
+     "caption": "A black-and-white photograph shows a small settlement with wooden buildings and a church steeple set against a forested hillside under an overcast sky.",
+     "objects": [
+      "church",
+      "steeple",
+      "cross",
+      "wooden house",
+      "fence",
+      "hill",
+      "trees",
+      "sky",
+      "clouds",
+      "grass"
+     ],
+     "scene_type": "rural settlement",
+     "people_count": 0,
+     "prominent_building_type": "church"
+    }
+   },
+   "211251": {
+    "group": "church",
+    "secs": 5.174,
+    "parsed": {
+     "caption": "A group of individuals gathers in front of two simple structures with sloped roofs, surrounded by tall trees under an open sky.",
+     "objects": [
+      "building",
+      "tree",
+      "person",
+      "ground"
+     ],
+     "scene_type": "outdoor gathering",
+     "people_count": "multiple",
+     "building_type": "simple structure with sloped roof"
+    }
+   },
+   "211373": {
+    "group": "maori-subject",
+    "secs": 4.331,
+    "parsed": {
+     "caption": "A sepia-toned portrait of a person with curly hair, shown from the shoulders up against a plain background.",
+     "objects": [
+      "person",
+      "hair",
+      "shoulder"
+     ],
+     "scene_type": "portrait",
+     "people_count": 1,
+     "building_type": null
+    }
+   },
+   "224430": {
+    "group": "place-bait",
+    "secs": 6.931,
+    "parsed": {
+     "caption": "A sepia-toned landscape photograph showing a snow-capped mountain rising behind a calm body of water, with a rugged coastline in the foreground.",
+     "objects": [
+      "mountain",
+      "snow",
+      "water",
+      "coastline",
+      "cliff",
+      "vegetation",
+      "sky"
+     ],
+     "scene_type": "landscape",
+     "people_count": 0,
+     "building_type": null
+    }
+   },
+   "243815": {
+    "group": "pool",
+    "secs": 6.625,
+    "parsed": {
+     "caption": "A small bird rests on dry ground among scattered twigs and sparse vegetation under dappled light.",
+     "objects": [
+      "bird",
+      "twigs",
+      "grass",
+      "ground"
+     ],
+     "scene_type": "natural outdoor setting",
+     "people_count": 0,
+     "building_type": null
+    }
+   },
+   "260749": {
+    "group": "wharenui",
+    "secs": 6.999,
+    "parsed": {
+     "caption": "A black-and-white photograph shows three individuals seated and standing on the porch of a wooden structure adorned with carved totem poles.",
+     "objects": [
+      "building",
+      "carved pole",
+      "porch",
+      "person",
+      "hat",
+      "dress",
+      "fence",
+      "tree"
+     ],
+     "scene_type": "outdoor portrait",
+     "people_count": 3,
+     "building_type": "wooden structure with carved poles"
+    }
+   },
+   "270269": {
+    "group": "place-bait",
+    "secs": 7.083,
+    "parsed": {
+     "caption": "A sepia-toned stereoscopic view shows a rural landscape with rolling hills, scattered trees, and wooden fences in the foreground, leading to low buildings in the midground under a hazy sky.",
+     "objects": [
+      "fence",
+      "tree",
+      "building",
+      "hill",
+      "sky",
+      "post",
+      "grass"
+     ],
+     "scene_type": "rural landscape",
+     "people_count": 0,
+     "building_type": "low rectangular structure"
+    }
+   },
+   "320477": {
+    "group": "ship",
+    "secs": 7.632,
+    "parsed": {
+     "caption": "A large crowd gathers on a grassy slope near a waterfront, centered around an ornate open-air pavilion with a pointed roof.",
+     "objects": [
+      "pavilion",
+      "roof",
+      "crowd",
+      "grass",
+      "water",
+      "fence",
+      "bushes",
+      "trees",
+      "sky",
+      "hat",
+      "dress",
+      "coat"
+     ],
+     "scene_type": "outdoor gathering",
+     "people_count": "many",
+     "building_type": "pavilion"
+    }
+   },
+   "331551": {
+    "group": "ship",
+    "secs": 6.266,
+    "parsed": {
+     "caption": "A group of individuals stands on a wooden raft in calm water, with large ships and distant hills visible in the background.",
+     "objects": [
+      "raft",
+      "person",
+      "ship",
+      "water",
+      "hill"
+     ],
+     "scene_type": "maritime",
+     "people_count": 8,
+     "building_type": null
+    }
+   },
+   "352189": {
+    "group": "portrait",
+    "secs": 7.008,
+    "parsed": {
+     "caption": "A seated man in a military uniform with a cap, posed formally in a studio setting.",
+     "objects": [
+      "man",
+      "uniform",
+      "cap",
+      "chair",
+      "table"
+     ],
+     "scene_type": "studio portrait",
+     "people_count": 1,
+     "building_type": null
+    }
+   },
+   "352683": {
+    "group": "portrait",
+    "secs": 7.355,
+    "parsed": {
+     "caption": "A black-and-white studio portrait of a woman with dark hair styled in an updo, wearing a high-necked blouse with puffed sleeves and a subtle pattern, seated against a plain backdrop.",
+     "concrete_visible_objects": [
+      "woman",
+      "blouse",
+      "hair",
+      "necklace",
+      "backdrop"
+     ],
+     "scene_type": "studio portrait",
+     "people_count": 1,
+     "building_type": null
+    }
+   },
+   "353563": {
+    "group": "portrait",
+    "secs": 8.422,
+    "parsed": {
+     "caption": "A formal studio portrait of two individuals in early twentieth-century attire, posed against a painted backdrop with trees and sky.",
+     "objects": [
+      "hat",
+      "suit",
+      "tie",
+      "vest",
+      "collar",
+      "watch chain",
+      "pocket watch",
+      "dress",
+      "jacket",
+      "stand",
+      "backdrop",
+      "tree",
+      "sky"
+     ],
+     "scene_type": "studio portrait",
+     "people_count": 2,
+     "building_type": null
+    }
+   },
+   "356907": {
+    "group": "pool",
+    "secs": 7.365,
+    "parsed": {
+     "caption": "A formal black-and-white portrait of a man seated in a double-breasted suit against a plain backdrop.",
+     "objects": [
+      "suit",
+      "tie",
+      "shirt",
+      "pocket square",
+      "lapel pin",
+      "hand",
+      "knee"
+     ],
+     "scene_type": "studio portrait",
+     "people_count": 1,
+     "building_type": null
+    }
+   },
+   "360465": {
+    "group": "portrait",
+    "secs": 8.004,
+    "parsed": {
+     "caption": "A formal studio portrait of a man in early twentieth-century attire, captured on glass plate with visible emulsion wear and handwritten annotations along the top edge.",
+     "objects": [
+      "man",
+      "suit jacket",
+      "collared shirt",
+      "patterned tie",
+      "glass plate negative",
+      "handwritten text",
+      "studio backdrop"
+     ],
+     "scene_type": "studio portrait",
+     "people_count": 1,
+     "building_type": null
+    }
+   },
+   "361870": {
+    "group": "portrait",
+    "secs": 7.698,
+    "parsed": {
+     "caption": "A formal studio portrait of a man standing beside a seated woman, both dressed in early twentieth-century attire against a painted backdrop of trees.",
+     "objects": [
+      "man",
+      "woman",
+      "suit",
+      "vest",
+      "tie",
+      "shirt",
+      "dress",
+      "bench",
+      "backdrop"
+     ],
+     "scene_type": "studio portrait",
+     "people_count": 2,
+     "building_type": null
+    }
+   },
+   "363884": {
+    "group": "portrait",
+    "secs": 7.499,
+    "parsed": {
+     "caption": "A seated woman in a light dress with lace trim poses on an ornate bench against a dark curtain backdrop.",
+     "objects": [
+      "woman",
+      "dress",
+      "lace",
+      "bench",
+      "curtain",
+      "shoes",
+      "necklace",
+      "rug"
+     ],
+     "scene_type": "studio portrait",
+     "people_count": 1,
+     "building_type": null
+    }
+   },
+   "441511": {
+    "group": "pool",
+    "secs": 7.682,
+    "parsed": {
+     "caption": "A sepia-toned landscape photograph showing a calm body of water bordered by dense trees and foliage, with a large tree dominating the right foreground.",
+     "objects": [
+      "tree",
+      "water",
+      "foliage",
+      "ground",
+      "building"
+     ],
+     "scene_type": "landscape",
+     "people_count": 0,
+     "building_type": "house"
+    }
+   },
+   "546242": {
+    "group": "pool",
+    "secs": 7.21,
+    "parsed": {
+     "caption": "A sepia-toned landscape photograph showing a calm body of water framed by bare trees in the foreground, with snow-capped mountains rising in the distance.",
+     "objects": [
+      "tree",
+      "water",
+      "mountain",
+      "snow",
+      "island"
+     ],
+     "scene_type": "landscape",
+     "people_count": 0,
+     "building_type": null
+    }
+   },
+   "547086": {
+    "group": "pool",
+    "secs": 7.546,
+    "parsed": {
+     "caption": "A vintage photograph shows a wooden sailing vessel moored near a pebbled shore with logs laid out on the beach, while distant hills and scattered structures appear across the water.",
+     "objects": [
+      "boat",
+      "mast",
+      "log",
+      "shore",
+      "water",
+      "hill",
+      "building",
+      "person"
+     ],
+     "scene_type": "coastal harbor scene",
+     "people_count": 2,
+     "building_type": "residential house"
+    }
+   },
+   "744076": {
+    "group": "maori-subject",
+    "secs": 8.304,
+    "parsed": {
+     "caption": "A man leans out of an open window beneath a sign reading 'DB LAGER', with a hat resting on the windowsill beside him.",
+     "objects": [
+      "man",
+      "window",
+      "sign",
+      "hat",
+      "shirt",
+      "sill"
+     ],
+     "scene_type": "portrait in architectural setting",
+     "people_count": 1,
+     "building_type": "commercial storefront"
+    }
+   },
+   "1238483": {
+    "group": "church",
+    "secs": 8.101,
+    "parsed": {
+     "caption": "A sepia-toned photograph shows a long, single-story building with a thatched roof and multiple windows, surrounded by palm trees and low vegetation, with several individuals standing along its front wall.",
+     "objects": [
+      "building",
+      "thatched roof",
+      "window",
+      "door",
+      "palm tree",
+      "wall",
+      "person",
+      "vegetation"
+     ],
+     "scene_type": "outdoor historical scene",
+     "people_count": 12,
+     "building_type": "single-story structure with thatched roof"
+    }
+   },
+   "1287260": {
+    "group": "pool",
+    "secs": 7.29,
+    "parsed": {
+     "caption": "A vintage postcard featuring a central illustration of a grand exhibition hall surrounded by water and foliage, framed by an array of colorful postage stamps from New Zealand.",
+     "objects": [
+      "postcard",
+      "stamp",
+      "building",
+      "water",
+      "tree",
+      "swan",
+      "seal"
+     ],
+     "scene_type": "illustrated postcard with philatelic elements",
+     "people_count": 0,
+     "building_type": "exhibition hall"
+    }
+   },
+   "1389501": {
+    "group": "ship",
+    "secs": 6.602,
+    "parsed": {
+     "caption": "A vintage monochrome photograph shows a large rocky landmass rising from calm waters under an overcast sky, with faint structures visible along its base.",
+     "objects": [
+      "rock formation",
+      "water",
+      "sky",
+      "structures"
+     ],
+     "scene_type": "coastal landscape",
+     "people_count": 0,
+     "building_type": "none prominent"
+    }
+   },
+   "1390509": {
+    "group": "wharenui",
+    "secs": 7.579,
+    "parsed": {
+     "caption": "A sepia-toned landscape shows a coastal settlement with scattered buildings, vegetation, and figures near water.",
+     "objects": [
+      "water",
+      "building",
+      "tree",
+      "path",
+      "fence",
+      "person",
+      "hut",
+      "mountain"
+     ],
+     "scene_type": "coastal settlement",
+     "people_count": 5,
+     "prominent_building_type": "house"
+    }
+   },
+   "1407787": {
+    "group": "place-bait",
+    "secs": 6.213,
+    "parsed": {
+     "caption": "A vintage stereoscopic photograph shows several individuals traversing a rocky, snow-dusted mountain path with ice formations in the background.",
+     "objects": [
+      "person",
+      "mountain",
+      "ice",
+      "rock",
+      "snow",
+      "backpack",
+      "hat",
+      "walking stick"
+     ],
+     "scene_type": "outdoor landscape",
+     "people_count": 5,
+     "building_type": null
+    }
+   },
+   "1452833": {
+    "group": "maori-subject",
+    "secs": 7.148,
+    "parsed": {
+     "caption": "A solitary figure sits in a shallow, rocky stream surrounded by dense foliage under bright sunlight filtering through the canopy.",
+     "objects": [
+      "stream",
+      "rock",
+      "tree",
+      "leaf",
+      "person",
+      "sunlight"
+     ],
+     "scene_type": "natural landscape",
+     "people_count": 1,
+     "building_type": null
+    }
+   },
+   "1453652": {
+    "group": "ship",
+    "secs": 6.535,
+    "parsed": {
+     "caption": "A sepia-toned photograph shows several boats on a sandy shore with people seated nearby, while larger vessels float in the water behind them.",
+     "objects": [
+      "boat",
+      "person",
+      "barrel",
+      "rope",
+      "smokestack",
+      "mast"
+     ],
+     "scene_type": "beach",
+     "people_count": 5,
+     "building_type": null
+    }
+   },
+   "1700844": {
+    "group": "church",
+    "secs": 8.652,
+    "parsed": {
+     "caption": "A black-and-white photograph shows a long, rectangular building with a steeply pitched thatched roof and walls constructed from horizontal logs or woven material, set in an open grassy field with trees and hills in the background.",
+     "objects": [
+      "building",
+      "roof",
+      "wall",
+      "door",
+      "window",
+      "tree",
+      "hill",
+      "grass",
+      "sky"
+     ],
+     "scene_type": "outdoor landscape with architecture",
+     "people_count": 0,
+     "building_type": "single-story structure with thatched roof and log/woven walls"
+    }
+   },
+   "1770195": {
+    "group": "wharenui",
+    "secs": 5.307,
+    "parsed": {
+     "caption": "A black-and-white photograph shows a traditional wooden structure with carved pillars and decorative rooflines under a cloudy sky.",
+     "objects": [
+      "building",
+      "carved pillar",
+      "roof",
+      "window",
+      "door",
+      "clouds"
+     ],
+     "scene_type": "architectural exterior",
+     "people_count": 0,
+     "building_type": "traditional wooden structure"
+    }
+   },
+   "1770196": {
+    "group": "wharenui",
+    "secs": 6.606,
+    "parsed": {
+     "caption": "A black-and-white photograph shows a man standing beside a wooden structure featuring a carved totem pole and an ornate roofline, set against a backdrop of hills.",
+     "objects": [
+      "man",
+      "totem pole",
+      "building",
+      "roof",
+      "door",
+      "hill",
+      "fence",
+      "ground"
+     ],
+     "scene_type": "outdoor landscape with architecture",
+     "people_count": 1,
+     "building_type": "wooden structure with carved elements"
+    }
+   },
+   "2074943": {
+    "group": "maori-subject",
+    "secs": 5.196,
+    "parsed": {
+     "caption": "Two individuals stand in an open field, raising their arms toward a biplane flying overhead against a backdrop of distant hills and sparse trees.",
+     "objects": [
+      "biplane",
+      "person",
+      "field",
+      "hill",
+      "tree"
+     ],
+     "scene_type": "outdoor landscape with aviation activity",
+     "people_count": 2,
+     "building_type": null
+    }
+   },
+   "2192384": {
+    "group": "maori-subject",
+    "secs": 4.886,
+    "parsed": {
+     "caption": "Five children lean over the edge of a stone basin, smiling and gesturing toward the camera.",
+     "objects": [
+      "child",
+      "stone basin",
+      "water"
+     ],
+     "scene_type": "group portrait",
+     "people_count": 5,
+     "building_type": null
+    }
+   },
+   "2233629": {
+    "group": "church",
+    "secs": 7.24,
+    "parsed": {
+     "caption": "A black-and-white photograph shows pedestrians walking on a paved street near a large domed structure and multi-story buildings with balconies.",
+     "objects": [
+      "person",
+      "building",
+      "dome",
+      "tree",
+      "street",
+      "flag",
+      "bus"
+     ],
+     "scene_type": "urban street scene",
+     "people_count": 5,
+     "building_type": "domed structure and residential/commercial building"
+    }
+   },
+   "2233632": {
+    "group": "church",
+    "secs": 7.646,
+    "parsed": {
+     "caption": "A black-and-white photograph shows a large Gothic-style stone building with ornate arched windows and decorative stonework, viewed from across a street where several pedestrians walk.",
+     "objects": [
+      "building",
+      "window",
+      "archway",
+      "fence",
+      "street",
+      "person",
+      "hat",
+      "coat",
+      "skirt"
+     ],
+     "scene_type": "urban street scene with historic architecture",
+     "people_count": 4,
+     "building_type": "gothic cathedral or church"
+    }
+   }
+  },
+  "done": true
+ }
+}

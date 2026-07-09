@@ -1,0 +1,1415 @@
+{
+ "method": "paired blind judging: one vision agent per photo read the preview and both models outputs (A/B alternated); keys unblinded post hoc",
+ "models": {
+  "4b": "qwen3-vl:4b-instruct",
+  "8b": "qwen3-vl:8b-instruct"
+ },
+ "summary": {
+  "wins_8b": 36,
+  "wins_4b": 14,
+  "ties": 0,
+  "meanGrounded": {
+   "8b": 4.18,
+   "4b": 4.05
+  }
+ },
+ "keys": {
+  "16154": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "17385": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "20217": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "21986": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "22765": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "23592": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "23776": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "23838": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "24216": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "25373": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "54054": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "123123": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "123399": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "126251": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "127687": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "133423": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "168693": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "211251": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "211373": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "224430": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "243815": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "260749": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "270269": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "320477": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "331551": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "352189": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "352683": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "353563": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "356907": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "360465": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "361870": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "363884": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "441511": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "546242": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "547086": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "744076": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "1238483": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "1287260": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "1389501": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "1390509": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "1407787": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "1452833": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "1453652": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "1700844": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "1770195": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "1770196": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "2074943": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "2192384": {
+   "A": "4b",
+   "B": "8b"
+  },
+  "2233629": {
+   "A": "8b",
+   "B": "4b"
+  },
+  "2233632": {
+   "A": "4b",
+   "B": "8b"
+  }
+ },
+ "verdicts": [
+  {
+   "id": 16154,
+   "a": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "Handwritten photographer's inscription (place-name caption) clearly visible in two places on the image — visible_text left empty",
+     "White plank-like object lying on the tidal flat in the foreground"
+    ]
+   },
+   "b": {
+    "grounded": 3,
+    "hallucinations": [
+     "visible_text transcription is substantially garbled: 'KITS', 'COLORA CO.' and 'A.J. 1903' do not match the actual inscription, which reads approximately '2776 - CRAIL BAY, PELORUS SD., N.Z. PHOTO' — the false company-like name and date are invented content"
+    ],
+    "missed": [
+     "White plank-like object lying on the tidal flat in the foreground"
+    ]
+   },
+   "better": "A",
+   "note": "Captions and objects are effectively identical and fully grounded; the decider is visible_text, where A's omission is a miss but B's badly garbled transcription injects a false name and date that would actively pollute a search index."
+  },
+  {
+   "id": 17385,
+   "a": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "shredded-fibre skirt worn by the sitter",
+     "seated pose",
+     "painted studio backdrop"
+    ]
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [
+     "visible_text transcribes the credit as 'BURTON PHOTOS.' but the plate clearly reads 'BURTON BROS.'"
+    ],
+    "missed": [
+     "shredded-fibre skirt worn by the sitter",
+     "that the sitter is a man (only 'person')",
+     "the held object is a wooden club/staff rather than a generic 'ceremonial object'"
+    ]
+   },
+   "better": "A",
+   "note": "A transcribes the printed plate text exactly (including BURTON BROS.) and names the sitter and held club more specifically, while B garbles the photographer credit and stays vaguer throughout."
+  },
+  {
+   "id": 20217,
+   "a": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "ivy covering the church walls",
+     "stone wall and gate pillars along the street frontage",
+     "the second building being a large ornate residence (manse/house) rather than a generic building"
+    ]
+   },
+   "b": {
+    "grounded": 3,
+    "hallucinations": [
+     "'mansions' plural — only one mansion-like residence (the manse) is visible beside the church",
+     "caption claims the two structures are 'separated by a low fence and street' — the fence and street run in front of both buildings, not between them",
+     "visible_text misread as 'MOUR & MOODIE. DUKEDIN' — the printed imprint actually reads 'MUIR & MOODIE, DUNEDIN'"
+    ],
+    "missed": [
+     "lamp post",
+     "trees",
+     "street and fence omitted from the objects list (only two objects given)"
+    ]
+   },
+   "better": "A",
+   "note": "A transcribes the printed imprint accurately and gives a fuller, fully grounded object list, while B misreads the text (MOUR/DUKEDIN), pluralises the single manse into 'mansions', and misstates the spatial relationship of the buildings."
+  },
+  {
+   "id": 21986,
+   "a": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "printed inscription at lower left ('4699 - LAKE ADA. MILFORD SOUND' / 'BURTON BROS. DUNEDIN') — omitted entirely from visible_text",
+     "mist/low cloud hanging on the mountainsides"
+    ]
+   },
+   "b": {
+    "grounded": 3,
+    "hallucinations": [
+     "visible_text 'JOHN R. JOURDA' is invented — the actual printed text after 'LAKE ADA' reads 'MILFORD SOUND', with 'BURTON BROS. DUNEDIN' beneath"
+    ],
+    "missed": [
+     "'MILFORD SOUND' and 'BURTON BROS. DUNEDIN' portions of the printed inscription"
+    ]
+   },
+   "better": "B",
+   "note": "B's genuinely-printed 'LAKE ADA' capture and more specific terms (lake, forested mountains, grass) make it the more useful index record despite its fabricated 'JOHN R. JOURDA', while A is flawless but vaguer and missed the inscription entirely."
+  },
+  {
+   "id": 22765,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "people: \"two\" — at least five or six figures are visible (a group of four walking in the road, a child beside them, plus distant figures on the right footpath)"
+    ],
+    "missed": []
+   },
+   "b": {
+    "grounded": 3,
+    "hallucinations": [
+     "people: \"two\" — wrong count, contradicting even its own caption's \"several\"; five or more figures are visible"
+    ],
+    "missed": [
+     "church with tall steeple — the dominant subject on the right, absent from caption and objects",
+     "monument/memorial column on the left",
+     "picket fences and street lamp"
+    ]
+   },
+   "better": "A",
+   "note": "A accurately names every salient, searchable subject (church with steeple, monument, fences, street lamp, telephone pole) while B is so generic it omits the dominant church entirely; both share the same wrong people count."
+  },
+  {
+   "id": 23592,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "building_type 'house' — the prominent left-shore building is a large two-storey commercial/hotel-style block in a port township, not clearly a house",
+     "visible_text 'PIGTON' mistranscribes the handwritten 'PICTON,' on the plate"
+    ],
+    "missed": [
+     "long timber wharf/pier stretching across the harbour with a steamer (funnel visible) alongside",
+     "large beached vessel/hulk at the waterline on the right",
+     "exposed tidal flats in the foreground"
+    ]
+   },
+   "b": {
+    "grounded": 3,
+    "hallucinations": [
+     "scene 'portrait' — the image is a landscape-format landscape/harbour view with no people",
+     "building_type 'none' contradicts the clearly visible two-storey waterfront buildings (and B's own 'building' object)",
+     "visible_text 'PIGTON' mistranscribes the handwritten 'PICTON,'"
+    ],
+    "missed": [
+     "hills forming the entire backdrop",
+     "steamer moored at the wharf",
+     "beached hulk at right and tidal flats"
+    ]
+   },
+   "better": "A",
+   "note": "B usefully names the pier and captures the fuller plate text, but its flatly wrong scene='portrait' and building_type='none' (with buildings plainly visible) are worse misfilings than A's single debatable 'house' call, so A is the more accurate index record."
+  },
+  {
+   "id": 23776,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "visible_text second line 'HUNTER CROSSOUNEDIN' is a misreading — the printed imprint actually reads 'BURTON BROS. DUNEDIN', so 'Hunter Cross' is an invented name that would pollute a search index"
+    ],
+    "missed": [
+     "mountains/peaks — the towering snow-touched peak dominating the centre of the frame is only described as 'cliffs'",
+     "snow on the distant peaks",
+     "stony/pebble beach in the foreground"
+    ]
+   },
+   "b": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "the 'BURTON BROS: DUNEDIN' photographer's imprint printed at bottom right",
+     "snow on the distant peaks",
+     "stony/pebble foreshore (covered only loosely by 'rock')"
+    ]
+   },
+   "better": "B",
+   "note": "B is fully grounded and names the dominant mountain/peak subject with a correct text transcription, while A misreads the Burton Bros Dunedin imprint as the invented 'HUNTER CROSS' and flattens the fiord peaks into generic cliffs."
+  },
+  {
+   "id": 23838,
+   "a": {
+    "grounded": 3,
+    "hallucinations": [
+     "visible_text 'TEMPURA FROM TOWER' — the negative actually reads 'TEMUKA FROM TOWER'",
+     "visible_text 'PROF. P.M.O.S. MURMODOCK, DUNBURN' — actual inscription is 'PHOTO 7.4.03. MUIR MOODIE, DUNEDIN'",
+     "visible_text 'CANDIDIAN' — the sign reads 'GUARDIAN'",
+     "building_type 'none' contradicts the clearly visible church spire on the horizon"
+    ],
+    "missed": [
+     "church with tall spire on the left horizon (the key landmark; group is 'church')",
+     "prominent telegraph poles with crossarms",
+     "grazing animals and haystack in the paddocks"
+    ]
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [
+     "people 'none' — one pedestrian is visible walking on the footpath at lower left",
+     "caption says 'horse-drawn carts' (plural) — only one cart is clearly visible on the road",
+     "visible_text 'CARGOIAN' — the sign reads 'GUARDIAN'",
+     "visible_text 'T.4.05' and 'BUNBURN' — actual is '7.4.03' and 'DUNEDIN' (minor misreads)"
+    ],
+    "missed": [
+     "the lone pedestrian at lower left",
+     "grazing animals and haystack in the paddocks"
+    ]
+   },
+   "better": "B",
+   "note": "B correctly identifies the church spire (building_type and objects) and transcribes the town name and business signs far more accurately, while A garbles nearly every inscription and misses the church entirely; B's only real errors are the missed lone pedestrian and a plural 'carts'."
+  },
+  {
+   "id": 24216,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "visible_text '3107' — the handwritten plate number in the top-left corner actually reads '8107' (confirmed at 8x magnification; mirrored check verifies reading direction)"
+    ],
+    "missed": [
+     "prominent horizontal layering / distinct rock strata (columnar band over massive lower flow)",
+     "scree/talus slope with low scrub at the cliff base"
+    ]
+   },
+   "b": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "the distinctive columnar jointing (vertical rock columns) is only vaguely described as 'vertical striations'",
+     "scree/talus slope at the cliff base"
+    ]
+   },
+   "better": "B",
+   "note": "B is fully grounded — it correctly transcribes the plate number 8107 and captures the salient layering — while A's sharper 'columnar' wording is outweighed by misreading the handwritten number as 3107, an error that would corrupt search on the plate number."
+  },
+  {
+   "id": 25373,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "people: 'none' — at least one person is clearly visible standing at the building's entrance/doorway"
+    ],
+    "missed": [
+     "figure(s) at the building entrance"
+    ]
+   },
+   "b": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "small shed/outbuilding to the right of the main building",
+     "building_type left as 'none' despite a prominent long accommodation-style building being the main subject"
+    ]
+   },
+   "better": "B",
+   "note": "B correctly detects the tiny figure at the doorway and makes no unsupported claims, while A falsely asserts no people are present; B's only weaknesses are omissions (shed, unclassified building type) rather than errors."
+  },
+  {
+   "id": 54054,
+   "a": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "adjacent gabled wooden cottage at left and shed at right",
+     "carved figure at the gable apex",
+     "carved surrounds on the door and window"
+    ]
+   },
+   "b": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "picket fence at left",
+     "trees/hillside in background",
+     "adjacent gabled wooden cottage at left and shed at right",
+     "carved figure at the gable apex"
+    ]
+   },
+   "better": "A",
+   "note": "Both are fully grounded with the correct wharenui identification, but A's caption is more specific (meeting house, carvings along roofline) and its object list covers more of the visible scene (fence, tree) than B's generic minimum."
+  },
+  {
+   "id": 123123,
+   "a": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "hills/headlands and shoreline in the distance",
+     "small sailing boats on the water (listed in objects but absent from caption)"
+    ]
+   },
+   "b": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "railway tracks — clearly visible in the foreground and on the bridge deck, making this a railway bridge; the most search-relevant detail after the bridge itself"
+    ]
+   },
+   "better": "A",
+   "note": "Both are fully grounded, but A names the railway tracks (the key searchable fact that this is a railway bridge) while B omits railway entirely; B's extra \"truss\" and \"hills\" detail doesn't outweigh that miss."
+  },
+  {
+   "id": 123399,
+   "a": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": []
+   },
+   "b": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "overcast sky occupying the upper half of the image"
+    ]
+   },
+   "better": "A",
+   "note": "Both are fully grounded with no invented content, but A also captures the prominent overcast sky that B omits, making it the slightly more complete search-index description."
+  },
+  {
+   "id": 126251,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [],
+    "missed": [
+     "subjects are children, not just generic 'individuals'",
+     "both are smiling at the camera",
+     "swimwear/bathing costumes",
+     "bathing cap worn by the left child"
+    ]
+   },
+   "b": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": []
+   },
+   "better": "B",
+   "note": "Both are fully accurate with no hallucinations, but B captures the search-relevant specifics A omits — children, smiles, swimwear, and the visible bathing cap."
+  },
+  {
+   "id": 127687,
+   "a": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "carved gable figure holds a spear (taiaha) — a distinctive, search-relevant detail",
+     "central carved porch post supporting the veranda",
+     "carved lintel above the doorway"
+    ]
+   },
+   "b": {
+    "grounded": 3,
+    "hallucinations": [
+     "people: \"one\" — no actual person is visible; the only human form is the carved tekoteko statue on the gable apex, which B separately lists as \"statue\", so the person count is invented"
+    ],
+    "missed": [
+     "grass lawn in the foreground",
+     "trees in the background",
+     "wooden fence at right",
+     "gabled roof form and carved bargeboards"
+    ]
+   },
+   "better": "A",
+   "note": "A is fully grounded with a richer object list and correctly reports no people, while B double-counts the rooftop carving as both a statue and a person and omits salient setting elements."
+  },
+  {
+   "id": 133423,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "caption says carved 'entrance posts' (plural) — only one carved entrance post is clearly visible; the other porch posts appear plain/in shadow"
+    ],
+    "missed": [
+     "bush-covered hillside behind the building",
+     "adjacent corrugated-iron building at left"
+    ]
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [
+     "visible_text 'WAIKARA' — the sign actually reads 'WAIKAKA' (4th and 6th letters are identical Ks); this substitutes a name not printed in the image"
+    ],
+    "missed": [
+     "adjacent corrugated-iron building at left"
+    ]
+   },
+   "better": "A",
+   "note": "B's object list is richer, but A correctly transcribes the sign as WAIKAKA while B's WAIKARA misreads the highest-value search token, which would route searchers to the wrong place name."
+  },
+  {
+   "id": 168693,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [],
+    "missed": [
+     "church with steeple never named in caption or objects (only 'pointed-roofed building'/'building') despite being the dominant subject",
+     "houses/cottages of the settlement not itemised",
+     "hills only in caption, not objects"
+    ]
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [
+     "settlement described as 'on a hillside' — the buildings sit on flat valley ground at the foot of tree-covered hills, not on the slope"
+    ],
+    "missed": [
+     "one or two small figures visible near the central buildings (people recorded as 'none')"
+    ]
+   },
+   "better": "B",
+   "note": "B explicitly names the church, wooden houses, fence, trees and hills — far more useful search terms than A's generic 'building', outweighing B's minor 'hillside' stretch and its missed tiny figure that A caught."
+  },
+  {
+   "id": 211251,
+   "a": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "second smaller white gabled building at right",
+     "low white perimeter wall/fence with gateposts",
+     "sandy ground in the foreground"
+    ]
+   },
+   "b": {
+    "grounded": 3,
+    "hallucinations": [
+     "people: \"two\" — the photo shows a large group of roughly 25-30 people standing and seated, not two"
+    ],
+    "missed": [
+     "low white perimeter wall/fence with gateposts"
+    ]
+   },
+   "better": "A",
+   "note": "B's caption is more complete (it catches the second building and the sand), but its people field flatly miscounts the photo's main subject — a crowd of dozens recorded as \"two\" — while A contains no false claims, and accuracy outweighs A's omission of the secondary building for a search index."
+  },
+  {
+   "id": 211373,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "\"looking directly at the camera\" — the subject's gaze is angled slightly off-camera, not direct"
+    ],
+    "missed": [
+     "white handwritten negative number \"139\" at lower left (visible_text left empty despite genuinely inscribed text)"
+    ]
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [
+     "\"looking directly at the camera\" — the gaze is angled slightly off-camera"
+    ],
+    "missed": [
+     "bare shoulders/bare-chested framing of the sitter, a salient and search-relevant feature of this studio portrait",
+     "white handwritten negative number \"139\" at lower left (visible_text left empty despite genuinely inscribed text)"
+    ]
+   },
+   "better": "A",
+   "note": "Both are accurate and nearly identical, but A adds the genuine, search-useful details \"short\" hair and \"bare-chested\" while B pads its objects list with generic body parts (eye, nose, mouth) that add no retrieval value."
+  },
+  {
+   "id": 224430,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [],
+    "missed": [
+     "row of houses/small settlement along the far shore of the bay (building_type given as 'none' despite visible buildings)",
+     "distant mountain range/hills to the right of the snow-capped peak",
+     "conical volcanic form of the mountain"
+    ]
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [],
+    "missed": [
+     "row of houses/small settlement along the far shore of the bay (building_type given as 'none' despite visible buildings)",
+     "distant mountain range/hills to the right of the snow-capped peak",
+     "conical volcanic form of the mountain"
+    ]
+   },
+   "better": "A",
+   "note": "Near-identical candidates with the same objects and the same misses, but A's caption adds the search-relevant \"coastal\" framing and a clearer foreground/background composition, edging out B's vaguer \"bordered by cliffs and vegetation\"."
+  },
+  {
+   "id": 243815,
+   "a": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "bird's plumage detail (dark wings, pale underparts)",
+     "twigs/leaf litter around the bird"
+    ]
+   },
+   "b": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": []
+   },
+   "better": "B",
+   "note": "Both are fully grounded with no hallucinations, but B adds accurate, search-useful plumage detail (dark wings, light underparts) and the twigs that A omits."
+  },
+  {
+   "id": 260749,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "people field says \"two\" but three people are visible (two seated males, one standing woman)",
+     "caption says all three individuals \"stand\" on the porch, but two of them are seated on the front beam/paepae"
+    ],
+    "missed": [
+     "carved bargeboards (maihi) sweeping down each side of the gable",
+     "painted kowhaiwhai scroll patterns on the porch rafters"
+    ]
+   },
+   "b": {
+    "grounded": 3,
+    "hallucinations": [
+     "caption claims four individuals are posed on the porch, but only three are visible",
+     "people field says \"two\", contradicting both the caption and the three people actually visible"
+    ],
+    "missed": [
+     "carved gable figure (koruru/tekoteko) at the apex and on the central post",
+     "painted kowhaiwhai patterns on the porch rafters"
+    ]
+   },
+   "better": "A",
+   "note": "Both wrongly report two people in the people field, but A's caption gets the count right (three) and only fudges posture, while B's caption invents a fourth person, making A the more accurate index entry despite B's nice bargeboard detail."
+  },
+  {
+   "id": 270269,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "building_type 'house' is a stretch — the prominent buildings beside the stockyards read as commercial/farm structures; only small distant structures might be houses"
+    ],
+    "missed": [
+     "snow-capped peak of the mountain (distinctive, search-relevant)",
+     "extensive white post-and-rail stockyards/livestock yards in the mid-ground (more specific than generic 'fence')",
+     "publisher card text ('Rose's Stereoscopic Views' / 'Sold only by George Rose, Melbourne') omitted from visible_text"
+    ]
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [
+     "building_type 'none' contradicts the clearly visible cluster of buildings (and its own objects list)"
+    ],
+    "missed": [
+     "the snow-capped mountain — the card's main subject — omitted from the caption ('distant hills' only)",
+     "foreground barbed-wire fence posts",
+     "extensive white post-and-rail stockyards in the mid-ground",
+     "publisher card text ('Rose's Stereoscopic Views' / 'George Rose, Melbourne') omitted from visible_text"
+    ]
+   },
+   "better": "A",
+   "note": "A names the distant mountain (the photograph's headline subject) and the foreground posts, while B drops the mountain from its caption and declares building_type 'none' despite visible buildings."
+  },
+  {
+   "id": 320477,
+   "a": {
+    "grounded": 5,
+    "hallucinations": [
+     "scene labelled 'portrait' though the image is a landscape-format outdoor crowd scene (same flaw in both candidates)"
+    ],
+    "missed": [
+     "distant harbour/breakwater with ship masts on the horizon",
+     "the gazebo is specifically a bandstand/rotunda — building_type 'none' undersells the one structure present"
+    ]
+   },
+   "b": {
+    "grounded": 3,
+    "hallucinations": [
+     "building_type 'church' — no church is visible; the only structure is an open iron-and-timber band rotunda/gazebo",
+     "scene labelled 'portrait' though the image is a landscape-format outdoor crowd scene (same flaw in both candidates)"
+    ],
+    "missed": [
+     "sandy beach/foreshore",
+     "seated figures on the grassy bank in the foreground",
+     "distant harbour/breakwater with ship masts on the horizon"
+    ]
+   },
+   "better": "A",
+   "note": "B invents a church for building_type where only a band rotunda exists, while A's caption and objects (including beach and fence) are all visibly grounded and equally search-useful."
+  },
+  {
+   "id": 331551,
+   "a": {
+    "grounded": 3,
+    "hallucinations": [
+     "people: 'none' — roughly seven or eight men are clearly visible (and A's own caption and objects list say 'men')"
+    ],
+    "missed": [
+     "the long narrow boats/canoes the men are actually handling alongside the jetty — the central subject A reduces to a 'wooden platform'"
+    ]
+   },
+   "b": {
+    "grounded": 3,
+    "hallucinations": [
+     "people: 'two' — roughly seven or eight men are visible, not two"
+    ],
+    "missed": [
+     "men omitted from the objects list (only in caption)",
+     "oars/long poles the men are holding",
+     "hills behind the harbour"
+    ]
+   },
+   "better": "B",
+   "note": "B correctly identifies the long boats at the dock — the scene's central subject — and merely undercounts the crew, whereas A misses the boats entirely and its people field denies anyone is present, contradicting its own caption."
+  },
+  {
+   "id": 352189,
+   "a": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "large white handlebar moustache (distinctive search feature)",
+     "painted studio backdrop"
+    ]
+   },
+   "b": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "military uniform and peaked cap omitted from objects list (caption-only)",
+     "large white handlebar moustache",
+     "painted studio backdrop"
+    ]
+   },
+   "better": "A",
+   "note": "Both captions are fully grounded (the barley-twist spindle chair and wicker table are clearly visible, and the resting hand is indeed his right), but A's objects list is more complete for search — it indexes the military uniform, cap, and wicker table that B drops."
+  },
+  {
+   "id": 352683,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "visible_text '1157234' — the plate's handwritten inscription actually reads 'K Dempsey' followed by digits closer to '1255611'; the claimed string is not what is written"
+    ],
+    "missed": [
+     "handwritten sitter-name inscription 'K Dempsey' on the plate edge",
+     "Edwardian pompadour updo hairstyle",
+     "pendant necklace at the high collar"
+    ]
+   },
+   "b": {
+    "grounded": 3,
+    "hallucinations": [
+     "visible_text '1907-12-15' — no date in any format appears on the plate; the real inscription is 'K Dempsey' plus a negative number, so this is an invented date (forbidden category, likely metadata leak)"
+    ],
+    "missed": [
+     "handwritten sitter-name inscription 'K Dempsey' on the plate edge",
+     "pendant necklace at the high collar"
+    ]
+   },
+   "better": "A",
+   "note": "Decided by visible_text: A garbled the genuinely present negative number while B fabricated a formatted date that appears nowhere in the image (a forbidden-category leak); otherwise the descriptions are near-identical, with B only marginally richer (studio, hair)."
+  },
+  {
+   "id": 353563,
+   "a": {
+    "grounded": 3,
+    "hallucinations": [
+     "visible_text 'GODLEY' — the handwritten name on the glass plate actually reads 'Cottle' (verified by mirroring the negative's reversed text); a wrong surname in a search index",
+     "'handrail' — the woman leans on a carved studio posing pedestal, not a handrail (minor stretch)"
+    ],
+    "missed": [
+     "woman's dark gloves",
+     "man's waistcoat/vest with watch chain",
+     "woman's distinctive wide-brimmed hat (only generic 'hat' listed)"
+    ]
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [
+     "visible_text 'C.4024' — the scratched plate number reads approximately '5647'/'B647', not C.4024; the transcription is invented"
+    ],
+    "missed": [
+     "woman's dark gloves",
+     "carved posing pedestal the woman leans on",
+     "handwritten sitter name 'Cottle' on the plate"
+    ]
+   },
+   "better": "B",
+   "note": "Both misread the plate text, but B's object list is fully grounded and more specific (vest, wide-brimmed hat) while A compounds its error by inventing a wrong surname (plate reads 'Cottle') plus a stretched 'handrail', making A more misleading for search."
+  },
+  {
+   "id": 356907,
+   "a": {
+    "grounded": 3,
+    "hallucinations": [
+     "visible_text 'SOMEONE'S PHOTOGRAPH' — no such text exists in the image; the actual visible text is the printed film-edge marking 'EASTMAN—NITRATE—KODAK' and a handwritten inscription reading 'Signor Cavare'"
+    ],
+    "missed": [
+     "small pin/badge worn on the man's left lapel"
+    ]
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [
+     "visible_text 'Sigmund Carlsen' misreads the genuine handwritten inscription, which reads 'Signor Cavare' (verified by mirroring the negative) — the specific name claimed is not what is written"
+    ],
+    "missed": []
+   },
+   "better": "B",
+   "note": "B catches the lapel pin and ties its visible_text to real handwriting on the negative (albeit misread), while A omits the pin and fabricates text that appears nowhere in the image."
+  },
+  {
+   "id": 360465,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "visible_text partially misread: the cursive inscription reads 'Ward', transcribed as 'Nyard'",
+     "'12/10 CUP 78' does not match the faint markings, which look more like a plate number and 'Aug 18'"
+    ],
+    "missed": []
+   },
+   "b": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "handwritten inscription along the top of the plate (a surname and numbers/tally marks) reported as empty visible_text",
+     "patterned tie detail"
+    ]
+   },
+   "better": "A",
+   "note": "A captures the genuinely handwritten plate inscription (including the searchable surname) and the patterned tie, making it more useful despite minor transcription misreadings, while B omits the visible text entirely."
+  },
+  {
+   "id": 361870,
+   "a": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": []
+   },
+   "b": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": []
+   },
+   "better": "B",
+   "note": "Captions are near-identical and fully grounded, but B additionally lists the visible suit, tie, vest, and dress as objects, making it more retrievable for clothing-based searches with no added risk."
+  },
+  {
+   "id": 363884,
+   "a": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "light-coloured 1920s-style dress (the main costume detail)",
+     "lace skirt panel",
+     "strap shoes",
+     "necklace with pendant",
+     "patterned carpet"
+    ]
+   },
+   "b": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "necklace with pendant",
+     "lace detail on the skirt"
+    ]
+   },
+   "better": "B",
+   "note": "Both are fully grounded with no invented content, but B captures more of the search-relevant detail (dress, shoes, carpet, the ornate cabriole-legged bench) that A omits."
+  },
+  {
+   "id": 441511,
+   "a": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": []
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [],
+    "missed": [
+     "palm trees along the shoreline (a dominant, search-relevant subject)",
+     "distant white colonial building on the far shore — building_type incorrectly given as 'none'"
+    ]
+   },
+   "better": "A",
+   "note": "A captures the palms, shoreline, and the visible distant building (reasonably judged a house), while B misses the palms and wrongly reports no building; both have zero hallucinations."
+  },
+  {
+   "id": 546242,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "visible_text transcribes the negative number as 4636, but the print reads 4836"
+    ],
+    "missed": [
+     "dark bush-covered island/headland in the middle of the lake"
+    ]
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [
+     "visible_text transcribes the negative number as 4636, but the print reads 4836",
+     "visible_text spells 'FIORD', but the printed caption reads 'FJORD'"
+    ],
+    "missed": [
+     "dark bush-covered island/headland in the middle of the lake",
+     "snow on the distant mountain peaks"
+    ]
+   },
+   "better": "A",
+   "note": "A correctly notes the visible snow on the mountains and transcribes 'FJORD' accurately, while B misses the snow and adds a second transcription error; both share the 4636/4836 digit misread and omit the mid-lake island."
+  },
+  {
+   "id": 547086,
+   "a": {
+    "grounded": 3,
+    "hallucinations": [
+     "scene: 'portrait' — the photograph is clearly landscape orientation (much wider than tall)",
+     "building_type: 'none' — several houses/settlement buildings are plainly visible on the far shore"
+    ],
+    "missed": [
+     "the two people (one standing on the beach by the logs, one aboard the boat) are absent from caption and objects",
+     "houses/small settlement on the far shore",
+     "hills/mountains in the background",
+     "the vessel's sailing rig (mast and rigging make it a sailboat, not a generic boat)",
+     "printed text in the bottom margin ('...PEMBROKE, LAKE WANAKA' left, 'BURTON BROS, DUNEDIN' right) not recorded in visible_text"
+    ]
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [
+     "'figures stand on the beach' (plural) — only one figure stands on the beach; the second person is aboard the moored sailboat"
+    ],
+    "missed": [
+     "printed text in the bottom margin ('...PEMBROKE, LAKE WANAKA' / 'BURTON BROS, DUNEDIN') not recorded in visible_text",
+     "the person aboard the sailboat as distinct from beach figures"
+    ]
+   },
+   "better": "B",
+   "note": "B gets the orientation (landscape) and the far-shore houses right and is more specific (sailboat, timber piles, hills), while A wrongly claims portrait orientation and no buildings; B's only slip is placing both figures on the beach."
+  },
+  {
+   "id": 744076,
+   "a": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": []
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [
+     "'hands resting on the sill' is a slight stretch — only one hand is on the sill; the other rests on top of the hat"
+    ],
+    "missed": [
+     "the prominent painted DB LAGER beer signage on the window glass (absent from caption and objects, only in visible_text)",
+     "window omitted from objects list"
+    ]
+   },
+   "better": "A",
+   "note": "Both are accurate and correctly transcribe the painted glass text, but A's caption and object list capture the salient DB LAGER sign and window, making it the more useful search-index record."
+  },
+  {
+   "id": 1238483,
+   "a": {
+    "grounded": 3,
+    "hallucinations": [
+     "people: 'two' — roughly 12-15 people stand in a line in front of the building, plus two more figures by the wall at left; contradicts its own caption's 'group of individuals'",
+     "building_type: 'house' — the scale (very long, high gable, rows of formal windows, multiple doors, walled compound) reads as a communal/mission building, most plausibly a church, not a dwelling"
+    ],
+    "missed": []
+   },
+   "b": {
+    "grounded": 3,
+    "hallucinations": [
+     "people: 'two' — roughly 12-15 people stand along the front of the building, plus two more figures by the wall at left; contradicts its own caption's 'group of individuals'",
+     "building_type: 'house' — the large communal scale and walled compound read as a church/mission building rather than a dwelling"
+    ],
+    "missed": [
+     "palm trees (coconut palms) named only as generic 'vegetation'; 'tree' and 'window' absent from the objects list"
+    ]
+   },
+   "better": "A",
+   "note": "Near-identical captions with the same two errors (people miscounted as 'two', building called a 'house'), but A's object list adds the search-useful terms 'tree' and 'window' that B omits."
+  },
+  {
+   "id": 1287260,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "building_type 'house' — the central illustration shows a vast ornate two-towered exhibition hall/palace (the pictured exhibition building), not a house",
+     "caption says the building is 'overlaid with' stamps — the stamps are arranged around the border of the card, not laid over the building illustration"
+    ],
+    "missed": [
+     "human figures depicted on the red wax seal and on several stamps (people given as 'none')",
+     "the 'No. 59.' series number and stamp inscriptions omitted from visible_text"
+    ]
+   },
+   "b": {
+    "grounded": 3,
+    "hallucinations": [
+     "building_type 'none' despite a prominent two-towered exhibition building dominating the central illustration",
+     "visible_text 'MILFORDS SOUND' — the green stamp actually reads 'MILFORD SOUND'"
+    ],
+    "missed": [
+     "red wax seal at top centre (very prominent)",
+     "the large two-towered exhibition building itself",
+     "swans and a rowboat on the lake",
+     "trees flanking the illustration"
+    ]
+   },
+   "better": "A",
+   "note": "A captures nearly all salient content (two-towered building, water, swans, boat, wax seal, stamps) with only a mislabelled building_type, while B's sparse two-object description omits the wax seal and denies the building entirely, outweighing B's fuller stamp-text transcription."
+  },
+  {
+   "id": 1389501,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "visible_text 'GIB.RALTAR' inserts a period between GIB and RALTAR that is not clearly present in the handwriting (there is a letter gap but no distinct dot)"
+    ],
+    "missed": [
+     "small ships/vessels visible on the water at far left",
+     "breakwater/mole extending along the waterline at right",
+     "distant coastline/hill on the left horizon"
+    ]
+   },
+   "b": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "small ships/vessels visible on the water at far left",
+     "breakwater/mole extending along the waterline at right",
+     "distant coastline/hill on the left horizon"
+    ]
+   },
+   "better": "B",
+   "note": "Both are grounded with identical misses, but B's 'rocky promontory' is the more precise landform reading, its scene category 'landscape' is correct where A's 'other' is vague, and its transcription 'GIBRALTAR' matches the handwriting without A's invented period."
+  },
+  {
+   "id": 1390509,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "people: 'two' — at least five people are clearly visible (two women at lower left, one holding a parasol, plus three men: one standing in the garden plots, one standing on the path, one seated in a chair on the path)"
+    ],
+    "missed": [
+     "white church with tower on the far shore across the water",
+     "thatched-roof raised shelter (whare/whata-style) at right",
+     "paling fence around the garden plots"
+    ]
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [
+     "people: 'two' — at least five people are clearly visible in the foreground"
+    ],
+    "missed": [
+     "white church with tower on the far shore across the water",
+     "people omitted from the objects list despite being prominent foreground subjects",
+     "vegetable garden — the dominant foreground subject is reduced to generic 'vegetation'",
+     "willow trees"
+    ]
+   },
+   "better": "A",
+   "note": "A names the dominant subjects specifically (vegetable garden, house, tree, people, island) where B retreats to generic 'vegetation/building' and drops people from its objects entirely; both equally undercount five visible people as two and both miss the church across the water, while B's grounded extras (umbrella, fence, shelter) are real but peripheral."
+  },
+  {
+   "id": 1407787,
+   "a": {
+    "grounded": 3,
+    "hallucinations": [
+     "people field claims 'none' when about five people are plainly the main subjects — directly contradicting its own caption ('several individuals')"
+    ],
+    "missed": [
+     "the glacier/icefall dominating the background is never identified, only 'snow-covered terrain'"
+    ]
+   },
+   "b": {
+    "grounded": 3.5,
+    "hallucinations": [
+     "people field claims 'two' when about five figures are visible (three in the foreground, two smaller ones behind)",
+     "visible_text transcription invents words not printed on the card: 'Carters' for 'Carrier', 'sharp detail' for 'sharp, bold relief', and drops 'Carrier of the' Stereoscope"
+    ],
+    "missed": [
+     "hats (worn and one carried in hand) and walking sticks/alpenstocks carried by the party"
+    ]
+   },
+   "better": "B",
+   "note": "B correctly names the glacier — the image's key searchable feature — and its wrong people count ('two') at least registers the group, whereas A's 'people: none' flatly contradicts the five visible figures despite A's richer object list and cleaner text transcription."
+  },
+  {
+   "id": 1452833,
+   "a": {
+    "grounded": 3,
+    "hallucinations": [
+     "scene classified as 'architecture' — the photo is a stream in dense bush with no buildings or structures visible anywhere"
+    ],
+    "missed": [
+     "the stream/river itself (objects list only the generic 'water', hurting searches for stream/river scenes)",
+     "the water is visibly flowing/rushing around the seated figure (suggests bathing in a stream, a key search hook)"
+    ]
+   },
+   "b": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "the water is visibly flowing/rushing around the seated figure (bathing in a stream is the salient activity)"
+    ]
+   },
+   "better": "B",
+   "note": "The captions are nearly identical and both accurate, but A misclassifies this buildings-free bush stream as an 'architecture' scene while B correctly calls it a landscape and names the stream specifically."
+  },
+  {
+   "id": 1453652,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "people: \"two\" — at least four people are visible (a pair on the left plus a seated group of two or more on the right near the lifeboat)",
+     "\"several boats on a beach\" — only two beached boats are visible, a mild overcount"
+    ],
+    "missed": [
+     "the second group of seated people at the right beside the lifeboat",
+     "the stranded/grounded state of the ships — the right-hand steamer is listing heavily aground (shipwreck), highly search-relevant",
+     "smoking funnel / steamship character of the left vessel",
+     "scene tagged \"other\" rather than the clearly marine/beach setting"
+    ]
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [
+     "people: \"two\" — at least four people are visible, contradicting even its own objects list of four persons"
+    ],
+    "missed": [
+     "the barrel the man on the left is seated on",
+     "the rope stretched across the sand to the beached lifeboat",
+     "the stranded/grounded state of the ships — the right-hand steamer is listing heavily aground (shipwreck)",
+     "the third ship visible on the horizon"
+    ]
+   },
+   "better": "B",
+   "note": "Both undercount people in the people field and miss that the ships are aground, but B's correct \"marine\" scene tag and accurate two-ship/two-boat/four-person object counts outweigh A's extra barrel-and-rope detail alongside its vaguer \"other\" scene and \"several boats\" overcount."
+  },
+  {
+   "id": 1700844,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "visible_text transcribed as 'Buidoga' but the handwritten caption reads 'Buaidoga'"
+    ],
+    "missed": [
+     "building_type given as 'none' despite the building being a thatched church (and the in-image text saying 'The Church')",
+     "door and window openings in the walls",
+     "walls of horizontally-coursed woven/thatched leaf material",
+     "prominent lone tree at left foreground"
+    ]
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [
+     "'wooden structure' — the walls are horizontally-coursed thatch/woven leaf material, not visibly wood"
+    ],
+    "missed": [
+     "door and window openings in the walls",
+     "prominent lone tree at left foreground",
+     "thatched/woven wall material"
+    ]
+   },
+   "better": "B",
+   "note": "B correctly identifies the building as a church (matching both its appearance and the genuinely handwritten in-image text, which it also transcribes accurately), while A calls building_type 'none' and mis-transcribes the place name; B's only slip is calling the thatch-walled structure 'wooden'."
+  },
+  {
+   "id": 1770195,
+   "a": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "cloudy sky",
+     "painted/decorated rafters under the porch",
+     "adjacent building at right"
+    ]
+   },
+   "b": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": [
+     "carved gable-apex figure (tekoteko)",
+     "painted/decorated rafters under the porch",
+     "adjacent building at right"
+    ]
+   },
+   "better": "A",
+   "note": "Both are fully grounded and correctly identify the wharenui, but A captures more of the distinctive carved elements (gable figure, carved bargeboard) that matter for search, while B trades those for the generic sky."
+  },
+  {
+   "id": 1770196,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "'mountain' — the background is a bush-covered hill/ridge, a mild stretch rather than a clear mountain",
+     "'carved posts' (plural) in the caption — only one carved post (the amo with ancestral figure) is visible"
+    ],
+    "missed": [
+     "raised platform/plank walkway and the building standing on piles",
+     "open panelled door/doorway on the porch",
+     "carved human (ancestral) figure on the post"
+    ]
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [
+     "caption frames the carved post as 'attached to a raised platform near a building' — the post is actually part of the building itself (the amo supporting the bargeboard), a compositional misreading",
+     "scene 'landscape' — the frame is dominated by the building; the scene is architectural"
+    ],
+    "missed": [
+     "carved/decorated bargeboard omitted from the objects list",
+     "hills/bush-covered ridge in the background",
+     "open panelled door/doorway",
+     "carved human (ancestral) figure on the post"
+    ]
+   },
+   "better": "A",
+   "note": "Both correctly identify the wharenui and one man, but A classifies the scene as architecture and lists the carved bargeboard, while B mislabels the scene as landscape and misreads the carved post as a separate structure attached to a platform."
+  },
+  {
+   "id": 2074943,
+   "a": {
+    "grounded": 5,
+    "hallucinations": [],
+    "missed": []
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [],
+    "missed": [
+     "traditional cloaks/patterned blankets worn by both figures — the most distinctive, search-relevant feature",
+     "aircraft is identifiably a biplane, not just a generic airplane"
+    ]
+   },
+   "better": "A",
+   "note": "Both are hallucination-free, but A names the biplane and the traditional attire/blanket while B omits the cloaks entirely and stays generic."
+  },
+  {
+   "id": 2192384,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "people field says 'two' but five children are clearly visible (contradicts its own caption)"
+    ],
+    "missed": [
+     "children's wet hair",
+     "stone/concrete material of the pool edge they lean over"
+    ]
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [
+     "people field says 'none' but five children are the entire subject of the photo",
+     "'shallow water' — water depth is not verifiable in the image (minor stretch)"
+    ],
+    "missed": []
+   },
+   "better": "B",
+   "note": "Both captions correctly count five children while both people fields are wrong (A 'two', B 'none'); B wins on its more specific, still-grounded caption (wet hair, stone structure) which carries more search value than A's generic phrasing."
+  },
+  {
+   "id": 2233629,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "people: 'two' — at least four pedestrians are clearly visible in the foreground (man walking away in centre, man at left, woman and child walking toward camera), plus figures near the bus"
+    ],
+    "missed": []
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [
+     "people: 'two' — at least four pedestrians are clearly visible in the foreground, plus figures near the bus"
+    ],
+    "missed": [
+     "the large domed neoclassical building with columned portico in the distance — the most salient landmark in the frame, entirely absent from caption, objects, and building_type"
+    ]
+   },
+   "better": "A",
+   "note": "Both undercount the pedestrians, but A anchors on the photo's defining feature — the distant columned dome (church-like, matching its 'church' building_type) — while B omits the landmark entirely and labels the scene merely 'commercial', making A far more useful for search."
+  },
+  {
+   "id": 2233632,
+   "a": {
+    "grounded": 4,
+    "hallucinations": [
+     "people: \"two\" — four people are visible (two men in dark suits walking behind the fence near the portal, two women in hats and dresses in the foreground)"
+    ],
+    "missed": [
+     "statues in niches flanking the entrance",
+     "pointed/Gothic arch and ornate tracery character of the portal (caption only says generic \"arched entrance\")"
+    ]
+   },
+   "b": {
+    "grounded": 4,
+    "hallucinations": [
+     "people: \"two\" — four people are visible (two men behind the fence, two women in the foreground)"
+    ],
+    "missed": []
+   },
+   "better": "B",
+   "note": "Both share the same undercount (two vs four people), but B is more specific and search-useful — it correctly notes the pointed arch, ornate character, fence, and the flanking statues that A omits."
+  }
+ ]
+}

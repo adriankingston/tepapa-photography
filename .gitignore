@@ -31,3 +31,8 @@ build/so400m-progress.json
 build/so400m-missing.json
 build/so400m-tag-scores.json
 build/tag-verdicts-transferred.json
+
+# VLM caption pass (outputs local; harness + experiment records are tracked)
+build/judge-inputs/
+build/captions.jsonl
+build/captions-meta.json
