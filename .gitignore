@@ -36,3 +36,4 @@ build/tag-verdicts-transferred.json
 build/judge-inputs/
 build/captions.jsonl
 build/captions-meta.json
+build/caption-run.log
