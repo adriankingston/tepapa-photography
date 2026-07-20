@@ -51,10 +51,16 @@ if (meta.model !== MODEL) throw new Error(`captions.jsonl was started with ${met
 if (STAMP && meta.stamp && meta.stamp !== STAMP) throw new Error(`captions.jsonl is for a different harvest (${meta.stamp} ≠ ${STAMP})`);
 fs.writeFileSync(META_PATH, JSON.stringify(meta, null, 2));
 
+// Seeded shuffle: id order = oldest photos first, so a partial file would be
+// a biased sample. Shuffled, the done-set is ~representative at any moment —
+// Stage 3 machinery can be validated on it mid-run.
+function lcg(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 2 ** 32); }
+const rnd = lcg(20260710);
 const pending = records.map((r) => r.id).filter((id) => {
   const d = done.get(id);
   return !d || d.error;
 });
+for (let i = pending.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [pending[i], pending[j]] = [pending[j], pending[i]]; }
 console.log(`Captioning with ${MODEL}: ${done.size} done, ${pending.length} to go (concurrency ${CONCURRENCY})`);
 
 const out = fs.createWriteStream(OUT_PATH, { flags: 'a' });
@@ -67,6 +73,10 @@ async function askOne(id, tries = 3) {
       const r = await fetch(`${OLLAMA}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        // A request interrupted by sleep can hang the socket FOREVER (seen
+        // 2026-07-15: process alive, no writes for 4.5h) — bound it so the
+        // retry/supervisor machinery can actually engage.
+        signal: AbortSignal.timeout(5 * 60 * 1000),
         body: JSON.stringify({
           model: MODEL,
           messages: [{ role: 'user', content: PROMPT, images: [img] }],
