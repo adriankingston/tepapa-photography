@@ -1,7 +1,28 @@
 {
- "overall": 0.8613861386138614,
- "judged": 202,
+ "audited": 101,
+ "judged": 399,
+ "overall": 0.8320802005012531,
  "perTerm": [
+  {
+   "key": "tp-wooden-buildings",
+   "precision": 1,
+   "notes": "All four photos prominently feature timber weatherboard buildings (hotels, a homestead, and a wooden-fronted commercial street), so the tag fits every one."
+  },
+  {
+   "key": "tp-military-personnel",
+   "precision": 1,
+   "notes": "All four clearly show uniformed military personnel; 364002 also includes a civilian woman but the uniformed soldier is a central subject, so the tag still applies."
+  },
+  {
+   "key": "snow",
+   "precision": 0.75,
+   "notes": "Photo 1183189 is a heavily faded sepia view of trees over a braided river valley with no identifiable snow — the distant peaks are washed out to blank paper, so a visitor browsing \"Snow\" would see a bush/valley scene, while the other three clearly show snow-covered slopes and peaks."
+  },
+  {
+   "key": "cliffs",
+   "precision": 1,
+   "notes": "All four show prominent cliff faces; the last (354311) is really a steaming volcanic crater, but its steep eroded crater walls still read plainly as cliffs, so it passes as a borderline fit."
+  },
   {
    "key": "tp-plants",
    "precision": 1,
@@ -13,44 +34,9 @@
    "notes": "520332 shows an elderly woman with a much younger woman on porch steps — reads as a mother/daughter or generational family pair, not spouses; the other three are clear couple/wedding portraits."
   },
   {
-   "key": "cliffs",
-   "precision": 1,
-   "notes": "All four fit; 354311 is a steaming volcanic crater rather than coastal cliffs, but its sheer crater walls still read as cliffs, so it passes as a borderline-acceptable match."
-  },
-  {
-   "key": "snow",
-   "precision": 0.75,
-   "notes": "Photo 1183189 does not fit: it is a heavily faded sepia view of a braided river valley framed by trees, with no discernible snow — the distant peaks are washed out to blank paper rather than visibly snow-covered; the other three (crater lake with snowfields, snow-streaked mountain face, climber on a snow slope) are clear fits."
-  },
-  {
    "key": "cattle",
    "precision": 0.75,
-   "notes": "Photo 16968 does not fit: it is a bush-clearing scene with men on horseback and felled timber — the only animals are horses; 133012 is borderline (one small grazing cow in a farm landscape) but passes."
-  },
-  {
-   "key": "tp-military-personnel",
-   "precision": 1,
-   "notes": "All four clearly show uniformed military personnel; 364002 also includes a civilian woman but the uniformed soldier is a central subject, so the tag still applies."
-  },
-  {
-   "key": "tp-thatched-roof-buildings",
-   "precision": 1,
-   "notes": "All four fit: 242537 and 1259199 show thatched bures/fale prominently, 211314's town panorama contains many small but visible thatched dome fale (confirmed by zoom), and 113108 is mainly a river landscape yet has a clear thatched fale at its right edge."
-  },
-  {
-   "key": "tp-wooden-buildings",
-   "precision": 1,
-   "notes": "All four photos prominently feature timber weatherboard buildings (hotels, a homestead, and a wooden-fronted commercial street), so the tag fits every one."
-  },
-  {
-   "key": "tp-pearls",
-   "precision": 1,
-   "notes": "First three show unmistakable pearl necklaces; 2113358's large translucent graduated beads may be glass rather than pearls, but the fit is ambiguous on a clearly related necklace portrait so it counts as true."
-  },
-  {
-   "key": "tp-rooms-spaces",
-   "precision": 1,
-   "notes": "403658 is borderline: it is a mixed contact sheet (house exteriors, gardens, portraits) rather than a single room, but several frames are genuine room interiors, so it counts as a partial fit; the others are unambiguous interiors (a sunporch twice, a bedroom)."
+   "notes": "Photo 16968 has no cattle at all — it shows men on horseback with a wrecked cart in cleared bush; 133012 is borderline (one small grazing cow in a wide landscape) but still fits."
   },
   {
    "key": "tp-cathedrals",
@@ -58,9 +44,9 @@
    "notes": "Photos 1-3 are clearly cathedral/large Gothic church scenes (interior, facade, spired church in townscape), but 324228 is a postcard of the Invercargill public gardens with only a small domed building in the distant background — its subject is a garden, not a cathedral."
   },
   {
-   "key": "tp-thatched-roofs",
-   "precision": 0.5,
-   "notes": "211467 (Fijian thatched huts) and 520268 (villagers carrying a woven fale roof) fit; 376271 shows Kent oast houses with tiled conical kiln roofs (only an incidental thatched hay rick), and 105454 shows a NZ coastal settlement of weatherboard/iron baches in scrub with no thatch at all."
+   "key": "tp-pearls",
+   "precision": 1,
+   "notes": "First three show unmistakable pearl necklaces; 2113358's large translucent graduated beads may be glass rather than pearls, but the fit is ambiguous on a clearly related necklace portrait so it counts as true."
   },
   {
    "key": "tp-battleships",
@@ -68,9 +54,14 @@
    "notes": "Photo 1517510 does not fit: it is a coastal seascape with small distant steamers/fishing boats, no battleship or warship visible; the first three all show clear warship subjects (destroyers at wharf, H.M.S. New Zealand, cruiser at anchor)."
   },
   {
-   "key": "tp-living-rooms",
-   "precision": 0.75,
-   "notes": "Photo 1837388 does not fit: it shows an arched hallway with a cabinet opening onto a tiled room with plain ladder-back chairs (a hall/kitchen passage), not a living room; 520283 is a borderline veranda-lounge tea scene but reads as a living space."
+   "key": "tp-thatched-roofs",
+   "precision": 0.5,
+   "notes": "211467 (Fijian thatched huts) and 520268 (villagers carrying a woven fale roof) fit; 376271 shows Kent oast houses with tiled conical kiln roofs (only an incidental thatched hay rick), and 105454 shows a NZ coastal settlement of weatherboard/iron baches in scrub with no thatch at all."
+  },
+  {
+   "key": "tp-rooms-spaces",
+   "precision": 1,
+   "notes": "403658 is borderline: it is a mixed contact sheet (house exteriors, gardens, portraits) rather than a single room, but several frames are genuine room interiors, so it counts as a partial fit; the others are unambiguous interiors (a sunporch twice, a bedroom)."
   },
   {
    "key": "tp-automobile-equipment-supplies",
@@ -83,14 +74,14 @@
    "notes": "All four are clear sand scenes — dunes, drift hills, an advancing sand face, and rippled sand flats — so the tag fits every photo, including the edge picks."
   },
   {
+   "key": "tp-thatched-roof-buildings",
+   "precision": 1,
+   "notes": "All four fit: 242537 and 1259199 show thatched bures/fale prominently, 211314's town panorama contains many small but visible thatched dome fale (confirmed by zoom), and 113108 is mainly a river landscape yet has a clear thatched fale at its right edge."
+  },
+  {
    "key": "tp-military-uniforms",
    "precision": 1,
    "notes": "All four photos prominently show WWI-era New Zealand soldiers in service uniform (lemon-squeezer hats, tunics, puttees); the two that include civilian women still feature uniformed soldiers as central subjects, so the tag holds throughout."
-  },
-  {
-   "key": "tp-costumes",
-   "precision": 0.75,
-   "notes": "Photo 117779 does not fit: it shows a menswear shop interior with racks of ordinary suits and a customer being fitted, not costumes; the other three are genuine ceremonial/theatrical/fancy-dress costumes."
   },
   {
    "key": "tp-fireplaces",
@@ -98,9 +89,14 @@
    "notes": "Photos 1-2 feature prominent fireplaces, photo 3 is a stair-hall interior with a brick fireplace visible through the doorway at right (borderline but a genuine fireplace is in frame), while photo 130058 is an outdoor road/bridge landscape with power poles and hills — no fireplace anywhere."
   },
   {
-   "key": "tp-ducks",
+   "key": "tp-living-rooms",
    "precision": 0.75,
-   "notes": "Photo 742206 shows a taxidermy display of shags/cormorants, not ducks; 129304 is borderline (ducks small in a park-pond scene) but genuinely contains many ducks."
+   "notes": "Photo 1837388 does not fit: it shows an arched hallway with a cabinet opening onto a tiled room with plain ladder-back chairs (a hall/kitchen passage), not a living room; 520283 is a borderline veranda-lounge tea scene but reads as a living space."
+  },
+  {
+   "key": "tp-costumes",
+   "precision": 0.75,
+   "notes": "Photo 117779 does not fit: it shows a menswear shop interior with racks of ordinary suits and a customer being fitted, not costumes; the other three are genuine ceremonial/theatrical/fancy-dress costumes."
   },
   {
    "key": "tp-canals",
@@ -110,17 +106,12 @@
   {
    "key": "penguins",
    "precision": 0.5,
-   "notes": "First two are dense penguin colonies; 243991 shows shags/cormorants (long-necked bird on a nest with chicks, standing shags behind) with no penguins visible, and 259573 shows a herd of four-legged animals (goats) on a steep coastal cliff with a ship offshore."
+   "notes": "550864 and 35510 are unmistakable penguin colonies, but 243991 shows nesting king shags/cormorants (long necks, white wing patches, stick nest) with no penguins visible, and 259573 shows a herd of quadrupeds (goats) on a barren cliff face above the sea."
   },
   {
    "key": "tp-chimneys",
    "precision": 0.75,
    "notes": "1047161 does not fit — it is a hillside panorama of Wellington harbour and city where chimneys are at most tiny incidental details, not an identifiable subject."
-  },
-  {
-   "key": "tp-eggs",
-   "precision": 1,
-   "notes": "All four fit: two nests with eggs, a ground colony blanketed in thousands of seabird eggs (55478, verified by zoom), and 1794554 is borderline-but-true — mostly hatched chicks in the nest, with one unhatched speckled egg clearly visible."
   },
   {
    "key": "tp-towers",
@@ -133,14 +124,9 @@
    "notes": "All four plausibly fit: 430598 is a classic canyon vista and 348878 a steep-walled chasm, while 129694 (eroded badlands pinnacles in a gully) and 15953 (an open river gorge with bluffs) are borderline but clearly canyon-related rather than different subjects."
   },
   {
-   "key": "tp-domes",
-   "precision": 1,
-   "notes": "No clear misses: 433674 (Pisa Baptistery) and 227457 (domed gallery ceiling) are unambiguous, while 1794581 and 17781 are borderline-but-acceptable — distant exhibition towers and mansion turrets whose ogee cupola roofs read as small domes rather than a principal dome."
-  },
-  {
-   "key": "tp-trucks",
-   "precision": 1,
-   "notes": "All four photos genuinely show trucks; even the borderline ones (129682's edge-cropped truck on a rural road, 130741's quarry scene) contain clearly visible trucks, with 1809003 a textbook example."
+   "key": "tp-ducks",
+   "precision": 0.75,
+   "notes": "Photo 742206 shows a taxidermy display of shags/cormorants, not ducks; 129304 is borderline (ducks small in a park-pond scene) but genuinely contains many ducks."
   },
   {
    "key": "tp-dioramas",
@@ -148,9 +134,9 @@
    "notes": "All four are staged taxidermy habitat/display groups (bird dioramas); the two stereographs show visible table edges and backdrop but are still clearly diorama displays."
   },
   {
-   "key": "tp-building-construction",
+   "key": "tp-trucks",
    "precision": 1,
-   "notes": "All four show structures visibly under construction (cranes, framing, formwork, scaffolding, site materials); 1023244 is the most finished-looking (Parliament House near completion) but rooftop crane and shear-legs make the construction state clear."
+   "notes": "All four photos genuinely show trucks; even the borderline ones (129682's edge-cropped truck on a rural road, 130741's quarry scene) contain clearly visible trucks, with 1809003 a textbook example."
   },
   {
    "key": "tp-tractors",
@@ -160,12 +146,7 @@
   {
    "key": "steam-locomotive",
    "precision": 1,
-   "notes": "All four clearly show steam locomotives: a boiler-top detail with steam domes and escaping steam (349332), a steam-hauled train winding through a bush valley with multiple smoke plumes (2192363), a locomotive at Blenheim railway station (16702), and a front-on locomotive in a cutting (1068384)."
-  },
-  {
-   "key": "tp-gates",
-   "precision": 1,
-   "notes": "195459 is unambiguous (literal iron \"Coronation Gates\"); no photo clearly misfits, but 1034726, 531657 and 531654 are ceremonial arches/gateways (night ceremonial gateway, Government House foliage arch, castellated street arch) with no actual gate leaves — borderline gateway-sense fits rather than literal gates."
+   "notes": "All four clearly show steam locomotives — 349332 is a tight boiler-top detail but unmistakably a locomotive under steam, and the others show locomotives at a station, in a cutting, and hauling trains through a valley."
   },
   {
    "key": "tp-crates",
@@ -173,19 +154,34 @@
    "notes": "First two clearly show wooden shipping crates (rail wagon loading; cased cargo on a ship's deck), but 292285 is a filing cabinet with cardboard document boxes and 224087 is a botanical specimen photo of flower spikes in a shallow planting tray — neither is a crates subject."
   },
   {
+   "key": "tp-building-construction",
+   "precision": 1,
+   "notes": "All four show structures visibly under construction (cranes, framing, formwork, scaffolding, site materials); 1023244 is the most finished-looking (Parliament House near completion) but rooftop crane and shear-legs make the construction state clear."
+  },
+  {
+   "key": "tp-eggs",
+   "precision": 1,
+   "notes": "All four fit: two nests with eggs, a ground colony blanketed in thousands of seabird eggs (55478, verified by zoom), and 1794554 is borderline-but-true — mostly hatched chicks in the nest, with one unhatched speckled egg clearly visible."
+  },
+  {
    "key": "troops-marching",
    "precision": 1,
-   "notes": "All four are military parade scenes; 186617 (troops standing at attention for a field review) and 1791979 (officers walking past ranked soldiers at a wharf) show formed troops rather than active marching, but both are clearly related parade scenes rather than different subjects."
+   "notes": "All four are military parade scenes a visitor would accept: 1013908 and 112586 show columns actively marching, while 186617 (troops standing in ranks at a field review) and 1791979 (wharf ceremony, officers pacing past troops at attention) are static-formation edge cases but clearly related."
   },
   {
-   "key": "tp-smoke",
+   "key": "tp-coats",
    "precision": 0.75,
-   "notes": "Photos 1-3 fit: a billowing geothermal plume, a distant eruption-style smoke/ash column over a lake, and dense smoke from a bush burn-off; photo 168533 clearly does not fit — it shows a waterfall with rising water spray/mist, not smoke."
+   "notes": "The first three are clear portraits of people wearing coats (fur-trimmed coat, houndstooth overcoat, belted overcoat), but 122371 is a wide interior view of a garment factory with workers at cutting tables — no identifiable coat is the subject, so \"Coats\" does not fit."
   },
   {
-   "key": "tp-sports-spectators",
+   "key": "brass-band",
+   "precision": 0.75,
+   "notes": "Photos 166505, 172351 and 423883 clearly show uniformed brass bands (tubas, cornets, trombones, drums) performing or posed; 118043 is the General Motors NZ band, but it is a string band — banjos, guitars and mandolin, no brass instruments visible — so \"Brass bands\" does not fit."
+  },
+  {
+   "key": "tp-domes",
    "precision": 1,
-   "notes": "All four clearly show crowds at sports grounds or watching outdoor events; 1045969 is the weakest since no play is visible, but the crowd massed on a school lawn reads as a sports-day audience."
+   "notes": "No clear misses: 433674 (Pisa Baptistery) and 227457 (domed gallery ceiling) are unambiguous, while 1794581 and 17781 are borderline-but-acceptable — distant exhibition towers and mansion turrets whose ogee cupola roofs read as small domes rather than a principal dome."
   },
   {
    "key": "tp-moustaches",
@@ -198,14 +194,19 @@
    "notes": "773153 shows a flock of gulls (white bodies, black wingtips) on a lawn, not pigeons, and 402812 is a formal garden lily pond with a fountain and a duck-like bird at its edge — no pigeons; 25752 is clearly kereru (NZ pigeons) at a nest, and 391046 is the classic Trafalgar Square pigeon flock in flight."
   },
   {
-   "key": "tp-coats",
+   "key": "tp-smoke",
    "precision": 0.75,
-   "notes": "The first three are clear portraits of people wearing coats (fur-trimmed coat, houndstooth overcoat, belted overcoat), but 122371 is a wide interior view of a garment factory with workers at cutting tables — no identifiable coat is the subject, so \"Coats\" does not fit."
+   "notes": "Photos 1-3 fit: a billowing geothermal plume, a distant eruption-style smoke/ash column over a lake, and dense smoke from a bush burn-off; photo 168533 clearly does not fit — it shows a waterfall with rising water spray/mist, not smoke."
   },
   {
-   "key": "brass-band",
+   "key": "tp-sports-spectators",
+   "precision": 1,
+   "notes": "All four clearly show crowds at sports grounds or watching outdoor events; 1045969 is the weakest since no play is visible, but the crowd massed on a school lawn reads as a sports-day audience."
+  },
+  {
+   "key": "garden",
    "precision": 0.75,
-   "notes": "Photo 118043 is the General Motors Band, a string ensemble of banjos, guitars and mandolins on stage, not a brass band; the other three clearly show brass bands (marching military band, posed uniformed band with cornets and trombones, and a street parade led by brass players)."
+   "notes": "First three are clear garden scenes (flower-border path, Milton Domain gardens, staked vegetable garden); 53786 is a close-up botanical plant study against a dark cloth backdrop, not a garden scene."
   },
   {
    "key": "tp-dam-construction",
@@ -213,19 +214,14 @@
    "notes": "All four photos clearly show a concrete dam under active construction (formwork, cranes, cableways, workers' camp); no mismatches even at the weak edge of the set."
   },
   {
-   "key": "tp-fur-coats",
-   "precision": 1,
-   "notes": "All four fit; 520205 and 1717663 strictly show fur stoles/wraps over cloth coats rather than full fur coats, but both are clearly related fur-outerwear portraits."
-  },
-  {
    "key": "water-towers",
    "precision": 0.75,
-   "notes": "Photo 1747305 is not a water tower: it is the Durie Hill War Memorial Tower in Wanganui (captioned \"The War Memorial, Durie Hill\"), a commemorative tower that merely resembles one; 541552 is a borderline pass as a lattice water-tank stand under construction."
+   "notes": "Photo 1747305 is captioned \"The War Memorial, Durie Hill, Wanganui\" — a memorial/observation tower that merely resembles a water tower; the other three (Hawera tower, Invercargill tower and waterworks, and a lattice tank stand under construction) fit the tag."
   },
   {
-   "key": "tp-flags",
+   "key": "tp-gates",
    "precision": 1,
-   "notes": "All four show flags flying; 131461 is the weakest fit — primarily a decorated city street where the flags/bunting are small background elements rather than the subject."
+   "notes": "195459 is unambiguous (literal iron \"Coronation Gates\"); no photo clearly misfits, but 1034726, 531657 and 531654 are ceremonial arches/gateways (night ceremonial gateway, Government House foliage arch, castellated street arch) with no actual gate leaves — borderline gateway-sense fits rather than literal gates."
   },
   {
    "key": "tp-castles-palaces",
@@ -235,12 +231,17 @@
   {
    "key": "delivery-cart",
    "precision": 1,
-   "notes": "All four fit \"Delivery vehicles\"; 116959 is the weakest — a Highways Transport passenger service car with seats and a destination board, but its Evening Post newspaper-distribution livery keeps it a clearly related fit."
+   "notes": "All four are commercial delivery/goods vehicles (butcher's truck, panel van, Evening Post newspaper service car, freight truck), though 116959 is borderline — a passenger-seated service car whose newspaper signage is what ties it to delivery."
   },
   {
-   "key": "garden",
-   "precision": 0.75,
-   "notes": "53786 is a close-up plant/specimen study against a black cloth backdrop, not a garden scene; the other three are clearly gardens (flower borders, public domain gardens, vegetable plot)."
+   "key": "tp-fur-coats",
+   "precision": 1,
+   "notes": "All four fit; 520205 and 1717663 strictly show fur stoles/wraps over cloth coats rather than full fur coats, but both are clearly related fur-outerwear portraits."
+  },
+  {
+   "key": "tp-flags",
+   "precision": 1,
+   "notes": "All four show flags flying; 131461 is the weakest fit — primarily a decorated city street where the flags/bunting are small background elements rather than the subject."
   },
   {
    "key": "tp-cakes",
@@ -248,17 +249,282 @@
    "notes": "First three are unmistakable tiered wedding cakes, but 362478 shows a display of ornamental vases with floral arrangements — no cake in view."
   },
   {
+   "key": "tp-maps",
+   "precision": 0.3333333333333333,
+   "notes": "360730 genuinely shows large wall-hung maps of New Zealand at an exhibition; 175797 is a photomicrograph of a rock thin-section (Hauynophyre, Monte Vulture) and 133368 is a close-up of geological strata in a rock face — neither contains any map."
+  },
+  {
    "key": "heavy-seas",
-   "precision": 0.6666666666666666,
-   "notes": "351305 is unambiguous (breaking waves shot from a ship's deck) and 1517468 plausibly fits (steamer in murky, choppy storm conditions), but 1517467 shows a small steamer on a visibly calm, low-swell sea, so \"heavy seas\" does not apply."
+   "precision": 0.3333333333333333,
+   "notes": "351305 is a genuine storm shot from a ship's deck with huge breaking waves, but 1517467 and 1517468 show small steamers on calm-to-lightly-rippled grey seas — ships at sea, yes, but no heavy seas visible in either."
+  },
+  {
+   "key": "clergy",
+   "precision": 0.75,
+   "notes": "Photos 1-3 clearly show clergy (Bishop Selwyn and Bishop Patteson in clerical collars, and a bishop in rochet and cap at a church door), but 1794624 is a studio portrait of a young man in an ordinary suit and necktie with no clerical dress or church context."
+  },
+  {
+   "key": "shearing",
+   "precision": 1,
+   "notes": "All three are genuine woolshed shearing scenes; 432332 is very dark/underexposed but shearers bent over sheep and loose fleece are still visible, and 1799149's caption confirms shearing."
+  },
+  {
+   "key": "school-group",
+   "precision": 1,
+   "notes": "All four fit: 270305 and 214772 are posed school class portraits, 1046010 shows massed uniformed pupils assembled in a schoolyard, and 18809 (Central School Invercargill) is mainly a building view but includes a clear group of school children lined up in front, a borderline-but-acceptable fit."
+  },
+  {
+   "key": "sports-team",
+   "precision": 1,
+   "notes": "Photos 1, 2, and 4 are unmistakable posed rugby team portraits (striped jerseys, trophy/ball); photo 3 (116402) is borderline — a large lawn-bowls club gathering rather than a tight team lineup, but as a posed sports-club group on the green with bowls it still reads as correctly tagged."
+  },
+  {
+   "key": "nurse",
+   "precision": 1,
+   "notes": "All four fit: a veiled nurse portrait with medal, a faded Victorian woman in pinafore-and-cap nursing-style uniform (borderline nurse vs domestic servant but clearly related), an album photo captioned \"Nurse and Nancy\" of a uniformed nurse holding a baby, and two WWI-era nursing sisters in capes and white veils."
+  },
+  {
+   "key": "haymaking",
+   "precision": 1,
+   "notes": "All four fit: 54126 shows hay being elevated onto a stack, 16448 shows a stooked field with wagons being loaded (arguably grain harvest but clearly related), 1841420 shows a woman bagging hay beside a haystack, and 1389595 (captioned \"Greek women working in fields\") shows women gathering cut fodder with a field stack — borderline but still a related haymaking/harvest scene."
+  },
+  {
+   "key": "factory-interior",
+   "precision": 1,
+   "notes": "All four are genuine industrial interiors (paper mill, seat-assembly floor, motor-body workshop); 72458 is the borderline case — a rough timber bush-sawmill shed rather than a conventional factory, but still a clearly related machinery-filled mill interior."
+  },
+  {
+   "key": "tram",
+   "precision": 1,
+   "notes": "All four fit; 321337 and 327307 show the Kelburn cable tramway (a funicular rather than a street tram, but the tramcar is the visible subject), while 726995 and 1287485 show street trams plainly."
+  },
+  {
+   "key": "ship-deck",
+   "precision": 0.75,
+   "notes": "1701804 is not on a ship's deck — it shows people standing on a seaside wall, captioned \"Watching the Procession on the Marine Parade\"; the other three are genuine shipboard deck scenes (posed passengers by a lifebuoy, a contact sheet of deck-games frames, and whalers cutting blubber on deck)."
+  },
+  {
+   "key": "shop-interior",
+   "precision": 1,
+   "notes": "125675 is a textbook shop interior; 360724 is likely an exhibition-hall trade display of tinned goods rather than a working shop, and 118015 is a close-up grocery display counter in a rough timber space — both borderline but clearly shop-like merchandise-display scenes, so accepted."
+  },
+  {
+   "key": "band-rotunda",
+   "precision": 1,
+   "notes": "All four clearly show band rotundas; 1187628 is the weakest — a wide view of The Square, Palmerston North where the rotunda is a smaller background element beside a fountain, but it is still plainly visible and the tag fits."
+  },
+  {
+   "key": "waterfront-rocks",
+   "precision": 1,
+   "notes": "All four fit \"Rock formations\": limestone outcrops among trees (2371537), a rocky bluff face with flax (54690), a close-up of laminated rock strata with a scale rule (121697), and a sculpted wave-worn rock shelf on a beach below cliffs (132848) — the last two are study/scene shots rather than showpiece landforms but rock is clearly the subject."
+  },
+  {
+   "key": "pigs",
+   "precision": 0.75,
+   "notes": "432159 does not fit — it is a sheep-dipping/drafting yard scene full of sheep with no pigs visible; 2184870 shows slaughtered pigs laid out for a feast, which still reads as pigs."
+  },
+  {
+   "key": "railway-station",
+   "precision": 0,
+   "notes": "None of the four fits \"Railway stations\": 225762 shows a port/customs street (NZ Steam Navigation Co, ship chandlers), 20695 a Palmerston North commercial main street, 122357 a Texas Oil Company depot, and 22140 the Feilding town square gardens — no station building or platform is visible in any."
+  },
+  {
+   "key": "island",
+   "precision": 1,
+   "notes": "All four fit; 132021 and 132502 are borderline — their rocky outcrops may be headlands or tidal islets rather than distinct islands, but both are clearly island-like coastal scenes rather than different subjects."
+  },
+  {
+   "key": "artillery",
+   "precision": 0.75,
+   "notes": "2198539 does not fit — it is a crowd of civilians posing on a hillside above the harbour at old Port Chalmers with no identifiable gun even under magnification; the other three clearly show artillery (memorial display cannons, a field-gun crew in the desert, and truck-mounted WWI anti-aircraft guns)."
+  },
+  {
+   "key": "exhibition",
+   "precision": 1,
+   "notes": "All four are clear international-exhibition court interiors (three from the 1876 Philadelphia Centennial NZ section, one similar NZ court), so the term fits every photo."
+  },
+  {
+   "key": "portraits-with-dogs",
+   "precision": 0.75,
+   "notes": "369283 is a studio portrait of a girl holding a dark plush teddy bear (dangling jointed limbs, toy not live animal) — a child-with-toy portrait, not a dog; the other three genuinely show people posed with dogs."
+  },
+  {
+   "key": "cave",
+   "precision": 1,
+   "notes": "All four fit: 20156 and 282203 are unmistakable cave mouths, 169357 is a cave interior looking up a shaft, and 122649 is borderline but passes — bathers in a lagoon photographed from inside a cave mouth, with another cave opening visible in the background cliff."
+  },
+  {
+   "key": "sailors",
+   "precision": 0.75,
+   "notes": "398787 clearly does not fit — it is inscribed \"Lt. Genl. F.M. Colville, C.B.\" and shows an army general with a \"43\" regimental forage cap; 458900 is a naval/merchant-navy officer in a peaked cap, a related maritime fit counted as true."
+  },
+  {
+   "key": "fur-stoles",
+   "precision": 0.75,
+   "notes": "380322 clearly does not fit: it shows a sleeved fur jacket/coat (belongs under the separate Fur coats tag), not a stole or muff; 454750 is a white fur cape/wrap, borderline but stole-adjacent enough to pass."
+  },
+  {
+   "key": "profile-portraits",
+   "precision": 0.5,
+   "notes": "143531 is a textbook side-view profile and 370763 a deep semi-profile that loosely fits, but 1482722 is a mostly-frontal three-quarter headshot with both eyes to camera and 2085307 is an over-the-shoulder pose with the face turned back toward the viewer — neither shows a profile."
+  },
+  {
+   "key": "sailor-suits",
+   "precision": 0.75,
+   "notes": "451843 clearly does not fit — a small boy in a belted tunic with a large lace collar and giant bow (Fauntleroy style), no sailor elements; 370746 is an older teen in an actual naval uniform and 1495948 a sailor-capped, sailor-collared child in a pinafore (possibly a girl), both close enough to pass."
+  },
+  {
+   "key": "painted-backdrops",
+   "precision": 0.75,
+   "notes": "125338 does not fit — it shows a woman posed beside two artworks hung on a weatherboard wall (paintings on display, not a studio backdrop); 208736 is borderline, a plain mottled painted canvas rather than a scenic backdrop, but still counts."
+  },
+  {
+   "key": "haystacks",
+   "precision": 0.75,
+   "notes": "Photo 107628 has no haystacks at all — it is an open tussock/scrub landscape with bare hills and a lone stump; the other three are clear stook/harvest/haystack scenes."
+  },
+  {
+   "key": "long-loose-hair",
+   "precision": 1,
+   "notes": "All four are portraits with long hair worn loose; 713366 is the most borderline since the sitter's long hair hanging down her front partly blends with her cloak's dark thrums, but it still reads as long loose hair."
+  },
+  {
+   "key": "farm-tractors",
+   "precision": 0.5,
+   "notes": "359678 (farmer with two horses hauling a wooden sledge) and 176029 (draught-horse team ploughing) contain no tractor at all — both are horse-drawn farm work; 117208 is a weaker fit where tractors appear small amid power-line construction across farmland."
+  },
+  {
+   "key": "glasshouses",
+   "precision": 0.75,
+   "notes": "432660 clearly does not fit — it shows a rustic pole-and-thatch garden gazebo with no glass structure in frame; the other three all show a glasshouse prominently (vinery interior, winter-gardens conservatory at frame edge, and a portrait posed in front of a timber glasshouse)."
+  },
+  {
+   "key": "draught-horse-teams",
+   "precision": 1,
+   "notes": "First three are unmistakable heavy-horse teams in working harness; 110827 is borderline — a three-abreast coach/wagon team on a bush road with lighter-built horses than true draught stock, but still a clearly related horse-team-in-harness scene."
+  },
+  {
+   "key": "children-with-toys",
+   "precision": 1,
+   "notes": "All four fit: three unmistakably show children holding or pushing toys (toy horse on wheels, stuffed animal plus doll, stuffed dog); 242385 is the weakest — a motion-blurred child standing on a chair clutching a small dark hand-held object that reads as a toy but cannot be positively identified."
+  },
+  {
+   "key": "seals",
+   "precision": 0.5,
+   "notes": "27857 shows ducks swimming on a bush stream (no seals) and 107719 shows two boys on a low-tide reef where the seal-like shapes are smooth featureless boulders, while 16157 and 16259 are genuine hauled-out sea lions in tussock (Burton Bros, Auckland Islands) that fit the tag."
+  },
+  {
+   "key": "railway-yard",
+   "precision": 1,
+   "notes": "All four show railway yards or station yards with sidings and rolling stock; 24119 is a Dunedin city panorama but the yard dominates the left of frame, and 18133 (Studholme Junction) is a small country junction rather than a marshalling yard yet still clearly a yard scene with wagons on sidings."
+  },
+  {
+   "key": "petrol-station",
+   "precision": 0.75,
+   "notes": "Photo 354970 does not fit — it shows the Anderson corner general store with utility poles and no visible petrol pumps; the other three clearly show bowsers or service-station forecourts (349267 is a rustic roadside bowser refuelling scene with a Shell truck, still a fair fit)."
+  },
+  {
+   "key": "railway-workshops",
+   "precision": 0.5,
+   "notes": "First two are plausible heavy-engineering workshop interiors, but 116895 shows pump/turbine machinery being installed in a power-station-style concrete hall and 116791 is clearly a motor-car assembly plant (car engines, manifolds, chassis), not railway workshops."
+  },
+  {
+   "key": "railway-staff",
+   "precision": 0.5,
+   "notes": "123255 (staff group posed with locomotive) and 191432 (crew posed with engine) fit, but 19385 shows a locomotive and bridge with only distant civilian onlookers, and 19319 is a station scene of boys posed by the tracks — neither shows railway staff as the subject."
+  },
+  {
+   "key": "railway-bridge",
+   "precision": 1,
+   "notes": "All four show truss/trestle bridges over water (19984 is even captioned \"Paremata Railway Bridge\"); 195453 (captioned just \"Bridge, Fairlie\") and 290800 lack visible tracks so rail vs road use is unconfirmed, but both are clearly related bridge scenes rather than different subjects."
+  },
+  {
+   "key": "railway-construction",
+   "precision": 0.75,
+   "notes": "195900 clearly does not fit — it shows bullock teams hauling logs past a bush building with track only incidental in the corner; 18833 (sawmill bush tramway) and 540862 (mass-concrete works with construction tip-wagons) are borderline but read as related construction scenes."
+  },
+  {
+   "key": "railway-tunnel",
+   "precision": 0.5,
+   "notes": "First two clearly show tracks entering tunnel portals, but 1068378 is a blurry steam locomotive in a bush gorge and 712363 is a line curving through a gorge under a footbridge/flume — no tunnel visible in either."
+  },
+  {
+   "key": "dams",
+   "precision": 1,
+   "notes": "All four clearly show dams: a large hydro dam with reservoir, a curved concrete dam under construction, a completed dam crest walkway, and a small weir-style dam spilling across a bush stream."
+  },
+  {
+   "key": "cargo-handling",
+   "precision": 0.75,
+   "notes": "1514762 clearly is not cargo handling — it shows crew flensing a whale (cutting blubber with long knives) on a whaling factory ship; 1517444 and 1517412 pass only loosely as deck scenes dominated by rigged cargo derricks, while 1453657 (wool bales on wharf wagons beside a ship) fits squarely."
+  },
+  {
+   "key": "tunnels",
+   "precision": 1,
+   "notes": "All four fit; 942795 is borderline — a natural rock arch in Buller Gorge captioned \"The Cave\" rather than an engineered tunnel, but the road passes through the opening so it still reads as a tunnel scene."
+  },
+  {
+   "key": "library-interiors",
+   "precision": 0.75,
+   "notes": "227449 is not a library — it is a skylit art-gallery/exhibition room hung with framed pictures over display cases, no books; 117338 looks more like a bookshop than a library but passes as an ambiguous book-lined interior."
+  },
+  {
+   "key": "kitchens",
+   "precision": 1,
+   "notes": "224461 and 125436 are unmistakable kitchens (plate racks, crockery, dishwashing); 224837 is the borderline one — a tiled scullery/washhouse with deep tubs and a copper boiler, no stove or food prep visible, but still a kitchen-adjacent domestic sink room rather than a different subject."
+  },
+  {
+   "key": "sand-dunes",
+   "precision": 0.75,
+   "notes": "105495 does not fit: it shows a flat grassy tussock plain between bush-clad hills with no visible sand or dune forms; the other three clearly show sand dunes or dune country."
+  },
+  {
+   "key": "volcanic-craters",
+   "precision": 0.5,
+   "notes": "28231 clearly does not fit (a coastal view of sea, headlands and eroded cliffs, no crater) and 346530 shows a bush-covered valley ringed by hills with no visible volcanic features; 1058285 is steaming geothermal flats rather than a crater but is a closely related volcanic scene, and 31903 is an unmistakable steaming crater interior."
+  },
+  {
+   "key": "rock-arches",
+   "precision": 0.75,
+   "notes": "22233 (Fern Arch, Buller Gorge) and 2029160 (The Looking-Glass, Akaroa, with a clear window through the headland) are true arches, and 128284 is an ambiguous-but-related cleft sea stack whose converging masses read as an arch; 20253 does not fit — it is the Franz Josef Glacier terminal ice cave, an arched cavern of ice, not rock."
+  },
+  {
+   "key": "bush-clad-hills",
+   "precision": 0.75,
+   "notes": "27037 does not fit: it is a close-up of ferns, flax and daisies with no hill landscape visible; 127325 is borderline (scrub-and-flax hillside rather than forested hills) but clearly related, so it passes."
+  },
+  {
+   "key": "museum-interiors",
+   "precision": 0.75,
+   "notes": "389395 clearly does not fit — it shows a temporary photo display pinned to boards in a plain community hall with casually dressed viewers, not a museum; 779184 and 778611 are Victorian exhibition-hall courts with glazed display cases, museum-like enough to pass as borderline."
+  },
+  {
+   "key": "mud-pools",
+   "precision": 0.75,
+   "notes": "129068 (inscribed \"Ohaki Spring\") shows a hot-spring sinter terrace with clear reflective water pools rather than mud pools; the other three are genuine bubbling-mud/mud-cone scenes."
+  },
+  {
+   "key": "taxidermy-displays",
+   "precision": 1,
+   "notes": "All four are mounted-specimen museum displays; 23685 is the weakest fit — a dried elephant fish specimen on a labelled plinth, a specimen mount rather than classic taxidermy, but still a preserved-animal display."
+  }
+ ],
+ "weak": [
+  {
+   "key": "railway-station",
+   "precision": 0,
+   "notes": "None of the four fits \"Railway stations\": 225762 shows a port/customs street (NZ Steam Navigation Co, ship chandlers), 20695 a Palmerston North commercial main street, 122357 a Texas Oil Company depot, and 22140 the Feilding town square gardens — no station building or platform is visible in any."
   },
   {
    "key": "tp-maps",
    "precision": 0.3333333333333333,
    "notes": "360730 genuinely shows large wall-hung maps of New Zealand at an exhibition; 175797 is a photomicrograph of a rock thin-section (Hauynophyre, Monte Vulture) and 133368 is a close-up of geological strata in a rock face — neither contains any map."
-  }
- ],
- "weak": [
+  },
+  {
+   "key": "heavy-seas",
+   "precision": 0.3333333333333333,
+   "notes": "351305 is a genuine storm shot from a ship's deck with huge breaking waves, but 1517467 and 1517468 show small steamers on calm-to-lightly-rippled grey seas — ships at sea, yes, but no heavy seas visible in either."
+  },
   {
    "key": "tp-thatched-roofs",
    "precision": 0.5,
@@ -267,7 +533,7 @@
   {
    "key": "penguins",
    "precision": 0.5,
-   "notes": "First two are dense penguin colonies; 243991 shows shags/cormorants (long-necked bird on a nest with chicks, standing shags behind) with no penguins visible, and 259573 shows a herd of four-legged animals (goats) on a steep coastal cliff with a ship offshore."
+   "notes": "550864 and 35510 are unmistakable penguin colonies, but 243991 shows nesting king shags/cormorants (long necks, white wing patches, stick nest) with no penguins visible, and 259573 shows a herd of quadrupeds (goats) on a barren cliff face above the sea."
   },
   {
    "key": "tp-crates",
@@ -280,9 +546,40 @@
    "notes": "773153 shows a flock of gulls (white bodies, black wingtips) on a lawn, not pigeons, and 402812 is a formal garden lily pond with a fountain and a duck-like bird at its edge — no pigeons; 25752 is clearly kereru (NZ pigeons) at a nest, and 391046 is the classic Trafalgar Square pigeon flock in flight."
   },
   {
-   "key": "tp-maps",
-   "precision": 0.3333333333333333,
-   "notes": "360730 genuinely shows large wall-hung maps of New Zealand at an exhibition; 175797 is a photomicrograph of a rock thin-section (Hauynophyre, Monte Vulture) and 133368 is a close-up of geological strata in a rock face — neither contains any map."
+   "key": "profile-portraits",
+   "precision": 0.5,
+   "notes": "143531 is a textbook side-view profile and 370763 a deep semi-profile that loosely fits, but 1482722 is a mostly-frontal three-quarter headshot with both eyes to camera and 2085307 is an over-the-shoulder pose with the face turned back toward the viewer — neither shows a profile."
+  },
+  {
+   "key": "farm-tractors",
+   "precision": 0.5,
+   "notes": "359678 (farmer with two horses hauling a wooden sledge) and 176029 (draught-horse team ploughing) contain no tractor at all — both are horse-drawn farm work; 117208 is a weaker fit where tractors appear small amid power-line construction across farmland."
+  },
+  {
+   "key": "seals",
+   "precision": 0.5,
+   "notes": "27857 shows ducks swimming on a bush stream (no seals) and 107719 shows two boys on a low-tide reef where the seal-like shapes are smooth featureless boulders, while 16157 and 16259 are genuine hauled-out sea lions in tussock (Burton Bros, Auckland Islands) that fit the tag."
+  },
+  {
+   "key": "railway-workshops",
+   "precision": 0.5,
+   "notes": "First two are plausible heavy-engineering workshop interiors, but 116895 shows pump/turbine machinery being installed in a power-station-style concrete hall and 116791 is clearly a motor-car assembly plant (car engines, manifolds, chassis), not railway workshops."
+  },
+  {
+   "key": "railway-staff",
+   "precision": 0.5,
+   "notes": "123255 (staff group posed with locomotive) and 191432 (crew posed with engine) fit, but 19385 shows a locomotive and bridge with only distant civilian onlookers, and 19319 is a station scene of boys posed by the tracks — neither shows railway staff as the subject."
+  },
+  {
+   "key": "railway-tunnel",
+   "precision": 0.5,
+   "notes": "First two clearly show tracks entering tunnel portals, but 1068378 is a blurry steam locomotive in a bush gorge and 712363 is a line curving through a gorge under a footbridge/flume — no tunnel visible in either."
+  },
+  {
+   "key": "volcanic-craters",
+   "precision": 0.5,
+   "notes": "28231 clearly does not fit (a coastal view of sea, headlands and eroded cliffs, no crater) and 346530 shows a bush-covered valley ringed by hills with no visible volcanic features; 1058285 is steaming geothermal flats rather than a crater but is a closely related volcanic scene, and 31903 is an unmistakable steaming crater interior."
   }
- ]
+ ],
+ "note": "audit halted at ~45% coverage by design — remaining terms gate through the review sheet, not more agents"
 }
