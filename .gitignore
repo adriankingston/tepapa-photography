@@ -37,3 +37,8 @@ build/judge-inputs/
 build/captions.jsonl
 build/captions-meta.json
 build/caption-run.log
+
+# stage-3 derived reports (regenerable; audit evidence is tracked)
+build/agreement-report.json
+build/transcript-validation.json
+build/audit-sample.json
