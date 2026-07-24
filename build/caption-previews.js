@@ -81,7 +81,11 @@ async function askOne(id, tries = 3) {
           model: MODEL,
           messages: [{ role: 'user', content: PROMPT, images: [img] }],
           format: SCHEMA, stream: false, think: false,
-          options: { temperature: 0 },
+          // temp 0 first — but a photo that breaks the JSON at temp 0 breaks
+          // it identically forever, so retries roll the dice at 0.3.
+          // num_predict bounds text-heavy photos (posters/documents) whose
+          // visible_text transcription otherwise rambles into the timeout.
+          options: { temperature: attempt === 1 ? 0 : 0.3, num_predict: 900 },
         }),
       });
       if (!r.ok) throw new Error(`ollama HTTP ${r.status}`);
