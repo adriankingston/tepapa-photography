@@ -530,6 +530,13 @@ a { color: inherit; }
   color: var(--muted);
   margin-top: 1px;
 }
+/* why a search matched this plate: the words photographed IN the image */
+.plate-trans {
+  font-size: 12px;
+  font-style: italic;
+  color: color-mix(in srgb, var(--accent) 75%, var(--muted));
+  margin-top: 3px;
+}
 
 /* Hero overrides — larger type, image left */
 .plate.is-hero .plate-img-wrap { grid-row: 1; }
@@ -771,6 +778,17 @@ a { color: inherit; }
   transition: background .15s ease, border-color .15s ease;
 }
 .lb-tag:hover, .lb-tag:focus-visible { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: var(--accent); outline: none; }
+/* AI-transcribed text photographed in the image — quoted, muted, clearly machine-read. */
+.lb-transcript {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+  white-space: pre-line;
+  border-left: 2px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+  padding-left: 12px;
+  margin: 2px 0 0;
+}
 .lb-facts {
   margin: clamp(28px, 4vw, 40px) 0 0;
   padding-top: 24px;

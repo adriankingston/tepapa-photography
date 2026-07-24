@@ -53,7 +53,7 @@ const emb = new Int8Array(embBuf.buffer, embBuf.byteOffset, embBuf.length);
 const byKey = new Map(candidates.map((c) => [c.key, c]));
 const kept = Object.entries(verdicts)
   .filter(([, v]) => !v.drop)
-  .map(([key, v]) => ({ ...byKey.get(key), thr: v.thr }))
+  .map(([key, v]) => ({ ...byKey.get(key), thr: v.thr, mode: v.mode || 'calibrated' }))
   .filter((t) => t.key);
 const dropped = Object.values(verdicts).filter((v) => v.drop).length;
 console.log(`Verdicts: ${kept.length} kept · ${dropped} dropped · ${candidates.length - kept.length - dropped} unreviewed (not shipped)`);
@@ -118,7 +118,7 @@ for (let c = 0; c < kept.length; c += BATCH) {
     }
     if (compVecs.length) console.log(`\n  ${t.key}: ${hits.length} kept, ${outscored} taken by a competitor prompt`);
     hits.sort((a, b) => b[1] - a[1]);   // best-first, so browse leads with the strongest
-    terms.push({ key: t.key, label: t.label, group: t.group, thr: t.thr, ids: hits.map(([r]) => records[r].id) });
+    terms.push({ key: t.key, label: t.label, group: t.group, thr: t.thr, mode: t.mode, ids: hits.map(([r]) => records[r].id) });
   }
   process.stdout.write(`\r  ${Math.min(c + BATCH, kept.length)}/${kept.length} terms   `);
 }

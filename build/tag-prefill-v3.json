@@ -1,0 +1,548 @@
+{
+ "railway-station": {
+  "thr": 0.5
+ },
+ "seals": {
+  "thr": 0.95
+ },
+ "profile-portraits": {
+  "thr": 0.5
+ },
+ "farm-tractors": {
+  "thr": 0.7
+ },
+ "railway-workshops": {
+  "thr": 0.5
+ },
+ "railway-tunnel": {
+  "thr": 0.5
+ },
+ "railway-staff": {
+  "thr": 0.5
+ },
+ "heavy-seas": {
+  "thr": 0.99
+ },
+ "shellfish-gathering": {
+  "thr": 0.99
+ },
+ "volcanic-craters": {
+  "thr": 0.9
+ },
+ "penguins": {
+  "thr": 0.5
+ },
+ "lawn-bowls": {
+  "thr": 0.9
+ },
+ "swimming-baths": {
+  "thr": 0.5
+ },
+ "trenches": {
+  "thr": 0.7
+ },
+ "military-aircraft": {
+  "thr": 0.5
+ },
+ "tp-forests": {
+  "thr": 0.7
+ },
+ "tp-commercial-streets": {
+  "thr": 0.5
+ },
+ "tp-ferns": {
+  "thr": 0.5
+ },
+ "tp-ships": {
+  "thr": 0.5
+ },
+ "tp-military-officers": {
+  "thr": 0.5
+ },
+ "tp-automobiles": {
+  "thr": 0.5
+ },
+ "tp-palms": {
+  "thr": 0.5
+ },
+ "tp-stores-shops": {
+  "thr": 0.7
+ },
+ "tp-tree-stumps": {
+  "thr": 0.7
+ },
+ "tp-girls": {
+  "thr": 0.5
+ },
+ "tp-boys": {
+  "thr": 0.5
+ },
+ "tp-infants": {
+  "thr": 0.5
+ },
+ "tp-utility-poles": {
+  "thr": 0.5
+ },
+ "tp-pedestrians": {
+  "thr": 0.5
+ },
+ "tp-flowers": {
+  "thr": 0.5
+ },
+ "tp-specimens": {
+  "thr": 0.99
+ },
+ "tp-interiors": {
+  "thr": 0.5
+ },
+ "tp-logs": {
+  "thr": 0.5
+ },
+ "tp-stone-buildings": {
+  "thr": 0.9
+ },
+ "tp-orchids": {
+  "thr": 0.95
+ },
+ "tp-railway-tracks": {
+  "thr": 0.5
+ },
+ "tp-families": {
+  "thr": 0.5
+ },
+ "tp-dirt-roads": {
+  "thr": 0.9
+ },
+ "tp-settlements": {
+  "thr": 0.95
+ },
+ "tp-clouds": {
+  "thr": 0.5
+ },
+ "tp-whales": {
+  "thr": 0.5
+ },
+ "tp-anglican-churches": {
+  "thr": 0.5
+ },
+ "tp-brides": {
+  "thr": 0.5
+ },
+ "tp-tables": {
+  "thr": 0.5
+ },
+ "tp-beards": {
+  "thr": 0.5
+ },
+ "tp-ruins": {
+  "thr": 0.9
+ },
+ "tp-endemic-birds": {
+  "thr": 0.5
+ },
+ "tp-uniforms": {
+  "thr": 0.5
+ },
+ "tp-rowboats": {
+  "thr": 0.7
+ },
+ "tp-commercial-facilities": {
+  "thr": 0.5
+ },
+ "tp-steam": {
+  "thr": 0.5
+ },
+ "tp-oceans": {
+  "thr": 0.9
+ },
+ "tp-dredges": {
+  "thr": 0.9
+ },
+ "tp-tents": {
+  "thr": 0.5
+ },
+ "tp-dunes": {
+  "thr": 0.5
+ },
+ "tp-thatched-roofs": {
+  "thr": 0.5
+ },
+ "tp-nests": {
+  "thr": 0.9
+ },
+ "tp-wedding-clothing-dress": {
+  "thr": 0.5
+ },
+ "tp-airplanes": {
+  "thr": 0.5
+ },
+ "tp-presbyterian-churches": {
+  "thr": 0.5
+ },
+ "tp-industrial-facilities": {
+  "thr": 0.5
+ },
+ "tp-factories": {
+  "thr": 0.9
+ },
+ "tp-benches": {
+  "thr": 0.5
+ },
+ "tp-smokestacks": {
+  "thr": 0.5
+ },
+ "tp-catholic-churches": {
+  "thr": 0.5
+ },
+ "tp-leaves": {
+  "thr": 0.5
+ },
+ "tp-railroad-locomotives": {
+  "thr": 0.5
+ },
+ "tp-roofs": {
+  "thr": 0.9
+ },
+ "tp-city-town-halls": {
+  "thr": 0.995
+ },
+ "tp-columns": {
+  "thr": 0.5
+ },
+ "tp-taxidermy": {
+  "thr": 0.99
+ },
+ "tp-machinery": {
+  "thr": 0.5
+ },
+ "tp-sailboats": {
+  "thr": 0.5
+ },
+ "tp-shipping": {
+  "thr": 0.9
+ },
+ "tp-arches": {
+  "thr": 0.5
+ },
+ "tp-lumber-industry": {
+  "thr": 0.5
+ },
+ "tp-banks": {
+  "thr": 0.5
+ },
+ "tp-ladders": {
+  "thr": 0.5
+ },
+ "tp-paintings": {
+  "thr": 0.5
+ },
+ "tp-doors-doorways": {
+  "thr": 0.5
+ },
+ "tp-aerial-views": {
+  "thr": 0.95
+ },
+ "tp-cows": {
+  "thr": 0.5
+ },
+ "tp-spires": {
+  "thr": 0.9
+ },
+ "tp-biplanes": {
+  "thr": 0.5
+ },
+ "tp-smoking": {
+  "thr": 0.5
+ },
+ "tp-dolphins": {
+  "thr": 0.5
+ },
+ "tp-workers": {
+  "thr": 0.5
+ },
+ "tp-toys": {
+  "thr": 0.5
+ },
+ "tp-street-lights": {
+  "thr": 0.5
+ },
+ "tp-cargo-ships": {
+  "thr": 0.5
+ },
+ "tp-barrels": {
+  "thr": 0.5
+ },
+ "tp-skiers": {
+  "thr": 0.5
+ },
+ "tp-lumber": {
+  "thr": 0.9
+ },
+ "tp-boulders": {
+  "thr": 0.95
+ },
+ "tp-swimmers": {
+  "thr": 0.5
+ },
+ "tp-shells-animal": {
+  "thr": 0.5
+ },
+ "tp-crosses": {
+  "thr": 0.5
+ },
+ "tp-construction-workers": {
+  "thr": 0.5
+ },
+ "tp-merchandise-displays": {
+  "thr": 0.9
+ },
+ "tp-vases": {
+  "thr": 0.5
+ },
+ "tp-athletes": {
+  "thr": 0.5
+ },
+ "tp-rugs": {
+  "thr": 0.5
+ },
+ "tp-automobile-industry": {
+  "thr": 0.5
+ },
+ "tp-baskets": {
+  "thr": 0.5
+ },
+ "tp-grazing": {
+  "thr": 0.9
+ },
+ "tp-decks-ships": {
+  "thr": 0.95
+ },
+ "tp-baby-carriages": {
+  "thr": 0.5
+ },
+ "tp-gulls": {
+  "thr": 0.5
+ },
+ "tp-dolls": {
+  "thr": 0.5
+ },
+ "tp-cannons": {
+  "thr": 0.5
+ },
+ "tp-agricultural-machinery-implements": {
+  "thr": 0.9
+ },
+ "tp-smiling": {
+  "thr": 0.5
+ },
+ "tp-longboats": {
+  "thr": 0.5
+ },
+ "tp-wedding-costume": {
+  "thr": 0.5
+ },
+ "tp-laundry": {
+  "thr": 0.7
+ },
+ "tp-elderly": {
+  "thr": 0.5
+ },
+ "tp-cricket-players": {
+  "thr": 0.9
+ },
+ "tp-pipes": {
+  "thr": 0.5
+ },
+ "tp-stars": {
+  "thr": 0.5
+ },
+ "tp-window-displays": {
+  "thr": 0.5
+ },
+ "tp-birds-of-prey": {
+  "thr": 0.5
+ },
+ "tp-ornithological-illustrations": {
+  "thr": 0.5
+ },
+ "tp-cobblestone-streets": {
+  "thr": 0.5
+ },
+ "tp-school-children": {
+  "thr": 0.5
+ },
+ "tp-fish": {
+  "thr": 0.5
+ },
+ "tp-family": {
+  "thr": 0.5
+ },
+ "tp-stilt-houses": {
+  "thr": 0.9
+ },
+ "tp-scaffolding": {
+  "thr": 0.5
+ },
+ "tp-bones-body-parts": {
+  "thr": 0.5
+ },
+ "tp-pigeons": {
+  "thr": 0.5
+ },
+ "tp-night": {
+  "thr": 0.5
+ },
+ "tp-public-schools": {
+  "thr": 0.95
+ },
+ "tp-gazebos": {
+  "thr": 0.95
+ },
+ "tp-mine-railroad-cars": {
+  "thr": 0.7
+ },
+ "tp-chickens": {
+  "thr": 0.5
+ },
+ "tp-seals-animals": {
+  "thr": 0.5
+ },
+ "tp-daisies": {
+  "thr": 0.9
+ },
+ "tp-truss-bridges": {
+  "thr": 0.5
+ },
+ "tp-banners": {
+  "thr": 0.7
+ },
+ "tp-coconuts": {
+  "thr": 0.7
+ },
+ "tp-beds": {
+  "thr": 0.5
+ },
+ "tp-wheels": {
+  "thr": 0.5
+ },
+ "tp-swans": {
+  "thr": 0.5
+ },
+ "tp-parrots": {
+  "thr": 0.5
+ },
+ "tp-pyramids": {
+  "thr": 0.5
+ },
+ "tp-shovels": {
+  "thr": 0.5
+ },
+ "tp-pipes-conduits": {
+  "thr": 0.5
+ },
+ "tp-stone-bridges": {
+  "thr": 0.9
+ },
+ "tp-seating-furniture": {
+  "thr": 0.5
+ },
+ "tp-air-pilots": {
+  "thr": 0.5
+ },
+ "tp-ethnic-groups": {
+  "thr": 0.9
+ },
+ "tp-hawks": {
+  "thr": 0.95
+ },
+ "tp-crates": {
+  "thr": 0.5
+ },
+ "tp-drawing-rooms": {
+  "thr": 0.5
+ },
+ "tp-extinct-birds": {
+  "thr": 0.5
+ },
+ "tp-flower-arrangements": {
+  "thr": 0.5
+ },
+ "tp-warehouses": {
+  "thr": 0.9
+ },
+ "tp-hydraulic-mining": {
+  "thr": 0.99
+ },
+ "tp-show-tents": {
+  "thr": 0.9
+ },
+ "tp-murals": {
+  "thr": 0.7
+ },
+ "tp-government-vessels": {
+  "thr": 0.7
+ },
+ "tp-maps": {
+  "thr": 0.7
+ },
+ "tp-fruit": {
+  "thr": 0.5
+ },
+ "tp-boat-ship-industry": {
+  "thr": 0.5
+ },
+ "fencing": {
+  "thr": 0.5
+ },
+ "tp-women": {
+  "thr": 0.5
+ },
+ "tp-men": {
+  "thr": 0.5
+ },
+ "tp-buildings": {
+  "thr": 0.5
+ },
+ "tp-hills": {
+  "thr": 0.5
+ },
+ "tp-houses": {
+  "thr": 0.5
+ },
+ "tp-boats": {
+  "thr": 0.5
+ },
+ "tp-rocks": {
+  "thr": 0.5
+ },
+ "tp-children": {
+  "thr": 0.5
+ },
+ "tp-streets": {
+  "thr": 0.5
+ },
+ "tp-roads": {
+  "thr": 0.5
+ },
+ "tp-hats": {
+  "thr": 0.5
+ },
+ "tp-chairs": {
+  "thr": 0.5
+ },
+ "tp-valleys": {
+  "thr": 0.7
+ },
+ "tp-grasses": {
+  "thr": 0.99
+ },
+ "tp-windows": {
+  "thr": 0.5
+ },
+ "tp-structures": {
+  "thr": 0.7
+ },
+ "whaling": {
+  "thr": 0.9
+ }
+}

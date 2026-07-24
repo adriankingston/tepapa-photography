@@ -252,6 +252,10 @@ async function fetchPage() {
   setState('');
   scrollToResultsIfPending();
 
+  // First page of a free-text search → also surface photos whose PHOTOGRAPHED
+  // text matches (plate captions, imprints); runs async and appends.
+  if (state.mode === 'query' && state.query && state.from === PAGE) maybeTranscriptHits();
+
   // With a decade filter, show the running matched count and keep filling (a
   // page can be mostly filtered out, leaving the sentinel unreached).
   if (state.decade) {
@@ -299,6 +303,7 @@ function buildPlate(item, idx) {
       `<h2 class="plate-title">${esc(item.title)}</h2>` +
       (item.maker ? `<p class="plate-maker">${esc(item.maker)}</p>` : '<span></span>') +
       (item.date ? `<p class="plate-date">${esc(item.date)}</p>` : '') +
+      (item.transMatch ? `<p class="plate-trans">Text in photo: “${esc(item.transMatch)}”</p>` : '') +
     `</figcaption>`;
 
   fig.addEventListener('click', () => openLightbox(idx));
@@ -572,14 +577,79 @@ async function loadTag(key) {
   state.total = state.moodItems.length;
   els.count.textContent = fmtInt(state.total);
   if (els.emoNote) {
+    // honest provenance: v1 terms were threshold-calibrated by eye; the v3
+    // additions were corroborated by an independent caption model and
+    // sample-audited instead
+    const how = term.mode === 'audited'
+      ? 'suggested from the image by AI, cross-checked against its written caption'
+      : 'suggested from the image by AI, human-calibrated';
     els.emoNote.innerHTML =
       `<h2 class="emotion-note-word">${esc(term.label)}</h2>` +
-      `<p class="emotion-note-meta">${fmtInt(state.total)} photographs · suggested from the image by AI, human-calibrated` +
+      `<p class="emotion-note-meta">${fmtInt(state.total)} photographs · ${how}` +
       (dec ? ` · <span class="note-decade">${esc(dec)}</span>` : '') + `</p>`;
     els.emoNote.hidden = false;
   }
   state.loading = false;
   fetchPage();
+}
+
+/* ---- Photographed text: AI transcripts, catalogue-corroborated ------------- */
+// Only transcripts whose content tokens match the record's own title/maker/
+// place shipped (build/validate-transcripts.js) — the garbled ones never
+// leave the build directory. Lazy: ~0.6MB, fetched on first search/lightbox.
+let _transcripts = null, _transcriptsP = null;
+function loadTranscripts() {
+  if (!_transcriptsP) _transcriptsP = fetch('/data/transcripts.json')
+    .then((r) => r.json())
+    .then((t) => { _transcripts = t.transcripts || {}; })
+    .catch(() => { _transcripts = {}; });
+  return _transcriptsP;
+}
+const _transSnippet = (text, q) => {
+  const flat = text.replace(/\s+/g, ' ').trim();
+  const at = flat.toLowerCase().indexOf(q);
+  if (at < 0) return flat.slice(0, 60);
+  const lo = Math.max(0, at - 24), hi = Math.min(flat.length, at + q.length + 24);
+  return (lo > 0 ? '…' : '') + flat.slice(lo, hi) + (hi < flat.length ? '…' : '');
+};
+
+// After the first page of a free-text search, also look for the query INSIDE
+// the photographs' transcribed text — a plate number, a printed caption, a
+// photographer's imprint — and append those matches to the wall. Records come
+// one by one through the edge-cached id lookup, so a handful of hits is cheap.
+async function maybeTranscriptHits() {
+  const gen = _gen;
+  const q = state.query.replace(/["()]/g, ' ').replace(/\bOR\b/gi, ' ').replace(/\s+/g, ' ').trim().toLowerCase();
+  if (q.length < 3) return;
+  await loadTranscripts();
+  if (gen !== _gen || !_transcripts) return;
+  const hits = [];
+  for (const id in _transcripts) {
+    if (_transcripts[id].toLowerCase().includes(q) && !state.seen.has(`Object:${id}`)) {
+      hits.push(Number(id));
+      if (hits.length >= 24) break;
+    }
+  }
+  for (const id of hits) {
+    const rec = await fetchRecord(id);
+    if (gen !== _gen) return;
+    if (!rec || state.seen.has(`${rec.type}:${rec.id}`)) continue;
+    if (isSensitive(rec) || isAlbum(categoriesOf(rec))) continue;
+    if (state.decade && !inDecade(yearOfRec(rec), state.decade)) continue;
+    const img = pickImage(rec);
+    if (!img) continue;
+    state.seen.add(`${rec.type}:${rec.id}`);
+    const item = {
+      id: rec.id, title: rec.title || '(untitled)', maker: makerOf(rec), date: dateOf(rec),
+      place: placeOf(rec), category: categoriesOf(rec), caption: rec.caption || '',
+      url: recordUrl(rec), img, transMatch: _transSnippet(_transcripts[rec.id], q),
+    };
+    const idx = state.items.length;
+    state.items.push(item);
+    els.plates.appendChild(buildPlate(item, idx));
+    state.rendered++;
+  }
+  if (state.decade) els.count.textContent = fmtInt(state.rendered);
 }
 
 // Re-run whatever is currently showing (respecting state.decade). Called when the
@@ -794,6 +864,8 @@ function metaHtml(item, rec) {
     (depicts ? `<div class="lb-subjects"><span class="lb-subjects-label">In this photograph (Te Papa cataloguing)</span><div class="lb-chips">${depicts}</div></div>` : '') +
     (refers ? `<div class="lb-subjects"><span class="lb-subjects-label">References</span><div class="lb-chips">${refers}</div></div>` : '') +
     tagChips(item.id) +
+    ((_transcripts && _transcripts[item.id])
+      ? `<div class="lb-subjects"><span class="lb-subjects-label">Photographed text (AI transcription)</span><p class="lb-transcript">${esc(_transcripts[item.id])}</p></div>` : '') +
     `<dl class="lb-facts">` +
       fact('Maker', maker) +
       fact('Date', esc(item.date)) +
@@ -828,7 +900,7 @@ function renderLightbox() {
   // step() pulls the next page in on demand.
   lb.next.disabled = lb.idx >= state.items.length - 1 && state.done;
   const token = ++lb._token;                  // …then enrich, guarding against navigation
-  Promise.all([fetchRecord(item.id), loadTags()]).then(([rec]) => {
+  Promise.all([fetchRecord(item.id), loadTags(), loadTranscripts()]).then(([rec]) => {
     if (rec && token === lb._token) lb.meta.innerHTML = metaHtml(item, rec);
   });
 }
