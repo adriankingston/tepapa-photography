@@ -1039,7 +1039,8 @@ applyTheme(document.documentElement.dataset.theme || 'light', false);
 // decade filter is orthogonal, so it is NOT cleared here — it persists and
 // composes as you change what you're browsing.
 function clearActives() {
-  document.querySelectorAll('.way').forEach((c) => c.setAttribute('aria-pressed', 'false'));
+  // decade buttons are .way too, but the decade FILTER survives these resets
+  document.querySelectorAll('.way:not([data-decade])').forEach((c) => c.setAttribute('aria-pressed', 'false'));
 }
 
 // Typing an emotion / composition name loads its baked set; anything else is a
@@ -1060,7 +1061,7 @@ els.form.addEventListener('submit', (e) => {
 // "[Open]" is the home button — clear every filter and show the whole collection.
 function goHome() {
   clearActives();
-  document.querySelectorAll('.decade').forEach((c) => c.setAttribute('aria-pressed', 'false'));
+  document.querySelectorAll('#decades-track .way').forEach((c) => c.setAttribute('aria-pressed', 'false'));
   state.decade = null;
   els.q.value = '';
   resetAndLoad('');
@@ -1070,7 +1071,7 @@ function goHome() {
 document.getElementById('home-btn').addEventListener('click', goHome);
 
 /* ---- Ways in: two full-width marquees you can grab and drag -------------- */
-const MARQUEE_SPEED = 70;   // px/sec — shared by both rows
+const MARQUEE_SPEED = 42;   // px/sec — shared by all four rows (40% slower than the original 70)
 const _reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const _marquees = [];
 
@@ -1179,35 +1180,34 @@ function wireSet(setName, indexFile, listKey, trackId, reverse) {
 // has its chips ready.
 loadTags();
 
-// Feelings → 154 emotions from The Book of Human Emotions (drifts right).
-wireSet('emotion', '/data/emotions-index.json', 'emotions', 'moods-track', true);
-// Composition & technique → the photographic vocabulary (drifts left).
+// Feelings → 154 emotions from The Book of Human Emotions.
+wireSet('emotion', '/data/emotions-index.json', 'emotions', 'moods-track', false);
+// Composition & technique → the photographic vocabulary.
 wireSet('composition', '/data/compositions-index.json', 'compositions', 'comp-track', false);
 
-// Decades → a finite, ordered row of toggle FILTERS. Selecting one narrows
-// whatever is currently showing to that decade; clicking it again clears it.
-// The filter persists as you change search / feeling / composition.
+// Decades → toggle FILTERS in the same marquee dress as the other three ways.
+// Selecting one narrows whatever is currently showing to that decade; clicking
+// it again clears it. The filter persists as you change search / feeling /
+// composition — which is why clearActives() skips [data-decade] buttons.
 fetch('/data/decades-index.json')
   .then((r) => r.json())
   .then((idx) => {
-    const host = document.getElementById('decades');
-    if (!host) return;
-    (idx.decades || []).forEach((d) => {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'decade';
-      b.textContent = d.label;
-      b.title = `Filter to the ${d.label} — ${fmtInt(d.count)} photographs`;
-      b.setAttribute('aria-pressed', 'false');
-      b.addEventListener('click', () => {
-        const active = b.getAttribute('aria-pressed') === 'true';
-        // single-select among decades; leave the primary selection untouched
-        host.querySelectorAll('.decade').forEach((c) => c.setAttribute('aria-pressed', 'false'));
-        state.decade = active ? null : d.key;
-        if (!active) b.setAttribute('aria-pressed', 'true');
-        runView();
-      });
-      host.appendChild(b);
+    const decades = (idx.decades || []).map((d) => ({ term: d.label, key: d.key, count: d.count }));
+    if (!decades.length) return;
+    // 19 short terms is the one run narrow enough to underfill a wide viewport
+    // (the loop's seam would show) — double it, keeping one tab stop per decade.
+    const items = decades.concat(decades);
+    const track = fillMarquee('decades-track', items, (d) =>
+      `data-decade="${esc(d.key)}" aria-pressed="false" title="Filter to the ${esc(d.term)} — ${fmtInt(d.count)} photographs"`);
+    if (!track) return;
+    [...track.querySelectorAll(':scope > .way')].slice(decades.length).forEach((b) => { b.tabIndex = -1; });
+    makeDraggableMarquee(track, false, (b) => {
+      const active = b.getAttribute('aria-pressed') === 'true';
+      // single-select, synced across every rendered copy of each decade
+      document.querySelectorAll('#decades-track .way').forEach((c) =>
+        c.setAttribute('aria-pressed', String(!active && c.dataset.decade === b.dataset.decade)));
+      state.decade = active ? null : b.dataset.decade;
+      runView();
     });
   })
   .catch(() => { /* leave the decade row empty if the index can't load */ });
