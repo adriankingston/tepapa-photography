@@ -311,7 +311,7 @@ a { color: inherit; }
   align-items: center;
   gap: 12px;
   border-bottom: 2px solid var(--ink);
-  padding-bottom: 8px;
+  padding-bottom: 6px;
 }
 .search-field input {
   flex: 1;
@@ -319,8 +319,8 @@ a { color: inherit; }
   border: 0;
   background: transparent;
   color: var(--ink);
+  font-size: clamp(21px, 3.75vw, 42px);   /* 75% of clamp(28px, 5vw, 56px) */
   font-family: var(--serif);
-  font-size: clamp(28px, 5vw, 56px);
   font-style: italic;
   font-weight: 340;
   letter-spacing: -0.01em;
@@ -335,7 +335,7 @@ a { color: inherit; }
   border: 0;
   background: transparent;
   color: var(--accent);
-  font-size: clamp(28px, 5vw, 48px);
+  font-size: clamp(21px, 3.75vw, 36px);   /* 75% of clamp(28px, 5vw, 48px) */
   line-height: 1;
   cursor: pointer;
   padding: 0 4px;
