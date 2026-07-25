@@ -173,6 +173,7 @@ export function shardTagPhotos(index, terms) {
   const byId = new Map(index.map((e) => [e.id, e]));
   const shards = new Map();
   for (const t of terms) {
+    if (!t.ids) continue;   // 'auto'-tier terms ship ids-only lazy shards instead
     const photos = {};
     for (const id of t.ids) {
       const e = byId.get(id);

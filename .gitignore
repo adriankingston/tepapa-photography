@@ -42,3 +42,4 @@ build/caption-run.log
 build/agreement-report.json
 build/transcript-validation.json
 build/audit-sample.json
+build/tag-ids-auto.json

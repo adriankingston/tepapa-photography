@@ -1,0 +1,4030 @@
+{
+ "portrait-woman": {
+  "thr": 0.4,
+  "mode": "calibrated"
+ },
+ "lake": {
+  "thr": 0.05,
+  "mode": "calibrated"
+ },
+ "harbour": {
+  "thr": 0.164,
+  "mode": "calibrated"
+ },
+ "native-bush": {
+  "thr": 0.755,
+  "mode": "calibrated"
+ },
+ "river": {
+  "thr": 0.877,
+  "mode": "calibrated"
+ },
+ "portrait-child": {
+  "thr": 0.758,
+  "mode": "calibrated"
+ },
+ "residential-streets": {
+  "thr": 0.381,
+  "mode": "calibrated"
+ },
+ "bush-streams": {
+  "thr": 0.192,
+  "mode": "calibrated"
+ },
+ "wharf": {
+  "thr": 0.221,
+  "mode": "calibrated"
+ },
+ "portrait-man": {
+  "thr": 0.606,
+  "mode": "calibrated"
+ },
+ "mountain": {
+  "thr": 0.44,
+  "mode": "calibrated"
+ },
+ "gorge": {
+  "thr": 0.844,
+  "mode": "calibrated"
+ },
+ "family-group": {
+  "thr": 0.678,
+  "mode": "calibrated"
+ },
+ "beach": {
+  "thr": 0.214,
+  "mode": "calibrated"
+ },
+ "waterfall": {
+  "thr": 0.221,
+  "mode": "calibrated"
+ },
+ "couple": {
+  "thr": 0.838,
+  "mode": "calibrated"
+ },
+ "baby": {
+  "thr": 0.779,
+  "mode": "calibrated"
+ },
+ "women-victorian-dress": {
+  "thr": 0.078,
+  "mode": "calibrated"
+ },
+ "rapids": {
+  "thr": 0.091,
+  "mode": "calibrated"
+ },
+ "town-view": {
+  "thr": 0.956,
+  "mode": "calibrated"
+ },
+ "city-street": {
+  "thr": 0.474,
+  "mode": "calibrated"
+ },
+ "church": {
+  "thr": 0.532,
+  "mode": "calibrated"
+ },
+ "steamship": {
+  "thr": 0.573,
+  "mode": "calibrated"
+ },
+ "soldiers": {
+  "thr": 0.2,
+  "mode": "calibrated"
+ },
+ "children-playing": {
+  "thr": 0.352,
+  "mode": "calibrated"
+ },
+ "wedding": {
+  "thr": 0.6,
+  "mode": "calibrated"
+ },
+ "beach-boulders": {
+  "thr": 0.085,
+  "mode": "calibrated"
+ },
+ "glacier": {
+  "thr": 0.544,
+  "mode": "calibrated"
+ },
+ "rocky-shores": {
+  "thr": 0.263,
+  "mode": "calibrated"
+ },
+ "sailing-ship": {
+  "thr": 0.184,
+  "mode": "calibrated"
+ },
+ "crowd": {
+  "thr": 0.404,
+  "mode": "calibrated"
+ },
+ "flood": {
+  "thr": 0.381,
+  "mode": "calibrated"
+ },
+ "mothers-and-children": {
+  "thr": 0.538,
+  "mode": "calibrated"
+ },
+ "swimming": {
+  "thr": 0.431,
+  "mode": "calibrated"
+ },
+ "clock-towers": {
+  "thr": 0.931,
+  "mode": "calibrated"
+ },
+ "country-roads": {
+  "thr": 0.863,
+  "mode": "calibrated"
+ },
+ "bridge": {
+  "thr": 0.947,
+  "mode": "calibrated"
+ },
+ "man-with-beard": {
+  "thr": 0.336,
+  "mode": "calibrated"
+ },
+ "birds": {
+  "thr": 0.912,
+  "mode": "calibrated"
+ },
+ "monument": {
+  "thr": 0.892,
+  "mode": "calibrated"
+ },
+ "construction": {
+  "thr": 0.538,
+  "mode": "calibrated"
+ },
+ "warship": {
+  "thr": 0.754,
+  "mode": "calibrated"
+ },
+ "wooden-villa": {
+  "thr": 0.958,
+  "mode": "calibrated"
+ },
+ "motorcar": {
+  "thr": 0.424,
+  "mode": "calibrated"
+ },
+ "horse": {
+  "thr": 0.088,
+  "mode": "calibrated"
+ },
+ "horse-cart": {
+  "thr": 0.834,
+  "mode": "calibrated"
+ },
+ "bicycle": {
+  "thr": 0.164,
+  "mode": "calibrated"
+ },
+ "tussock-country": {
+  "thr": 0.999,
+  "mode": "calibrated"
+ },
+ "elderly": {
+  "thr": 0.612,
+  "mode": "calibrated"
+ },
+ "aeroplane": {
+  "thr": 0.629,
+  "mode": "calibrated"
+ },
+ "rowing-boat": {
+  "thr": 0.945,
+  "mode": "calibrated"
+ },
+ "sunlit-bush": {
+  "thr": 0.582,
+  "mode": "calibrated"
+ },
+ "tramping": {
+  "thr": 0.832,
+  "mode": "calibrated"
+ },
+ "tree-ferns": {
+  "thr": 0.996,
+  "mode": "calibrated"
+ },
+ "fiords": {
+  "thr": 0.996,
+  "mode": "calibrated"
+ },
+ "skiing": {
+  "thr": 0.682,
+  "mode": "calibrated"
+ },
+ "volcano": {
+  "thr": 0.993,
+  "mode": "calibrated"
+ },
+ "alpine-flowers": {
+  "thr": 0.991,
+  "mode": "calibrated"
+ },
+ "dry-docks": {
+  "thr": 0.762,
+  "mode": "calibrated"
+ },
+ "celebration-arches": {
+  "thr": 0.941,
+  "mode": "calibrated"
+ },
+ "steam-shovels": {
+  "thr": 0.606,
+  "mode": "calibrated"
+ },
+ "geyser": {
+  "thr": 0.999,
+  "mode": "calibrated"
+ },
+ "parade": {
+  "thr": 0.97,
+  "mode": "calibrated"
+ },
+ "dog": {
+  "thr": 0.327,
+  "mode": "calibrated"
+ },
+ "sunset-sky": {
+  "thr": 0.522,
+  "mode": "calibrated"
+ },
+ "telegraph-poles": {
+  "thr": 0.909,
+  "mode": "calibrated"
+ },
+ "house-interior": {
+  "thr": 0.983,
+  "mode": "calibrated"
+ },
+ "shopfront": {
+  "thr": 0.954,
+  "mode": "calibrated"
+ },
+ "motorcycle": {
+  "thr": 0.101,
+  "mode": "calibrated"
+ },
+ "fire-damage": {
+  "thr": 0.663,
+  "mode": "calibrated"
+ },
+ "tent-camp": {
+  "thr": 0.95,
+  "mode": "calibrated"
+ },
+ "theatre": {
+  "thr": 0.993,
+  "mode": "calibrated"
+ },
+ "hunting-fishing": {
+  "thr": 0.892,
+  "mode": "calibrated"
+ },
+ "corrugated-iron-buildings": {
+  "thr": 0.962,
+  "mode": "calibrated"
+ },
+ "braided-rivers": {
+  "thr": 0.95,
+  "mode": "calibrated"
+ },
+ "hotel": {
+  "thr": 0.99,
+  "mode": "calibrated"
+ },
+ "horseback-riders": {
+  "thr": 0.914,
+  "mode": "calibrated"
+ },
+ "coastal-defence-guns": {
+  "thr": 0.236,
+  "mode": "calibrated"
+ },
+ "picnic": {
+  "thr": 0.999,
+  "mode": "calibrated"
+ },
+ "sawmill": {
+  "thr": 0.988,
+  "mode": "calibrated"
+ },
+ "cricket": {
+  "thr": 0.586,
+  "mode": "calibrated"
+ },
+ "cloud-seas": {
+  "thr": 0.796,
+  "mode": "calibrated"
+ },
+ "cemeteries": {
+  "thr": 0.775,
+  "mode": "calibrated"
+ },
+ "bedrooms": {
+  "thr": 0.991,
+  "mode": "calibrated"
+ },
+ "fountains": {
+  "thr": 0.991,
+  "mode": "calibrated"
+ },
+ "pack-horse": {
+  "thr": 0.956,
+  "mode": "calibrated"
+ },
+ "rugby": {
+  "thr": 0.994,
+  "mode": "calibrated"
+ },
+ "lighthouse": {
+  "thr": 0.965,
+  "mode": "calibrated"
+ },
+ "sheep": {
+  "thr": 0.985,
+  "mode": "calibrated"
+ },
+ "smoking-pipe": {
+  "thr": 0.888,
+  "mode": "calibrated"
+ },
+ "seabird-colonies": {
+  "thr": 0.998,
+  "mode": "calibrated"
+ },
+ "bus": {
+  "thr": 0.785,
+  "mode": "calibrated"
+ },
+ "eruption": {
+  "thr": 0.99,
+  "mode": "calibrated"
+ },
+ "athletics": {
+  "thr": 0.973,
+  "mode": "calibrated"
+ },
+ "grandstand-crowds": {
+  "thr": 0.998,
+  "mode": "calibrated"
+ },
+ "cat": {
+  "thr": 0.56,
+  "mode": "calibrated"
+ },
+ "workshop": {
+  "thr": 0.853,
+  "mode": "calibrated"
+ },
+ "top-hats": {
+  "thr": 0.848,
+  "mode": "calibrated"
+ },
+ "windmill": {
+  "thr": 0.944,
+  "mode": "calibrated"
+ },
+ "dining-rooms": {
+  "thr": 0.962,
+  "mode": "calibrated"
+ },
+ "office": {
+  "thr": 0.788,
+  "mode": "calibrated"
+ },
+ "stalactites": {
+  "thr": 0.994,
+  "mode": "calibrated"
+ },
+ "church-interiors": {
+  "thr": 0.999,
+  "mode": "calibrated"
+ },
+ "wedding-groups": {
+  "thr": 0.852,
+  "mode": "calibrated"
+ },
+ "fishing-boat": {
+  "drop": true,
+  "mode": "calibrated"
+ },
+ "yacht": {
+  "drop": true,
+  "mode": "calibrated"
+ },
+ "whaling": {
+  "drop": true,
+  "mode": "calibrated"
+ },
+ "log-raft": {
+  "drop": true,
+  "mode": "calibrated"
+ },
+ "earthquake": {
+  "drop": true,
+  "mode": "calibrated"
+ },
+ "storm-sea": {
+  "drop": true,
+  "mode": "calibrated"
+ },
+ "croquet": {
+  "drop": true,
+  "mode": "calibrated"
+ },
+ "school-group": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "sports-team": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "brass-band": {
+  "thr": 0.7,
+  "mode": "audited"
+ },
+ "nurse": {
+  "thr": 0.7,
+  "mode": "audited"
+ },
+ "clergy": {
+  "thr": 0.9,
+  "mode": "audited"
+ },
+ "shearing": {
+  "thr": 0.999,
+  "mode": "audited"
+ },
+ "cattle": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "haymaking": {
+  "thr": 0.7,
+  "mode": "audited"
+ },
+ "garden": {
+  "thr": 0.99,
+  "mode": "audited"
+ },
+ "factory-interior": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "shop-interior": {
+  "thr": 0.9,
+  "mode": "audited"
+ },
+ "steam-locomotive": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tram": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "ship-deck": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "band-rotunda": {
+  "thr": 0.99,
+  "mode": "audited"
+ },
+ "snow": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "cliffs": {
+  "thr": 0.7,
+  "mode": "audited"
+ },
+ "cave": {
+  "thr": 0.95,
+  "mode": "audited"
+ },
+ "waterfront-rocks": {
+  "thr": 0.7,
+  "mode": "audited"
+ },
+ "island": {
+  "thr": 0.95,
+  "mode": "audited"
+ },
+ "pigs": {
+  "thr": 0.7,
+  "mode": "audited"
+ },
+ "exhibition": {
+  "thr": 0.99,
+  "mode": "audited"
+ },
+ "troops-marching": {
+  "thr": 0.95,
+  "mode": "audited"
+ },
+ "artillery": {
+  "thr": 0.9,
+  "mode": "audited"
+ },
+ "sailors": {
+  "thr": 0.9,
+  "mode": "audited"
+ },
+ "sailor-suits": {
+  "thr": 0.99,
+  "mode": "audited"
+ },
+ "portraits-with-dogs": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "painted-backdrops": {
+  "thr": 0.7,
+  "mode": "audited"
+ },
+ "fur-stoles": {
+  "thr": 0.995,
+  "mode": "audited"
+ },
+ "children-with-toys": {
+  "thr": 0.95,
+  "mode": "audited"
+ },
+ "long-loose-hair": {
+  "thr": 0.95,
+  "mode": "audited"
+ },
+ "haystacks": {
+  "thr": 0.9,
+  "mode": "audited"
+ },
+ "draught-horse-teams": {
+  "thr": 0.9,
+  "mode": "audited"
+ },
+ "glasshouses": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "railway-construction": {
+  "thr": 0.7,
+  "mode": "audited"
+ },
+ "railway-yard": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "railway-bridge": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "delivery-cart": {
+  "thr": 0.7,
+  "mode": "audited"
+ },
+ "petrol-station": {
+  "thr": 0.7,
+  "mode": "audited"
+ },
+ "cargo-handling": {
+  "thr": 0.95,
+  "mode": "audited"
+ },
+ "dams": {
+  "thr": 0.99,
+  "mode": "audited"
+ },
+ "water-towers": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tunnels": {
+  "thr": 0.99,
+  "mode": "audited"
+ },
+ "kitchens": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "library-interiors": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "museum-interiors": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "mud-pools": {
+  "thr": 0.99,
+  "mode": "audited"
+ },
+ "sand-dunes": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "rock-arches": {
+  "thr": 0.9,
+  "mode": "audited"
+ },
+ "bush-clad-hills": {
+  "thr": 0.999,
+  "mode": "audited"
+ },
+ "taxidermy-displays": {
+  "thr": 0.9,
+  "mode": "audited"
+ },
+ "tp-plants": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-military-uniforms": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-wooden-buildings": {
+  "thr": 0.7,
+  "mode": "audited"
+ },
+ "tp-moustaches": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-canyons": {
+  "thr": 0.95,
+  "mode": "audited"
+ },
+ "tp-cathedrals": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-towers": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-sand": {
+  "thr": 0.7,
+  "mode": "audited"
+ },
+ "tp-flags": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-gates": {
+  "thr": 0.9,
+  "mode": "audited"
+ },
+ "tp-costumes": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-military-personnel": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-dam-construction": {
+  "thr": 0.999,
+  "mode": "audited"
+ },
+ "tp-canals": {
+  "thr": 0.7,
+  "mode": "audited"
+ },
+ "tp-dioramas": {
+  "thr": 0.99,
+  "mode": "audited"
+ },
+ "tp-eggs": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-rooms-spaces": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-smoke": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-trucks": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-thatched-roof-buildings": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-building-construction": {
+  "thr": 0.95,
+  "mode": "audited"
+ },
+ "tp-battleships": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-chimneys": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-ducks": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-castles-palaces": {
+  "thr": 0.9,
+  "mode": "audited"
+ },
+ "tp-pearls": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-fireplaces": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-coats": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-sports-spectators": {
+  "thr": 0.995,
+  "mode": "audited"
+ },
+ "tp-automobile-equipment-supplies": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-living-rooms": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-tractors": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-domes": {
+  "thr": 0.7,
+  "mode": "audited"
+ },
+ "tp-spouses": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-fur-coats": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "tp-cakes": {
+  "thr": 0.5,
+  "mode": "audited"
+ },
+ "weaving": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "sheep-yards": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "wool-bales": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "dairy": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "ploughing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "harvest": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "farmhouse": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "orchard": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "fencing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "swagger": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "logging": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "kauri-log": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "gold-mining": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "gold-dredge": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "coal-mining": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "gum-digging": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "flax-milling": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "freezing-works": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "blacksmith": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "bridge-building": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "road-building": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "surveyors": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "printing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "brewery": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "railway-station": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "railway-viaduct": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "coach": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "bullock-team": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "ferry": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "shipwreck": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "public-building": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "war-memorial": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "thermal": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "big-tree": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "farmland": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "poultry": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "seals": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "deer": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "horse-racing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "regatta": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "agricultural-show": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "circus": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "golf-tennis": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "military-camp": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "troopship": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "police": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "fire-brigade": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "staff-groups": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "domestic-servants": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "graduates": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "lodge-regalia": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "highland-dress": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "fancy-dress": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "debutantes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "studio-columns": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "profile-portraits": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "choirs": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "committees": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "hospital-wards": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "nuns": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "straw-boaters": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "flat-caps": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "flapper-fashion": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "mourning-dress": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "shirtsleeves-braces": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "scouts-guides": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "musicians": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "verandah-groups": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "afternoon-tea": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "prams": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "jockeys": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "boxers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "washing-day": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "sewing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "folding-fans": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "bath-chairs": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "hongi": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "harakeke": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "sheep-dipping": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "droving": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "mustering": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "sheepdog-trials": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "saleyards": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "threshing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "hay-wagons": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "traction-engines": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "farm-tractors": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "packhorses": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "burn-offs": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "bush-clearing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "rabbiting": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "pet-lambs": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "market-gardens": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "hop-gardens": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "vineyards": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "maize-crops": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "potato-digging": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "fruit-picking": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "grain-sacks": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "apiaries": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "water-races": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "farm-sheds": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "station-homesteads": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "backcountry-huts": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "slab-sod-huts": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "wharf-labourers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "shipbuilding": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "brickworks": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tanneries": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "foundries": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "flour-mills": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "quarries": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "mine-headframes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "stamper-batteries": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "hydraulic-sluicing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "bush-tramways": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "kauri-driving-dams": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "railway-workshops": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tunnelling": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "hydro-dams": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "power-stations": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "power-pylons": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "linemen": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "telephone-exchanges": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "gasworks": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "dairy-factories": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "woollen-mills": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "clothing-factories": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "bakeries": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "butchers-shops": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "bootmakers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "saddlers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "coopers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "wheelwrights": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "farriers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "barbers-shops": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "motor-garages": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "classrooms": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "railway-carriage": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "goods-wagon": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "engine-shed": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "railway-tunnel": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "track-laying": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "level-crossing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "signal-box": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "cable-car": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "train-wreck": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "railway-staff": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "steam-roller": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "motor-lorry": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "penny-farthing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "sedan-car": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "fire-engine": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "river-ford": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "seaplane": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "aerodrome": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "aviator": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "aeroplane-crash": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "paddle-steamer": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tugboat": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "ocean-liner": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "scow": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "river-steamer": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "launch": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "boat-building": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "ship-launching": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "ship-farewell": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "ship-interior": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "wharf-crane": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "breakwater": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "jetty": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "boatshed": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "boats-ashore": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "low-tide": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "river-punt": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "fish-catch": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "net-mending": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "sea-baths": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "heavy-seas": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "shellfish-gathering": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "diver": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "helmsman": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "schools": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "hospitals": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "fire-stations": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "huts": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "homesteads": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "ceremonial-arches": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "public-parks": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "grandstands": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "factory-chimneys": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "watermills": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "swingbridges": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "hall-interiors": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "bar-interiors": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "billiard-rooms": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "advertising-hoardings": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "derelict-buildings": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "hot-pools": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "volcanic-craters": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "ice-caves": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "open-plains": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "swamps": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "mudflats": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "bush-tracks": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "cleared-bushland": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "cabbage-trees": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "nikau-palms": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "flax-bushes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "toetoe": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tree-lined-avenues": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "wind-bent-trees": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "mist": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "frost": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "landslips": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "sheepdogs": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "goats": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "rabbits": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "penguins": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "kiwi": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "moa-skeletons": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "elephants": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "beehives": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tuatara": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "lawn-bowls": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "hockey": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "netball": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "boxing-wrestling": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "cycle-racing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "surf-lifesaving": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "woodchopping-contests": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "show-jumping": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "polo": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "hunt-meets": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "trotting-races": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "dances-balls": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "garden-parties": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "official-ceremonies": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "street-decorations": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "funerals": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "gymnastics-displays": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tug-of-war": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "novelty-races": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "seaside-outings": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "rifle-shooting": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "curling": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "fetes-bazaars": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "public-meetings": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "highland-games": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "pipe-bands": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "playgrounds": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "swimming-baths": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "redoubts-blockhouses": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "mounted-troops": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "trenches": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "machine-guns": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tanks": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "military-aircraft": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "school-cadets": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "wounded-soldiers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "barracks": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "field-ambulances": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "memorial-services": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "veterans": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "landslides": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "heavy-snowfalls": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "ash-covered-landscapes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "washed-out-bridges": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "storm-damage": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "burnt-bush": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-women": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-trees": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-men": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-buildings": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-hills": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-cities-towns": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-houses": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-lakes-ponds": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-boats": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-seas": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-rocks": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-children": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-streets": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-people": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-roads": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-forests": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-commercial-streets": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-bodies-of-water": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-piers-wharves": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-ferns": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-bays-bodies-of-water": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-ships": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-carriages-coaches": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-endemic-plants": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-military-officers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-automobiles": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-palms": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-hats": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-shrubs": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-tree-limbs": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-croplands": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-chairs": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-stores-shops": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-tree-stumps": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-trails-paths": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-girls": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-boys": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-infants": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-hydroelectric-power": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-utility-poles": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-insects": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-pedestrians": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-carts-wagons": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-flowers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-landscapes-representations": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-specimens": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-interiors": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-reflections": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-city-town-life": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-logs": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-scenic-overlooks": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-stone-buildings": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-suits-clothing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-orchids": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-fjords": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-streams": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-railway-tracks": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-families": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-dirt-roads": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-settlements": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-valleys": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-porches": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-clouds": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-villages": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-endemic-trees": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-coastlines": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-sculpture": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-whales": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-anglican-churches": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-brides": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-bicycles-tricycles": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-springs": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-tables": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-beards": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-monuments-memorials": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-ruins": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-bathing-suits": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-endemic-birds": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-uniforms": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-land": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-rowboats": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-awnings": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-lampposts": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-commercial-facilities": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-dwellings": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-hiking": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-clothing-dress": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-steeples": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-post-offices": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-plazas": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-steam": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-farms": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-sheds": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-parks": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-waterfronts": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-meadows": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-galleries-museums": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-yards": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-spectators": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-dresses": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-gold-dredging": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-oceans": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-british-and-irish": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-street-railroads": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-grooms-weddings": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-tombs-sepulchral-monuments": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-railroads": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-dredges": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-horseback-riding": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-staffs-sticks": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-tents": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-dunes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-lawns": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-thatched-roofs": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-nests": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-railings": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-wedding-clothing-dress": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-canoes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-dutch": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-ice": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-signs-notices": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-daggers-swords": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-mineral-deposits": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-airplanes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-presbyterian-churches": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-dragonflies": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-industrial-facilities": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-books": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-medals": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-grasses": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-craters": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-sidewalks": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-umbrellas": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-fashion": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-factories": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-cityscapes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-mothers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-religious-facilities": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-benches": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-draperies": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-smokestacks": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-electric-lines": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-play-recreation": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-catholic-churches": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-historic-sites": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-stairways": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-government-facilities": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-curiosities-wonders": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-captains": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-equipment-supplies": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-botanical-gardens": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-building-materials": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-swimming": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-leaves": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-balconies": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-terraces-land-use": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-power-plants": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-railroad-locomotives": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-roofs": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-city-town-halls": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-national-parks-reserves": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-hedges-plants": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-columns": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-necklaces": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-taxidermy": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-walkways": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-windows": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-historic-buildings": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-battlefields": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-shadows": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-clearing-of-land": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-machinery": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-neckties": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-driveways": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-sailboats": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-eating-drinking": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-shipping": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-backdrops": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-arches": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-military-service": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-lumber-industry": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-hoisting-machinery": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-employees": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-banks": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-tropical-forests": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-mountaineering": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-opo-dolphin": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-ladders": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-stone-walls": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-paintings": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-visits-of-state": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-bell-towers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-doors-doorways": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-aerial-views": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-bouquets": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-cows": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-ropes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-spires": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-steamboats": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-capes-coasts": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-posing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-biplanes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-wetlands": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-sitting": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-smoking": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-camping": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-mining-equipment": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-dolphins": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-theatrical-productions": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-public-libraries": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-farming": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-aged-persons": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-workers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-rookeries": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-students": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-concrete": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-expeditions-surveys": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-colonels": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-toys": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-street-lights": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-mining": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-parliament-buildings": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-official-residences": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-cargo-ships": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-zoos": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-barrels": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-eyeglasses": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-fishing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-pedestrian-bridges": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-labourers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-politicians": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-animals": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-universities-colleges": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-passengers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-arms-armament": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-furniture": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-vines": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-skiers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-fur": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-actors": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-royalty": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-dancers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-lumber": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-pedestals": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-zoo-animals": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-flagpoles": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-boulders": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-tribal-chiefs": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-fur-garments": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-air-shows": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-reading": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-skiing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-walls": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-water": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-swimmers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-audiences": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-courthouses": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-straw-hats": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-shells-animal": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-military-parades-ceremonies": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-pools": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-artists": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-butterflies": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-historical-pageants": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-pageants": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-albatrosses": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-crosses": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-archaeological-sites": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-rowing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-fords-stream-crossings": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-construction-workers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-blankets": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-country-life": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-cameras": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-rifles": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-merchandise-displays": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-bunkers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-agricultural-labourers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-firearms": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-vases": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-tea": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-sunrises-sunsets": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-athletes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-celebrations": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-woodcutting": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-mud": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-rugs": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-automobile-industry": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-egyptian": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-entertainment": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-baskets": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-gold-mining-equipment": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-stockyards": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-cages": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-penstocks": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-dead-animals": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-antiquities-archaeological-sites": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-ocean-travel": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-street-railroad-tracks": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-arrivals-departures": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-grazing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-wood-carvings": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-pipes-smoking": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-neighborhoods": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-decks-ships": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-rites-ceremonies": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-air-forces": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-parasites": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-outrigger-canoes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-baby-carriages": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-wicker-furniture": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-feathers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-mills": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-forts-fortifications": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-lions": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-circus-animals": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-older-people": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-gulls": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-dolls": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-cigarettes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-caterpillars": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-spiders": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-rotundas": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-cannons": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-agricultural-machinery-implements": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-bathing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-bonnets": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-smiling": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-jewellery": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-sporting-goods": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-longboats": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-wedding-costume": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-laundry": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-elderly": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-packtrains": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-billboards": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-channels": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-mud-volcanoes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-pines": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-amputees": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-sports": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-telephone-lines": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-headgear": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-volcanic-rock": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-steam-engines": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-exhibition-buildings": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-convents": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-cricket-players": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-pipes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-agricultural-facilities": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-pianos": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-stages-platforms": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-dirt": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-evening-gowns": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-scientists": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-stars": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-farmers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-methodist-churches": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-greenhouses": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-window-displays": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-vocational-education": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-birds-of-prey": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-views": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-ruts": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-willows": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-labor-housing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-skeletons": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-silhouettes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-circuses-shows": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-ornithological-illustrations": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-cobblestone-streets": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-puddles": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-school-children": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-lifeboats": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-fishing-nets": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-government-officials": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-fathers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-recreation": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-moths": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-roses": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-fish": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-family": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-veils": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-stilt-houses": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-physicians": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-rural-land-use": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-dance": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-camps": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-barbed-wire": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-hay": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-showcases": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-scaffolding": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-bones-body-parts": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-pigeons": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-fire-fighters": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-night": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-public-schools": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-office-buildings": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-gazebos": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-mine-railroad-cars": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-chickens": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-educational-facilities": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-bowler-hats": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-water-pumps": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-clocks-watches": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-tennis-courts": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-prime-ministers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-seals-animals": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-animal-feeding": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-daisies": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-missionaries": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-newspapers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-marble": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-truss-bridges": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-state-flags": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-fashion-models": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-embankments": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-vernacular-architecture": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-temples": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-athletic-fields": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-banners": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-coconuts": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-woodcutters": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-sports-recreation-facilities": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-beds": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-climbing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-wheels": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-stuffed-animals-toys": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-governors-general": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-plains": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-seascapes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-swans": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-cormorants": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-boardwalks": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-tobacco-pipes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-headdresses": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-passes-landforms": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-pergolas": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-sawyers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-sunbathing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-livestock": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-parrots": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-adults": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-pyramids": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-traffic": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-disabled-veterans": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-general-stores": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-reefs": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-tahitian": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-decorations": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-shovels": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-excavation": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-pipes-conduits": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-tennis-racquets": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-teddy-bears": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-bags": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-hammocks-furniture": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-agriculture": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-knitting": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-stone-bridges": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-violins": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-caroline-islander": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-lace": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-reeds-plants": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-telecommunication-lines": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-sheep-ranches": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-seating-furniture": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-vacation-houses": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-boots": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-pails": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-gloves": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-bands": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-air-pilots": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-sleeping": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-picture-frames": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-cans": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-policemen": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-balls-sporting-goods": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-hawks": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-traffic-signs-signals": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-monuments": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-telegraph-offices": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-clotheslines": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-moon": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-natural-phenomena": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-crates": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-holes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-wading": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-gold-miners": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-drawing-rooms": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-extinct-birds": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-awards": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-picnic-baskets": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-towels": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-swine": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-donkeys": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-boxers-sports": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-japanese": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-tearooms": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-people-with-disabilities": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-flower-arrangements": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-funeral-processions": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-sailing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-structures": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-chapels": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-backyards": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-waterwheels": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-axes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-warehouses": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-hydraulic-mining": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-tapa": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-circus-performers": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-show-tents": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-hides-skins": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-testing": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-structural-frames": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-campfires": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-funeral-rites-ceremonies": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-lounges": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-performing-artists": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-murals": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-mountain-roads": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-transportation": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-sphinxes": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-manners-customs": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-signal-flags": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-government-vessels": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-reservoirs": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-sea-walls": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-abbeys": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-gardening": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-maps": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-wreaths": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-fruit": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-american": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-boat-ship-industry": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-leisure": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-youth": {
+  "thr": 0.15,
+  "mode": "auto"
+ },
+ "tp-crop-dusting": {
+  "thr": 0.15,
+  "mode": "auto"
+ }
+}

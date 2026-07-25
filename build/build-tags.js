@@ -53,7 +53,7 @@ const emb = new Int8Array(embBuf.buffer, embBuf.byteOffset, embBuf.length);
 const byKey = new Map(candidates.map((c) => [c.key, c]));
 const kept = Object.entries(verdicts)
   .filter(([, v]) => !v.drop)
-  .map(([key, v]) => ({ ...byKey.get(key), thr: v.thr }))
+  .map(([key, v]) => ({ ...byKey.get(key), thr: v.thr, mode: v.mode || 'calibrated' }))
   .filter((t) => t.key);
 const dropped = Object.values(verdicts).filter((v) => v.drop).length;
 console.log(`Verdicts: ${kept.length} kept · ${dropped} dropped · ${candidates.length - kept.length - dropped} unreviewed (not shipped)`);
@@ -118,14 +118,25 @@ for (let c = 0; c < kept.length; c += BATCH) {
     }
     if (compVecs.length) console.log(`\n  ${t.key}: ${hits.length} kept, ${outscored} taken by a competitor prompt`);
     hits.sort((a, b) => b[1] - a[1]);   // best-first, so browse leads with the strongest
-    terms.push({ key: t.key, label: t.label, group: t.group, thr: t.thr, ids: hits.map(([r]) => records[r].id) });
+    terms.push({ key: t.key, label: t.label, group: t.group, thr: t.thr, mode: t.mode, ids: hits.map(([r]) => records[r].id) });
   }
   process.stdout.write(`\r  ${Math.min(c + BATCH, kept.length)}/${kept.length} terms   `);
 }
 
 terms.sort((a, b) => b.ids.length - a.ids.length);
+// The 'auto' tier (bulk, uncalibrated) is browsable but must not bloat the
+// EAGER tags.json (chips + search lookup): its id lists go to a build
+// artifact that build-shards.js turns into lazy ids-only files; tags.json
+// carries just {key,label,thr,mode,count} for those terms.
+const autoIds = {};
+const leanTerms = terms.map((t) => {
+  if (t.mode !== 'auto') return t;
+  autoIds[t.key] = t.ids;
+  return { key: t.key, label: t.label, group: t.group, thr: t.thr, mode: t.mode, count: t.ids.length };
+});
+fs.writeFileSync(path.join(__dirname, 'tag-ids-auto.json'), JSON.stringify(autoIds));
 fs.writeFileSync(path.join(DATA, 'tags.json'), JSON.stringify({
-  model: MODEL, template: TEMPLATE('{prompt}'), stamp: STAMP || undefined, terms,
+  model: MODEL, template: TEMPLATE('{prompt}'), stamp: STAMP || undefined, terms: leanTerms,
 }));
 
 const total = terms.reduce((s, t) => s + t.ids.length, 0);
