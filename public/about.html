@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About — Photographs, Te Papa</title>
+  <meta name="description" content="A colophon for the Te Papa photography browser: the typefaces, the local-first AI tagging pipeline, sources and licences.">
+  <link rel="canonical" href="https://photography.nextepisode.nz/about.html">
+  <meta name="theme-color" content="#faf6ef" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161412" media="(prefers-color-scheme: dark)">
+
+  <!-- Set the theme before first paint (no flash): saved choice, else OS preference.
+       Shares the 'tepapa.theme' key with the main browser so the choice carries across.
+       NOTE: the CSP script-src hash in vercel.json covers this script — any edit
+       to it (even whitespace) needs that sha256 recomputed. -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('tepapa.theme');
+        if (t !== 'light' && t !== 'dark') {
+          t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = t;
+      } catch (e) {
+        document.documentElement.dataset.theme = 'light';
+      }
+    })();
+  </script>
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.png" sizes="any">
+  <link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/roboto-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/tourney-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/style.css?v=49">
+</head>
+<body>
+  <!-- ====== Masthead (mirrors the main page's mini header) ====== -->
+  <header class="masthead" id="top">
+    <div class="masthead-row">
+      <a class="hub-link brand-link" href="https://nextepisode.nz">
+        <svg class="ne-logo" viewBox="0 0 32 32" aria-hidden="true">
+          <g class="ne-rotor">
+            <g class="ne-spoke s1"><line class="ne-link" x1="16" y1="16" x2="7.5"  y2="8" />    <circle class="ne-node" cx="7.5"  cy="8"    r="3" /></g>
+            <g class="ne-spoke s2"><line class="ne-link" x1="16" y1="16" x2="24.5" y2="9" />    <circle class="ne-node" cx="24.5" cy="9"    r="2.2" /></g>
+            <g class="ne-spoke s3"><line class="ne-link" x1="16" y1="16" x2="8.5"  y2="24.5" /> <circle class="ne-node" cx="8.5"  cy="24.5" r="2.2" /></g>
+            <g class="ne-spoke s4"><line class="ne-link" x1="16" y1="16" x2="24.5" y2="24" />   <circle class="ne-node" cx="24.5" cy="24"   r="3.2" /></g>
+            <circle class="ne-hub" cx="16" cy="16" r="4" />
+          </g>
+        </svg>
+        nextepisode&nbsp;&#8599;
+      </a>
+      <div class="masthead-right">
+        <a class="hub-link" href="/">&#8592;&nbsp;the photographs</a>
+      </div>
+    </div>
+
+    <h1 class="title about-title">About this&nbsp;site</h1>
+  </header>
+
+  <main class="about">
+    <p class="about-lede">
+      A colophon, of sorts: what the site is set in, what reads the photographs,
+      and whose openly-licensed work it stands on.
+    </p>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         ADRIAN'S SECTION SLOTS IN HERE, FIRST:
+         the Te Papa collection, use of the collections API, and the image &
+         data licences. Drop the copy in and I'll mark it up to match.
+         ════════════════════════════════════════════════════════════════════ -->
+
+    <section>
+      <h2>Type</h2>
+      <p>Four typefaces, all under the
+        <a href="https://openfontlicense.org" target="_blank" rel="noopener">SIL Open Font License</a>,
+        self-hosted as subset woff2 files:</p>
+      <ul>
+        <li><a class="f-serif" href="https://fonts.google.com/specimen/Fraunces" target="_blank" rel="noopener">Fraunces</a>
+          — the serif: plate titles, the search field, the big count, and the scrolling vocabularies. By Undercase Type.</li>
+        <li><a class="f-display" href="https://fonts.google.com/specimen/Archivo" target="_blank" rel="noopener">Archivo</a>
+          — the masthead. By Omnibus-Type.</li>
+        <li><a class="f-tourney" href="https://fonts.google.com/specimen/Tourney" target="_blank" rel="noopener">Tourney</a>
+          — the [Open] and [Randomise&nbsp;selection] marks. By Tyler Finck, Etcetera Type Company.</li>
+        <li><a class="f-sans" href="https://fonts.google.com/specimen/Roboto" target="_blank" rel="noopener">Roboto</a>
+          — small labels, wall numbers and metadata. By Christian Robertson.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Reading the photographs</h2>
+      <p>
+        Beyond Te&nbsp;Papa&rsquo;s own cataloguing, the site adds a machine-read layer so
+        54,000 photographs can be browsed by subject, feeling and composition. It was
+        built entirely with open-weight models running locally on one laptop — no
+        image ever left the machine for processing:
+      </p>
+      <ul>
+        <li><a href="https://huggingface.co/google/siglip2-so400m-patch16-384" target="_blank" rel="noopener">SigLIP&nbsp;2</a>
+          (Google, Apache&nbsp;2.0) embeds every photograph and scores it against a
+          thousand-term vocabulary — that&rsquo;s the subject tags, and the same embedding
+          space drives the feelings and composition rows. Tags ship in three tiers,
+          labelled wherever they appear: <em>human-calibrated</em> (thresholds set by eye
+          over a review sheet), <em>audited</em> (independent models agree and a blind
+          precision check passed), and <em>broad match</em> (an uncalibrated floor, said
+          so on the page).</li>
+        <li><a href="https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct" target="_blank" rel="noopener">Qwen3-VL&nbsp;8B</a>
+          (Apache&nbsp;2.0), run through <a href="https://ollama.com" target="_blank" rel="noopener">Ollama</a>
+          (MIT), wrote a structured caption for every photograph over about a week of
+          background compute. Captions corroborate the tags, and where the model could
+          read words photographed <em>inside</em> an image — shopfronts, signwriting,
+          negative-plate imprints — the transcript is kept only when the catalogue
+          record independently backs it up. Search matches those words too.</li>
+        <li><a href="https://huggingface.co/intfloat/e5-small-v2" target="_blank" rel="noopener">E5</a>
+          (MIT) provides the small text embeddings that tie captions to tag labels.</li>
+      </ul>
+      <p>
+        Deliberately <em>not</em> automated: subjects in te&nbsp;reo Māori / te&nbsp;ao
+        Māori, and any term that classifies people by ethnicity, are never
+        machine-published — they wait for human review.
+      </p>
+      <p>
+        A full retrospective of the pipeline — what ran locally, and what the whole
+        thing cost in electricity (about one dryer load) — is
+        <a href="https://github.com/adriankingston/tepapa-photography/blob/main/docs/image-tagging.md" target="_blank" rel="noopener">on GitHub</a>.
+      </p>
+    </section>
+
+    <section>
+      <h2>The feelings list</h2>
+      <p>
+        The <em>&ldquo;Or a feeling&hellip;&rdquo;</em> row browses 154 emotions drawn from
+        Tiffany Watt Smith&rsquo;s
+        <a href="https://en.wikipedia.org/wiki/Emotion_classification" target="_blank" rel="noopener"><em>The Book of Human Emotions</em></a>
+        (Profile Books / Wellcome Collection, 2015) — from <em>awumbuk</em> to
+        <em>torschlusspanik</em>. The composition &amp; technique vocabulary was written
+        for this site.
+      </p>
+    </section>
+
+    <section>
+      <h2>Other open source</h2>
+      <ul>
+        <li><a href="https://openseadragon.github.io" target="_blank" rel="noopener">OpenSeadragon</a>
+          (BSD-3-Clause) — the deep-zoom viewer behind every photograph.</li>
+        <li><a href="https://github.com/huggingface/transformers.js" target="_blank" rel="noopener">Transformers.js</a>
+          (Apache&nbsp;2.0) and <a href="https://onnxruntime.ai" target="_blank" rel="noopener">ONNX&nbsp;Runtime</a>
+          (MIT) — run the embedding models in the build pipeline.</li>
+        <li>The site itself is hand-written HTML, CSS and JavaScript — no framework —
+          and its <a href="https://github.com/adriankingston/tepapa-photography" target="_blank" rel="noopener">source is public</a>.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>
+      Images &amp; data &copy; Museum of New Zealand Te&nbsp;Papa Tongarewa, supplied under the
+      licence shown on each work (Creative&nbsp;Commons, No&nbsp;Known&nbsp;Copyright&nbsp;Restrictions,
+      or otherwise downloadable). This is an independent reading of the
+      <a href="https://data.tepapa.govt.nz/" target="_blank" rel="noopener">collections&nbsp;API</a>.
+      &nbsp;&middot;&nbsp; <a href="https://browser.nextepisode.nz">Collections&nbsp;browser</a>
+      &nbsp;&middot;&nbsp; <a href="https://nextepisode.nz">nextepisode</a>
+    </p>
+  </footer>
+</body>
+</html>

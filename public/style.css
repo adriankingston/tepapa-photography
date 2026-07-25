@@ -643,6 +643,57 @@ a { color: inherit; }
 .plate.is-hero .plate-date { font-size: 16px; margin-top: 6px; }
 
 /* ============================================================================
+   About page (about.html) — a colophon set in the site's own materials
+   ============================================================================ */
+.about-title { font-size: clamp(34px, 6vw, 92px); }
+.about {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: clamp(28px, 4vw, 48px) var(--pad) clamp(40px, 6vw, 80px);
+}
+.about-lede {
+  margin: 0;
+  max-width: var(--measure);
+  font-size: clamp(17px, 1.7vw, 21px);
+  line-height: 1.42;
+  color: var(--ink-soft);
+}
+.about section { max-width: 46rem; }
+.about h2 {
+  margin: clamp(36px, 5vw, 56px) 0 14px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.about p { margin: 0 0 14px; font-size: clamp(15px, 1.35vw, 17px); line-height: 1.65; color: var(--ink-soft); }
+.about ul { list-style: none; margin: 0 0 14px; padding: 0; }
+.about li {
+  position: relative;
+  margin: 0 0 12px;
+  padding-left: 18px;
+  font-size: clamp(15px, 1.35vw, 17px);
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+.about li::before { content: "·"; position: absolute; left: 2px; color: var(--accent); }
+.about a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  transition: border-color .15s ease;
+}
+.about a:hover, .about a:focus-visible { border-bottom-color: currentColor; outline: none; }
+.about em { color: var(--ink); }
+/* each typeface introduces itself */
+.f-serif   { font-family: var(--serif); font-style: italic; font-size: 1.15em; }
+.f-display { font-family: var(--display); font-weight: 800; letter-spacing: -0.02em; }
+.f-tourney { font-family: var(--tourney); font-weight: 700; }
+.f-sans    { font-family: var(--sans); font-weight: 500; }
+
+/* ============================================================================
    States
    ============================================================================ */
 .state {
