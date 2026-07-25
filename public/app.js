@@ -21,6 +21,22 @@
 const BASE = 'collection:"Photography" AND hasRepresentation.rights.allowsDownload:true';
 const PAGE = 36;
 
+// The landing wall deals a random hand instead of the same opening every visit:
+// start the quality-sorted roll at a random PAGE-aligned offset inside the top
+// RAND_WINDOW photographs (deep offsets get dull, and aligned offsets keep the
+// edge cache useful), then shuffle each page locally so even a repeated offset
+// never lays out the same.
+const RAND_WINDOW = 10000;
+const randFrom = () => PAGE * Math.floor(Math.random() * Math.floor(RAND_WINDOW / PAGE));
+// The plain unfiltered collection — the only view that randomises.
+const isPlainWall = () => state.mode === 'query' && !state.query.trim() && !state.decade;
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+
 const state = {
   query: '',        // user free-text (may be empty)
   mode: 'query',    // 'query' = live API search; 'mood' = a baked embedding set
@@ -198,6 +214,7 @@ async function fetchPage() {
   if (gen !== _gen) return;
 
   const results = Array.isArray(json.results) ? json.results : [];
+  if (isPlainWall()) shuffle(results);   // the wall deals differently every visit
   const count = json && json._metadata && json._metadata.resultset
     ? json._metadata.resultset.count : null;
   if (count != null && state.total !== count) {
@@ -299,6 +316,8 @@ function buildPlate(item, idx) {
         `src="${esc(src)}" alt="${esc(item.title)}">` +
     `</button>` +
     `<figcaption class="plate-label">` +
+      (idx === 0 && isPlainWall()
+        ? `<button type="button" class="plate-rand" title="Deal a fresh set of photographs">[Randomise]</button>` : '') +
       `<span class="plate-index">${number}</span>` +
       `<h2 class="plate-title">${esc(item.title)}</h2>` +
       (item.maker ? `<p class="plate-maker">${esc(item.maker)}</p>` : '<span></span>') +
@@ -307,7 +326,18 @@ function buildPlate(item, idx) {
     `</figcaption>`;
 
   fig.addEventListener('click', () => openLightbox(idx));
+  // "[Randomise]" (hero, plain wall only) — don't let it bubble into the lightbox.
+  const rb = fig.querySelector('.plate-rand');
+  if (rb) rb.addEventListener('click', (e) => { e.stopPropagation(); randomiseWall(); });
   return fig;
+}
+
+// Deal a fresh random hand from the collection (hero button + [Open] both land here
+// via resetAndLoad, which picks a new random start offset for the plain wall).
+function randomiseWall() {
+  clearActives();
+  els.q.value = '';
+  resetAndLoad('');
 }
 
 function setState(msg, isError) {
@@ -369,6 +399,7 @@ function resetAndLoad(query) {
   if (!state.query && state.decade) { loadDecade(state.decade); return; }
   state.mode = 'query';
   resetState();
+  if (isPlainWall()) state.from = randFrom();
   fetchPage();
 }
 
@@ -1211,4 +1242,5 @@ window.addEventListener('scroll', onScrollOrResize, { passive: true });
 window.addEventListener('resize', onScrollOrResize);
 
 /* ---- Go ------------------------------------------------------------------ */
+if (isPlainWall()) state.from = randFrom();
 fetchPage();
