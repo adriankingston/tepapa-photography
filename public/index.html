@@ -40,7 +40,7 @@
   <link rel="preload" href="/fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/roboto-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/tourney-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/style.css?v=52">
+  <link rel="stylesheet" href="/style.css?v=53">
 </head>
 <body>
   <!-- ====== Masthead ====== -->
@@ -98,23 +98,33 @@
 
   </section>
 
-  <!-- ====== Ways in: curated subject / feeling / composition marquees ====== -->
+  <!-- ====== Ways in: curated subject / feeling / composition marquees.
+       Each row: title at left, scrolling band beside it — tags fade out
+       against the title and fade in at the column's right edge. ====== -->
   <section class="ways" aria-label="Ways in">
-    <p class="ways-label">Interested in&hellip;</p>
-    <div class="ways-marquee" aria-label="Browse by subject">
-      <div class="ways-track" id="ways-track"><!-- subject links injected (×2 for a seamless loop) --></div>
+    <div class="ways-row">
+      <p class="ways-label">Interested in&hellip;</p>
+      <div class="ways-marquee" aria-label="Browse by subject">
+        <div class="ways-track" id="ways-track"><!-- subject links injected (×2 for a seamless loop) --></div>
+      </div>
     </div>
-    <p class="ways-label">Or a feeling&hellip;</p>
-    <div class="ways-marquee" aria-label="Browse by feeling">
-      <div class="ways-track" id="moods-track"><!-- feeling links injected (×2 for a seamless loop) --></div>
+    <div class="ways-row">
+      <p class="ways-label">Or a feeling&hellip;</p>
+      <div class="ways-marquee" aria-label="Browse by feeling">
+        <div class="ways-track" id="moods-track"><!-- feeling links injected (×2 for a seamless loop) --></div>
+      </div>
     </div>
-    <p class="ways-label">Or a composition&hellip;</p>
-    <div class="ways-marquee" aria-label="Browse by composition">
-      <div class="ways-track" id="comp-track"><!-- composition links injected (×2 for a seamless loop) --></div>
+    <div class="ways-row">
+      <p class="ways-label">Or a composition&hellip;</p>
+      <div class="ways-marquee" aria-label="Browse by composition">
+        <div class="ways-track" id="comp-track"><!-- composition links injected (×2 for a seamless loop) --></div>
+      </div>
     </div>
-    <p class="ways-label">Or a decade&hellip;</p>
-    <div class="ways-marquee" aria-label="Browse by decade taken">
-      <div class="ways-track" id="decades-track"><!-- decade filter toggles injected (×2 for a seamless loop) --></div>
+    <div class="ways-row">
+      <p class="ways-label">Or a decade&hellip;</p>
+      <div class="ways-marquee" aria-label="Browse by decade taken">
+        <div class="ways-track" id="decades-track"><!-- decade filter toggles injected (×2 for a seamless loop) --></div>
+      </div>
     </div>
   </section>
 
