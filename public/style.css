@@ -544,26 +544,25 @@ a { color: inherit; }
   margin-top: 3px;
 }
 
-/* Hero overrides — larger type, image left */
-.plate.is-hero .plate-img-wrap { grid-row: 1; }
+/* Hero overrides — larger type, image left. The image spans both rows of the
+   right-hand pair: [Randomise selection] on top, caption bottom-aligned. */
+.plate.is-hero .plate-img-wrap { grid-column: 1; grid-row: 1 / span 2; }
 .plate.is-hero .plate-label {
   border-top: 0;
   padding-top: 0;
-  /* fill the column: [Randomise] rides at the top, and margin-top:auto on the
-     index keeps the caption in its old bottom-aligned spot */
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
+  display: block;
+  grid-column: 2;
+  grid-row: 2;
+  align-self: end;
 }
 .plate.is-hero .plate-index {
   display: block;
   font-size: 13px;
   margin-bottom: 14px;
-  margin-top: auto;
 }
 
-/* “[Randomise]” — top of the hero’s caption column; echoes the [Open] mark.
-   Deals a fresh random hand from the collection. */
+/* “[Randomise selection]” — echoes the [Open] mark; deals a fresh random hand.
+   Desktop: top of the hero’s caption column. Phones: above the image. */
 .plate-rand {
   font-family: var(--tourney);
   font-weight: 700;
@@ -573,12 +572,19 @@ a { color: inherit; }
   background: none;
   border: 0;
   padding: 0;
-  margin: 0 0 18px;
+  margin: 0;
   cursor: pointer;
-  align-self: flex-start;
   transition: color .15s ease, opacity .15s ease;
 }
+.plate.is-hero .plate-rand { grid-column: 2; grid-row: 1; align-self: start; justify-self: start; }
 .plate-rand:hover, .plate-rand:focus-visible { color: var(--accent-soft); outline: none; }
+/* Phones (must follow the desktop placements above to win the cascade):
+   clear them so DOM order stacks [Randomise selection] / image / caption */
+@media (max-width: 720px) {
+  .plate.is-hero .plate-img-wrap,
+  .plate.is-hero .plate-rand,
+  .plate.is-hero .plate-label { grid-column: auto; grid-row: auto; }
+}
 .plate.is-hero .plate-title {
   font-size: clamp(30px, 4vw, 60px);
   line-height: 1.04;

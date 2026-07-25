@@ -310,14 +310,16 @@ function buildPlate(item, idx) {
 
   const number = String(idx + 1).padStart(3, '0');
   fig.innerHTML =
+    // The randomise control is a direct grid child of the hero (not caption
+    // content): right column top on desktop, above the image on phones.
+    (idx === 0 && isPlainWall()
+      ? `<button type="button" class="plate-rand" title="Deal a fresh set of photographs">[Randomise selection]</button>` : '') +
     `<button type="button" class="plate-img-wrap" style="aspect-ratio:${ar.toFixed(3)}" aria-label="View ${esc(item.title)}">` +
       `<img class="plate-img" loading="${idx === 0 ? 'eager' : 'lazy'}" decoding="async" ` +
         (idx === 0 ? 'fetchpriority="high" ' : '') +
         `src="${esc(src)}" alt="${esc(item.title)}">` +
     `</button>` +
     `<figcaption class="plate-label">` +
-      (idx === 0 && isPlainWall()
-        ? `<button type="button" class="plate-rand" title="Deal a fresh set of photographs">[Randomise]</button>` : '') +
       `<span class="plate-index">${number}</span>` +
       `<h2 class="plate-title">${esc(item.title)}</h2>` +
       (item.maker ? `<p class="plate-maker">${esc(item.maker)}</p>` : '<span></span>') +
