@@ -953,7 +953,8 @@ function metaHtml(item, rec) {
     `<p class="lb-links">` +
       (dl ? `<a href="${esc(dl)}" target="_blank" rel="noopener" download>Download full image ↓</a><span class="sep" aria-hidden="true">·</span>` : '') +
       (view ? `<a href="${esc(view)}" target="_blank" rel="noopener">View on Te Papa ↗</a>` : '') +
-    `</p>`
+    `</p>` +
+    `<button type="button" class="lb-back">&larr;&nbsp;Back to the photographs</button>`
   );
 }
 
@@ -991,6 +992,8 @@ lb.zoomOut.addEventListener('click', () => zoomStep(1 / 1.5));
 // A subject / person / place chip searches that term (phrase match) — leaving
 // any decade filter in place, since it composes.
 lb.meta.addEventListener('click', (e) => {
+  // the way home at the foot of the details
+  if (e.target.closest('.lb-back')) { closeLightbox(); return; }
   // an AI tag chip → browse that tag (composes with any decade filter)
   const tg = e.target.closest('.lb-tag');
   if (tg) { closeLightbox(); clearActives(); els.q.value = ''; loadTag(tg.dataset.tag); return; }
