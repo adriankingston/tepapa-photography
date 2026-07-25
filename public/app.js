@@ -1025,13 +1025,15 @@ document.addEventListener('keydown', (e) => {
 function applyTheme(t, persist) {
   document.documentElement.dataset.theme = t;
   if (persist) { try { localStorage.setItem('tepapa.theme', t); } catch (e) { /* ignore */ } }
-  document.querySelectorAll('.theme-opt').forEach((b) => {
-    b.setAttribute('aria-pressed', String(b.dataset.val === t));
-  });
+  const tt = document.getElementById('theme-toggle');
+  if (tt) {
+    tt.setAttribute('aria-checked', String(t === 'dark'));
+    tt.querySelector('.tt-word').textContent = t === 'dark' ? 'Dark' : 'Light';
+  }
 }
-document.querySelectorAll('.theme-opt').forEach((b) => {
-  b.addEventListener('click', () => applyTheme(b.dataset.val, true));
-});
+const _themeToggle = document.getElementById('theme-toggle');
+if (_themeToggle) _themeToggle.addEventListener('click', () =>
+  applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark', true));
 applyTheme(document.documentElement.dataset.theme || 'light', false);
 
 /* ---- Search + suggestions ------------------------------------------------ */

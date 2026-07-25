@@ -40,20 +40,31 @@
   <link rel="preload" href="/fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/roboto-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/tourney-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/style.css?v=47">
+  <link rel="stylesheet" href="/style.css?v=48">
 </head>
 <body>
   <!-- ====== Masthead ====== -->
   <header class="masthead" id="top">
     <div class="masthead-row">
-      <p class="overline">Museum of New Zealand Te&nbsp;Papa Tongarewa</p>
+      <!-- The hub's spinning network mark (inlined from nextepisode.nz so the
+           spokes can animate), with the hub link riding beside it. -->
+      <a class="hub-link brand-link" href="https://nextepisode.nz">
+        <svg class="ne-logo" viewBox="0 0 32 32" aria-hidden="true">
+          <g class="ne-rotor">
+            <g class="ne-spoke s1"><line class="ne-link" x1="16" y1="16" x2="7.5"  y2="8" />    <circle class="ne-node" cx="7.5"  cy="8"    r="3" /></g>
+            <g class="ne-spoke s2"><line class="ne-link" x1="16" y1="16" x2="24.5" y2="9" />    <circle class="ne-node" cx="24.5" cy="9"    r="2.2" /></g>
+            <g class="ne-spoke s3"><line class="ne-link" x1="16" y1="16" x2="8.5"  y2="24.5" /> <circle class="ne-node" cx="8.5"  cy="24.5" r="2.2" /></g>
+            <g class="ne-spoke s4"><line class="ne-link" x1="16" y1="16" x2="24.5" y2="24" />   <circle class="ne-node" cx="24.5" cy="24"   r="3.2" /></g>
+            <circle class="ne-hub" cx="16" cy="16" r="4" />
+          </g>
+        </svg>
+        nextepisode&nbsp;&#8599;
+      </a>
       <div class="masthead-right">
-        <a class="hub-link" href="https://nextepisode.nz">nextepisode&nbsp;&#8599;</a>
-        <div class="theme-switch" aria-label="Colour theme">
-          <button type="button" class="theme-opt" data-val="light" aria-pressed="true">Light</button>
-          <span class="theme-sep">/</span>
-          <button type="button" class="theme-opt" data-val="dark" aria-pressed="false">Dark</button>
-        </div>
+        <button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="false" aria-label="Dark theme">
+          <span class="tt-word" aria-hidden="true">Light</span>
+          <span class="tt-track" aria-hidden="true"><span class="tt-knob"></span></span>
+        </button>
       </div>
     </div>
 
@@ -146,6 +157,6 @@
   </div>
 
   <script src="/vendor/openseadragon.min.js?v=42"></script>
-  <script src="/app.js?v=45"></script>
+  <script src="/app.js?v=46"></script>
 </body>
 </html>

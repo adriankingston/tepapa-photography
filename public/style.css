@@ -107,7 +107,6 @@ body {
 a { color: inherit; }
 
 /* Shared small caps / overline treatment for metadata */
-.overline,
 .search-label,
 .plate-maker,
 .plate-index,
@@ -127,20 +126,11 @@ a { color: inherit; }
 
 .masthead-row {
   display: flex;
-  align-items: baseline;
+  align-items: center;   /* the spinning mark is taller than the 11px labels */
   justify-content: space-between;
   gap: 16px;
   border-bottom: 1px solid var(--rule);
   padding-bottom: 14px;
-}
-
-.overline {
-  margin: 0;
-  font-size: clamp(10px, 1.1vw, 12px);
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--ink-soft);
 }
 
 .masthead-right {
@@ -160,6 +150,65 @@ a { color: inherit; }
   transition: color .15s ease;
 }
 .hub-link:hover { color: var(--accent); }
+
+/* The hub's network mark (from nextepisode.nz), spinning beside the link.
+   Same stepped choreography as the hub page: one shared 0.444s step-end clock,
+   the rotor snapping 120° per state while nodes extend/retract and the colour
+   tints white→teal→orange (state 1 uses --ink so it reads on both themes). */
+.brand-link { display: inline-flex; align-items: center; gap: 10px; }
+.ne-logo {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  color: var(--ink);
+  overflow: visible;
+  animation: ne-tint 0.444s step-end infinite;
+}
+.ne-logo .ne-link { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.ne-logo .ne-node,
+.ne-logo .ne-hub  { fill: currentColor; }
+.ne-rotor,
+.ne-spoke { transform-box: view-box; transform-origin: 16px 16px; }
+.ne-hub   { transform-box: fill-box; transform-origin: center; }
+.ne-rotor { animation: ne-rotor-step 0.444s step-end infinite; }
+.ne-spoke.s1,
+.ne-spoke.s3 { animation: ne-reach-a 0.444s step-end infinite; }
+.ne-spoke.s2,
+.ne-spoke.s4 { animation: ne-reach-b 0.444s step-end infinite; }
+.ne-hub      { animation: ne-hub-breathe 0.444s step-end infinite; }
+@keyframes ne-rotor-step {
+  0%      { transform: rotate(0deg); }
+  33.333% { transform: rotate(120deg); }
+  66.666% { transform: rotate(240deg); }
+  100%    { transform: rotate(360deg); }
+}
+@keyframes ne-tint {
+  0%      { color: var(--ink); }
+  33.333% { color: #74d3da; }
+  66.666% { color: #fb923c; }
+  100%    { color: var(--ink); }
+}
+@keyframes ne-reach-a {
+  0%      { transform: scale(0.74); }
+  33.333% { transform: scale(1.26); }
+  66.666% { transform: scale(1.26); }
+  100%    { transform: scale(0.74); }
+}
+@keyframes ne-reach-b {
+  0%      { transform: scale(0.74); }
+  33.333% { transform: scale(1.26); }
+  66.666% { transform: scale(0.74); }
+  100%    { transform: scale(0.74); }
+}
+@keyframes ne-hub-breathe {
+  0%      { transform: scale(0.95); }
+  33.333% { transform: scale(1.12); }
+  66.666% { transform: scale(1.04); }
+  100%    { transform: scale(0.95); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ne-logo, .ne-rotor, .ne-spoke, .ne-hub { animation: none; }
+}
 
 .title {
   margin: clamp(18px, 4vw, 40px) 0 0;
@@ -288,22 +337,43 @@ a { color: inherit; }
 .search-go:hover { transform: translateX(3px); }
 
 /* Theme toggle in masthead */
-.theme-switch {
+/* One theme switch: knob left = light, right = dark; the word names the
+   current mode. role="switch" + aria-checked carry the state. */
+.theme-toggle {
   display: inline-flex;
-  align-items: baseline;
-  gap: 8px;
+  align-items: center;
+  gap: 10px;
+  background: none; border: 0; padding: 0; cursor: pointer;
   font-family: var(--sans);
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  color: var(--muted);
+  transition: color .15s ease;
 }
-.theme-opt {
-  background: none; border: 0; padding: 0; cursor: pointer;
-  color: var(--muted); letter-spacing: inherit; text-transform: inherit;
-  font: inherit;
+.theme-toggle:hover,
+.theme-toggle:focus-visible { color: var(--accent); outline: none; }
+.tt-track {
+  flex: none;
+  width: 30px;
+  height: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--rule-strong);
+  position: relative;
+  transition: background .15s ease, border-color .15s ease;
 }
-.theme-opt[aria-checked="true"] { color: var(--accent); }
-.theme-sep { color: var(--rule-strong); }
+.tt-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ink-soft);
+  transition: transform .18s ease, background .15s ease;
+}
+.theme-toggle[aria-checked="true"] .tt-track { background: var(--accent); border-color: var(--accent); }
+.theme-toggle[aria-checked="true"] .tt-knob { transform: translateX(14px); background: var(--paper); }
 
 /* ============================================================================
    Ways in — a full-width marquee of curated subjects that loops.
