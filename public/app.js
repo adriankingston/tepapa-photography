@@ -1080,11 +1080,14 @@ const _marquees = [];
 // Fill a track with one run + its duplicate (seamless loop), each item a `.way`.
 // The duplicate run is presentation only — hide it from the tab order and
 // screen readers so every term isn't announced (and tabbed through) twice.
+// Displayed terms are sentence-cased; keys, labels and lookups stay as authored
+// (search matching is case-folded anyway).
+const capTerm = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 function fillMarquee(trackId, items, attr) {
   const track = document.getElementById(trackId);
   if (!track) return null;
   const run = items.map((it) =>
-    `<button type="button" class="way" ${attr(it)}>${esc(it.term)}</button>` +
+    `<button type="button" class="way" ${attr(it)}>${esc(capTerm(it.term))}</button>` +
     `<span class="ways-sep" aria-hidden="true">·</span>`
   ).join('');
   track.innerHTML = run + `<span aria-hidden="true">${run.replace(/<button type="button" class="way" /g, '<button type="button" class="way" tabindex="-1" ')}</span>`;
