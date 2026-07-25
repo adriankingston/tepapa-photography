@@ -124,8 +124,19 @@ for (let c = 0; c < kept.length; c += BATCH) {
 }
 
 terms.sort((a, b) => b.ids.length - a.ids.length);
+// The 'auto' tier (bulk, uncalibrated) is browsable but must not bloat the
+// EAGER tags.json (chips + search lookup): its id lists go to a build
+// artifact that build-shards.js turns into lazy ids-only files; tags.json
+// carries just {key,label,thr,mode,count} for those terms.
+const autoIds = {};
+const leanTerms = terms.map((t) => {
+  if (t.mode !== 'auto') return t;
+  autoIds[t.key] = t.ids;
+  return { key: t.key, label: t.label, group: t.group, thr: t.thr, mode: t.mode, count: t.ids.length };
+});
+fs.writeFileSync(path.join(__dirname, 'tag-ids-auto.json'), JSON.stringify(autoIds));
 fs.writeFileSync(path.join(DATA, 'tags.json'), JSON.stringify({
-  model: MODEL, template: TEMPLATE('{prompt}'), stamp: STAMP || undefined, terms,
+  model: MODEL, template: TEMPLATE('{prompt}'), stamp: STAMP || undefined, terms: leanTerms,
 }));
 
 const total = terms.reduce((s, t) => s + t.ids.length, 0);

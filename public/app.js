@@ -529,7 +529,10 @@ function loadTags() {
       // searchable by label, slug, or slug-with-spaces (like the baked sets)
       [term.label, term.key, term.key.replace(/-/g, ' ')]
         .forEach((f) => _tagLookup.set(normEmo(f), term.key));
-      for (const id of term.ids) {
+      // 'auto'-tier terms ship without eager id lists (they'd swamp this
+      // file); they're browsable via their lazy shard but don't join the
+      // detail-view chips, which stay a calibrated/audited-quality surface
+      for (const id of term.ids || []) {
         const a = _tagByRec.get(id);
         if (a) a.push(term); else _tagByRec.set(id, [term]);
       }
@@ -539,8 +542,18 @@ function loadTags() {
 }
 
 // Browse a tag from its baked shard — ids stay in score order (strongest
-// first); the shard carries just the photo metadata those ids need.
-const _tagPhotoCache = new Map();   // tag key → { photos: { id: entry } }
+// first). Calibrated/audited shards carry their own photo metadata; the bulk
+// 'auto' tier ships ids-only shards and resolves metadata from the full
+// index (one cached 13MB fetch — the pre-shard cost, paid only on the
+// uncalibrated long tail).
+const _tagPhotoCache = new Map();   // tag key → { photos: {id: entry} } | { ids: [] }
+let _indexById = null, _indexP = null;
+function loadIndex() {
+  if (!_indexP) _indexP = fetch('/data/index.json').then((r) => r.json()).then((ix) => {
+    _indexById = new Map(ix.map((e) => [e.id, e]));
+  });
+  return _indexP;
+}
 async function loadTag(key) {
   state.mode = 'mood';
   state.setName = null;
@@ -565,12 +578,25 @@ async function loadTag(key) {
     state.loading = false; state.done = true; setState('Couldn’t load that tag.', true); return;
   }
   if (gen !== _gen) return;
-  const photos = _tagPhotoCache.get(key).photos || {};
+  const shard = _tagPhotoCache.get(key);
+  let entryOf, order;
+  if (shard.photos) {
+    entryOf = (id) => shard.photos[id];   // albums dropped at build time
+    order = term.ids;
+  } else {
+    order = shard.ids || [];
+    try { await loadIndex(); } catch (e) {
+      if (gen !== _gen) return;
+      state.loading = false; state.done = true; setState('Couldn’t load the collection index.', true); return;
+    }
+    if (gen !== _gen) return;
+    entryOf = (id) => _indexById.get(id);
+  }
   const dec = state.decade;
   state.moodItems = [];
-  for (const id of term.ids) {
-    const e = photos[id];   // albums are dropped at build time
-    if (!e) continue;
+  for (const id of order) {
+    const e = entryOf(id);
+    if (!e || isAlbum(e.c)) continue;
     if (dec && decadeOfYear(e.y) !== dec) continue;
     state.moodItems.push(itemFromIndex(e.id, e));
   }
@@ -582,7 +608,9 @@ async function loadTag(key) {
     // sample-audited instead
     const how = term.mode === 'audited'
       ? 'suggested from the image by AI, cross-checked against its written caption'
-      : 'suggested from the image by AI, human-calibrated';
+      : term.mode === 'auto'
+        ? 'suggested from the image by AI · broad match, not yet calibrated'
+        : 'suggested from the image by AI, human-calibrated';
     els.emoNote.innerHTML =
       `<h2 class="emotion-note-word">${esc(term.label)}</h2>` +
       `<p class="emotion-note-meta">${fmtInt(state.total)} photographs · ${how}` +

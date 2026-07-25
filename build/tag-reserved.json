@@ -1,0 +1,162 @@
+[
+ {
+  "key": "marae",
+  "label": "Marae",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "wharenui",
+  "label": "Wharenui",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "whare",
+  "label": "Whare",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "pataka",
+  "label": "Pātaka",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "waka",
+  "label": "Waka",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "carving",
+  "label": "Whakairo (carving)",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "korowai",
+  "label": "Kākahu (cloaks)",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "moko",
+  "label": "Tā moko",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "poi",
+  "label": "Poi",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "kapa-haka",
+  "label": "Kapa haka",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "hangi",
+  "label": "Hāngī",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "pa-site",
+  "label": "Pā",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "waka-taua",
+  "label": "Waka taua",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "haka",
+  "label": "Haka",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "piupiu",
+  "label": "Piupiu",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "hei-tiki",
+  "label": "Hei tiki",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "huia-feathers",
+  "label": "Huia feathers",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "taiaha",
+  "label": "Taiaha",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "tukutuku",
+  "label": "Tukutuku",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "waharoa",
+  "label": "Waharoa",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "kainga",
+  "label": "Kāinga",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "hui",
+  "label": "Hui",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "hinaki",
+  "label": "Hīnaki",
+  "why": "te reo / te ao Māori subject"
+ },
+ {
+  "key": "tp-indigenous-peoples",
+  "label": "Indigenous peoples",
+  "why": "ethnicity classifier — human judgement required"
+ },
+ {
+  "key": "tp-samoan",
+  "label": "Sāmoan",
+  "why": "ethnicity classifier — human judgement required"
+ },
+ {
+  "key": "tp-chinese",
+  "label": "Chinese",
+  "why": "ethnicity classifier — human judgement required"
+ },
+ {
+  "key": "tp-cook-islands-maori",
+  "label": "Cook Islands Māori",
+  "why": "ethnicity classifier — human judgement required"
+ },
+ {
+  "key": "tp-maori",
+  "label": "Māori",
+  "why": "ethnicity classifier — human judgement required"
+ },
+ {
+  "key": "tp-fijian",
+  "label": "Fijian",
+  "why": "ethnicity classifier — human judgement required"
+ },
+ {
+  "key": "tp-tongan",
+  "label": "Tongan",
+  "why": "ethnicity classifier — human judgement required"
+ },
+ {
+  "key": "tp-indian",
+  "label": "Indian",
+  "why": "ethnicity classifier — human judgement required"
+ },
+ {
+  "key": "tp-ethnic-groups",
+  "label": "Ethnic groups",
+  "why": "ethnicity classifier — human judgement required"
+ }
+]

@@ -19,7 +19,10 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { DATA, shardDecades, shardTagPhotos, checkStamp, assertSameHarvest } from './lib.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const index = JSON.parse(fs.readFileSync(path.join(DATA, 'index.json'), 'utf8'));
 const STAMP = checkStamp(index.map((e) => e.id), 'public/data/index.json');
@@ -67,6 +70,21 @@ if (fs.existsSync(tagsPath)) {
     tagBytes += fs.statSync(f).size;
   }
   console.log(`tag/: ${shards.size} files, ${mb(tagBytes)} total`);
+  // 'auto' tier: ids-only lazy shards (the client resolves metadata itself —
+  // duplicating photo entries across 800+ bulk terms would cost >100MB)
+  const autoPath = path.join(__dirname, 'tag-ids-auto.json');
+  if (fs.existsSync(autoPath)) {
+    const autoIds = JSON.parse(fs.readFileSync(autoPath, 'utf8'));
+    const validIds = new Set(index.map((e) => e.id));
+    let autoBytes = 0, n = 0;
+    for (const [key, ids] of Object.entries(autoIds)) {
+      const f = path.join(tagDir, `${key}.json`);
+      fs.writeFileSync(f, JSON.stringify({ ids: ids.filter((id) => validIds.has(id)) }));
+      autoBytes += fs.statSync(f).size;
+      n++;
+    }
+    console.log(`tag/ (auto, ids-only): ${n} files, ${mb(autoBytes)} total`);
+  }
 } else {
   console.log('tag/: skipped — no public/data/tags.json yet');
 }
