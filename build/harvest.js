@@ -62,6 +62,7 @@ function toRecord(rec) {
     id: rec.id, t: title, m: maker, d: date, p: place, c: category,
     mid: Number(mid), w: img.width || 0, h: img.height || 0,
     r: (img.rights && img.rights.title) || '',
+    n: rec.identifier || '',   // registration number — shown as the plate label
     y: y || 0, q: Math.round(qualityOf(rec) * 100) / 100,
     text,
   };

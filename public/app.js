@@ -254,6 +254,7 @@ async function fetchPage() {
       place: placeOf(rec),
       category: categoriesOf(rec),
       caption: rec.caption || '',
+      reg: rec.identifier || '',
       url: recordUrl(rec),
       img,
     };
@@ -308,7 +309,9 @@ function buildPlate(item, idx) {
   const src = idx === 0 ? (img.previewUrl || img.thumbnailUrl)
                         : (img.thumbnailUrl || img.previewUrl);
 
-  const number = String(idx + 1).padStart(3, '0');
+  // The label leads with the registration number — Te Papa's own accession
+  // identity for the work (a wall index would be meaningless across shuffles).
+  const number = item.reg || '';
   fig.innerHTML =
     // The randomise control is a direct grid child of the hero (not caption
     // content): right column top on desktop, above the image on phones.
@@ -320,7 +323,7 @@ function buildPlate(item, idx) {
         `src="${esc(src)}" alt="${esc(item.title)}">` +
     `</button>` +
     `<figcaption class="plate-label">` +
-      `<span class="plate-index">${number}</span>` +
+      `<span class="plate-index">${esc(number)}</span>` +
       `<h2 class="plate-title">${esc(item.title)}</h2>` +
       (item.maker ? `<p class="plate-maker">${esc(item.maker)}</p>` : '<span></span>') +
       (item.date ? `<p class="plate-date">${esc(item.date)}</p>` : '') +
@@ -429,6 +432,7 @@ function itemFromIndex(id, e) {
   return {
     id, title: e.t || '(untitled)', maker: e.m || '', date: e.d || '',
     place: e.p || '', category: e.c || [], caption: '',
+    reg: e.n || '',
     url: `https://collections.tepapa.govt.nz/object/${id}`,
     img: {
       thumbnailUrl: `${base}/thumb`, previewUrl: `${base}/preview`, contentUrl: `${base}/full`,
@@ -703,6 +707,7 @@ async function maybeTranscriptHits() {
     const item = {
       id: rec.id, title: rec.title || '(untitled)', maker: makerOf(rec), date: dateOf(rec),
       place: placeOf(rec), category: categoriesOf(rec), caption: rec.caption || '',
+      reg: rec.identifier || '',
       url: recordUrl(rec), img, transMatch: _transSnippet(_transcripts[rec.id], q),
     };
     const idx = state.items.length;
