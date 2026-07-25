@@ -180,7 +180,7 @@ function buildQuery() {
 async function fetchPage() {
   if (state.loading || state.done) return;
   state.loading = true;
-  setState(state.rendered === 0 ? 'Developing the first plates…' : '');
+  setState(state.rendered === 0 ? 'Loading images…' : '');
 
   if (state.mode === 'mood') { renderMoodPage(); return; }
 
@@ -313,7 +313,7 @@ function buildPlate(item, idx) {
     // The randomise control is a direct grid child of the hero (not caption
     // content): right column top on desktop, above the image on phones.
     (idx === 0 && isPlainWall()
-      ? `<button type="button" class="plate-rand" title="Deal a fresh set of photographs">[Randomise selection]</button>` : '') +
+      ? `<button type="button" class="plate-rand" title="Load a fresh selection of photographs">[Randomise selection]</button>` : '') +
     `<button type="button" class="plate-img-wrap" style="aspect-ratio:${ar.toFixed(3)}" aria-label="View ${esc(item.title)}">` +
       `<img class="plate-img" loading="${idx === 0 ? 'eager' : 'lazy'}" decoding="async" ` +
         (idx === 0 ? 'fetchpriority="high" ' : '') +
@@ -414,13 +414,13 @@ const SETS = {
   emotion: {
     data: '/data/emotions.json', listKey: 'emotions',
     attribution: 'from <a href="https://en.wikipedia.org/wiki/Emotion_classification" target="_blank" rel="noopener"><em>The Book of Human Emotions</em></a>',
-    loadingMsg: 'Gathering the feeling…', errorMsg: 'Couldn’t load that feeling.',
+    loadingMsg: 'Loading images…', errorMsg: 'Couldn’t load that feeling.',
     cache: null,
   },
   composition: {
     data: '/data/compositions.json', listKey: 'compositions',
     attribution: 'a way of composing the frame',
-    loadingMsg: 'Reading the frame…', errorMsg: 'Couldn’t load that composition.',
+    loadingMsg: 'Loading images…', errorMsg: 'Couldn’t load that composition.',
     cache: null,
   },
 };
@@ -517,7 +517,7 @@ async function loadDecade(key) {
   resetState();
   const gen = _gen;   // navigating away during the fetch abandons this load
   state.loading = true;
-  setState(`Winding back to the ${key}…`);
+  setState('Loading images…');
   try {
     if (!_decadeCache.has(key)) {
       const r = await fetch(`/data/decade/${encodeURIComponent(key)}.json`);
@@ -595,7 +595,7 @@ async function loadTag(key) {
   resetState();
   const gen = _gen;   // navigating away during a fetch abandons this load
   state.loading = true;
-  setState('Reading the image tags…');
+  setState('Loading images…');
   await loadTags();
   if (gen !== _gen) return;
   const term = _tags && _tags.terms.find((t) => t.key === key);
