@@ -760,6 +760,7 @@ const lb = {
   el: document.getElementById('lightbox'),
   scroll: document.getElementById('lb-scroll'),
   viewer: document.getElementById('lb-viewer'),
+  loading: document.getElementById('lb-loading'),
   meta: document.getElementById('lb-caption'),
   close: document.getElementById('lb-close'),
   prev: document.getElementById('lb-prev'),
@@ -795,6 +796,9 @@ function getViewer() {
     gestureSettingsMouse: { clickToZoom: false, dblClickToZoom: true, scrollToZoom: true, flickEnabled: true },
     gestureSettingsTouch: { dblClickToZoom: true, pinchToZoom: true, flickEnabled: true },
   });
+  // The loading note clears the moment real pixels land. ('tile-loaded' is
+  // loader-level and fires with every drawer; 'tile-drawn' is canvas-only.)
+  osd.addHandler('tile-loaded', () => { lb.loading.hidden = true; });
   // If the IIIF endpoint fails, fall back to the plain full-size derivative —
   // but only for the photo that open was FOR: a slow failure arriving after
   // the user has stepped to the next photo must not replace its working zoom.
@@ -802,7 +806,9 @@ function getViewer() {
     const item = osd._openItem;
     if (!item || item !== state.items[lb.idx]) return;   // superseded by navigation
     const url = item.img && (item.img.contentUrl || item.img.previewUrl);
-    if (url && !osd._fellBack) { osd._fellBack = true; osd.open({ type: 'image', url }); }
+    if (url && !osd._fellBack) { osd._fellBack = true; osd.open({ type: 'image', url }); return; }
+    lb.loading.hidden = false;
+    lb.loading.textContent = 'Couldn\u2019t load the image.';
   });
   return osd;
 }
@@ -961,6 +967,8 @@ function metaHtml(item, rec) {
 function renderLightbox() {
   const item = state.items[lb.idx];
   if (!item) return;
+  lb.loading.innerHTML = '<span class="spinner" aria-hidden="true"></span>Loading image\u2026';
+  lb.loading.hidden = false; // cleared by the viewer's first drawn tile
   showInViewer(item);        // IIIF deep-zoom via OpenSeadragon
   lb.viewer.setAttribute('role', 'img');           // the OSD canvas is anonymous
   lb.viewer.setAttribute('aria-label', item.title);

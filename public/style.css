@@ -980,6 +980,21 @@ a { color: inherit; }
 .lb-links a:hover { color: var(--accent); }
 .lb-links .sep { color: var(--rule-strong); margin: 0 12px; border: 0; }
 
+/* Status note over the deep-zoom viewer while IIIF tiles arrive. */
+.lb-loading {
+  position: absolute;
+  top: 37dvh;                /* centre of the 74dvh viewer */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
 /* The explicit way home once you've read to the end of the details. */
 .lb-back {
   display: inline-block;
