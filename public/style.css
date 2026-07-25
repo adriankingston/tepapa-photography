@@ -213,6 +213,12 @@ a { color: inherit; }
   line-height: 1.6;
   white-space: nowrap;
 }
+/* Phones: the side-by-side colophon squeezes both columns — stack the intro
+   text above the count instead */
+@media (max-width: 720px) {
+  .colophon { grid-template-columns: 1fr; align-items: start; gap: 20px; }
+  .standfirst { text-align: left; white-space: normal; }
+}
 .standfirst .count {
   display: block;
   font-family: var(--serif);
