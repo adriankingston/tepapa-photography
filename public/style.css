@@ -253,7 +253,7 @@ a { color: inherit; }
 .lede {
   margin: 0;
   max-width: var(--measure);
-  font-size: clamp(17px, 1.7vw, 23px);
+  font-size: 30px;   /* flat — holds at 30px on mobile too */
   line-height: 1.42;
   color: var(--ink-soft);
 }
