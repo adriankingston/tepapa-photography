@@ -120,6 +120,11 @@ const esc = (s) => String(s == null ? '' : s)
 
 const fmtInt = (n) => (n == null ? '—' : n.toLocaleString('en-NZ'));
 
+// Mark te reo Māori words for screen readers (WCAG 3.1.2 Language of Parts).
+// Applied to already-escaped label text — kupu contain no HTML specials.
+const REO_RE = /\b(māori|maori|wharenui|whare|marae|pā|waka|moko|kete|korowai|piupiu|poi|hāngī|hangi|haka|tiki|patu|taiaha|tukutuku|kōwhaiwhai|poupou|pātaka|pataka|iwi|hapū|whānau|kāinga|kainga|hui|whakairo|kākahu|huia|tangihanga|tūpuna|tupuna|kōiwi|tangi)\b/gi;
+const reoWrap = (escaped) => String(escaped).replace(REO_RE, '<span lang="mi">$&</span>');
+
 // Only ever return an openly-licensed (downloadable) image; null = skip record.
 function pickImage(rec) {
   const imgs = asArray(rec.hasRepresentation)
@@ -881,7 +886,7 @@ function sanitizeDesc(html) {
 function subjectChips(list) {
   const seen = new Set();
   return (list || []).map((x) => x && x.title).filter((t) => t && !seen.has(t) && seen.add(t))
-    .map((t) => `<button type="button" class="lb-subject" data-q="${esc(t)}">${esc(t)}</button>`).join('');
+    .map((t) => `<button type="button" class="lb-subject" data-q="${esc(t)}">${reoWrap(esc(t))}</button>`).join('');
 }
 // Prefer the image extent; render as "301 × 212 mm".
 function physicalSize(dims) {
@@ -898,7 +903,7 @@ const isAlbumRec = (rec) => isAlbum((rec.isTypeOf || []).map((c) => c && c.title
 function tagChips(id) {
   const terms = _tagByRec && _tagByRec.get(id);
   if (!terms || !terms.length) return '';
-  const chips = terms.map((t) => `<button type="button" class="lb-tag" data-tag="${esc(t.key)}">${esc(t.label)}</button>`).join('');
+  const chips = terms.map((t) => `<button type="button" class="lb-tag" data-tag="${esc(t.key)}">${reoWrap(esc(t.label))}</button>`).join('');
   return `<div class="lb-subjects"><span class="lb-subjects-label">Suggested from the image (AI)</span><div class="lb-chips">${chips}</div></div>`;
 }
 
@@ -946,7 +951,7 @@ function metaHtml(item, rec) {
       fact('Licence', rightsHtml(img) || 'Downloadable') +
     `</dl>` +
     `<p class="lb-links">` +
-      (dl ? `<a href="${esc(dl)}" target="_blank" rel="noopener" download>Download full image ↓</a><span class="sep">·</span>` : '') +
+      (dl ? `<a href="${esc(dl)}" target="_blank" rel="noopener" download>Download full image ↓</a><span class="sep" aria-hidden="true">·</span>` : '') +
       (view ? `<a href="${esc(view)}" target="_blank" rel="noopener">View on Te Papa ↗</a>` : '') +
     `</p>`
   );
@@ -1079,6 +1084,7 @@ document.getElementById('home-btn').addEventListener('click', goHome);
 
 /* ---- Ways in: two full-width marquees you can grab and drag -------------- */
 const MARQUEE_SPEED = 42;   // px/sec — shared by all four rows (40% slower than the original 70)
+let _waysPaused = false;    // the [Pause] control (WCAG 2.2.2) — flips all four rows
 const _reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const _marquees = [];
 
@@ -1092,7 +1098,7 @@ function fillMarquee(trackId, items, attr) {
   const track = document.getElementById(trackId);
   if (!track) return null;
   const run = items.map((it) =>
-    `<button type="button" class="way" ${attr(it)}>${esc(capTerm(it.term))}</button>` +
+    `<button type="button" class="way" ${attr(it)}>${reoWrap(esc(capTerm(it.term)))}</button>` +
     `<span class="ways-sep" aria-hidden="true">·</span>`
   ).join('');
   track.innerHTML = run + `<span aria-hidden="true">${run.replace(/<button type="button" class="way" /g, '<button type="button" class="way" tabindex="-1" ')}</span>`;
@@ -1110,9 +1116,10 @@ function makeDraggableMarquee(track, reverse, onWord) {
 
   const render = () => { track.style.transform = `translateX(${tx}px)`; };
   const wrap = () => { if (tx <= -runWidth) tx += runWidth; else if (tx > 0) tx -= runWidth; };
+  let focusPaused = false;   // a keyboard-focused term must not drift out of view
   function frame(t) {
     const dt = last ? Math.min((t - last) / 1000, 0.1) : 0; last = t;
-    if (!paused && !pressed && !_reduceMotion) { tx += dir * MARQUEE_SPEED * dt; wrap(); render(); }
+    if (!paused && !pressed && !focusPaused && !_waysPaused && !_reduceMotion) { tx += dir * MARQUEE_SPEED * dt; wrap(); render(); }
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
@@ -1121,6 +1128,9 @@ function makeDraggableMarquee(track, reverse, onWord) {
   // hover steadies the drift so you can read / aim
   marquee.addEventListener('mouseenter', () => { paused = true; });
   marquee.addEventListener('mouseleave', () => { paused = false; });
+  // keyboard focus pins the row still until focus moves on
+  track.addEventListener('focusin', () => { focusPaused = true; });
+  track.addEventListener('focusout', () => { focusPaused = false; });
 
   // Press pauses the drift; a genuine drag starts only past a small threshold —
   // and only THEN do we capture the pointer. (Capturing on pointerdown would
@@ -1154,6 +1164,12 @@ function makeDraggableMarquee(track, reverse, onWord) {
   _marquees.push({ retune() { runWidth = track.scrollWidth / 2 || 1; wrap(); render(); } });
 }
 function retuneMarquees() { _marquees.forEach((m) => m.retune()); }
+const _waysPauseBtn = document.getElementById('ways-pause');
+if (_waysPauseBtn) _waysPauseBtn.addEventListener('click', () => {
+  _waysPaused = !_waysPaused;
+  _waysPauseBtn.setAttribute('aria-pressed', String(_waysPaused));
+  _waysPauseBtn.textContent = _waysPaused ? '[Play]' : '[Pause]';
+});
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(retuneMarquees);
 let _mqResize;
 window.addEventListener('resize', () => { clearTimeout(_mqResize); _mqResize = setTimeout(retuneMarquees, 150); });

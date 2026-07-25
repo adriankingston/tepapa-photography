@@ -57,6 +57,7 @@
   --rule-strong: #b9af9c;
   --accent: #b23a2e;           /* editorial vermilion — numbers, rules, links */
   --accent-soft: #d97a5f;
+  --accent-strong: #8f2b21;    /* accent as TEXT at small sizes + hover states — 7.3:1 on paper (AAA) */
 
   --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
   --sans: 'Roboto', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
@@ -80,10 +81,16 @@
   --rule-strong: #4b4843;
   --accent: #e8765f;
   --accent-soft: #f0987f;
+  --accent-strong: #f0987f;    /* dark: the soft tint already sits at 8.4:1 */
   color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
+
+/* One universal, visible focus indicator (WCAG 2.4.7). Richer per-element
+   styles ADD to it; only the search input opts out — its full-width accent
+   underline is the indicator there. */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 html { -webkit-text-size-adjust: 100%; }
 
@@ -141,10 +148,10 @@ a { color: inherit; }
 }
 .hub-link {
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ink-soft);
   text-decoration: none;
   white-space: nowrap;
   transition: color .15s ease;
@@ -233,7 +240,7 @@ a { color: inherit; }
   text-decoration: none;
   transition: color .15s ease, opacity .15s ease;
 }
-.title-open:hover, .title-open:focus-visible { color: var(--accent-soft); outline: none; }
+.title-open:hover, .title-open:focus-visible { color: var(--accent-strong); }
 /* the [Open] mark quoted at small sizes (back links, prose) */
 .open-mark {
   font-family: var(--tourney); font-weight: 700; color: var(--accent);
@@ -265,7 +272,7 @@ a { color: inherit; }
   font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ink-soft);
   line-height: 1.6;
   white-space: nowrap;
 }
@@ -300,10 +307,10 @@ a { color: inherit; }
 .search { margin: 0; }
 .search-label {
   display: block;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ink-soft);
   margin-bottom: 6px;
 }
 .search-field {
@@ -326,7 +333,7 @@ a { color: inherit; }
   letter-spacing: -0.01em;
   padding: 0;
 }
-.search-field input::placeholder { color: var(--rule-strong); font-style: italic; }
+.search-field input::placeholder { color: var(--muted); font-style: italic; }
 /* the field's bottom rule doubles as the focus indicator — never invisible */
 .search-field input:focus { outline: none; }
 .search-field:has(input:focus-visible) { border-bottom-color: var(--accent); }
@@ -352,14 +359,14 @@ a { color: inherit; }
   gap: 10px;
   background: none; border: 0; padding: 0; cursor: pointer;
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ink-soft);
   transition: color .15s ease;
 }
 .theme-toggle:hover,
-.theme-toggle:focus-visible { color: var(--accent); outline: none; }
+.theme-toggle:focus-visible { color: var(--accent); }
 .tt-track {
   flex: none;
   width: 30px;
@@ -393,6 +400,26 @@ a { color: inherit; }
   border-bottom: 1px solid var(--rule);   /* close the band off from the plates below */
 }
 
+/* Pause/play for the auto-scrolling rows (WCAG 2.2.2): hover and keyboard
+   focus already still a row; this is the mechanism for everyone else. It
+   rides at the right end of the first row, in flow. */
+.ways-pause {
+  flex: none;
+  align-self: center;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding: 6px 0 6px 10px;
+  transition: color .15s ease;
+}
+.ways-pause:hover,
+.ways-pause[aria-pressed="true"] { color: var(--accent); }
+
 /* One line per way in: title at left, the scrolling band filling the rest. */
 .ways-row {
   display: flex;
@@ -403,13 +430,13 @@ a { color: inherit; }
 
 .ways-label {
   flex: none;
-  width: 156px;   /* uniform column (widest label measures 143px) so bands align */
+  width: 170px;   /* uniform column (widest label ~156px at 12px type) so bands align */
   margin: 0;
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ink-soft);
 }
 
 /* The scrolling band sits inside the column now (no full bleed): terms fade
@@ -449,7 +476,7 @@ a { color: inherit; }
   transition: color .15s ease, border-color .15s ease;
 }
 .way:hover,
-.way:focus-visible { color: var(--accent); border-bottom-color: var(--accent); outline: none; }
+.way:focus-visible { color: var(--accent); border-bottom-color: var(--accent); }
 /* the active decade filter (the only pressable way) stays lit while it filters */
 .way[aria-pressed="true"] { color: var(--accent); border-bottom-color: var(--accent); }
 .ways-sep { color: var(--rule-strong); font-style: normal; margin: 0 0.55em; }
@@ -491,12 +518,12 @@ a { color: inherit; }
 .emotion-note-meta {
   margin: clamp(14px, 1.6vw, 18px) 0 0;
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ink-soft);
 }
-.note-decade { color: var(--accent); }   /* the active decade filter, in the note */
+.note-decade { color: var(--accent-strong); }   /* the active decade filter, in the note */
 .emotion-note-meta a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; }
 
 .plates {
@@ -540,10 +567,6 @@ a { color: inherit; }
   overflow: hidden;
   background: var(--paper-2);
 }
-.plate-img-wrap:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
 .plate-img {
   display: block;
   width: 100%;
@@ -572,9 +595,9 @@ a { color: inherit; }
 }
 .plate-index {
   grid-row: 1 / span 3;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.08em;
-  color: var(--accent);
+  color: var(--accent-strong);
   font-variant-numeric: tabular-nums;
   padding-top: 3px;
 }
@@ -588,7 +611,7 @@ a { color: inherit; }
   margin: 0;
 }
 .plate-maker {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -596,14 +619,14 @@ a { color: inherit; }
 }
 .plate-date {
   font-size: 13px;
-  color: var(--muted);
+  color: var(--ink-soft);
   margin-top: 1px;
 }
 /* why a search matched this plate: the words photographed IN the image */
 .plate-trans {
   font-size: 12px;
   font-style: italic;
-  color: color-mix(in srgb, var(--accent) 75%, var(--muted));
+  color: var(--accent-strong);
   margin-top: 3px;
 }
 
@@ -640,7 +663,7 @@ a { color: inherit; }
   transition: color .15s ease, opacity .15s ease;
 }
 .plate.is-hero .plate-rand { grid-column: 2; grid-row: 1; align-self: start; justify-self: start; }
-.plate-rand:hover, .plate-rand:focus-visible { color: var(--accent-soft); outline: none; }
+.plate-rand:hover, .plate-rand:focus-visible { color: var(--accent-strong); }
 /* Phones (must follow the desktop placements above to win the cascade):
    clear them so DOM order stacks [Randomise selection] / image / caption */
 @media (max-width: 720px) {
@@ -676,11 +699,11 @@ a { color: inherit; }
 .about h2 {
   margin: clamp(36px, 5vw, 56px) 0 14px;
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ink-soft);
 }
 .about p { margin: 0 0 14px; font-size: clamp(15px, 1.35vw, 17px); line-height: 1.65; color: var(--ink-soft); }
 .about ul { list-style: none; margin: 0 0 14px; padding: 0; }
@@ -694,12 +717,12 @@ a { color: inherit; }
 }
 .about li::before { content: "·"; position: absolute; left: 2px; color: var(--accent); }
 .about a {
-  color: var(--accent);
+  color: var(--accent-strong);
   text-decoration: none;
   border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
   transition: border-color .15s ease;
 }
-.about a:hover, .about a:focus-visible { border-bottom-color: currentColor; outline: none; }
+.about a:hover, .about a:focus-visible { border-bottom-color: currentColor; }
 .about em { color: var(--ink); }
 /* each typeface introduces itself */
 .f-serif   { font-family: var(--serif); font-style: italic; font-size: 1.15em; }
@@ -714,7 +737,7 @@ a { color: inherit; }
   font-family: var(--sans);
   font-size: 13px;
   letter-spacing: 0.04em;
-  color: var(--muted);
+  color: var(--ink-soft);
   text-align: center;
   padding: 40px 0;
 }
@@ -725,7 +748,7 @@ a { color: inherit; }
 .end-note {
   text-align: center;
   font-style: italic;
-  color: var(--muted);
+  color: var(--ink-soft);
   padding: 40px 0 10px;
   font-size: 16px;
 }
@@ -757,7 +780,7 @@ a { color: inherit; }
   font-family: var(--sans);
   font-size: 12px;
   line-height: 1.7;
-  color: var(--muted);
+  color: var(--ink-soft);
   max-width: 60ch;
 }
 .footer a { color: var(--ink-soft); text-decoration: underline; text-underline-offset: 2px; }
@@ -805,15 +828,16 @@ a { color: inherit; }
   left: 50%; bottom: 18px;
   transform: translateX(-50%);
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ink-soft);
   text-decoration: none;
   padding: 8px 14px;
   border: 1px solid var(--rule);
   border-radius: 999px;
-  background: color-mix(in srgb, var(--paper) 70%, transparent);
+  /* near-solid backing: the pill floats over arbitrary photographs */
+  background: color-mix(in srgb, var(--paper) 95%, transparent);
   transition: color .15s ease, border-color .15s ease, opacity .2s ease;
 }
 .lb-scrolldown:hover { color: var(--accent); border-color: var(--accent); }
@@ -858,7 +882,7 @@ a { color: inherit; }
   cursor: pointer;
   transition: color .15s ease, border-color .15s ease;
 }
-.lb-maker:hover, .lb-maker:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
+.lb-maker:hover, .lb-maker:focus-visible { color: var(--accent); border-color: var(--accent); }
 .lb-caption-text {
   font-size: clamp(16px, 1.5vw, 19px);
   line-height: 1.5;
@@ -876,24 +900,24 @@ a { color: inherit; }
 }
 .lb-desc p { margin: 0 0 0.85em; }
 .lb-desc p:last-child { margin-bottom: 0; }
-.lb-desc a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; }
+.lb-desc a { color: var(--accent-strong); text-decoration: none; border-bottom: 1px solid currentColor; }
 .lb-album {
   margin: 14px 0 0;
   font-family: var(--sans);
   font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ink-soft);
 }
 /* Subjects / people / places — clickable chips that search the term. */
 .lb-subjects { margin: clamp(24px, 3.5vw, 36px) 0 0; }
 .lb-subjects-label {
   display: block;
   font-family: var(--sans);
-  font-size: 10.5px;
+  font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ink-soft);
   margin-bottom: 12px;
 }
 .lb-subjects-label a { color: var(--ink-soft); border-bottom: 1px solid var(--rule-strong); transition: color .15s ease, border-color .15s ease; }
@@ -911,13 +935,13 @@ a { color: inherit; }
   cursor: pointer;
   transition: color .15s ease, border-color .15s ease;
 }
-.lb-subject:hover, .lb-subject:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
+.lb-subject:hover, .lb-subject:focus-visible { color: var(--accent); border-color: var(--accent); }
 /* AI image-tag chips — dashed + accent-tinted to read as suggested, not catalogued. */
 .lb-tag {
   font-family: var(--sans);
   font-size: 13px;
   line-height: 1.2;
-  color: var(--accent);
+  color: var(--accent-strong);
   background: none;
   border: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent);
   border-radius: 999px;
@@ -925,13 +949,13 @@ a { color: inherit; }
   cursor: pointer;
   transition: background .15s ease, border-color .15s ease;
 }
-.lb-tag:hover, .lb-tag:focus-visible { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: var(--accent); outline: none; }
+.lb-tag:hover, .lb-tag:focus-visible { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: var(--accent); }
 /* AI-transcribed text photographed in the image — quoted, muted, clearly machine-read. */
 .lb-transcript {
   font-family: var(--sans);
   font-size: 13px;
   line-height: 1.5;
-  color: var(--muted);
+  color: var(--ink-soft);
   white-space: pre-line;
   border-left: 2px dashed color-mix(in srgb, var(--accent) 45%, transparent);
   padding-left: 12px;
@@ -949,10 +973,10 @@ a { color: inherit; }
 .lb-facts > div { display: flex; flex-direction: column; gap: 4px; }
 .lb-facts dt {
   font-family: var(--sans);
-  font-size: 10.5px;
+  font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ink-soft);
 }
 .lb-facts dd {
   margin: 0;
@@ -960,7 +984,7 @@ a { color: inherit; }
   line-height: 1.4;
   color: var(--ink);
 }
-.lb-facts dd a { color: var(--accent); text-decoration: none; }
+.lb-facts dd a { color: var(--accent-strong); text-decoration: none; }
 .lb-facts dd a:hover { text-decoration: underline; }
 .lb-links {
   margin: clamp(28px, 4vw, 40px) 0 0;
@@ -968,8 +992,8 @@ a { color: inherit; }
   font-size: 14px;
   letter-spacing: 0.04em;
 }
-.lb-links a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
-.lb-links a:hover { color: var(--accent-soft); }
+.lb-links a { color: var(--accent-strong); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+.lb-links a:hover { color: var(--accent); }
 .lb-links .sep { color: var(--rule-strong); margin: 0 12px; border: 0; }
 
 .lb-close, .lb-nav {
@@ -1042,3 +1066,16 @@ body.lb-open { overflow: hidden; }
   * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
   * { scroll-behavior: auto !important; }
 }
+
+/* ============================================================================
+   Touch targets — invisible hit-area extension so small controls reach the
+   24px minimum (WCAG 2.5.8) without any visual change.
+   ============================================================================ */
+.theme-toggle, .masthead-right .hub-link, .plate-rand, .search-go, .way, .ways-pause, .lb-close { position: relative; }
+.theme-toggle::after, .masthead-right .hub-link::after, .plate-rand::after,
+.search-go::after, .way::after, .ways-pause::after, .lb-close::after {
+  content: "";
+  position: absolute;
+  inset: -6px -4px;
+}
+.lb-close::after { inset: -7px; }   /* 31px glyph -> a 45px target */
